@@ -1,0 +1,17 @@
+{
+  "name": "royal-rangers-frontend",
+  "version": "1.0.0",
+  "description": "Royal-Rangers Frontend",
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install"
+  },
+  "devDependencies": {
+    "bower": "1.8.0",
+    "gulp": "3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-copy": "^1.0.0",
+    "gulp-ngmin": "^0.3.0",
+    "gulp-put": "0.0.3"
+  }
+}
