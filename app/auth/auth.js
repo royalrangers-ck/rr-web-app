@@ -1,4 +1,4 @@
-;(function () {
+;(() => {
 
     'use strict';
 
@@ -7,7 +7,7 @@
             'ngRoute',
             'ngResource'
         ])
-        .run(['$log', function ($log) {
+        .run(['$log', ($log) => {
             $log.debug('auth app is running...');
         }]);
 })();
