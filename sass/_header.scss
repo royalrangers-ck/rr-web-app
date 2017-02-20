@@ -1,0 +1,16 @@
+.header {
+    .navbar {
+
+        &.navbar-inverse {
+            .navbar-toggle{
+                border-color:#fff;
+                color:#fff
+            }
+        }
+
+        @media (min-width: 768px){
+            border-radius:0;
+        }
+
+    }
+}

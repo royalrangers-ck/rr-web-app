@@ -16,6 +16,7 @@
     "gulp-concat": "2.6.1",
     "gulp-copy": "1.0.0",
     "gulp-ngmin": "0.3.0",
-    "gulp-put": "0.0.3"
+    "gulp-put": "0.0.3",
+    "gulp-sass": "^3.1.0"
   }
 }

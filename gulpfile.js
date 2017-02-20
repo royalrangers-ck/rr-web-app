@@ -2,11 +2,13 @@ const gulp = require('gulp');
 const concat = require('gulp-concat');
 const bower = require('gulp-bower');
 const babel = require('gulp-babel');
+const sass = require('gulp-sass');
 
 gulp.task('install', [
     'install-bower',
     'concat-and-compile-application',
-    'concat-all'
+    'concat-all',
+    'build:styles'
 ]);
 
 /**
@@ -34,6 +36,7 @@ gulp.task('concat-all', () => {
     return gulp
         .src([
             'bower_components/jquery/dist/jquery.min.js',
+            'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
             'bower_components/angular/angular.min.js',
             'bower_components/angular-route/angular-route.min.js',
             'bower_components/angular-resource/angular-resource.min.js',
@@ -43,3 +46,30 @@ gulp.task('concat-all', () => {
         .pipe(gulp.dest('app/static/vendor/js/.'))
 });
 
+gulp.task('build:styles', ['sass', 'icon']);
+
+/**
+ * Compile sass
+ */
+gulp.task('sass', function () {
+    return gulp
+        .src("sass/app.scss")
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('app/static/vendor/css'));
+});
+
+/**
+ * Icon font
+ */
+gulp.task('icon', function () {
+    return gulp
+        .src('bower_components/bootstrap-sass/assets/fonts/bootstrap/**/*.*')
+        .pipe(gulp.dest('app/static/vendor/fonts'));
+});
+
+/**
+ * Watcher sass
+ */
+gulp.task('sass:watch', ['sass'], function () {
+    gulp.watch("sass/**/*.scss", ['sass']);
+});
