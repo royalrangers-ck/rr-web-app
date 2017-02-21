@@ -35,8 +35,10 @@ gulp.task('concat-all', () => {
         .src([
             'bower_components/jquery/dist/jquery.min.js',
             'bower_components/angular/angular.min.js',
+            'bower_components/angular-animate/angular-animate.js',
             'bower_components/angular-route/angular-route.min.js',
             'bower_components/angular-resource/angular-resource.min.js',
+            'bower_components/angular-route-segment/build/angular-route-segment.js',
             'app/static/vendor/js/app.min.js'
         ])
         .pipe(concat('app.min.js'))
