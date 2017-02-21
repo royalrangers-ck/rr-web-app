@@ -21,7 +21,7 @@ gulp.task('install-bower', () => {
  * */
 gulp.task('concat-and-compile-application', () => {
     return gulp
-        .src(['app/*.js'])
+        .src(['app/*.js', 'app/section 1/*.js'])
         .pipe(concat('app.min.js'))
         .pipe(babel({presets: ['es2015']}))
         .pipe(gulp.dest('app/static/vendor/js/.'))

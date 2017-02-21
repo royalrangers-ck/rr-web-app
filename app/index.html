@@ -8,19 +8,12 @@
 
 <h1>main app</h1>
 
-<script src="../static/vendor/js/app.min.js"></script>
+<script src="static/vendor/js/app.min.js"></script>
 
-<script>
-    angular
-        .module('app', [
-            'ngRoute',
-            'ngResource'
-        ])
-        .run(['$log', function ($log) {
-            $log.debug('app is running...');
-            console.log('app is running...')
-        }]);
-</script>
+
+<a href="#/section1">Section 1</a>
+
+<div app-view-segment="0"></div>
 
 </body>
 </html>
