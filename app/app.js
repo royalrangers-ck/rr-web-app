@@ -7,7 +7,7 @@
             'ngRoute',
             'ngResource'
         ])
-        .run('$log', [($log) => {
+        .run(['$log', ($log) => {
             $log.debug('app is running...');
         }]);
 })();

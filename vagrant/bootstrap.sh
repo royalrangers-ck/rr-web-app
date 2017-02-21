@@ -63,6 +63,7 @@ server {
 
         location ~* \.(js|jpg|png|ico|css|otf|eot|svg|ttf|woff|woff2)$ {
             root /project/app;
+            sendfile off;
         }
 
         location ~ /api {
