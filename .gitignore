@@ -5,4 +5,7 @@
 .idea/
 node_modules/
 bower_components/
-app/static/vendor
+app/static/vendor/
+app/landing page/slider/vendor/
+app/landing page/slider/fonts/
+app/landing page/slider/css/*.css

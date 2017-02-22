@@ -73,3 +73,33 @@ gulp.task('icon', function () {
 gulp.task('sass:watch', ['sass'], function () {
     gulp.watch("sass/**/*.scss", ['sass']);
 });
+
+/**
+ * Stuff for slider
+ */
+gulp.task('slide', function () {
+    gulp.src([
+        'bower_components/jquery/dist/jquery.min.js',
+        'bower_components/bootstrap/dist/js/bootstrap.min.js',
+    ])
+        .pipe(concat('slider.min.js'))
+        .pipe(gulp.dest('app/landing page/slider/vendor'));
+
+    gulp.src([
+        "app/landing page/slider/css/sass/*.scss"
+    ])
+        .pipe(sass().on('error', sass.logError))
+        .pipe(concat('personal styles.css'))
+        .pipe(gulp.dest('app/landing page/slider/css/'));
+
+    gulp.src([
+        'bower_components/normalize-scss/normalize.css',
+        'bower_components/bootstrap/dist/css/bootstrap.min.css',
+        'app/landing page/slider/css/personal styles.css'
+    ])
+        .pipe(concat('style.css'))
+        .pipe(gulp.dest('app/landing page/slider/css/'));
+
+    gulp.src('bower_components/bootstrap/dist/fonts/*')
+        .pipe(gulp.dest('app/landing page/slider/fonts/'));
+});

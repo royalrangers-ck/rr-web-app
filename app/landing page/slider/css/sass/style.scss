@@ -1,0 +1,17 @@
+.carousel {
+  margin: auto;
+  width: 620px;
+  height: 420px;
+  padding: 10px;
+
+  background-color: #bba06d;
+  background-image: url("https://www.transparenttextures.com/patterns/nistri.png");
+  .carousel-indicators {
+    li {
+      width: 15px;
+      height: 15px;
+      background-color: #bba06d;
+    }
+  }
+
+}
