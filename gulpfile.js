@@ -3,17 +3,11 @@ const clean = require('gulp-clean');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
 const concat = require('gulp-concat');
-const bower = require('gulp-bower');
 const babel = require('gulp-babel');
 
 
-function installBower() {
-    return bower();
-}
-
-
 function clear() {
-    let src = ['app/static/vendor'];
+    let src = ['app/static/vendor/*'];
 
     return gulp
         .src(src, {read: false})
@@ -44,7 +38,7 @@ function copyDep() {
 
 function copyApp() {
     let sourceFiles = [
-        '!app/static/js/youtube.js',
+        '!./app/static/js/youtube.js',
         'app/*.js',
         'app/**/*.js',
     ];
@@ -110,17 +104,8 @@ function copyFonts() {
 }
 
 
-let defaultSeries = [
-    'rr-clear',
-    'install-bower',
-    'rr-copy-dep',
-    'rr-copy-app',
-    'rr-copy-js'
-];
-
 gulp.task('rr-copy', gulp.series(
-    //clear,
-    //bower,
+    clear,
     gulp.parallel(copyDep, copyApp),
     copyJs,
     copyImages,
