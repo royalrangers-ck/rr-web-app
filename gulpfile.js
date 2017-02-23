@@ -1,75 +1,129 @@
 const gulp = require('gulp');
+const clean = require('gulp-clean');
+const rename = require('gulp-rename');
+const sass = require('gulp-sass');
 const concat = require('gulp-concat');
 const bower = require('gulp-bower');
 const babel = require('gulp-babel');
-const sass = require('gulp-sass');
 
-gulp.task('install', [
-    'install-bower',
-    'concat-and-compile-application',
-    'concat-all',
-    'build:styles'
-]);
 
-/**
- * Install bower dependencies
- */
-gulp.task('install-bower', () => {
+function installBower() {
     return bower();
-});
+}
 
-/**
- * Concat all app files and Compile ES6 to ES5
- * */
-gulp.task('concat-and-compile-application', () => {
+
+function clear() {
+    let src = ['app/static/vendor'];
+
     return gulp
-        .src(['app/*.js'])
-        .pipe(concat('app.min.js'))
+        .src(src, {read: false})
+        .pipe(clean())
+}
+
+
+function copyDep() {
+    let sourceFiles = [
+        'bower_components/jquery/dist/jquery.min.js',
+        'bower_components/bootstrap/dist/js/bootstrap.min.js',
+        'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+        'bower_components/angular/angular.min.js',
+        'bower_components/angular-route/angular-route.min.js',
+        'bower_components/angular-resource/angular-resource.min.js',
+
+        'app/static/js/youtube.js'
+    ];
+    let dest = 'app/static/vendor/js/.';
+
+    return gulp
+        .src(sourceFiles)
+        .pipe(rename({dirname: ''}))
+        .pipe(concat('dep.js'))
+        .pipe(gulp.dest(dest))
+}
+
+
+function copyApp() {
+    let sourceFiles = [
+        '!app/static/js/youtube.js',
+        'app/*.js',
+        'app/**/*.js',
+    ];
+    let dest = 'app/static/vendor/js/.';
+
+    return gulp
+        .src(sourceFiles)
+        .pipe(rename({dirname: ''}))
         .pipe(babel({presets: ['es2015']}))
-        .pipe(gulp.dest('app/static/vendor/js/.'))
-});
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest(dest))
+}
 
-/**
- * Concat dependencies and app.js in one app.min.js
- */
-gulp.task('concat-all', () => {
+
+function copyJs() {
+    let sourceFiles = [
+        'app/static/vendor/js/dep.js',
+        'app/static/vendor/js/app.js',
+    ];
+    let dest = 'app/static/vendor/js/.';
+
     return gulp
-        .src([
-            'bower_components/jquery/dist/jquery.min.js',
-            'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
-            'bower_components/angular/angular.min.js',
-            'bower_components/angular-route/angular-route.min.js',
-            'bower_components/angular-resource/angular-resource.min.js',
-            'app/static/vendor/js/app.min.js'
-        ])
+        .src(sourceFiles)
+        .pipe(rename({dirname: ''}))
         .pipe(concat('app.min.js'))
-        .pipe(gulp.dest('app/static/vendor/js/.'))
-});
+        .pipe(gulp.dest(dest))
+}
 
-gulp.task('build:styles', ['sass', 'icon']);
 
-/**
- * Compile sass
- */
-gulp.task('sass', function () {
+function copySass() {
+    let src = ['app/static/sass/app.scss'];
+    let dest = 'app/static/vendor/css/.';
+
     return gulp
-        .src("sass/app.scss")
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('app/static/vendor/css'));
-});
+        .src(src)
+        .pipe(sass())
+        .pipe(gulp.dest(dest))
+}
 
-/**
- * Icon font
- */
-gulp.task('icon', function () {
+
+function copyImages() {
+    let src = ['app/static/images/*.*'];
+    let dest = 'app/static/vendor/images/.';
+
     return gulp
-        .src('bower_components/bootstrap-sass/assets/fonts/bootstrap/**/*.*')
-        .pipe(gulp.dest('app/static/vendor/fonts'));
-});
+        .src(src)
+        .pipe(rename({dirname: ''}))
+        .pipe(gulp.dest(dest))
+}
 
-/**
- * Watcher sass
- */
-gulp.task('sass:watch', ['sass'], function () {
-    gulp.watch("sass/**/*.scss", ['sass']);
-});
+
+function copyFonts() {
+    let src = [
+        'bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*',
+        'app/static/fonts/*.*',
+    ];
+    let dest = 'app/static/vendor/fonts/.';
+
+    return gulp
+        .src(src)
+        .pipe(rename({dirname: ''}))
+        .pipe(gulp.dest(dest))
+}
+
+
+let defaultSeries = [
+    'rr-clear',
+    'install-bower',
+    'rr-copy-dep',
+    'rr-copy-app',
+    'rr-copy-js'
+];
+
+gulp.task('rr-copy', gulp.series(
+    //clear,
+    //bower,
+    gulp.parallel(copyDep, copyApp),
+    copyJs,
+    copyImages,
+    copySass,
+    copyFonts
+));

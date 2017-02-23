@@ -27,8 +27,8 @@ npm install -g bower
 #        Gulp         #
 # ------------------- #
 
-npm install gulp-cli -g
-npm install gulp -D
+npm install gulpjs/gulp-cli -g
+npm install gulpjs/gulp#4.0 -D
 
 # ------------------- #
 
