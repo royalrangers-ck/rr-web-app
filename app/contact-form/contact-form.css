@@ -1,0 +1,14 @@
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto; }
+
+.contact-form {
+  width: 50%;
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-between; }
+  .contact-form .contact-form-email {
+    flex-grow: 1; }
+  .contact-form .contact-form-separator {
+    margin: 0 10px;
+    border-right: 2px solid darkred; }
