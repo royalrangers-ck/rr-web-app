@@ -5,4 +5,4 @@
 .idea/
 node_modules/
 bower_components/
-app/static/vendor
+app/static/vendor/*

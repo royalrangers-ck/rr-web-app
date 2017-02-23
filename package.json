@@ -1,6 +1,7 @@
 {
   "name": "royal-rangers-frontend",
   "version": "1.0.0",
+  "private": true,
   "description": "Royal-Rangers Frontend",
   "scripts": {
     "postinstall": "bower install",
@@ -10,13 +11,16 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.22.0",
     "bower": "1.8.0",
-    "gulp": "3.9.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-bower": "0.0.13",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-babel": "6.1.2",
+    "gulp-clean": "0.3.2",
     "gulp-concat": "2.6.1",
     "gulp-copy": "1.0.0",
     "gulp-ngmin": "0.3.0",
     "gulp-put": "0.0.3",
-    "gulp-sass": "^3.1.0"
-  }
+    "gulp-rename": "1.2.2",
+    "gulp-sass": "3.1.0"
+  },
+  "dependencies": {},
+  "optionalDependencies": {}
 }
