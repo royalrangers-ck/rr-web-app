@@ -24,7 +24,7 @@ function copyDep() {
         'bower_components/angular-route/angular-route.min.js',
         'bower_components/angular-resource/angular-resource.min.js',
 
-        'app/static/js/youtube.js'
+        'app/static/js/*.js',
     ];
     let dest = 'app/static/vendor/js/.';
 
@@ -38,9 +38,9 @@ function copyDep() {
 
 function copyApp() {
     let sourceFiles = [
-        '!./app/static/js/youtube.js',
         'app/*.js',
         'app/**/*.js',
+        '!app/static/js/*.js',
     ];
     let dest = 'app/static/vendor/js/.';
 
