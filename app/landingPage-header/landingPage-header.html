@@ -6,103 +6,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/vendor/css/app.css">
-    <link rel="stylesheet" href="css/header-styles.css">
+    <link rel="stylesheet" href="header-styles.css">
     <title>Landing page header</title>
 </head>
 
 <body>
 <!--Page header-->
-<header class="page-header container">
-    <!--Page logo, name and sign-in link-->
-    <h1 class="page-header__logo"></h1>
-    <div class="page-header__page-description">
-        <span class="page-header__page-name"></span>
-        <span class="page-header__page-slogan"></span>
+<header class="lp-header container">
+    <div class="lp-header__top-row row">
+        <h1 class="lp-header__logo-block col-md-3">
+            <a href="javascript:void(0);">
+                <img class="lph-logo" src="img/logo.png" alt="Логотип сайту">
+            </a>
+        </h1>
+        <div class="col-md-9">
+            <div class="row">
+               <div class="lp-header__description-block col-md-7 col-xs-6">
+                   <h2 class="lp-header__title lph-title">тут потім</h2>
+                   <span class="lp-header__slogan lph-slogan">буде текст</span>
+               </div>
+                <ul class="lp-header__auth-block col-md-5 col-xs-4">
+                    <li class="lp-header__register">
+                        <a href="javascript:void(0);" class="lph-link">регістрація</a>
+                    </li>
+                    <li class="lp-header__signin">
+                        <a href="javascript:void(0);" class="lph-btn">вхід</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="page-header__sign-in"></div>
-
-    <!--Main navigation-->
-    <nav class="page-header__navigation navbar navbar-default" role="navigation">
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+    <!-- Static navbar -->
+    <nav class="lp-header__nav navbar navbar-default lph-nav" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a class="page-scroll" href="#page-top"></a>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="lph-nav__item">
+                        <a class="lph-link lph-link_size_small" href="javascript:void(0);">Про нас</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
+                    <li class="lph-nav__item">
+                        <a class="lph-link lph-link_size_small" href="javascript:void(0);">Суть проекту</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Services</a>
+                    <li class="lph-nav__item">
+                        <a class="lph-link lph-link_size_small" href="javascript:void(0);">Як це працює</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                    <li class="lph-nav__item">
+                        <a class="lph-link lph-link_size_small" href="javascript:void(0);">Локатор</a>
                     </li>
                 </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
     </nav>
 </header>
-<div style="height: 1200px;">
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, labore, odit? Ab natus odio repellat? Aliquam
-        amet dolorum esse ipsum laudantium libero magni obcaecati possimus, quaerat quibusdam saepe veniam voluptatem!
-    </div>
-    <div>Autem explicabo modi neque ratione? Alias dolor eos eveniet ex inventore libero magnam nobis perferendis rerum
-        voluptas? Accusantium earum est ipsa iste soluta! Autem, earum eligendi nobis reprehenderit temporibus voluptas.
-    </div>
-    <div>Aut autem blanditiis debitis eius facilis fugit, ipsam, ipsum iste laboriosam nemo nesciunt quo quod quos
-        recusandae repudiandae, sint ut! Aliquid dolor et harum maiores neque optio soluta tempora voluptates?
-    </div>
-    <div>At cupiditate doloremque ducimus enim error est et eum eveniet iste, itaque libero nesciunt nihil non odio quia
-        quidem quis repudiandae saepe sequi ullam veritatis voluptate voluptates. Consectetur, consequuntur, quisquam.
-    </div>
-    <div>Non repellat repellendus sed. Ab amet aut deleniti doloremque eligendi explicabo facere harum ipsam nihil,
-        officia perferendis possimus quaerat quasi quibusdam quis quisquam quo rem repellat tempora ullam velit vero?
-    </div>
-    <div>Asperiores, deserunt eaque eligendi explicabo ipsum neque odio provident sint soluta temporibus? Doloribus hic
-        illo nisi perferendis tenetur? Quia, tempora voluptas? Autem, cum debitis est facere fuga odio qui voluptatem.
-    </div>
-    <div>Aliquam animi architecto consequuntur deleniti, dolor earum enim excepturi facere magni molestiae odio officia
-        perferendis quidem ratione reiciendis suscipit totam voluptatem voluptatibus. Dignissimos eaque minus, natus
-        optio provident quos vero?
-    </div>
-    <div>Excepturi ipsa iusto veniam? A amet animi asperiores doloremque excepturi ipsa labore, minus nam placeat quas
-        quisquam quod ratione rem reprehenderit voluptatibus! Accusamus doloremque ea libero maxime repellat rerum
-        saepe.
-    </div>
-    <div>Aliquid at, beatae consectetur corporis delectus dignissimos distinctio dolores eius eum fuga harum id illum
-        libero, magnam nihil perferendis porro praesentium quae quaerat quia similique temporibus, totam velit voluptate
-        voluptatem!
-    </div>
-    <div>Cupiditate impedit inventore magni molestiae neque nobis obcaecati omnis perspiciatis quia quis. Animi
-        architecto atque consectetur dicta laudantium maiores odit ratione saepe? Aperiam beatae error laboriosam libero
-        perferendis, veniam. Sint.
-    </div>
-    <div>Dolores necessitatibus nesciunt obcaecati quod. Aliquam beatae, commodi dolor ducimus expedita fugiat illo
-        laboriosam modi nemo, neque odit optio porro quasi repudiandae, saepe sequi similique tempora tenetur ullam
-        voluptate voluptatibus.
-    </div>
-    <div>Asperiores at blanditiis deleniti doloremque earum enim ex expedita fuga illo inventore iste, itaque magni
-        maiores non officiis omnis optio quibusdam quo recusandae repellendus repudiandae sequi soluta suscipit ullam
-        vero?
-    </div>
-</div>
 
 <script src="../static/vendor/js/app.min.js"></script>
-<script src="scripts/navbar-scrolling.js"></script>
+<script src="navbar-scrolling.js"></script>
 </body>
 </html>

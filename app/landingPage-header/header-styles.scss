@@ -1,6 +1,192 @@
-/*Page header styles*/
-.page-header {
-  min-height: 100px;
-  &__navigation {
+//Styles for "landing page - header"
+//Aliases: lp - "Landing page", lph - "Landing page header"
+//Author: Vasiliy Dikun
+
+//import bootstrap variables
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+
+//Import needed font, just for dev version
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
+.p-header{
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+//Variables
+$lph-height: 357px; //header height
+$lph-top-row-height: 229px; //height of first row in page header
+$lph-font-family: 'Yanone Kaffeesatz', sans-serif; //primary font
+$lph-title-font-size: 80px; //font size to page title
+$lph-slogan-font-size: $lph-title-font-size; //font to page slogan
+$lph-link-font-size: 46px; //font to links
+$lph-button-color: #f00; //buttons color
+$lph-font-color: #000; //primary font color
+
+//mixins
+@mixin setFont($f-size, $f-line-height, $f-family) {
+  font-size: $f-size;
+  line-height: $f-line-height;
+  font-family: $f-family;
+}
+
+//Here was used part of BEM methodology to keep styles isolated and structured
+
+/* Extra small devices (phones, less than 768px) */
+.lp-header {
+  height: $lph-height;
+  background: url("img/header-bg.jpg") 0 50% no-repeat #fff;
+  background-size: 100% auto;
+  margin-top: 30px;
+  &__top-row {
+    height: $lph-top-row-height;
+    text-overflow: clip
   }
+  &__logo-block {
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+    top: 67px;
+    left: 31px;
+    z-index: 1000;
+  }
+  &__description-block {
+    overflow: hidden;
+    max-height: $lph-top-row-height;
+  }
+  &__title {
+    margin: 0;
+    padding: 25px 0 0 25px;
+    cursor: default;
+  }
+  &__slogan {
+    padding-left: 120px;
+    cursor: default;
+  }
+  &__auth-block {
+    padding-top: 62px;
+    text-align: right;
+    vertical-align: top;
+    white-space: nowrap;
+    overflow: hidden;
+    max-height: $lph-top-row-height;
+    &::after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+  }
+  &__register {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  &__signin {
+    display: inline-block;
+    position: relative;
+    top: -8px;
+    margin-right: 87px;
+  }
+  &__nav {
+    height: $lph-height - $lph-top-row-height;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+}
+
+.lph-nav {
+  position: relative;
+  border: 0;
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding-top: 23px;
+  &__item {
+    padding-right: 30px;
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}
+
+.lph-logo {
+  cursor: default;
+}
+
+.lph-title {
+  @include setFont($lph-title-font-size, $lph-title-font-size, $lph-font-family);
+}
+
+.lph-slogan {
+  @include setFont($lph-slogan-font-size, $lph-slogan-font-size, $lph-font-family);
+}
+
+.lph-link {
+  display: block;
+  text-transform: uppercase;
+  @include setFont($lph-link-font-size, $lph-link-font-size, $lph-font-family);
+  color: $lph-font-color !important; //bootstrap nav links have too big specificity
+  &:hover {
+    text-decoration: underline !important; //bootstrap nav links have too big specificity
+  }
+  &_size_small {
+    font-size: $lph-link-font-size * 0.9;
+  }
+}
+
+.lph-btn {
+  display: block;
+  position: relative;
+  min-width: 52px;
+  height: 33px;
+  padding-top: 3px;
+  padding-left: 3px;
+  background-color: $lph-button-color;
+  color: #fff;
+  @include setFont(26px, 30px, $lph-font-family);
+  text-transform: uppercase;
+  text-align: center;
+  transition: background-color 1s;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 33px;
+    width: 3px;
+    left: -7px;
+    top: 0;
+    background-color: $lph-button-color;
+    transition: background-color 1s;
+  }
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: -39px;
+    top: -4px;
+    border: 21px solid transparent;
+    border-left-color: $lph-button-color;
+    transition: border-left-color 1s;
+  }
+  &:hover {
+    color: #fff;
+    background-color: $lph-button-color - #300;
+    text-decoration: none;
+    &::before {
+      background-color: $lph-button-color - #300;
+    }
+    &::after {
+      border-left-color: $lph-button-color - #300;
+    }
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {
 }
