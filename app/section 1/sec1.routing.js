@@ -6,12 +6,8 @@
         .module('app')
         .config(Sec1Route);
 
-
-    Sec1Route.$inject = ['$routeSegmentProvider', '$routeProvider'];
-
-    function Sec1Route($routeSegmentProvider, $routeProvider) {
-        activate();
-
+    Sec1Route.$inject = ['$routeSegmentProvider'];
+    function Sec1Route($routeSegmentProvider) {
         $routeSegmentProvider.options.autoLoadTemplates = true;
 
         $routeSegmentProvider
@@ -23,10 +19,5 @@
             });
 
         // $routeProvider.otherwise({redirectTo: '/#/section1'});
-
-        function activate() {
-            console.log('Init Sec1 route');
-        }
     }
-
 })();

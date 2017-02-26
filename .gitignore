@@ -1,10 +1,8 @@
 # Files
 *.iml
-app/index.html
-app/auth/index.html
 
 # Foulders
 .idea/
 node_modules/
 bower_components/
-app/static/vendor
+app/static/vendor/*

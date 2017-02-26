@@ -27,8 +27,8 @@ npm install -g bower
 #        Gulp         #
 # ------------------- #
 
-npm install gulp-cli -g
-npm install gulp -D
+npm install gulpjs/gulp-cli -g
+npm install gulpjs/gulp#4.0 -D
 
 # ------------------- #
 
@@ -63,6 +63,7 @@ server {
 
         location ~* \.(js|jpg|png|ico|css|otf|eot|svg|ttf|woff|woff2)$ {
             root /project/app;
+            sendfile off;
         }
 
         location ~ /api {
