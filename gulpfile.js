@@ -19,10 +19,13 @@ function copyDep() {
     let sourceFiles = [
         'bower_components/jquery/dist/jquery.min.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
+
         'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
         'bower_components/angular/angular.min.js',
         'bower_components/angular-route/angular-route.min.js',
         'bower_components/angular-resource/angular-resource.min.js',
+        'bower_components/angular-animate/angular-animate.js',
+        'bower_components/angular-route-segment/build/angular-route-segment.js',
 
         'app/static/js/*.js',
     ];
@@ -38,7 +41,8 @@ function copyDep() {
 
 function copyApp() {
     let sourceFiles = [
-        'app/*.js',
+        'app/app.js',
+        'app/config.js',
         'app/**/*.js',
         '!app/static/js/*.js',
     ];
