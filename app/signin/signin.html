@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Google Map</title>
+
+    <!-- Uncomment for local development -->
+    <link rel="stylesheet" href="../static/vendor/css/app.css">
+    <link rel="stylesheet" href="signin.css">
+    <!-- Uncomment for vagrant development -->
+    <!--<link rel="stylesheet" href="../../static/vendor/css/app.css">-->
+    <title>Title</title>
+</head>
+<body>
+<section class="section__singin">
+    <div class="container">
+        <form role="form" action="" method="post" class="singin__form">
+      <div class="row">
+
+          <div class="col-sm-6 singin__form-cell" >
+
+
+              <input id="email" type="email" class="form-control singin-input singin-input__left-block" name="email" placeholder="Email">
+
+          </div>
+
+          <div class="col-sm-6 singin__form-cell" >
+              <input type="tel" name="phone" class="form-control singin-input singin-input__right-block" value="" size="10" maxlength="10" required="required" title="093" placeholder="Телефон">
+          </div>
+
+          <div class="col-sm-6 singin__form-cell">
+              <input type="password" class="form-control singin-input singin-input__left-block" id="pass" placeholder="Пароль">
+          </div>
+          <div class="col-sm-6 singin__form-cell" >
+              <input type="password" class="form-control singin-input singin-input__right-block" id="pass" placeholder="ПІдтвердження пароля">
+          </div>
+
+          <div class="col-sm-6 singin__form-cell" >
+              <input class="form-control singin-input singin-input__left-block"  maxlength="30" name="username" type="text" placeholder="Ім'я">
+          </div>
+          <div class="col-sm-6 singin__form-cell" >
+              <input class="form-control singin-input singin-input__right-block"  maxlength="30" name="username" type="text" placeholder="призвище">
+          </div>
+          <div class="col-sm-6 singin__form-cell" >
+              <input type="date" class="form-control singin-input singin-input__left-block" placeholder="Дата народження" title="дата народження">
+
+          </div>
+          <div class="col-sm-6 singin__form-cell" >
+
+              <select class="form-control singin-input singin-input__right-block" title="СТАТЬ">
+                  <option>Мужской</option>
+                  <option>Женский</option>
+              </select>
+          </div>
+
+          <div class="col-sm-6 singin__form-cell" >
+              <input class="form-control singin-input singin-input__left-block"  maxlength="30" name="country" type="text" placeholder="мІсто">
+          </div>
+
+          <div class="col-sm-6 singin__form-cell" >
+              <input type="number" class="form-control singin-input singin-input__right-block" name="quantity" min="1" max="5" placeholder="НОМЕР ЗАГОНУ">
+          </div>
+
+          <div class="col-sm-6 singin__form-cell" >
+              <input class="form-control singin-input singin-input__left-block"  maxlength="30" name="country" type="text" placeholder="СТАТУС">
+
+              </div>
+
+          <div class="col-sm-6 singin__form-cell" >
+              <input class="form-control singin-input singin-input__right-block"  maxlength="30" name="country" type="text" placeholder="НАЗВА ЛАНКИ">
+
+          </div>
+
+
+
+      </div>
+            <button type="submit" class="btn btn-danger">ЗАРЕЄСТРУВАТИСЯ </button>
+        </form>
+
+        <div class="section__singin__enter"> <button type="submit" class="btn btn-danger section__singin__enter-btn" >ВХІД
+        </button></div>
+
+<hr class="singin__form-hr" >
+        <p class="singin__ask">НЕ ОТРИМАЛИ ЛИСТА ПРО ПІДТВЕРДЖЕННЯ РЕЄСТРАЦІЇ? </p>
+    </div>
+
+
+
+
+
+</section>
+</body>
+</html>
