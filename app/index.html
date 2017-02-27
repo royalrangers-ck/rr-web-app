@@ -9,36 +9,23 @@
 </head>
 <body ng-app="app">
 
-<div class="container text-center">
-    <h2 class="title">Got Supply Items? Save time!</h2>
-    <p class="intro">Velocitum Software Inventory helps you track your clinical supply items <br /> and increase your productivity</p>
-    <p>
-        <a class="btn btn-cta btn-cta-primary play-trigger margin-sides-15" data-toggle="modal" data-target="#modal-video"><i class="fa fa-youtube-play"></i> Watch the video</a>
-    </p>
-</div>
-
-<!-- Video Modal -->
-<div class="modal modal-video" id="modal-video" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 id="videoModalLabel" class="modal-title sr-only">Video Tour</h4>
-            </div>
-            <div class="modal-body">
-                <div class="video-container">
-                    <div id="player"></div>
-                </div>
-            </div>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Royal-Rangers</a>
         </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#/">Home</a></li>
+            <li><a href="#/contactForm">Contact Form</a></li>
+        </ul>
     </div>
+</nav>
+
+<div class="container">
+    <div app-view-segment="0"></div>
 </div>
 
-<!-- App -->
 <script type="text/javascript" src="../static/vendor/js/app.min.js"></script>
-
-<!-- Youtube video API -->
-<script type="text/javascript" src="../static/vendor/js/youtube.js"></script>
 
 </body>
 </html>

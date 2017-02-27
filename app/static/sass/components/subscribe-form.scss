@@ -11,22 +11,20 @@ $map-height-sm: 350px;
     margin: 0 auto;
 }
 
-.contact-form {
+.rr-subscribe-form {
     width: 50%;
     margin: 50px auto;
     display: flex;
     justify-content: space-between;
 
-    .contact-form-email {
+    .rr-subscribe-form-email {
         flex-grow: 1;
     }
 
-    .contact-form-separator {
+    .rr-subscribe-form-separator {
         margin: 0 10px;
         border-right: 2px solid darkred;
     }
 
-    .contact-form-btn {}
+    .rr-subscribe-form-btn {}
 }
-
-.footer {}

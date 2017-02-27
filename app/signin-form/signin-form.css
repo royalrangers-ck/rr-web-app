@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz");
+.rr-signin-form .rr-signin-form-menu li {
+  padding: 10px 0; }
+
+body {
+  font-family: 'Yanone Kaffeesatz';
+  font-size: 25px;
+  color: #333;
+  text-transform: uppercase; }
+
+a, a:hover {
+  color: #333; }
+
+.form-control {
+  height: 49px;
+  font-size: 30px;
+  line-height: 1.42857;
+  border-radius: 0; }
+  .form-control::-moz-placeholder {
+    color: #999;
+    opacity: 1;
+    font-size: 30px;
+    text-transform: uppercase; }
+  .form-control:-ms-input-placeholder {
+    color: #999;
+    font-size: 30px;
+    text-transform: uppercase; }
+  .form-control::-webkit-input-placeholder {
+    color: #999;
+    font-size: 30px;
+    text-transform: uppercase; }
+
+.btn {
+  font-size: 30px;
+  text-transform: uppercase; }

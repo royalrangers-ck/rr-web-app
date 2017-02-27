@@ -1,0 +1,62 @@
+.rr-signin-form {
+    .rr-signin-form-menu {
+        li {
+            padding: 10px 0;
+        }
+    }
+}
+
+//
+// Common styles for all element on page
+//======================================
+
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
+
+$text-color:        #333;
+$placeholder-color: #999 !default;
+$font-size-base:    25px;
+$font-size-input:   30px;
+
+$line-height-base:      1.428571429 !default; // 20/14
+$padding-base-vertical: 6px !default;
+$line-height-computed:  floor($font-size-base * $line-height-base);
+
+body {
+    font-family: 'Yanone Kaffeesatz';
+    font-size: $font-size-base;
+    color: $text-color;
+    text-transform: uppercase;
+}
+
+a, a:hover {
+    color: $text-color;
+}
+
+.form-control {
+    height: $line-height-computed + ($padding-base-vertical * 2) + 2; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+    font-size: $font-size-input;
+    line-height: $line-height-base;
+    border-radius: 0;
+
+    &::-moz-placeholder {
+        color: $placeholder-color;
+        opacity: 1;
+        font-size: $font-size-input;
+        text-transform: uppercase;
+    }
+    &:-ms-input-placeholder {
+        color: $placeholder-color;
+        font-size: $font-size-input;
+        text-transform: uppercase;
+    }
+    &::-webkit-input-placeholder  {
+        color: $placeholder-color;
+        font-size: $font-size-input;
+        text-transform: uppercase;
+    }
+}
+
+.btn {
+    font-size: $font-size-input;
+    text-transform: uppercase;
+}
