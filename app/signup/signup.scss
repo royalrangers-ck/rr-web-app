@@ -1,32 +1,32 @@
-.section__singin{
+.section__signup{
   background-color:#f6f5f6;
-height: 790px;
+
   padding-top:100px;
   div {
-    .singin__form {
+    .signup__form {
       text-align: center;
     }
     div {
-      .singin__form-cell {
+      .signup__form-cell {
 
         height: 50px;
-        .singin-input {
+        .signup-input {
           width: 50%;
 
         }
-        .singin-input__left-block {
+        .signup-input__left-block {
           margin-left: 280px;
         }
-        .singin-input__right-block {
+        .signup-input__right-block {
           margin-right: 280px;
         }
       }
     }
-    .section__singin__enter {
+    .section__signup__enter {
       padding-top: 40px;
       text-align: center;
 
-      .section__singin__enter-btn {
+      .section__signup__enter-btn {
         display: block;
         color: #fff;
         border-radius: 0em; /* Обнулить округлости */
@@ -40,7 +40,7 @@ height: 790px;
         text-transform: uppercase;
         margin: 0 auto;
       }
-      .section__singin__enter-btn:after, .section__singin__enter-btn:before {
+      .section__signup__enter-btn:after, .section__signup__enter-btn:before {
         left: 100%;
         top: 50%;
         border: solid transparent;
@@ -49,28 +49,22 @@ height: 790px;
         width: 0;
         position: absolute;
       }
-      .section__singin__enter-btn:after {
+      .section__signup__enter-btn:after {
         border-color: rgba(136, 183, 213, 0);
         border-left-color: #d9534f;
         border-width: 16px;
         margin-top: -16px;
       }
-      .section__singin__enter-btn:before {
+      .section__signup__enter-btn:before {
         border-color: rgba(194, 225, 245, 0);
         border-left-color: #d9534f;
         border-width: 16px;
         margin-top: -14px;
       }
     }
-    .section__singin-br {
-      color: white;
-    }
-    .singin__form-hr{
-      width: 588px;
-      color: darkgray;
-     border: 1px solid darkgray;
-    }
-    .singin__ask{
+
+
+    .signup__ask{
       color: grey;
       text-transform: uppercase;
       text-align: center;
@@ -80,21 +74,23 @@ height: 790px;
 }
 
 @media(max-width: 768px){
-  .section__singin{
+  .section__signup{
     background-color:#f6f5f6;
-    height: 790px;
+
     padding-top:100px;
-    .singin__form{
+    .signup__form{
       text-align: center;
-    }
-    div{.singin__form-cell{
 
-      height: 50px;
-      .singin-input{
-        width: 50%;
+    div{
+      .signup__form-cell{
+        height: 50px;
+      .signup-input{
+        width: 100%;
         margin: 0 auto;
-      }
 
-    }}
+      }
+      }
+    }
+    }
   }
 }

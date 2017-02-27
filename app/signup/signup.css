@@ -1,22 +1,21 @@
 @charset "UTF-8";
-.section__singin {
+.section__signup {
   background-color: #f6f5f6;
-  height: 790px;
   padding-top: 100px; }
-  .section__singin div .singin__form {
+  .section__signup div .signup__form {
     text-align: center; }
-  .section__singin div div .singin__form-cell {
+  .section__signup div div .signup__form-cell {
     height: 50px; }
-    .section__singin div div .singin__form-cell .singin-input {
+    .section__signup div div .signup__form-cell .signup-input {
       width: 50%; }
-    .section__singin div div .singin__form-cell .singin-input__left-block {
+    .section__signup div div .signup__form-cell .signup-input__left-block {
       margin-left: 280px; }
-    .section__singin div div .singin__form-cell .singin-input__right-block {
+    .section__signup div div .signup__form-cell .signup-input__right-block {
       margin-right: 280px; }
-  .section__singin div .section__singin__enter {
+  .section__signup div .section__signup__enter {
     padding-top: 40px;
     text-align: center; }
-    .section__singin div .section__singin__enter .section__singin__enter-btn {
+    .section__signup div .section__signup__enter .section__signup__enter-btn {
       display: block;
       color: #fff;
       border-radius: 0em;
@@ -32,7 +31,7 @@
       position: relative;
       text-transform: uppercase;
       margin: 0 auto; }
-    .section__singin div .section__singin__enter .section__singin__enter-btn:after, .section__singin div .section__singin__enter .section__singin__enter-btn:before {
+    .section__signup div .section__signup__enter .section__signup__enter-btn:after, .section__signup div .section__signup__enter .section__signup__enter-btn:before {
       left: 100%;
       top: 50%;
       border: solid transparent;
@@ -40,39 +39,32 @@
       height: 0;
       width: 0;
       position: absolute; }
-    .section__singin div .section__singin__enter .section__singin__enter-btn:after {
+    .section__signup div .section__signup__enter .section__signup__enter-btn:after {
       border-color: rgba(136, 183, 213, 0);
       border-left-color: #d9534f;
       border-width: 16px;
       margin-top: -16px; }
-    .section__singin div .section__singin__enter .section__singin__enter-btn:before {
+    .section__signup div .section__signup__enter .section__signup__enter-btn:before {
       border-color: rgba(194, 225, 245, 0);
       border-left-color: #d9534f;
       border-width: 16px;
       margin-top: -14px; }
-  .section__singin div .section__singin-br {
-    color: white; }
-  .section__singin div .singin__form-hr {
-    width: 588px;
-    color: darkgray;
-    border: 1px solid darkgray; }
-  .section__singin div .singin__ask {
+  .section__signup div .signup__ask {
     color: grey;
     text-transform: uppercase;
     text-align: center;
     font-size: 1em; }
 
 @media (max-width: 768px) {
-  .section__singin {
+  .section__signup {
     background-color: #f6f5f6;
-    height: 790px;
     padding-top: 100px; }
-    .section__singin .singin__form {
+    .section__signup .signup__form {
       text-align: center; }
-    .section__singin div .singin__form-cell {
-      height: 50px; }
-      .section__singin div .singin__form-cell .singin-input {
-        width: 50%;
-        margin: 0 auto; } }
+      .section__signup .signup__form div .signup__form-cell {
+        height: 50px; }
+        .section__signup .signup__form div .signup__form-cell .signup-input {
+          width: 100%;
+          margin: 0 auto; } }
 
-/*# sourceMappingURL=signin.css.map */
+
