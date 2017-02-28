@@ -1,11 +1,15 @@
 /** Bootstrap */
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
 /** App */
 @import "components/buttons";
 @import "components/login";
 @import "components/map";
 @import "components/subscribe-form";
+@import "components/header";
+@import "components/footer";
+@import "components/video";
 
 html, body {
   margin: 0;

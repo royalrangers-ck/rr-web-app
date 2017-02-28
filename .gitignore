@@ -6,3 +6,5 @@
 node_modules/
 bower_components/
 app/static/vendor/*
+.sass-cache/
+template-sources/
