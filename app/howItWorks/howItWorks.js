@@ -6,12 +6,10 @@
         .module('app')
         .config(HowItWorksSegment);
 
-    HowItWorksSegment.$inject = ['$routeSegmentProvider', '$routeProvider'];
-    function HowItWorksSegment($routeSegmentProvider, $routeProvider) {
-        $routeProvider.otherwise({redirectTo: '/'});
-        $routeSegmentProvider.options.autoLoadTemplates = true;
+    HowItWorksSegment.$inject = ['$routeSegmentProvider'];
+    function HowItWorksSegment($routeSegmentProvider) {
 
-        $routeSegmentProvider.when('/', 'home').segment('howItWorks', {
+        $routeSegmentProvider.when('/howItWorks', 'howItWorks').segment('howItWorks', {
             templateUrl: 'howItWorks/howItWorks.html',
             controller: 'HowItWorksController'
         });
