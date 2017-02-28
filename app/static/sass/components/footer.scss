@@ -1,0 +1,63 @@
+@import "sprites";
+//@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
+
+$brand-color: #cc252b;
+$text-color: #333;
+
+.rr-footer {
+  position: relative;
+  background-color: rgba(255, 255, 255, .5);
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 22px;
+  margin: 100px auto 30px;
+
+  .rr-footer-logo {
+    position: absolute;
+    width: 230px;
+    bottom: -20px;
+
+    img {
+      width: 230px;
+    }
+  }
+
+  .rr-footer-contacts {
+
+    .rr-footer-contacts-icons, .rr-footer-contacts-info {
+      float: right;
+      margin: 15px 0 10px;
+    }
+
+    .rr-footer-contacts-icons {
+      .item {
+        padding: 0 22px;
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 60px;
+        }
+      }
+
+      .rr-scroll-to-top {
+        padding-right: 60px;
+        margin-right: 0;
+        border-right: 3px solid $brand-color;
+
+        + .item {
+          padding-left: 60px;
+        }
+      }
+    }
+
+    .rr-footer-contacts-info {
+      text-transform: uppercase;
+
+      a {
+        color: $text-color;
+      }
+    }
+  }
+}

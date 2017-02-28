@@ -2,12 +2,7 @@
 //Aliases: lp - "Landing page", lph - "Landing page header"
 //Author: Vasiliy Dikun
 
-//import bootstrap variables
-@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
-
-//Import needed font, just for dev version
-@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
-.p-header{
+.p-header {
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
@@ -40,7 +35,7 @@ $lph-font-color: #000; //primary font color
 /*Styles to header panel*/
 .lp-header {
   height: $lph-height-mobile;
-  background: url("img/header-bg.jpg") 50% 80% no-repeat #fff;
+  background: url("../../vendor/images/header-bg.jpg") 50% 80% no-repeat #fff;
   background-size: 800px auto;
   &__top-row {
     display: none;
