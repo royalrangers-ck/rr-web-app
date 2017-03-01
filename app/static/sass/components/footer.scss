@@ -4,12 +4,18 @@
 $brand-color: #cc252b;
 $text-color: #333;
 
+.rr-footer-wrapper {
+    background-image: url('./../images/footer-bg.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .rr-footer {
   position: relative;
-  background-color: rgba(255, 255, 255, .5);
+  background-color: rgba(255, 255, 255, .7);
   font-family: 'Yanone Kaffeesatz', sans-serif;
   font-size: 22px;
-  margin: 100px auto 30px;
+  margin: 443px auto 30px;
 
   .rr-footer-logo {
     position: absolute;
