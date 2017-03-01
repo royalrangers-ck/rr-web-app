@@ -27,8 +27,8 @@ npm install -g bower
 #        Gulp         #
 # ------------------- #
 
-npm install gulp-cli -g
-npm install gulp -D
+npm install gulpjs/gulp-cli -g
+npm install gulpjs/gulp#4.0 -D
 
 # ------------------- #
 
@@ -52,12 +52,7 @@ server {
         listen [::]:80 default_server ipv6only=on;
 
         location / {
-            root /project/app/auth;
-            index index.html index.html;
-        }
-
-        location /app {
-            root /project;
+            root /project/app;
             index index.html index.html;
         }
 

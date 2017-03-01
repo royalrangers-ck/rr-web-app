@@ -5,6 +5,8 @@
 .idea/
 node_modules/
 bower_components/
-app/static/vendor/
 app/slider/bootstrap/
 app/slider/css/*.css
+app/static/vendor/*
+.sass-cache/
+template-sources/
