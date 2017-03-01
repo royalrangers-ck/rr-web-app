@@ -29,7 +29,8 @@ function copyDep() {
         'bower_components/angular-animate/angular-animate.js',
         'bower_components/angular-route-segment/build/angular-route-segment.js',
 
-        'app/static/js/*.js'
+        'app/static/js/*.js',
+        '!app/static/js/google-maps.js'
     ];
     let dest = 'app/static/vendor/js/.';
 
@@ -40,6 +41,17 @@ function copyDep() {
         .pipe(gulp.dest(dest))
 }
 
+function copyScripts() {
+    let sourceFiles = [
+        'app/static/js/google-maps.js'
+    ];
+    let dest = 'app/static/vendor/js/.';
+
+    return gulp
+        .src(sourceFiles)
+        .pipe(rename({dirname: ''}))
+        .pipe(gulp.dest(dest))
+}
 
 function copyApp() {
     let sourceFiles = [
@@ -112,7 +124,7 @@ function copyFonts() {
 
 gulp.task('rr-copy', gulp.series(
     clear,
-    gulp.parallel(copyDep, copyApp),
+    gulp.parallel(copyScripts, copyDep, copyApp),
     copyJs,
     copyImages,
     copySass,
