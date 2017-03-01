@@ -1,0 +1,33 @@
+/*----------------- Start Slider Style ---------------------*/
+  // Обов'язково:
+    // Ширини слайдера потребують точного налаштування
+    // Потрібно відносно ширин поставити тіні
+
+    // По можливості
+  // Налаштувати автопідлаштування зображень в слайдері
+  // Адаптивність слайдера
+
+
+  #slider {
+  max-width: 1024px;
+  margin: auto;
+  padding: 0 5%;
+
+  #slider-inner {
+    padding: 6px;
+
+    #myCarousel {
+      border: 20px solid;
+      -moz-border-image: url(../img/slider-border.png) 22 stretch;
+      -webkit-border-image: url(../img/slider-border.png) 22 stretch;
+      -o-border-image: url(../img/slider-border.png) 22 stretch;
+      border-image: url(../img/slider-border.png) 22 fill stretch;
+
+      .carousel-indicators .active {
+        background-color: #ffd139;
+      }
+    }
+  }
+}
+
+/*----------------- End Slider Style ---------------------*/

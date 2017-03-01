@@ -5,9 +5,11 @@
     angular
         .module('app', [
             'ngRoute',
-            'ngResource'
-        ])
-        .run(['$log', ($log) => {
-            $log.debug('app is running...');
-        }]);
+            'ngResource',
+            'ngAnimate',
+            'route-segment',
+            'view-segment'
+        ]).run(['$log', ($log) => {
+        $log.debug('app is running...');
+    }]);
 })();

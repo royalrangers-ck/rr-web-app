@@ -52,12 +52,7 @@ server {
         listen [::]:80 default_server ipv6only=on;
 
         location / {
-            root /project/app/auth;
-            index index.html index.html;
-        }
-
-        location /app {
-            root /project;
+            root /project/app;
             index index.html index.html;
         }
 
