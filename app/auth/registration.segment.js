@@ -6,12 +6,10 @@
         .module('app')
         .config(RegistrationSegment);
 
-    RegistrationSegment.$inject = ['$routeSegmentProvider', '$routeProvider'];
-    function RegistrationSegment($routeSegmentProvider, $routeProvider) {
-        $routeProvider.otherwise({redirectTo: '/'});
-        $routeSegmentProvider.options.autoLoadTemplates = true;
+    RegistrationSegment.$inject = ['$routeSegmentProvider'];
+    function RegistrationSegment($routeSegmentProvider) {
 
-        $routeSegmentProvider.when('/register', 'Registration').segment('Registration', {
+        $routeSegmentProvider.when('/register', 'register').segment('register', {
             templateUrl: 'auth/registration.html'
         });
     }
