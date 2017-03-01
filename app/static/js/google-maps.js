@@ -13,7 +13,7 @@
         var cherkasyLatLng = {lat: 49.4492945, lng: 32.0365721};
 
         // Create a map object and specify the DOM element for display.
-        var map = new google.maps.Map(document.querySelector('.google-map'), {
+        var map = new google.maps.Map(document.querySelector('.rr-google-map'), {
             center: cherkasyLatLng,
             scrollwheel: false,
             zoom: 10
