@@ -6,7 +6,7 @@
         .module('app')
         .controller('LocatorController', LocatorController);
 
-    HomeController.$inject = ['$log'];
+    LocatorController.$inject = ['$log'];
     function LocatorController($log) {
         const vm = this;
 

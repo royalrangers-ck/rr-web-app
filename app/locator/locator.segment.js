@@ -7,7 +7,7 @@
         .config($inject);
 
     $inject.$inject = ['$routeSegmentProvider', '$routeProvider'];
-    function HomeSegment($routeSegmentProvider, $routeProvider) {
+    function LocatorSegment($routeSegmentProvider, $routeProvider) {
         $routeProvider.otherwise({redirectTo: '/'});
         $routeSegmentProvider.options.autoLoadTemplates = true;
 
