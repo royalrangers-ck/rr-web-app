@@ -1,3 +1,5 @@
+"use strict";
+
 const gulp = require('gulp');
 const clean = require('gulp-clean');
 const rename = require('gulp-rename');
@@ -27,7 +29,7 @@ function copyDep() {
         'bower_components/angular-animate/angular-animate.js',
         'bower_components/angular-route-segment/build/angular-route-segment.js',
 
-        'app/static/js/*.js',
+        'app/static/js/*.js'
     ];
     let dest = 'app/static/vendor/js/.';
 
