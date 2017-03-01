@@ -1,23 +1,23 @@
-.section__signup{
-  background-color:#f6f5f6;
+.section__signup {
+  background-color: #f6f5f6;
 
-  padding-top:100px;
+  padding-top: 100px;
   div {
-    .signup__form {
+    .rr-signup__form {
       text-align: center;
     }
     div {
-      .signup__form-cell {
+      .rr-signup__form-cell {
 
         height: 50px;
-        .signup-input {
+        .rr-signup-input {
           width: 50%;
 
         }
-        .signup-input__left-block {
+        .rr-signup-input__left-block {
           margin-left: 280px;
         }
-        .signup-input__right-block {
+        .rr-signup-input__right-block {
           margin-right: 280px;
         }
       }
@@ -63,8 +63,7 @@
       }
     }
 
-
-    .signup__ask{
+    .signup__ask {
       color: grey;
       text-transform: uppercase;
       text-align: center;
@@ -73,24 +72,24 @@
   }
 }
 
-@media(max-width: 768px){
-  .section__signup{
-    background-color:#f6f5f6;
+@media(max-width: 768px) {
+  .section__signup {
+    background-color: #f6f5f6;
 
-    padding-top:100px;
-    .signup__form{
+    padding-top: 100px;
+    .rr-signup__form {
       text-align: center;
 
-    div{
-      .signup__form-cell{
-        height: 50px;
-      .signup-input{
-        width: 100%;
-        margin: 0 auto;
+      div {
+        .rr-signup__form-cell {
+          height: 50px;
+          .rr-signup-input {
+            width: 100%;
+            margin: 0 auto;
 
+          }
+        }
       }
-      }
-    }
     }
   }
 }

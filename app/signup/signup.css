@@ -2,15 +2,15 @@
 .section__signup {
   background-color: #f6f5f6;
   padding-top: 100px; }
-  .section__signup div .signup__form {
+  .section__signup div .rr-signup__form {
     text-align: center; }
-  .section__signup div div .signup__form-cell {
+  .section__signup div div .rr-signup__form-cell {
     height: 50px; }
-    .section__signup div div .signup__form-cell .signup-input {
+    .section__signup div div .rr-signup__form-cell .rr-signup-input {
       width: 50%; }
-    .section__signup div div .signup__form-cell .signup-input__left-block {
+    .section__signup div div .rr-signup__form-cell .rr-signup-input__left-block {
       margin-left: 280px; }
-    .section__signup div div .signup__form-cell .signup-input__right-block {
+    .section__signup div div .rr-signup__form-cell .rr-signup-input__right-block {
       margin-right: 280px; }
   .section__signup div .section__signup__enter {
     padding-top: 40px;
@@ -59,12 +59,12 @@
   .section__signup {
     background-color: #f6f5f6;
     padding-top: 100px; }
-    .section__signup .signup__form {
+    .section__signup .rr-signup__form {
       text-align: center; }
-      .section__signup .signup__form div .signup__form-cell {
+      .section__signup .rr-signup__form div .rr-signup__form-cell {
         height: 50px; }
-        .section__signup .signup__form div .signup__form-cell .signup-input {
+        .section__signup .rr-signup__form div .rr-signup__form-cell .rr-signup-input {
           width: 100%;
           margin: 0 auto; } }
 
-
+/*# sourceMappingURL=signup.css.map */

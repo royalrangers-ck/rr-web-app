@@ -1,3 +1,4 @@
+"use strict";
 const gulp = require('gulp');
 const clean = require('gulp-clean');
 const rename = require('gulp-rename');
@@ -24,7 +25,7 @@ function copyDep() {
         'bower_components/angular-route/angular-route.min.js',
         'bower_components/angular-resource/angular-resource.min.js',
 
-        'app/static/js/*.js',
+        'app/static/js/*.js'
     ];
     let dest = 'app/static/vendor/js/.';
 
