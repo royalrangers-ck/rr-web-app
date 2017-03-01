@@ -11,7 +11,7 @@
         $routeProvider.otherwise({redirectTo: '/'});
         $routeSegmentProvider.options.autoLoadTemplates = true;
 
-        $routeSegmentProvider.when('/signIn', 'signIn').segment('signIn', {
+        $routeSegmentProvider.when('/login', 'signIn').segment('signIn', {
             templateUrl: 'signin-form/signin-form.html'
         });
     }

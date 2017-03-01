@@ -11,7 +11,7 @@
         $routeProvider.otherwise({redirectTo: '/'});
         $routeSegmentProvider.options.autoLoadTemplates = true;
 
-        $routeSegmentProvider.when('/registration', 'Registration').segment('Registration', {
+        $routeSegmentProvider.when('/register', 'Registration').segment('Registration', {
             templateUrl: 'auth/registration.html'
         });
     }
