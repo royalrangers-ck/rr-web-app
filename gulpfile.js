@@ -88,11 +88,11 @@ function copyImages() {
     let dest = 'app/static/vendor/images/.';
 
     return gulp
+
         .src(src)
         .pipe(rename({dirname: ''}))
         .pipe(gulp.dest(dest))
 }
-
 
 function copyFonts() {
     let src = [
@@ -116,3 +116,4 @@ gulp.task('rr-copy', gulp.series(
     copySass,
     copyFonts
 ));
+
