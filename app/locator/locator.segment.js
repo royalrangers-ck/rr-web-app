@@ -4,14 +4,12 @@
 
     angular
         .module('app')
-        .config($inject);
+        .config(LocatorSegment);
 
-    $inject.$inject = ['$routeSegmentProvider', '$routeProvider'];
-    function LocatorSegment($routeSegmentProvider, $routeProvider) {
-        $routeProvider.otherwise({redirectTo: '/'});
-        $routeSegmentProvider.options.autoLoadTemplates = true;
+    LocatorSegment.$inject = ['$routeSegmentProvider'];
+    function LocatorSegment($routeSegmentProvider) {
 
-        $routeSegmentProvider.when('/', 'locator').segment('locator', {
+        $routeSegmentProvider.when('/locator', 'locator').segment('locator', {
             templateUrl: 'locator/locator.html',
             controller: 'LocatorController'
         });

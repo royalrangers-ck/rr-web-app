@@ -1,3 +1,5 @@
+"use strict";
+
 const gulp = require('gulp');
 const clean = require('gulp-clean');
 const rename = require('gulp-rename');
@@ -27,7 +29,7 @@ function copyDep() {
         'bower_components/angular-animate/angular-animate.js',
         'bower_components/angular-route-segment/build/angular-route-segment.js',
 
-        'app/static/js/*.js',
+        'app/static/js/*.js'
     ];
     let dest = 'app/static/vendor/js/.';
 
@@ -88,11 +90,11 @@ function copyImages() {
     let dest = 'app/static/vendor/images/.';
 
     return gulp
+
         .src(src)
         .pipe(rename({dirname: ''}))
         .pipe(gulp.dest(dest))
 }
-
 
 function copyFonts() {
     let src = [
@@ -116,3 +118,4 @@ gulp.task('rr-copy', gulp.series(
     copySass,
     copyFonts
 ));
+
