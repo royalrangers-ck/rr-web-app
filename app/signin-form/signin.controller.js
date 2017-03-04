@@ -9,6 +9,9 @@
     SignInController.$inject = ['$log'];
     function SignInController($log) {
 
+        $scope.email = "Email";
+        $scope.password = "Password";
+
         activate();
 
         ///
