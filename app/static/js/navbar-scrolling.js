@@ -3,9 +3,13 @@
 
 //this script enable pop-up menu
 $(window).scroll(function() {
+    var navbar = $(".lph-nav"),
+        curve = $('.rr-header-curve');
     if ($(window).scrollTop() > 500) {
-        $(".lph-nav").addClass("lph-nav_fixed_top");
+        navbar.addClass("lph-nav_fixed_top");
+        curve.removeClass('rr-curve');
     } else {
-        $(".lph-nav").removeClass("lph-nav_fixed_top");
+        navbar.removeClass("lph-nav_fixed_top");
+        curve.addClass('rr-curve');
     }
 });
