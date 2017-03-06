@@ -29,7 +29,8 @@ function copyDep() {
         'bower_components/angular-animate/angular-animate.js',
         'bower_components/angular-route-segment/build/angular-route-segment.js',
 
-        'app/static/js/*.js'
+        'app/static/js/*.js',
+        '!app/static/js/google-maps.js'
     ];
     let dest = 'app/static/vendor/js/.';
 
@@ -40,6 +41,17 @@ function copyDep() {
         .pipe(gulp.dest(dest))
 }
 
+function copyScripts() {
+    let sourceFiles = [
+        'app/static/js/google-maps.js'
+    ];
+    let dest = 'app/static/vendor/js/.';
+
+    return gulp
+        .src(sourceFiles)
+        .pipe(rename({dirname: ''}))
+        .pipe(gulp.dest(dest))
+}
 
 function copyApp() {
     let sourceFiles = [
@@ -80,13 +92,13 @@ function copySass() {
 
     return gulp
         .src(src)
-        .pipe(sass())
+        .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest(dest))
 }
 
 
 function copyImages() {
-    let src = ['app/static/images/*.*'];
+    let src = ['app/static/images/**/*.*'];
     let dest = 'app/static/vendor/images/.';
 
     return gulp
@@ -112,10 +124,16 @@ function copyFonts() {
 
 gulp.task('rr-copy', gulp.series(
     clear,
-    gulp.parallel(copyDep, copyApp),
+    gulp.parallel(copyScripts, copyDep, copyApp),
     copyJs,
     copyImages,
     copySass,
     copyFonts
 ));
 
+/**
+ * Watch and compile styles
+ */
+gulp.task('rr-sass:watch', function () {
+    gulp.watch('app/static/sass/**/*.scss', gulp.series(copySass));
+});
