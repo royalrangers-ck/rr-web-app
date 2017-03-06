@@ -1,125 +1,98 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Royal Rangers. Реєстрація</title>
-
-    <link rel="stylesheet" href="./static/vendor/css/app.css">
-</head>
-<body>
-
-<header class="header">
-    <nav class="navbar navbar-inverse">
-        <div class="container">
-
-            <!-- Mobile -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-login-form" aria-expanded="false" aria-controls="navbar">
-                    <span class="glyphicon glyphicon-user"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="static/images/logo.png" alt=""/>
-                </a>
-            </div>
-
-            <!-- Desktop -->
-            <div id="navbar-login-form" class="navbar-collapse collapse">
-                <form class="navbar-form navbar-right">
-                    <div class="form-group">
-                        <input type="text" name="user_login" placeholder="логін" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="user_password" placeholder="пароль" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-primary">вхід</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-</header>
-
 <div class="container registration-form">
     <div class="row">
         <div class="col-md-offset-2 col-md-6">
 
             <form action="" method="post" class="form-horizontal">
-                <div class="form-group">
+                <div class="form-group" ng-class="{'has-error': vm.form.email.$invalid && vm.form.email.$dirty}">
                     <label class="col-md-4 control-label">E-mail (логін)*:</label>
-                    <div class="col-md-8">
-                        <input type="email" class="form-control" placeholder="E-mail" required>
+                    <div class="col-md-8" >
+                        <input ng-model="credentials.email" type="email" class="form-control" placeholder="E-mail" required>
+                        <p ng-show="vm.form.email.$error.required && vm.form.email.$dirty" class="help-block">This field is required.</p>
+        <p ng-show="vm.form.email.$invalid && vm.form.email.$dirty" class="help-block">Enter a valid email.</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label">Пароль*:</label>
-                    <div class="col-md-8">
-                        <input type="password" class="form-control" placeholder="Пароль" required>
+                    <div class="col-md-8" ng-class="{'has-error': vm.form.password.$invalid && vm.form.password.$dirty}">
+                        <input ng-model="credentials.password" type="password" class="form-control" placeholder="Пароль" required>
+                        <p ng-show="vm.form.password.$error.minlength" class="help-block">Password is too short.</p>
+        <p ng-show="vm.form.password.$error.required && vm.form.password.$dirty" class="help-block">This field is required.</p>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{'has-error': vm.form.phone.$invalid && vm.form.phone.$dirty}">
                     <label class="col-md-4 control-label">Телефон*:</label>
-                    <div class="col-md-8">
-                        <input type="tel" class="form-control" placeholder="Телефон" required>
+                    <div class="col-md-8" >
+                        <input ng-model="credentials.phone" type="tel" class="form-control" placeholder="Телефон" required>
+                        <p ng-show="vm.form.phone.$error.required && vm.form.phone.$dirty" class="help-block">This field is required.</p>
+        <p ng-show="vm.form.phone.$invalid && vm.form.phone.$dirty" class="help-block">Enter a valid email.</p>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{'has-error': vm.form.username.$invalid && vm.form.username.$dirty}">
                     <label class="col-md-4 control-label">Ім'я*:</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" placeholder="Ім'я" required>
+                        <input ng-model="credentials.username" type="text" class="form-control" placeholder="Ім'я" required>
+                        <p ng-show="vm.form.username.$error.required && vm.form.username.$dirty" class="help-block">This field is required.</p>
+        <p ng-show="vm.form.username.$invalid && vm.form.username.$dirty" class="help-block">Enter a valid email.</p>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{'has-error': vm.form.usersurname.$invalid && vm.form.usersurname.$dirty}">
                     <label class="col-md-4 control-label">Прізвище*:</label>
                     <div class="col-md-8">
-                        <input type="tel" class="form-control" placeholder="Прізвище" required>
+                        <input ng-model="credentials.usersurname" type="tel" class="form-control" placeholder="Прізвище" required>
+                        <p ng-show="vm.form.usersurname.$error.required && vm.form.usersurname.$dirty" class="help-block">This field is required.</p>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{'has-error': vm.form.city.$invalid && vm.form.city.$dirty}">
                     <label class="col-md-4 control-label">Місто*:</label>
                     <div class="col-md-8">
-                        <input type="tel" class="form-control" placeholder="Місто" required>
+                        <input ng-model="credentials.city" type="tel" class="form-control" placeholder="Місто" required>
+                        <p ng-show="vm.form.city.$error.minlength" class="help-block">City is too short.</p>
+                         <p ng-show="vm.form.city.$error.required && vm.form.city.$dirty" class="help-block">This field is required.</p>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{'has-error': vm.form.date.$invalid && vm.form.date.$dirty}">
                     <label class="col-md-4 control-label">Дата народження*:</label>
                     <div class="col-md-8">
-                        <input type="date" class="form-control" placeholder="Дата народження" required>
+                        <input ng-model="credentials.date" type="date" class="form-control" placeholder="Дата народження" required>
+                        <p ng-show="vm.form.number.$error.minlength" class="help-block">Date of birth is too short.</p>
+                         <p ng-show="vm.form.number.$error.required && vm.form.number.$dirty" class="help-block">This field is required.</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label">Стать*:</label>
                     <div class="col-md-8">
-                        <select class="form-control" required>
+                        <select ng-model="credentials.sex" class="form-control" required>
                             <option value="" disabled selected hidden>Виберіть свою стать</option>
                             <option value="man">Чоловік</option>
                             <option value="woman">Жінка</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" >
                     <label class="col-md-4 control-label">№ загону*:</label>
                     <div class="col-md-8">
                         <select class="form-control" required>
                             <option value="" disabled selected hidden>Виберіть свій загін</option>
-                            <option value="1">1</option>
+                            <!-- <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
-                            <option value="999">999</option>
+                            <option value="999">999</option> -->
+                            <option ng-repeat="option in vm.availableOptions" value="{{option}}">{{option}}</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-class="{'has-error': vm.form.group.$invalid && vm.form.date.$dirty}">
                     <label class="col-md-4 control-label">Назва ланки:</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" placeholder="Назва ланки">
+                        <input ng-model="credentials.group" type="text" class="form-control" placeholder="Назва ланки">
+                        <p ng-show="vm.form.group.$error.minlength" class="help-block">Name group is too short.</p>
+                         <p ng-show="vm.form.group.$error.required && vm.form.group.$dirty" class="help-block">This field is required.</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label">Статус*:</label>
                     <div class="col-md-8">
-                        <select class="form-control" required>
+                        <select ng-model="credentials.status" class="form-control" required>
                             <option value="" disabled selected hidden>Виберіть свій статус</option>
                             <option value="man">Рейнджер</option>
                             <option value="woman">Командир</option>
@@ -135,16 +108,3 @@
         </div>
     </div>
 </div>
-
-<footer class="footer">
-    <div class="container">
-        <div class="col-xs-12">
-            <p>&copy; 2017 Royal Rangers</p>
-        </div>
-    </div>
-</footer>
-
-<script src="static/vendor/js/app.min.js"></script>
-
-</body>
-</html>
