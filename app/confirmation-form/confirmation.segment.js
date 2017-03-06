@@ -9,8 +9,8 @@
     ConfirmationSegment.$inject = ['$routeSegmentProvider'];
     function ConfirmationSegment($routeSegmentProvider) {
 
-        $routeSegmentProvider.when('/confirmationForm', 'confirmationForm').segment('confirmationForm', {
-            templateUrl: 'confirmation/confirmation.html',
+        $routeSegmentProvider.when('/confirmation', 'confirmation').segment('confirmation', {
+            templateUrl: 'confirmation-form/confirmation-form.html',
             controller: 'ConfirmationController'
         });
     }
