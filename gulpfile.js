@@ -92,13 +92,13 @@ function copySass() {
 
     return gulp
         .src(src)
-        .pipe(sass())
+        .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest(dest))
 }
 
 
 function copyImages() {
-    let src = ['app/static/images/*.*'];
+    let src = ['app/static/images/**/*.*'];
     let dest = 'app/static/vendor/images/.';
 
     return gulp
@@ -131,3 +131,9 @@ gulp.task('rr-copy', gulp.series(
     copyFonts
 ));
 
+/**
+ * Watch and compile styles
+ */
+gulp.task('rr-sass:watch', function () {
+    gulp.watch('app/static/sass/**/*.scss', gulp.series(copySass));
+});
