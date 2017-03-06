@@ -35,8 +35,7 @@ $lph-font-color: #000; //primary font color
 /*Styles to header panel*/
 .lp-header {
   height: $lph-height-mobile;
-  background: url("../../vendor/images/header-bg.jpg") 50% 80% no-repeat #fff;
-  background-size: 800px auto;
+
   &__top-row {
     display: none;
   }
@@ -148,8 +147,7 @@ $lph-font-color: #000; //primary font color
 
 /*Styles to logo image*/
 .lph-logo {
-  height: 100%;
-  width: auto;
+  width: 100%;
   cursor: default;
 }
 
@@ -250,7 +248,7 @@ $lph-font-color: #000; //primary font color
     height: $lph-height-small;
     background-position: 0 0;
     background-size: 100% auto;
-    margin-top: 10px;
+
     &__top-row {
       display: block;
       height: $lph-top-row-height-small;
@@ -340,7 +338,7 @@ $lph-font-color: #000; //primary font color
 
   .lp-header {
     height: $lph-height-medium;
-    margin-top: 15px;
+
     &__top-row {
       height: $lph-top-row-height-medium;
     }
@@ -423,7 +421,7 @@ $lph-font-color: #000; //primary font color
 
   .lp-header {
     height: $lph-height;
-    margin-top: 30px;
+
     &__top-row {
       height: $lph-top-row-height;
     }

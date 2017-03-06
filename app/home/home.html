@@ -1,17 +1,60 @@
 <!-- Add only for testing -->
-<div>
-    <img src="./static/vendor/images/slider.png" alt="" style="width: 100%;">
-</div>
+<div class="container">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
+        </ol>
 
-<!-- Add only for testing -->
-<div>
-    <img src="./static/vendor/images/about.png" alt="" style="width: 100%;">
-</div>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="http://placehold.it/1200x400" alt="">
+            </div>
 
-<div class="rr-video-bg">
-    <div class="rr-video-wrapper">
-        <div class="video-player">
-            <iframe width="480" height="360" src="https://www.youtube.com/embed/-inK766Q-8E?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe>
+            <div class="item">
+                <img src="http://placehold.it/1200x400" alt="">
+            </div>
+
+            <div class="item">
+                <img src="http://placehold.it/1200x400" alt="">
+            </div>
+
+            <div class="item">
+                <img src="http://placehold.it/1200x400" alt="">
+            </div>
+
+            <div class="item">
+                <img src="http://placehold.it/1200x400" alt="">
+            </div>
+
+            <div class="item">
+                <img src="http://placehold.it/1200x400" alt="">
+            </div>
         </div>
     </div>
-</div>
+
+    <!-- Add only for testing -->
+    <div>
+        <img src="./static/vendor/images/about.png" alt="" style="width: 100%;">
+
+        <!-- Temporary add google maps here. Change it if needed. -->
+        <script type="application/javascript" src="./static/vendor/js/google-maps.js"></script>
+        <div class="rr-google-map-wrapper">
+            <div class="rr-google-map"></div>
+        </div>
+    </div>
+
+    <div class="rr-video-bg">
+        <div class="rr-video-wrapper">
+            <div class="video-player">
+                <iframe width="480" height="360" src="https://www.youtube.com/embed/-inK766Q-8E?rel=0&amp;showinfo=0"
+                        frameborder="0" allowfullscreen=""></iframe>
+            </div>
+        </div>
+    </div>
