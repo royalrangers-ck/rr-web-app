@@ -8,7 +8,7 @@
                     <div class="col-md-8" >
                         <input ng-model="credentials.email" type="email" class="form-control" placeholder="E-mail" required>
                         <p ng-show="vm.form.email.$error.required && vm.form.email.$dirty" class="help-block">This field is required.</p>
-        <p ng-show="vm.form.email.$invalid && vm.form.email.$dirty" class="help-block">Enter a valid email.</p>
+                        <p ng-show="vm.form.email.$invalid && vm.form.email.$dirty" class="help-block">Enter a valid email.</p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -16,7 +16,7 @@
                     <div class="col-md-8" ng-class="{'has-error': vm.form.password.$invalid && vm.form.password.$dirty}">
                         <input ng-model="credentials.password" type="password" class="form-control" placeholder="Пароль" required>
                         <p ng-show="vm.form.password.$error.minlength" class="help-block">Password is too short.</p>
-        <p ng-show="vm.form.password.$error.required && vm.form.password.$dirty" class="help-block">This field is required.</p>
+                        <p ng-show="vm.form.password.$error.required && vm.form.password.$dirty" class="help-block">This field is required.</p>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{'has-error': vm.form.phone.$invalid && vm.form.phone.$dirty}">
@@ -24,7 +24,7 @@
                     <div class="col-md-8" >
                         <input ng-model="credentials.phone" type="tel" class="form-control" placeholder="Телефон" required>
                         <p ng-show="vm.form.phone.$error.required && vm.form.phone.$dirty" class="help-block">This field is required.</p>
-        <p ng-show="vm.form.phone.$invalid && vm.form.phone.$dirty" class="help-block">Enter a valid email.</p>
+                        <p ng-show="vm.form.phone.$invalid && vm.form.phone.$dirty" class="help-block">Enter a valid phone.</p>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{'has-error': vm.form.username.$invalid && vm.form.username.$dirty}">
@@ -32,7 +32,7 @@
                     <div class="col-md-8">
                         <input ng-model="credentials.username" type="text" class="form-control" placeholder="Ім'я" required>
                         <p ng-show="vm.form.username.$error.required && vm.form.username.$dirty" class="help-block">This field is required.</p>
-        <p ng-show="vm.form.username.$invalid && vm.form.username.$dirty" class="help-block">Enter a valid email.</p>
+                        <p ng-show="vm.form.username.$invalid && vm.form.username.$dirty" class="help-block">Enter a valid name.</p>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{'has-error': vm.form.usersurname.$invalid && vm.form.usersurname.$dirty}">
@@ -55,7 +55,7 @@
                     <div class="col-md-8">
                         <input ng-model="credentials.date" type="date" class="form-control" placeholder="Дата народження" required>
                         <p ng-show="vm.form.number.$error.minlength" class="help-block">Date of birth is too short.</p>
-                         <p ng-show="vm.form.number.$error.required && vm.form.number.$dirty" class="help-block">This field is required.</p>
+                        <p ng-show="vm.form.number.$error.required && vm.form.number.$dirty" class="help-block">This field is required.</p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -86,7 +86,7 @@
                     <div class="col-md-8">
                         <input ng-model="credentials.group" type="text" class="form-control" placeholder="Назва ланки">
                         <p ng-show="vm.form.group.$error.minlength" class="help-block">Name group is too short.</p>
-                         <p ng-show="vm.form.group.$error.required && vm.form.group.$dirty" class="help-block">This field is required.</p>
+                        <p ng-show="vm.form.group.$error.required && vm.form.group.$dirty" class="help-block">This field is required.</p>
                     </div>
                 </div>
                 <div class="form-group">
