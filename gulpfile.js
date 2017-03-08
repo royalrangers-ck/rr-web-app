@@ -8,17 +8,21 @@ const concat = require('gulp-concat');
 const babel = require('gulp-babel');
 
 
-function clear() {
-    let src = ['app/static/vendor/*'];
+gulp.task('clear', () => {
+    let src = [
+        'app/*.css',
+        'app/**/*.css',
+        'app/static/vendor/*'
+    ];
 
     return gulp
         .src(src, {read: false})
         .pipe(clean())
-}
+});
 
 
-function copyDep() {
-    let sourceFiles = [
+gulp.task('copyDep', () => {
+    let src = [
         'bower_components/jquery/dist/jquery.min.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
 
@@ -35,83 +39,105 @@ function copyDep() {
     let dest = 'app/static/vendor/js/.';
 
     return gulp
-        .src(sourceFiles)
+        .src(src)
         .pipe(rename({dirname: ''}))
         .pipe(concat('dep.js'))
         .pipe(gulp.dest(dest))
-}
+});
 
-function copyScripts() {
-    let sourceFiles = [
-        'app/static/js/google-maps.js'
-    ];
+gulp.task('copyScripts', () => {
+    let src = ['app/static/js/google-maps.js'];
     let dest = 'app/static/vendor/js/.';
 
     return gulp
-        .src(sourceFiles)
+        .src(src)
         .pipe(rename({dirname: ''}))
         .pipe(gulp.dest(dest))
-}
+});
 
-function copyApp() {
-    let sourceFiles = [
+gulp.task('copyApp', () => {
+    let src = [
         'app/app.js',
         'app/config.js',
         'app/**/*.js',
-        '!app/static/js/*.js',
+        '!app/static/js/*.js'
     ];
     let dest = 'app/static/vendor/js/.';
 
     return gulp
-        .src(sourceFiles)
+        .src(src)
         .pipe(rename({dirname: ''}))
         .pipe(babel({presets: ['es2015']}))
         .pipe(concat('app.js'))
         .pipe(gulp.dest(dest))
-}
+});
 
-
-function copyJs() {
-    let sourceFiles = [
+gulp.task('copyJs', () => {
+    let src = [
         'app/static/vendor/js/dep.js',
-        'app/static/vendor/js/app.js',
+        'app/static/vendor/js/app.js'
     ];
     let dest = 'app/static/vendor/js/.';
 
     return gulp
-        .src(sourceFiles)
+        .src(src)
         .pipe(rename({dirname: ''}))
         .pipe(concat('app.min.js'))
         .pipe(gulp.dest(dest))
-}
+});
 
 
-function copySass() {
-    let src = ['app/static/sass/app.scss'];
+gulp.task('sass:dev', () => {
+    let src = [
+        'app/app/*.scss',
+        'app/app/**/*.scss',
+        'app/landing/*.scss',
+        'app/landing/**/*.scss'
+    ];
+    let dest = './';
+
+    return gulp
+        .src(src, {base: './'})
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest(dest))
+});
+
+gulp.task('sass:prod', () => {
+    let src = [
+        'app/static/sass/app.scss',
+        'app/app/*.scss',
+        'app/app/**/*.scss',
+        'app/landing/*.scss',
+        'app/landing/**/*.scss'
+    ];
     let dest = 'app/static/vendor/css/.';
 
     return gulp
         .src(src)
+        .pipe(rename({dirname: ''}))
+        .pipe(concat('app.scss'))
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest(dest))
-}
+});
+
+gulp.task('sass', gulp.parallel('sass:dev', 'sass:prod'));
 
 
-function copyImages() {
+gulp.task('copyImages', () => {
     let src = ['app/static/images/**/*.*'];
     let dest = 'app/static/vendor/images/.';
 
     return gulp
-
         .src(src)
         .pipe(rename({dirname: ''}))
         .pipe(gulp.dest(dest))
-}
+});
 
-function copyFonts() {
+
+gulp.task('copyFonts', () => {
     let src = [
         'bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*',
-        'app/static/fonts/*.*',
+        'app/static/fonts/*.*'
     ];
     let dest = 'app/static/vendor/fonts/.';
 
@@ -119,21 +145,30 @@ function copyFonts() {
         .src(src)
         .pipe(rename({dirname: ''}))
         .pipe(gulp.dest(dest))
-}
+});
 
 
-gulp.task('rr-copy', gulp.series(
-    clear,
-    gulp.parallel(copyScripts, copyDep, copyApp),
-    copyJs,
-    copyImages,
-    copySass,
-    copyFonts
+gulp.task('build:dev', gulp.series(
+    'clear',
+    gulp.parallel('copyScripts', 'copyDep', 'copyApp'),
+    'copyJs',
+    'copyImages',
+    gulp.parallel('sass:dev', 'sass:prod'),
+    'copyFonts'
+));
+
+gulp.task('build:prod', gulp.series(
+    'clear',
+    gulp.parallel('copyScripts', 'copyDep', 'copyApp'),
+    'copyJs',
+    'copyImages',
+    'sass:prod',
+    'copyFonts'
 ));
 
 /**
  * Watch and compile styles
  */
-gulp.task('rr-sass:watch', function () {
-    gulp.watch('app/static/sass/**/*.scss', gulp.series(copySass));
+gulp.task('rr-sass:watch', () => {
+    gulp.watch('app/static/sass/**/*.scss', gulp.series('sass'));
 });
