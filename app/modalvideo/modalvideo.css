@@ -1,0 +1,22 @@
+.modalvideo {
+  background: url("img/4_Video.png") no-repeat;
+  background-size: cover;
+  height: 900px; }
+  .modalvideo .modalvideo__button {
+    text-align: center;
+    padding-top: 20%; }
+
+.modalvideo__iframe {
+  width: 100%;
+  height: 315px; }
+
+@media (max-width: 768px) {
+  .modalvideo {
+    background-size: 100%; }
+    .modalvideo .modalvideo__button {
+      padding-top: 20%; }
+      .modalvideo .modalvideo__button .modalvideo__button-img {
+        width: 20%;
+        height: 20%; } }
+
+/*# sourceMappingURL=modalvideo.css.map */
