@@ -1,1 +1,36 @@
-/** Buttons SCSS */
+$rr-brand-primary:  #cc252b;
+
+.btn {
+
+  &.rr-btn-primary {
+    position: relative;
+    border-radius: 0;
+    background-color: $rr-brand-primary;
+    border-color: $rr-brand-primary;
+    color: #fff;
+
+    &:before {
+      display: block;
+      content: '';
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -10px;
+      border: 1px solid $rr-brand-primary;
+    }
+
+    &:after {
+      display: block;
+      content: '';
+      position: absolute;
+      top: -8px;
+      width: 0;
+      height: 0;
+
+      right: -70px;
+      border-width: 35px;
+      border-style: solid;
+      border-color: transparent transparent transparent $rr-brand-primary;
+    }
+  }
+}
