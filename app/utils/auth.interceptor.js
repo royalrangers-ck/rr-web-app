@@ -1,21 +1,17 @@
 (function () {
+
+    'use strict';
+
     angular
         .module('app')
         .factory('AuthInterceptor', AuthInterceptor);
 
-    module.config(['$httpProvider', function ($httpProvider) {
-        $httpProvider.interceptors.push('AuthInterceptor');
-    }]);
-
     AuthInterceptor.$inject = ['$q', '$injector'];
-
     function AuthInterceptor($q, $injector) {
-
         return {
             request: function (config) {
                 return config;
             },
-
 
             requestError: function (rejection) {
                 return $q.reject(rejection);
@@ -51,8 +47,6 @@
         function checkEmail(responce) {
             if (responce && responce.status === 409) {
                 alert('User with this email already exists!')
-            } else if (responce && responce.status === 200) {
-                alert('User created successfully!')
             }
         }
     }

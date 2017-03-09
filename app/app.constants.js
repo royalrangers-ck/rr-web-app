@@ -12,7 +12,7 @@
         };
 
         // REGISTRATION
-        constants.REGISTRATION = constants.API + '/registration ';
+        constants.REGISTRATION = constants.API + '/registration';
 
         // GET DATA FOR REGISTRATION
         constants.CITIES = constants.REGISTRATION + '/cities';

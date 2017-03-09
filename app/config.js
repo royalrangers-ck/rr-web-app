@@ -6,8 +6,10 @@
         .module('app')
         .config(config);
 
-    config.$inject = ['$logProvider', '$locationProvider'];
-    function config($logProvider, $locationProvider) {
+    config.$inject = ['$httpProvider', '$logProvider', '$locationProvider'];
+    function config($httpProvider, $logProvider, $locationProvider) {
+        $httpProvider.interceptors.push('AuthInterceptor');
+
         // Configure application logs messages
         $logProvider.debugEnabled(true);
 
