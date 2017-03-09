@@ -8,7 +8,7 @@ $bg-parallax-base:  #c6e8c5;
     @return $lph-height + (($lph-height * 24.5) / 100);
 }
 
-.rr-parallax-wrapper {
+.rr-parallax {
     position: absolute;
     height: $lph-height;
     width: 100%;
@@ -17,7 +17,7 @@ $bg-parallax-base:  #c6e8c5;
     @media (min-width: $screen-lg-min) {
         background-image: none;
 
-        .rr-parallax-tree-front, .rr-parallax-tree-middle, .rr-parallax-rocks {
+        .rr-parallax_front-tree, .rr-parallax_middle-tree, .rr-parallax_back-rocks {
             position: absolute;
             width: 100%;
             height: fn-parallax-box-height($lph-height);
@@ -25,20 +25,20 @@ $bg-parallax-base:  #c6e8c5;
             background-position: bottom;
         }
 
-        .rr-parallax-tree-front {
+        .rr-parallax_front-tree {
             background-image: url("#{$image-path}/parallax-tree-front.png");
             z-index: -1;
         }
 
-        .rr-parallax-tree-middle {
+        .rr-parallax_middle-tree {
             background-image: url("#{$image-path}/parallax-tree-middle.png");
             z-index: -2;
         }
 
-        .rr-parallax-rocks {
+        .rr-parallax_back-rocks {
             background: url("#{$image-path}/parallax-rocks.png") $bg-parallax-base;
             z-index: -3;
-            background-position: -70%;
+            background-position-x: -50%;
         }
     }
 
