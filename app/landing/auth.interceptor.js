@@ -11,18 +11,8 @@
 
     function AuthInterceptor($q, $injector) {
 
-        let checkAuth = function (response) {
-            if (response && response.status === 401) {
-                redirectToHomePage();
-            }
-        };
-
-        function redirectToHomePage() {
-            window.location.pathname = '/';
-        }
-
         return {
-            request: function(config) {
+            request: function (config) {
                 return config;
             },
 
@@ -34,6 +24,7 @@
             /* Set Authentication.isAuthenticated to true if 200 received */
             response: function (response) {
                 checkAuth(response);
+                checkEmail(response);
 
                 return response || $q.when(response);
             },
@@ -41,14 +32,34 @@
             /* Revoke client authentication if 401 is received */
             responseError: function (rejection) {
                 checkAuth(rejection);
+                checkEmail(rejection);
 
                 return $q.reject(rejection);
             }
         };
 
+        function checkAuth(response) {
+            if (response && response.status === 401) {
+                redirectToHomePage();
+            }
+        }
 
+        function redirectToHomePage() {
+            window.location.pathname = '/';
+        }
+
+        function checkEmail(responce) {
+            if (responce && responce.status === 409) {
+                alert('User with this email already exists!')
+            } else if (responce && responce.status === 200) {
+                alert('User created successfully!')
+            }
+        }
     }
 })();
+
+
+// EXAMPLES ( Maybe it will be useful )
 
 // Make asynchronous operations in request interceptor
 //

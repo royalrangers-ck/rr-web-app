@@ -11,25 +11,28 @@
             API: '/api'
         };
 
-        // /auth endpoind handle POST authentication request
-        // and return token if auth successful
-        constants.AUTH = constants.API + '/auth';
+        // REGISTRATION
+        constants.REGISTRATION = constants.API + '/registration ';
 
-        // /user - demo returns autorized user info
-        constants.USER = constants.API + '/user';
-
-        // Unsecured API maybe placed in /open/** path
-        constants.OPEN = constants.API + '/open';
-
-        // Registration endpoints
-        constants.REGISTRATION = constants.API + '/registration';
+        // GET DATA FOR REGISTRATION
         constants.CITIES = constants.REGISTRATION + '/cities';
         constants.GROUPS = constants.REGISTRATION + '/groups';
         constants.PLATOONS = constants.REGISTRATION + '/platoons';
         constants.SECTIONS = constants.REGISTRATION + '/sections';
 
-        // constants.EMAIL = constants.API + '/email';
-        // constants.LOGOUT = constants.API + '/auth/logout';
+        // LOGIN
+
+        // Endpoind /auth  handle POST authentication request
+        constants.AUTH = constants.API + '/auth';
+
+        // OTHER
+
+        // Unsecured API maybe placed in /open/** path
+        constants.OPEN = constants.API + '/open';
+
+        // Demo /user  returns autorized user info
+        constants.USER = constants.API + '/user';
+
         return constants;
     }
 })();
