@@ -2,6 +2,9 @@
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
+/** Angular Growl Notification v.2 */
+@import "../../../bower_components/angular-growl-v2/build/angular-growl.min";
+
 /** App */
 @import "components/buttons";
 @import "components/login";

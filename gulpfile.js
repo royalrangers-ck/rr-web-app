@@ -32,6 +32,7 @@ gulp.task('copyDep', () => {
         'bower_components/angular-resource/angular-resource.min.js',
         'bower_components/angular-animate/angular-animate.js',
         'bower_components/angular-route-segment/build/angular-route-segment.js',
+        'bower_components/angular-growl-v2/build/angular-growl.min.js',
 
         'app/static/js/*.js',
         '!app/static/js/google-maps.js'
