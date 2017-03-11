@@ -11,7 +11,8 @@
 
         $routeSegmentProvider.when('/registration', 'landing.registration').within('landing').segment('registration', {
             templateUrl: 'landing/registration/registration.html',
-            controller: 'RegistrationController'
+            controller: 'RegistrationController',
+            controllerAs: 'vm'
         });
     }
 })();

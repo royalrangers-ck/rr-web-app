@@ -1,55 +1,69 @@
 <section class="section__signup">
     <div class="container">
-        <form name="vm.form" class="rr-signup__form">
+        <form name="vm.form" ng-submit="vm.submit()" class="rr-signup__form">
             <div class="row">
 
+                <!-- Email -->
                 <div class="col-sm-6 rr-signup__form-cell">
-                    <input id="email" type="email" class="form-control rr-signup-input rr-signup-input__left-block" name="email" placeholder="Email">
+                    <input type="email" name="email" ng-model="vm.data.email" id="email" class="form-control rr-signup-input rr-signup-input__left-block" placeholder="Email">
                 </div>
 
+                <!-- Phone -->
                 <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="tel" name="phone" class="form-control rr-signup-input rr-signup-input__right-block" value="" size="10" maxlength="10" required="required" title="093" placeholder="Телефон">
+                    <input type="tel" name="phone" ng-model="vm.data.phone" class="form-control rr-signup-input rr-signup-input__right-block" value="" size="10" maxlength="10" required="required" title="093" placeholder="Телефон">
                 </div>
 
+                <!-- Password -->
                 <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="password" class="form-control rr-signup-input rr-signup-input__left-block" id="pass" placeholder="Пароль">
-                </div>
-                <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="password" class="form-control rr-signup-input rr-signup-input__right-block" id="confirmPass" placeholder="ПІдтвердження пароля">
+                    <input type="password" name="password" ng-model="vm.data.password" class="form-control rr-signup-input rr-signup-input__left-block" id="pass" placeholder="Пароль">
                 </div>
 
+                <!-- Confirm Password -->
                 <div class="col-sm-6 rr-signup__form-cell">
-                    <input class="form-control rr-signup-input rr-signup-input__left-block" maxlength="30" name="username"
-                           type="text" placeholder="Ім'я">
+                    <input type="password" name="confirmPassword" ng-model="vm.data.confirmPassword" class="form-control rr-signup-input rr-signup-input__right-block" id="confirmPass" placeholder="ПІдтвердження пароля">
                 </div>
+
+                <!-- First Name -->
                 <div class="col-sm-6 rr-signup__form-cell">
-                    <input class="form-control rr-signup-input rr-signup-input__right-block" maxlength="30" name="username"
-                           type="text" placeholder="призвище">
+                    <input type="text" name="firstName" ng-model="vm.data.firstName" class="form-control rr-signup-input rr-signup-input__left-block" maxlength="30" placeholder="Ім'я">
                 </div>
+
+                <!-- Last Name -->
                 <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="date" class="form-control rr-signup-input rr-signup-input__left-block" placeholder="Дата народження" title="дата народження">
+                    <input type="text" name="lastName" ng-model="vm.data.lastName" class="form-control rr-signup-input rr-signup-input__right-block" maxlength="30" placeholder="призвище">
                 </div>
+
+                <!-- Birth Date -->
                 <div class="col-sm-6 rr-signup__form-cell">
-                    <select class="form-control rr-signup-input rr-signup-input__right-block" title="СТАТЬ">
-                        <option>Мужской</option>
-                        <option>Женский</option>
+                    <input type="date" name="birthDate" ng-model="vm.data.birthDate" class="form-control rr-signup-input rr-signup-input__left-block" placeholder="Дата народження" title="дата народження">
+                </div>
+
+                <!-- Gender -->
+                <div class="col-sm-6 rr-signup__form-cell">
+                    <select name="gender" ng-model="vm.data.gender" class="form-control rr-signup-input rr-signup-input__right-block" title="СТАТЬ">
+                        <option value="male">Мужской</option>
+                        <option value="female">Женский</option>
                     </select>
                 </div>
 
+                <!-- City -->
                 <div class="col-sm-6 rr-signup__form-cell">
-                    <input class="form-control rr-signup-input rr-signup-input__left-block" maxlength="30" name="country" type="text" placeholder="мІсто">
+                    <input type="text" name="city" ng-model="vm.data.city" class="form-control rr-signup-input rr-signup-input__left-block" maxlength="30" placeholder="Місто">
                 </div>
 
+                <!-- Platoon -->
                 <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="number" class="form-control rr-signup-input rr-signup-input__right-block" name="quantity" min="1" max="5" placeholder="НОМЕР ЗАГОНУ">
+                    <input type="number" name="platoon" ng-model="vm.data.platoon" class="form-control rr-signup-input rr-signup-input__right-block" min="1" max="5" placeholder="НОМЕР ЗАГОНУ">
                 </div>
 
+                <!-- Status -->
                 <div class="col-sm-6 rr-signup__form-cell">
-                    <input class="form-control rr-signup-input rr-signup-input__left-block" maxlength="30" name="country" type="text" placeholder="СТАТУС">
+                    <input type="text" name="status" ng-model="vm.data.status" class="form-control rr-signup-input rr-signup-input__left-block" maxlength="30" placeholder="СТАТУС">
                 </div>
 
+                <!-- Group -->
                 <div class="col-sm-6 rr-signup__form-cell">
-                    <input class="form-control rr-signup-input rr-signup-input__right-block" maxlength="30" name="country" type="text" placeholder="НАЗВА ЛАНКИ">
+                    <input type="text" name="group" ng-model="vm.data.group" class="form-control rr-signup-input rr-signup-input__right-block" maxlength="30" placeholder="НАЗВА ЛАНКИ">
                 </div>
 
                 <button type="submit" class="btn btn-danger">ЗАРЕЄСТРУВАТИСЯ</button>
