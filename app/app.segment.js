@@ -13,13 +13,15 @@
         /** Landing pages */
         $routeSegmentProvider.when('/', 'landing').segment('landing', {
             templateUrl: 'landing/landing.html',
-            controller: 'LandingController'
+            controller: 'LandingController',
+            controllerAs: 'vm'
         });
 
         /** Application pages */
         $routeSegmentProvider.when('/app', 'app').segment('app', {
             templateUrl: 'app/app.html',
-            controller: 'AppController'
+            controller: 'AppController',
+            controllerAs: 'vm'
         });
 
         $routeProvider.otherwise({redirectTo: '/'});
