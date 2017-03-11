@@ -9,6 +9,7 @@
     config.$inject = ['$httpProvider', '$logProvider', '$locationProvider'];
     function config($httpProvider, $logProvider, $locationProvider) {
         $httpProvider.interceptors.push('AuthInterceptor');
+        $httpProvider.defaults.withCredentials = true;
 
         // Configure application logs messages
         $logProvider.debugEnabled(true);
