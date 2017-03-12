@@ -15,7 +15,7 @@
             controllerAs: 'vm',
             resolve: { /* It was finished before controller initialised */
                 status: function ($route, ConfirmRegistrationService) { /* Now we can injected status in our controller */
-                    return ConfirmRegistrationService.log($route.current.params.token); /* We send in service our token in function log */
+                    return ConfirmRegistrationService.checkEmail($route.current.params.token); /* We send in service our token in function log */
                 },
 
             }

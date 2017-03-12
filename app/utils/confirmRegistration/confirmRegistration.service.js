@@ -9,7 +9,7 @@
     ConfirmRegistrationService.$inject = ['ConfirmRegistrationFactory'];
     function ConfirmRegistrationService(ConfirmRegistrationFactory) {
 
-        this.log = ConfirmRegistrationFactory.log; /* We grub log function from Factory */
+        this.checkEmail = ConfirmRegistrationFactory.checkEmail; /* We grub log function from Factory */
 
     }
 })();
