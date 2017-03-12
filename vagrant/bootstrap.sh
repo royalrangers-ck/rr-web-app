@@ -62,7 +62,7 @@ server {
         }
 
         location ~ /api {
-            proxy_pass http://172.16.1.1:8888;
+            proxy_pass http://172.16.1.1:8080;
         }
 
         # Max upload size

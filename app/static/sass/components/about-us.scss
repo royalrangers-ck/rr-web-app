@@ -1,0 +1,17 @@
+#rr-about_us-wrapper {
+  text-align: center;
+  margin: 0;
+  padding-top: 50px;
+  height: 245px; /* Высота страницы */
+  background-image: url('../../vendor/images/about.png');
+  background-repeat: no-repeat;
+  -moz-background-size: 100%; /* Firefox 3.6+ */
+  -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+  -o-background-size: 100%; /* Opera 9.6+ */
+  background-size: 100%; /* Современные браузеры */
+}
+
+#rr-about_us {
+  width: 100%;
+  margin-top: 10px;
+}

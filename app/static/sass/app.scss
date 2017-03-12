@@ -2,6 +2,9 @@
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
+/** Angular Growl Notification v.2 */
+@import "../../../bower_components/angular-growl-v2/build/angular-growl.min";
+
 /** App */
 @import "components/buttons";
 @import "components/login";
@@ -10,6 +13,14 @@
 @import "components/header";
 @import "components/footer";
 @import "components/video";
+@import "components/about-us";
+@import "components/slider";
+@import "components/parallax";
+@import "components/styles";
+@import "components/container";
+@import "components/confirmation";
+@import "components/forgot.password";
+@import "components/registration";
 
 html, body {
   margin: 0;
