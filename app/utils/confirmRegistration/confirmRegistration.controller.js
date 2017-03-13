@@ -6,10 +6,8 @@
         .module('app')
         .controller('ConfirmRegistrationController', ConfirmRegistrationController);
 
-    ConfirmRegistrationController.$inject = ['$log', 'status'];
-    /* Injected status resolve from routing*/
-
-    function ConfirmRegistrationController($log, status) {
+    ConfirmRegistrationController.$inject = ['$log', 'emailResponse'];
+    function ConfirmRegistrationController($log, emailResponse) {
         const vm = this;
 
         activate();
@@ -22,27 +20,25 @@
         }
 
         function logResponse() { /* We print our status in console for testing */
-            $log.debug(status);
+            $log.debug(emailResponse);
         }
 
         function checkEmail() { /* We check server response*/
-            if (status || status.status) { /* Does we have response and response status from server? */
-                if (status.status === 'successful') { /* All good*/
-                    showMessages(status.status, 'Good')
+            if (emailResponse || emailResponse.status) { /* Does we have response and response status from server? */
+                if (emailResponse.status === 'successful') { /* All good*/
+                    showMessages(emailResponse.status, emailResponse.data.message)
                 } else { /* Another status, something wrong*/
-                    showMessages(status.status, 'Bad')
+                    showMessages(emailResponse.status, emailResponse.data.message)
                 }
-            } else { /* We haven't response*/
+            }
+            else { /* We haven't response*/
                 showMessages('Server error', 'Very Bad')
             }
-            //  On undefined angular fall down,
-            //  Need created some error handler
-
         }
 
-        function showMessages(stat, mess) { /* Function for showing response */
-            vm.status = stat;
-            vm.mess = mess;
+        function showMessages(status, message) { /* Function for showing response */
+            vm.status = status;
+            vm.message = message;
         }
 
     }
