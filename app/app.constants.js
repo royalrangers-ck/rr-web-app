@@ -15,10 +15,10 @@
         constants.REGISTRATION = constants.API + '/registration';
 
         // GET DATA FOR REGISTRATION
-        constants.CITIES = constants.REGISTRATION + '/cities';
-        constants.GROUPS = constants.REGISTRATION + '/groups';
-        constants.PLATOONS = constants.REGISTRATION + '/platoons';
-        constants.SECTIONS = constants.REGISTRATION + '/sections';
+        constants.REGISTRATION.CITIES = constants.REGISTRATION + '/cities';
+        constants.REGISTRATION.GROUPS = constants.REGISTRATION + '/groups';
+        constants.REGISTRATION.PLATOONS = constants.REGISTRATION + '/platoons';
+        constants.REGISTRATION.SECTIONS = constants.REGISTRATION + '/sections';
 
         // LOGIN
 
