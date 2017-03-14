@@ -9,6 +9,14 @@
     AppSegment.$inject = ['$routeSegmentProvider', '$routeProvider'];
     function AppSegment($routeSegmentProvider, $routeProvider) {
         $routeSegmentProvider.options.autoLoadTemplates = true;
-        $routeProvider.otherwise({redirectTo: '/library'});
+
+        $routeSegmentProvider.when('/', 'landing').segment('landing', {
+            'default': true,
+            templateUrl: 'home/home.html',
+            controller: 'HomeController',
+            controllerAs: 'vm'
+        });
+
+        $routeProvider.otherwise({redirectTo: '/'});
     }
 })();

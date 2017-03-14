@@ -1,0 +1,56 @@
+$image-path:        './../images';
+$bg-parallax-base:  #c6e8c5;
+
+/**
+ * Return height of parallax box ( plus 23% of base height )
+ */
+@function fn-parallax-box-height ($height) {
+    @return $lph-height + (($lph-height * 24.5) / 100);
+}
+
+.rr-parallax {
+    position: absolute;
+    height: $lph-height;
+    width: 100%;
+    overflow: hidden;
+
+    @media (min-width: $screen-lg-min) {
+        background-image: none;
+
+        .rr-parallax_front-tree, .rr-parallax_middle-tree, .rr-parallax_back-rocks {
+            position: absolute;
+            width: 100%;
+            height: fn-parallax-box-height($lph-height);
+            background-repeat: repeat-x;
+            background-position: bottom;
+        }
+
+        .rr-parallax_front-tree {
+            background-image: url("#{$image-path}/parallax-tree-front.png");
+            z-index: -1;
+        }
+
+        .rr-parallax_middle-tree {
+            background-image: url("#{$image-path}/parallax-tree-middle.png");
+            z-index: -2;
+        }
+
+        .rr-parallax_back-rocks {
+            background: url("#{$image-path}/parallax-rocks.png") $bg-parallax-base;
+            z-index: -3;
+            background-position-x: -50%;
+        }
+    }
+
+    @media (max-width: $screen-md-max) {
+        height: $lph-height-medium;
+        background-image: url('#{$image-path}/header-bg.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    @media (max-width: $screen-xs-max) {
+        height: $lph-height-mobile;
+        background-image: none;
+        background-color: $bg-parallax-base;
+    }
+}

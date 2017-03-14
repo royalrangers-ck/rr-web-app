@@ -8,7 +8,7 @@ const concat = require('gulp-concat');
 const babel = require('gulp-babel');
 
 
-gulp.task('clear', () => {
+gulp.task('clear:app', () => {
     let src = [
         'app/*.css',
         'app/**/*.css',
@@ -20,8 +20,20 @@ gulp.task('clear', () => {
         .pipe(clean())
 });
 
+gulp.task('clear:landing', () => {
+    let src = [
+        'landing/*.css',
+        'landing/**/*.css',
+        'landing/static/vendor/*'
+    ];
 
-gulp.task('copyDep', () => {
+    return gulp
+        .src(src, {read: false})
+        .pipe(clean())
+});
+
+
+gulp.task('copyDep:app', () => {
     let src = [
         'bower_components/jquery/dist/jquery.min.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
@@ -46,8 +58,34 @@ gulp.task('copyDep', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyScripts', () => {
-    let src = ['app/static/js/google-maps.js'];
+gulp.task('copyDep:landing', () => {
+    let src = [
+        'bower_components/jquery/dist/jquery.min.js',
+        'bower_components/bootstrap/dist/js/bootstrap.min.js',
+
+        'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+        'bower_components/angular/angular.min.js',
+        'bower_components/angular-route/angular-route.min.js',
+        'bower_components/angular-resource/angular-resource.min.js',
+        'bower_components/angular-animate/angular-animate.js',
+        'bower_components/angular-route-segment/build/angular-route-segment.js',
+        'bower_components/angular-growl-v2/build/angular-growl.min.js',
+
+        'landing/static/js/*.js',
+        '!landing/static/js/google-maps.js'
+    ];
+    let dest = 'landing/static/vendor/js/.';
+
+    return gulp
+        .src(src)
+        .pipe(rename({dirname: ''}))
+        .pipe(concat('dep.js'))
+        .pipe(gulp.dest(dest))
+});
+
+
+gulp.task('copyScripts:app', () => {
+    let src = ['app/static/js/*.js'];
     let dest = 'app/static/vendor/js/.';
 
     return gulp
@@ -56,7 +94,17 @@ gulp.task('copyScripts', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyApp', () => {
+gulp.task('copyScripts:landing', () => {
+    let src = ['landing/static/js/*.js'];
+    let dest = 'landing/static/vendor/js/.';
+
+    return gulp
+        .src(src)
+        .pipe(rename({dirname: ''}))
+        .pipe(gulp.dest(dest))
+});
+
+gulp.task('copyApp:app', () => {
     let src = [
         'app/app.js',
         'app/config.js',
@@ -73,7 +121,25 @@ gulp.task('copyApp', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyJs', () => {
+gulp.task('copyApp:landing', () => {
+    let src = [
+        'landing/app.js',
+        'landing/config.js',
+        'landing/**/*.js',
+        '!landing/static/js/*.js'
+    ];
+    let dest = 'landing/static/vendor/js/.';
+
+    return gulp
+        .src(src)
+        .pipe(rename({dirname: ''}))
+        .pipe(babel({presets: ['es2015']}))
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest(dest))
+});
+
+
+gulp.task('copyJs:app', () => {
     let src = [
         'app/static/vendor/js/dep.js',
         'app/static/vendor/js/app.js'
@@ -87,13 +153,27 @@ gulp.task('copyJs', () => {
         .pipe(gulp.dest(dest))
 });
 
-
-gulp.task('sass:dev', () => {
+gulp.task('copyJs:landing', () => {
     let src = [
-        'app/app/*.scss',
-        'app/app/**/*.scss',
-        'app/landing/*.scss',
-        'app/landing/**/*.scss'
+        'landing/static/vendor/js/dep.js',
+        'landing/static/vendor/js/app.js'
+    ];
+    let dest = 'landing/static/vendor/js/.';
+
+    return gulp
+        .src(src)
+        .pipe(rename({dirname: ''}))
+        .pipe(concat('app.min.js'))
+        .pipe(gulp.dest(dest))
+});
+
+
+gulp.task('sass:app:dev', () => {
+    let src = [
+        'app/*.scss',
+        'app/**/*.scss',
+        '!app/static/sass/*.scss',
+        '!app/static/sass/**/*.scss'
     ];
     let dest = './';
 
@@ -103,14 +183,8 @@ gulp.task('sass:dev', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('sass:prod', () => {
-    let src = [
-        'app/static/sass/app.scss',
-        'app/app/*.scss',
-        'app/app/**/*.scss',
-        'app/landing/*.scss',
-        'app/landing/**/*.scss'
-    ];
+gulp.task('sass:app:prod', () => {
+    let src = ['app/static/sass/app.scss'];
     let dest = 'app/static/vendor/css/.';
 
     return gulp
@@ -121,10 +195,40 @@ gulp.task('sass:prod', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('sass', gulp.parallel('sass:dev', 'sass:prod'));
+gulp.task('sass:app', gulp.parallel('sass:app:dev', 'sass:app:prod'));
 
 
-gulp.task('copyImages', () => {
+gulp.task('sass:landing:dev', () => {
+    let src = [
+        'landing/*.scss',
+        'landing/**/*.scss',
+        '!landing/static/sass/*.scss',
+        '!landing/static/sass/**/*.scss'
+    ];
+    let dest = './';
+
+    return gulp
+        .src(src, {base: './'})
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest(dest))
+});
+
+gulp.task('sass:landing:prod', () => {
+    let src = ['landing/static/sass/app.scss'];
+    let dest = 'landing/static/vendor/css/.';
+
+    return gulp
+        .src(src)
+        .pipe(rename({dirname: ''}))
+        .pipe(concat('app.scss'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest(dest))
+});
+
+gulp.task('sass:landing', gulp.parallel('sass:landing:dev', 'sass:landing:prod'));
+
+
+gulp.task('copyImages:app', () => {
     let src = ['app/static/images/**/*.*'];
     let dest = 'app/static/vendor/images/.';
 
@@ -134,8 +238,18 @@ gulp.task('copyImages', () => {
         .pipe(gulp.dest(dest))
 });
 
+gulp.task('copyImages:landing', () => {
+    let src = ['landing/static/images/**/*.*'];
+    let dest = 'landing/static/vendor/images/.';
 
-gulp.task('copyFonts', () => {
+    return gulp
+        .src(src)
+        .pipe(rename({dirname: ''}))
+        .pipe(gulp.dest(dest))
+});
+
+
+gulp.task('copyFonts:app', () => {
     let src = [
         'bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*',
         'app/static/fonts/*.*'
@@ -148,24 +262,51 @@ gulp.task('copyFonts', () => {
         .pipe(gulp.dest(dest))
 });
 
+gulp.task('copyFonts:landing', () => {
+    let src = [
+        'bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*',
+        'landing/static/fonts/*.*'
+    ];
+    let dest = 'landing/static/vendor/fonts/.';
 
-gulp.task('build:dev', gulp.series(
-    'clear',
-    gulp.parallel('copyScripts', 'copyDep', 'copyApp'),
-    'copyJs',
-    'copyImages',
-    gulp.parallel('sass:dev', 'sass:prod'),
-    'copyFonts'
+    return gulp
+        .src(src)
+        .pipe(rename({dirname: ''}))
+        .pipe(gulp.dest(dest))
+});
+
+
+gulp.task('build:dev', gulp.parallel(
+
+    /** Build Main Application */
+    gulp.series(
+        'clear:app',
+        gulp.parallel('copyScripts:app', 'copyDep:app', 'copyApp:app'),
+        'copyJs:app',
+        'copyImages:app',
+        'sass:app',
+        'copyFonts:app'
+    ),
+
+    /** Build Landing Application */
+    gulp.series(
+        'clear:landing',
+        gulp.parallel('copyScripts:landing', 'copyDep:landing', 'copyApp:landing'),
+        'copyJs:landing',
+        'copyImages:landing',
+        'sass:landing',
+        'copyFonts:landing'
+    )
 ));
 
-gulp.task('build:prod', gulp.series(
-    'clear',
-    gulp.parallel('copyScripts', 'copyDep', 'copyApp'),
-    'copyJs',
-    'copyImages',
-    'sass:prod',
-    'copyFonts'
-));
+//gulp.task('build:prod', gulp.series(
+//    'clear',
+//    gulp.parallel('copyScripts', 'copyDep', 'copyApp'),
+//    'copyJs',
+//    'copyImages',
+//    'sass:prod',
+//    'copyFonts'
+//));
 
 /**
  * Watch and compile styles

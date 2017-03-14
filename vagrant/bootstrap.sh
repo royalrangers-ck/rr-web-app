@@ -51,13 +51,21 @@ server {
         listen 80 default_server;
         listen [::]:80 default_server ipv6only=on;
 
+        root /project;
+
         location / {
-            root /project/app;
+            return 301 http://localhost:9990/landing/;
+        }
+
+        location /landing {
+            index index.html index.html;
+        }
+
+        location /app {
             index index.html index.html;
         }
 
         location ~* \.(js|jpg|png|ico|css|otf|eot|svg|ttf|woff|woff2)$ {
-            root /project/app;
             sendfile off;
         }
 
