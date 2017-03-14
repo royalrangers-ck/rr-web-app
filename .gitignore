@@ -1,14 +1,18 @@
 # Files
 *.iml
+*.css
 
 # Foulders
 .idea/
 node_modules/
 bower_components/
-app/slider/bootstrap/
-app/slider/css/*.css
-app/static/vendor/*
 .sass-cache/
 template-sources/
-app/*.css
-app/**/*.css
+
+# Main Application
+app/static/vendor/*
+app/slider/bootstrap/
+
+# Landing Application
+landing/static/vendor/*
+
