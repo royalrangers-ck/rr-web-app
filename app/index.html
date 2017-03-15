@@ -1,32 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Application</title>
-    <link rel="shortcut icon" href="./static/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./static/vendor/css/app.css">
-    <script type="text/javascript" src="./static/vendor/js/app.min.js"></script>
+
+    <title>Royal Rangers</title>
+
+    <link href="static/vendor/css/app.css" rel="stylesheet">
+    <script src="static/vendor/js/app.min.js"></script>
 </head>
-<body ng-app="app">
 
-<div growl></div>
+<body class="pace-done fixed-nav fixed-nav-basic fixed-sidebar" ng-app="app">
 
-<header class="container">
-    <h4>Header</h4>
-</header>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation" ng-controller="sidebarCtrl">
 
-<ul>
-    <li><a href="#/settings">Settings</a></li>
-    <li><a href="#/library">Library</a></li>
-</ul>
+        <div class="sidebar-collapse" style="overflow: hidden; width: auto; height: 100%;">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <span>
+                            <img alt="image" class="img-circle" src="static/images/rr-logo.svg" height="50">
+                        </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" aria-expanded="true">
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <strong class="font-bold">Прізвище Ім’я</strong>
+                                </span>
+                                <span class="text-muted text-xs block">
+                                    Посада
+                                    <b class="caret"></b>
+                                </span>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu m-t-xs">
+                            <li><a href="#/library">Бібліотека</a></li>
+                            <li><a href="#/settings">Налаштування</a></li>
+                            <li><a href="#/">Тех підтримка</a></li>
+                            <li><a href="#/">Створити</a></li>
+                        </ul>
+                    </div>
+                </li>
 
-<div app-view-segment="0"></div>
+                <li ng-repeat="item in leftSidebarSchema">
+                    <a href="{{ item.route }}">
+                        <span class="nav-label">{{ item.name }}</span>
+                        <span class="fa arrow" ng-if="item.submenu"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse" ng-if="item.submenu">
+                        <li ng-repeat="subItem in item.submenu">
+                            <a href="{{ subItem.route }}">{{ subItem.name }}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
 
-<footer class="container">
-    <h4>Footer</h4>
-</footer>
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1" style="min-height: 280px;">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary"><i class="fa fa-bars"></i></a>
+                    <form role="search" class="navbar-form-custom" action="">
+                        <div class="form-group">
+                            <input type="text" placeholder="Пошук..." class="form-control" name="top-search" id="top-search">
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <span class="m-r-sm text-muted welcome-message">Royal Rangers App.</span>
+                    </li>
+                    <li>
+                        <a href="#/">
+                            <i class="fa fa-sign-out"></i>
+                            <span>Вихід</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="wrapper wrapper-content">
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div app-view-segment="0"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div>
+                        <strong>Copyright</strong> Royal Rangers &copy; 2017
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>
