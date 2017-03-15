@@ -36,8 +36,6 @@ gulp.task('clear:landing', () => {
 gulp.task('copyDep:app', () => {
     let src = [
         'bower_components/jquery/dist/jquery.min.js',
-        'bower_components/bootstrap/dist/js/bootstrap.min.js',
-
         'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
         'bower_components/angular/angular.min.js',
         'bower_components/angular-route/angular-route.min.js',
@@ -46,8 +44,10 @@ gulp.task('copyDep:app', () => {
         'bower_components/angular-route-segment/build/angular-route-segment.js',
         'bower_components/angular-growl-v2/build/angular-growl.min.js',
 
-        'app/static/js/*.js',
-        '!app/static/js/google-maps.js'
+        'bower_components/jquery-slimscroll/jquery.slimscroll.min.js',
+        'bower_components/metisMenu/dist/metisMenu.min.js',
+
+        'app/static/js/*.js'
     ];
     let dest = 'app/static/vendor/js/.';
 
@@ -61,8 +61,6 @@ gulp.task('copyDep:app', () => {
 gulp.task('copyDep:landing', () => {
     let src = [
         'bower_components/jquery/dist/jquery.min.js',
-        'bower_components/bootstrap/dist/js/bootstrap.min.js',
-
         'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
         'bower_components/angular/angular.min.js',
         'bower_components/angular-route/angular-route.min.js',
@@ -251,7 +249,7 @@ gulp.task('copyImages:landing', () => {
 
 gulp.task('copyFonts:app', () => {
     let src = [
-        'bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*',
+        'bower_components/font-awesome/fonts/*.*',
         'app/static/fonts/*.*'
     ];
     let dest = 'app/static/vendor/fonts/.';
@@ -311,6 +309,19 @@ gulp.task('build:dev', gulp.parallel(
 /**
  * Watch and compile styles
  */
-gulp.task('rr-sass:watch', () => {
-    gulp.watch('app/static/sass/**/*.scss', gulp.series('sass'));
+gulp.task('sass:app:watch', () => {
+    gulp.watch('app/static/sass/**/*.scss', gulp.series('sass:app:prod'));
 });
+
+gulp.task('build:app:prod', gulp.parallel(
+
+    /** Build Main Application */
+    gulp.series(
+        'clear:app',
+        gulp.parallel('copyScripts:app', 'copyDep:app', 'copyApp:app'),
+        'copyJs:app',
+        'copyImages:app',
+        'sass:app:prod',
+        'copyFonts:app'
+    )
+));
