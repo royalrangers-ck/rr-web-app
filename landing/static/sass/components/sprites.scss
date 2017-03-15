@@ -1,0 +1,37 @@
+[class^='rr-icon'] {
+  background-image: url('../../vendor/images/sprites.png?v=1');
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.rr-icon {
+  &-fb {
+    width: 61px;
+    height: 62px;
+    background-position: 0 0;
+  }
+
+  &-rr {
+    width: 61px;
+    height: 61px;
+    background-position: -61px 0;
+  }
+
+  &-twitter {
+    width: 61px;
+    height: 61px;
+    background-position: -122px 0;
+  }
+
+  &-up {
+    width: 61px;
+    height: 62px;
+    background-position: -183px 0;
+  }
+
+  &-vk {
+    width: 61px;
+    height: 61px;
+    background-position: -244px 0;
+  }
+}
