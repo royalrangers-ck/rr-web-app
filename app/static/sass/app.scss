@@ -2,7 +2,11 @@
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
+/** Font Awesome*/
 @import "../../../bower_components/font-awesome/scss/font-awesome";
+
+/** FooTable*/
+@import "../../../bower_components/footable/css/footable.core.min";
 
 /** Angular Growl Notification v.2 */
 @import "../../../bower_components/angular-growl-v2/build/angular-growl.min";
