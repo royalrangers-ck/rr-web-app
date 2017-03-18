@@ -6,10 +6,12 @@
         .module('app')
         .factory('AuthInterceptor', AuthInterceptor);
 
-    AuthInterceptor.$inject = ['$q', '$injector'];
-    function AuthInterceptor($q, $injector) {
+    AuthInterceptor.$inject = ['$q', '$injector', 'TokenService'];
+    function AuthInterceptor($q, $injector, TokenService) {
         return {
             request: function (config) {
+                addToken(config);
+
                 return config;
             },
 
@@ -33,6 +35,10 @@
                 return $q.reject(rejection);
             }
         };
+
+        function addToken(config) {
+            config.headers.token = TokenService.get();
+        }
 
         function checkAuth(response) {
             if (response && response.status === 401) {
