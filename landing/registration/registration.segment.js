@@ -12,7 +12,12 @@
         $routeSegmentProvider.when('/registration', 'registration').segment('registration', {
             templateUrl: 'registration/registration.html',
             controller: 'RegistrationController',
-            controllerAs: 'vm'
-        });
+            controllerAs: 'vm',
+            resolve: {
+                countries: (RegistrationService) => {
+                    return RegistrationService.countries()
+                }
+            }
+        })
     }
 })();
