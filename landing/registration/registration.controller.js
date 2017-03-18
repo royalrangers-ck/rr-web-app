@@ -6,8 +6,8 @@
         .module('app')
         .controller('RegistrationController', RegistrationController);
 
-    RegistrationController.$inject = ['countries', '$log', '$window', 'RegistrationService'];
-    function RegistrationController(countries, $log, $window, RegistrationService) {
+    RegistrationController.$inject = ['countries', 'growl', '$log', '$window', 'RegistrationService'];
+    function RegistrationController(countries, growl, $log, $window, RegistrationService) {
         const vm = this;
 
         vm.data = {};
@@ -41,7 +41,8 @@
         function submit() {
             let afterSave = function (res) {
                 if (res.success) {
-                    $window.location.pathname = '/app/'
+                    growl.success(res.data.message);
+                    $window.location.pathname = '/app/';
                 }
             };
 

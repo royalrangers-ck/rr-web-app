@@ -81,7 +81,7 @@
 
                     <!-- Birth Date -->
                     <div class="col-sm-12 rr-signup__form-cell">
-                        <input type="date" name="birthDate" ng-model="vm.data.birthDate" class="form-control" placeholder="Дата народження" title="дата народження">
+                        <input type="date" name="birthDate" ng-model="vm.data.birthDate" date-parser class="form-control" placeholder="Дата народження" title="дата народження">
                     </div>
 
                     <!-- Gender -->
@@ -96,7 +96,7 @@
             </div>
 
             <div class="row">
-                <button type="submit" ng-disabled="vm.form.$submitted" class="btn btn-danger">ЗАРЕЄСТРУВАТИСЯ</button>
+                <button type="submit" ng-disabled="vm.form.$pristine || vm.form.$invalid || vm.form.$submitted" class="btn btn-danger">ЗАРЕЄСТРУВАТИСЯ</button>
             </div>
         </form>
 
