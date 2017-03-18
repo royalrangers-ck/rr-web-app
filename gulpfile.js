@@ -232,7 +232,8 @@ gulp.task('copyImages:app', () => {
 
     return gulp
         .src(src)
-        .pipe(rename({dirname: ''}))
+        // ToDo.zpawn: uncommented after load real content
+        //.pipe(rename({dirname: ''}))
         .pipe(gulp.dest(dest))
 });
 
