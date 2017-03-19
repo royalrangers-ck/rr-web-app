@@ -7,7 +7,7 @@
         .controller('LoginController', LoginController);
 
     LoginController.$inject = ['$log', '$route', 'LoginService'];
-    function LoginController($log, $route, $window, LoginService) {
+    function LoginController($log, $window, LoginService, TokenService) {
         const vm = this;
 
         vm.data = {};
@@ -22,12 +22,19 @@
         }
 
         function login() {
-            LoginService.Login = function (res) {
+            let afterSend = function (res) {
                 if (res.token) {
-                    $window.localStorage.setItem('token', res.token);
-                    $route.path('/app');
+                    TokenService.save(res.token);
+                    $window.location.pathname = '/app/';
                 }
-            }
+            };
+
+            let req = {
+                email: vm.data.email,
+                password: vm.data.password
+            };
+
+            LoginService.login(req, afterSend);
         }
     }
 })();

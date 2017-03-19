@@ -9,6 +9,12 @@
     LoginService.$inject = ['$log', 'Login'];
     function LoginService($log, Login) {
 
-        this.Login = Login.send;
+        this.login = Login.send;
+
+        activate();
+
+        function activate() {
+            $log.debug('Init LoginService...');
+        }
     }
 })();

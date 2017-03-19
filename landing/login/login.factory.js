@@ -14,10 +14,6 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                params: {
-                    email: vm.data.email,
-                    password: vm.data.password
-                },
                 isArray: false
             }
         })
