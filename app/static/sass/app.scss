@@ -1,11 +1,15 @@
 /** Bootstrap */
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-@import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
+/** Font Awesome */
 @import "../../../bower_components/font-awesome/scss/font-awesome";
 
 /** Angular Growl Notification v.2 */
 @import "../../../bower_components/angular-growl-v2/build/angular-growl.min";
 
-/** App */
+/** Inspinia */
 @import "inspinia/style";
+
+/** App */
+@import "components/home";
+@import "components/styles";
