@@ -6,7 +6,7 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$log', '$route', 'LoginService'];
+    LoginController.$inject = ['$log', '$route', 'LoginService', 'TokenService'];
     function LoginController($log, $window, LoginService, TokenService) {
         const vm = this;
 
