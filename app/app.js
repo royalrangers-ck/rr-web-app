@@ -7,6 +7,7 @@
             'ngRoute',
             'ngResource',
             'ngAnimate',
+            'ngStorage',
             'route-segment',
             'view-segment',
             'angular-growl'

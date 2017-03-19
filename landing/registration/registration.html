@@ -2,71 +2,101 @@
     <div class="container">
         <form name="vm.form" ng-submit="vm.submit()" class="rr-signup__form">
             <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <!-- Status -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <select name="status" ng-model="vm.data.status" id="status" class="form-control" title="СТАТУС">
+                            <option value="" selected disabled>СТАТУС</option>
+                            <option value="user">Користувач</option>
+                            <option value="teacher">Вчитель</option>
+                        </select>
+                    </div>
 
-                <!-- Email -->
-                <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="email" name="email" ng-model="vm.data.email" id="email" class="form-control rr-signup-input rr-signup-input__left-block" placeholder="Email">
+                    <!-- Email -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <input type="email" name="email" ng-model="vm.data.email" id="email" class="form-control" placeholder="Email">
+                    </div>
+
+                    <!-- Telephone Number -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <input type="tel" name="telephonNumber" ng-model="vm.data.telephonNumber" class="form-control" value="" size="10" maxlength="10" required="required" title="093" placeholder="Телефон">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <input type="password" name="password" ng-model="vm.data.password" class="form-control" id="pass" placeholder="Пароль">
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <input type="password" name="confirmPassword" ng-model="vm.data.confirmPassword" class="form-control" id="confirmPass" placeholder="ПІдтвердження пароля">
+                    </div>
+
+                    <!-- Group -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <select name="group" id="group" ng-disabled="!vm.data.city" ng-model="vm.data.group" ng-options="record as record.name for record in vm.groups" ng-change="vm.getPlatoons(vm.data.city.id)" class="form-control">
+                            <option value="" disabled>ГРУПА</option>
+                        </select>
+                    </div>
+
+                    <!-- Platoon -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <select name="platoon" id="platoon" ng-disabled="!vm.data.group" ng-model="vm.data.platoon" ng-options="record as record.name for record in vm.platoons" ng-change="vm.getSections(vm.data.city.id)" class="form-control">
+                            <option value="" disabled>НОМЕР ЗАГОНУ</option>
+                        </select>
+                    </div>
+
+                    <!-- Section -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <select name="section" id="section" ng-disabled="!vm.data.platoon" ng-model="vm.data.section" ng-options="record as record.name for record in vm.sections" class="form-control">
+                            <option value="" disabled>НАЗВА ЛАНКИ</option>
+                        </select>
+                    </div>
                 </div>
 
-                <!-- Phone -->
-                <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="tel" name="phone" ng-model="vm.data.phone" class="form-control rr-signup-input rr-signup-input__right-block" value="" size="10" maxlength="10" required="required" title="093" placeholder="Телефон">
-                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <!-- First Name -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <input type="text" name="firstName" ng-model="vm.data.firstName" class="form-control" maxlength="30" placeholder="Ім'я">
+                    </div>
 
-                <!-- Password -->
-                <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="password" name="password" ng-model="vm.data.password" class="form-control rr-signup-input rr-signup-input__left-block" id="pass" placeholder="Пароль">
-                </div>
+                    <!-- Last Name -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <input type="text" name="lastName" ng-model="vm.data.lastName" class="form-control" maxlength="30" placeholder="призвище">
+                    </div>
 
-                <!-- Confirm Password -->
-                <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="password" name="confirmPassword" ng-model="vm.data.confirmPassword" class="form-control rr-signup-input rr-signup-input__right-block" id="confirmPass" placeholder="ПІдтвердження пароля">
-                </div>
+                    <!-- Country -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <select name="country" id="country" ng-model="vm.data.country" ng-options="record as record.name for record in vm.countries" ng-change="vm.getCities(vm.data.country.id)" class="form-control">
+                            <option value="" disabled>КРАЇНА</option>
+                        </select>
+                    </div>
 
-                <!-- First Name -->
-                <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="text" name="firstName" ng-model="vm.data.firstName" class="form-control rr-signup-input rr-signup-input__left-block" maxlength="30" placeholder="Ім'я">
-                </div>
+                    <!-- City -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <select name="city" id="city" ng-disabled="!vm.data.country" ng-model="vm.data.city" ng-options="record as record.name for record in vm.cities" ng-change="vm.getGroups(vm.data.city.id)" class="form-control">
+                            <option value="" disabled>МІСТО</option>
+                        </select>
+                    </div>
 
-                <!-- Last Name -->
-                <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="text" name="lastName" ng-model="vm.data.lastName" class="form-control rr-signup-input rr-signup-input__right-block" maxlength="30" placeholder="призвище">
-                </div>
+                    <!-- Birth Date -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <input type="date" name="birthDate" ng-model="vm.data.birthDate" date-parser class="form-control" placeholder="Дата народження" title="дата народження">
+                    </div>
 
-                <!-- Birth Date -->
-                <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="date" name="birthDate" ng-model="vm.data.birthDate" class="form-control rr-signup-input rr-signup-input__left-block" placeholder="Дата народження" title="дата народження">
+                    <!-- Gender -->
+                    <div class="col-sm-12 rr-signup__form-cell">
+                        <select name="gender" ng-model="vm.data.gender" class="form-control" title="СТАТЬ">
+                            <option value="" selected disabled>СТАТЬ</option>
+                            <option value="male">Мужской</option>
+                            <option value="female">Женский</option>
+                        </select>
+                    </div>
                 </div>
+            </div>
 
-                <!-- Gender -->
-                <div class="col-sm-6 rr-signup__form-cell">
-                    <select name="gender" ng-model="vm.data.gender" class="form-control rr-signup-input rr-signup-input__right-block" title="СТАТЬ">
-                        <option value="male">Мужской</option>
-                        <option value="female">Женский</option>
-                    </select>
-                </div>
-
-                <!-- City -->
-                <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="text" name="city" ng-model="vm.data.city" class="form-control rr-signup-input rr-signup-input__left-block" maxlength="30" placeholder="Місто">
-                </div>
-
-                <!-- Platoon -->
-                <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="number" name="platoon" ng-model="vm.data.platoon" class="form-control rr-signup-input rr-signup-input__right-block" min="1" max="5" placeholder="НОМЕР ЗАГОНУ">
-                </div>
-
-                <!-- Status -->
-                <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="text" name="status" ng-model="vm.data.status" class="form-control rr-signup-input rr-signup-input__left-block" maxlength="30" placeholder="СТАТУС">
-                </div>
-
-                <!-- Group -->
-                <div class="col-sm-6 rr-signup__form-cell">
-                    <input type="text" name="group" ng-model="vm.data.group" class="form-control rr-signup-input rr-signup-input__right-block" maxlength="30" placeholder="НАЗВА ЛАНКИ">
-                </div>
-
-                <button type="submit" class="btn btn-danger">ЗАРЕЄСТРУВАТИСЯ</button>
+            <div class="row">
+                <button type="submit" ng-disabled="vm.form.$pristine || vm.form.$invalid || vm.form.$submitted" class="btn btn-danger">ЗАРЕЄСТРУВАТИСЯ</button>
             </div>
         </form>
 
