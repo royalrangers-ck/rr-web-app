@@ -6,12 +6,12 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$log'];
-    function LoginController($log) {
+    LoginController.$inject = ['$log', '$route', 'LoginService'];
+    function LoginController($log, $route, $window, LoginService) {
         const vm = this;
 
-        vm.email = "Email";
-        vm.password = "Password";
+        vm.data = {};
+        vm.login = login;
 
         activate();
 
@@ -19,6 +19,15 @@
 
         function activate() {
             $log.debug('Init LoginController ...');
+        }
+
+        function login() {
+            LoginService.Login = function (res) {
+                if (res.token) {
+                    $window.localStorage.setItem('token', res.token);
+                    $route.path('/app');
+                }
+            }
         }
     }
 })();

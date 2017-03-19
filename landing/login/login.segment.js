@@ -11,7 +11,8 @@
 
         $routeSegmentProvider.when('/login', 'login').segment('login', {
             templateUrl: 'login/login.html',
-            controller: 'LoginController'
+            controller: 'LoginController',
+            controllerAs: 'vm'
         });
     }
 })();
