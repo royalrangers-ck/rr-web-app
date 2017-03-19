@@ -10,11 +10,7 @@
     function Login($resource, Endpoints) {
         return $resource(Endpoints.API.AUTH, null, {
             'send': {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                isArray: false
+                method: 'POST'
             }
         })
     }

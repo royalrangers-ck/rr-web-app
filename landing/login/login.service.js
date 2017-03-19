@@ -6,15 +6,9 @@
         .module('app')
         .service('LoginService', LoginService);
 
-    LoginService.$inject = ['$log', 'Login'];
-    function LoginService($log, Login) {
+    LoginService.$inject = ['Login'];
+    function LoginService(Login) {
 
         this.login = Login.send;
-
-        activate();
-
-        function activate() {
-            $log.debug('Init LoginService...');
-        }
     }
 })();

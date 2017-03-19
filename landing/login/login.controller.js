@@ -23,8 +23,8 @@
 
         function login() {
             let afterSend = function (res) {
-                if (res.token) {
-                    TokenService.save(res.token);
+                if (res.success) {
+                    TokenService.save(res.data.token);
                     $window.location.pathname = '/app/';
                 }
             };
