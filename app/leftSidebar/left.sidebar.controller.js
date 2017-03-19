@@ -74,6 +74,9 @@
             name: 'Налаштування',
             route: '#/settings'
         }, {
+            name: 'Підтвердити',
+            route: '#/confirm-users'
+        }, {
             name: 'Тех.підтримка',
             route: ''
         }, {
