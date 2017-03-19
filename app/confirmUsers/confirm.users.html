@@ -9,119 +9,19 @@
                 <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big">ПІБ</th>
                 <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-hide="phone">Телефон</th>
                 <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-hide="phone">Email</th>
-                <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-hide="phone,tablet">Дата
-                    народження
+                <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-hide="phone,tablet">Дата народження
                 </th>
                 <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-sort-ignore="true"></th>
             </tr>
             </thead>
             <tbody>
-            <tr class="a-cu-table__row">
-                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">Іван Іванов</td>
-                <td class="a-cu-table__item a-cu-cell-text">067999999</td>
-                <td class="a-cu-table__item a-cu-cell-text">ii@gmail.com</td>
-                <td class="a-cu-table__item a-cu-cell-text">20 травня 1998</td>
+            <tr class="a-cu-table__row" ng-repeat="user in usersList">
+                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">{{user.name + " " + user.subName}}</td>
+                <td class="a-cu-table__item a-cu-cell-text">{{user.phone}}</td>
+                <td class="a-cu-table__item a-cu-cell-text">{{user.email}}</td>
+                <td class="a-cu-table__item a-cu-cell-text">{{user.birth | date: "dd MMMM yyyy"}}</td>
                 <td class="a-cu-table__item a-cu-cell-text">
-                    <button class="btn btn-white" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
-                </td>
-            </tr>
-            <tr class="a-cu-table__row">
-                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">Іван Іванов</td>
-                <td class="a-cu-table__item a-cu-cell-text">067999999</td>
-                <td class="a-cu-table__item a-cu-cell-text">ii@gmail.com</td>
-                <td class="a-cu-table__item a-cu-cell-text">20 травня 1998</td>
-                <td class="a-cu-table__item a-cu-cell-text">
-                    <button class="btn btn-white" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
-                </td>
-            </tr>
-            <tr class="a-cu-table__row">
-                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">Іван Іванов</td>
-                <td class="a-cu-table__item a-cu-cell-text">067999999</td>
-                <td class="a-cu-table__item a-cu-cell-text">ii@gmail.com</td>
-                <td class="a-cu-table__item a-cu-cell-text">20 травня 1998</td>
-                <td class="a-cu-table__item">
-                    <button class="btn btn-white" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
-                </td>
-            </tr>
-            <tr class="a-cu-table__row">
-                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">Іван Іванов</td>
-                <td class="a-cu-table__item a-cu-cell-text">067999999</td>
-                <td class="a-cu-table__item a-cu-cell-text">ii@gmail.com</td>
-                <td class="a-cu-table__item a-cu-cell-text">20 травня 1998</td>
-                <td class="a-cu-table__item">
-                    <button class="btn btn-white" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
-                </td>
-            </tr>
-            <tr class="a-cu-table__row">
-                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">Іван Іванов</td>
-                <td class="a-cu-table__item a-cu-cell-text">067999999</td>
-                <td class="a-cu-table__item a-cu-cell-text">ii@gmail.com</td>
-                <td class="a-cu-table__item a-cu-cell-text">20 травня 1998</td>
-                <td class="a-cu-table__item">
-                    <button class="btn btn-white" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
-                </td>
-            </tr>
-            <tr class="a-cu-table__row">
-                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">Іван Іванов</td>
-                <td class="a-cu-table__item a-cu-cell-text">067999999</td>
-                <td class="a-cu-table__item a-cu-cell-text">ii@gmail.com</td>
-                <td class="a-cu-table__item a-cu-cell-text">20 травня 1998</td>
-                <td class="a-cu-table__item">
-                    <button class="btn btn-white" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
-                </td>
-            </tr>
-            <tr class="a-cu-table__row">
-                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">Іван Іванов</td>
-                <td class="a-cu-table__item a-cu-cell-text">067999999</td>
-                <td class="a-cu-table__item a-cu-cell-text">ii@gmail.com</td>
-                <td class="a-cu-table__item a-cu-cell-text">20 травня 1998</td>
-                <td class="a-cu-table__item">
-                    <button class="btn btn-white" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
-                </td>
-            </tr>
-            <tr class="a-cu-table__row">
-                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">Іван Іванов</td>
-                <td class="a-cu-table__item a-cu-cell-text">067999999</td>
-                <td class="a-cu-table__item a-cu-cell-text">ii@gmail.com</td>
-                <td class="a-cu-table__item a-cu-cell-text">20 травня 1998</td>
-                <td class="a-cu-table__item">
-                    <button class="btn btn-white" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
-                </td>
-            </tr>
-            <tr class="a-cu-table__row">
-                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">Іван Іванов</td>
-                <td class="a-cu-table__item a-cu-cell-text">067999999</td>
-                <td class="a-cu-table__item a-cu-cell-text">ii@gmail.com</td>
-                <td class="a-cu-table__item a-cu-cell-text">20 травня 1998</td>
-                <td class="a-cu-table__item">
-                    <button class="btn btn-white" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
-                </td>
-            </tr>
-            <tr class="a-cu-table__row">
-                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">Іван Іванов</td>
-                <td class="a-cu-table__item a-cu-cell-text">067999999</td>
-                <td class="a-cu-table__item a-cu-cell-text">ii@gmail.com</td>
-                <td class="a-cu-table__item a-cu-cell-text">20 травня 1998</td>
-                <td class="a-cu-table__item">
-                    <button class="btn btn-white" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
-                </td>
-            </tr>
-            <tr class="a-cu-table__row">
-                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">Іван Іванов</td>
-                <td class="a-cu-table__item a-cu-cell-text">067999999</td>
-                <td class="a-cu-table__item a-cu-cell-text">ii@gmail.com</td>
-                <td class="a-cu-table__item a-cu-cell-text">20 травня 1998</td>
-                <td class="a-cu-table__item">
-                    <button class="btn btn-white" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
-                </td>
-            </tr>
-            <tr class="a-cu-table__row">
-                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">Іван Іванов</td>
-                <td class="a-cu-table__item a-cu-cell-text">067999999</td>
-                <td class="a-cu-table__item a-cu-cell-text">ii@gmail.com</td>
-                <td class="a-cu-table__item a-cu-cell-text">20 травня 1998</td>
-                <td class="a-cu-table__item a-cu-text">
-                    <button class="btn btn-white" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
+                    <button class="btn btn-white" ng-click="setCurrentUser(user.id)" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
                 </td>
             </tr>
             </tbody>
@@ -146,12 +46,13 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
+                    <input type="hidden" name="id" ng-model="currentUser.id">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email" class="col-sm-3 control-label">Email</label>
                                 <div class="col-sm-9">
-                                    <input type="email" name="email" ng-model="vm.data.email" id="email" class="form-control" placeholder="Email">
+                                    <input type="email" name="email" ng-model="currentUser.email" id="email" class="form-control" placeholder="Email">
                                 </div>
                             </div>
                         </div>
@@ -159,26 +60,25 @@
                             <div class="form-group">
                                 <label for="phone" class="col-sm-3 control-label">Телефон</label>
                                 <div class="col-sm-9">
-                                    <input type="tel" id="phone" name="phone" ng-model="vm.data.phone" class="form-control" value="" size="10" maxlength="10" required="required" title="093" placeholder="Телефон">
+                                    <input type="tel" id="phone" name="phone" ng-model="currentUser.phone" class="form-control" placeholder="Телефон">
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="firstName" class="col-sm-3 control-label">Ім'я</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="firstName" name="firstName" ng-model="vm.data.firstName" class="form-control" maxlength="30" placeholder="Ім'я">
+                                    <input type="text" id="firstName" name="name" ng-model="currentUser.name" class="form-control" placeholder="Ім'я">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="lastName" class="col-sm-3 control-label">Прізвище</label>
+                                <label for="subName" class="col-sm-3 control-label">Прізвище</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="lastName" name="lastName" ng-model="vm.data.lastName" class="form-control rr-signup-input rr-signup-input__right-block" maxlength="30" placeholder="Прізвище">
+                                    <input type="text" id="subName" name="subName" ng-model="currentUser.subName" class="form-control" placeholder="Прізвище">
                                 </div>
                             </div>
                         </div>
@@ -186,17 +86,17 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="date" class="col-sm-3 control-label">Народився</label>
+                                <label for="birth" class="col-sm-3 control-label">Народився</label>
                                 <div class="col-sm-9">
-                                    <input type="date" id="date" name="birthDate" ng-model="vm.data.birthDate" class="form-control" placeholder="Дата народження" title="дата народження">
+                                    <input type="date" id="birth" name="birth" ng-model="currentUser.birth" class="form-control" placeholder="Дата народження">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="gender" class="col-sm-3 control-label">Стать</label>
+                                <label for="sex" class="col-sm-3 control-label">Стать</label>
                                 <div class="col-sm-9">
-                                    <select id="gender" name="gender" ng-model="vm.data.gender" class="form-control" title="СТАТЬ">
+                                    <select id="sex" name="sex" ng-model="currentUser.sex" class="form-control" title="СТАТЬ">
                                         <option value="male">Мужской</option>
                                         <option value="female">Женский</option>
                                     </select>
@@ -209,15 +109,15 @@
                             <div class="form-group">
                                 <label for="city" class="col-sm-3 control-label">Місто</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="city" name="city" ng-model="vm.data.city" class="form-control" maxlength="30" placeholder="Місто">
+                                    <input type="text" id="city" name="city" ng-model="currentUser.city" class="form-control" placeholder="Місто">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="platoon" class="col-sm-3 control-label">№ загону</label>
+                                <label for="groupNumber" class="col-sm-3 control-label">№ загону</label>
                                 <div class="col-sm-9">
-                                    <input type="number" id="platoon" name="platoon" ng-model="vm.data.platoon" class="form-control" min="1" max="5" placeholder="НОМЕР ЗАГОНУ">
+                                    <input type="number" id="groupNumber" name="groupNumber" ng-model="currentUser.groupNumber" class="form-control" min="1" max="30" placeholder="НОМЕР ЗАГОНУ">
                                 </div>
                             </div>
                         </div>
@@ -225,17 +125,17 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="group" class="col-sm-3 control-label">Ланка</label>
+                                <label for="line" class="col-sm-3 control-label">Ланка</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="group" name="group" ng-model="vm.data.group" class="form-control" maxlength="30" placeholder="НАЗВА ЛАНКИ">
+                                    <input type="text" id="line" name="line" ng-model="currentUser.line" class="form-control" placeholder="НАЗВА ЛАНКИ">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="rang" class="col-sm-3 control-label">Звання</label>
+                                <label for="rank" class="col-sm-3 control-label">Звання</label>
                                 <div class="col-sm-9">
-                                    <select id="rang" name="rang" ng-model="vm.data.rang" class="form-control" title="Звання">
+                                    <select id="rank" name="rank" ng-model="currentUser.rank" class="form-control">
                                         <option value="1">Старший лідер</option>
                                         <option value="2">Помічник старшого лідера</option>
                                         <option value="3">Лідер</option>
@@ -250,7 +150,7 @@
                             <div class="form-group">
                                 <label for="status" class="col-sm-3 control-label">Статус</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="status" name="status" ng-model="vm.data.status" class="form-control" maxlength="30" placeholder="СТАТУС">
+                                    <input type="text" id="status" name="status" ng-model="currentUser.status" class="form-control" placeholder="СТАТУС">
                                 </div>
                             </div>
                         </div>
@@ -258,7 +158,7 @@
                             <div class="form-group">
                                 <label for="pass" class="col-sm-3 control-label">Пароль</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="password" ng-model="vm.data.password" class="form-control" id="pass" placeholder="Пароль">
+                                    <input type="text" name="password" ng-model="currentUser.password" class="form-control" id="pass" placeholder="Пароль">
                                 </div>
                             </div>
                         </div>
@@ -268,13 +168,14 @@
                         <button type="button" class="btn btn-danger">Відмовити</button>
                         <button type="submit" class="btn btn-primary">Прийняти</button>
                     </div>
-
                 </form>
             </div>
 
         </div>
     </div>
 </div>
+
+<!--this script implement FooTable plugin to our table with users-->
 <script>
     $(document).ready(function () {
         $('.footable').footable();
