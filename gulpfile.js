@@ -255,7 +255,7 @@ gulp.task('copyFonts:app', () => {
     ];
     let dest = 'app/static/vendor/fonts/.';
 
-    /** FooTable need special folder to his fonts*/
+    /** FooTable need special folder for his fonts*/
     /** if need, please refactor this*/
     gulp.src('bower_components/footable/css/fonts/*.*')
         .pipe(gulp.dest('app/static/vendor/css/fonts/.'));

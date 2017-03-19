@@ -12,8 +12,6 @@
 
         activate();
 
-        ///
-
         function activate() {
             $log.debug('Init ConfirmUsersController ...');
         }
