@@ -43,6 +43,8 @@ gulp.task('copyDep:app', () => {
         'bower_components/angular-animate/angular-animate.js',
         'bower_components/angular-route-segment/build/angular-route-segment.js',
         'bower_components/angular-growl-v2/build/angular-growl.min.js',
+        'bower_components/ngstorage/ngStorage.min.js',
+        'bower_components/moment/min/moment.min.js',
         'bower_components/footable/dist/footable.all.min.js',
         'bower_components/jquery-slimscroll/jquery.slimscroll.min.js',
         'bower_components/metisMenu/dist/metisMenu.min.js',
@@ -68,6 +70,8 @@ gulp.task('copyDep:landing', () => {
         'bower_components/angular-animate/angular-animate.js',
         'bower_components/angular-route-segment/build/angular-route-segment.js',
         'bower_components/angular-growl-v2/build/angular-growl.min.js',
+        'bower_components/ngstorage/ngStorage.min.js',
+        'bower_components/moment/min/moment.min.js',
 
         'landing/static/js/*.js',
         '!landing/static/js/google-maps.js'
@@ -232,7 +236,8 @@ gulp.task('copyImages:app', () => {
 
     return gulp
         .src(src)
-        .pipe(rename({dirname: ''}))
+        // ToDo.zpawn: uncommented after load real content
+        //.pipe(rename({dirname: ''}))
         .pipe(gulp.dest(dest))
 });
 
