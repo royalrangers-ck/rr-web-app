@@ -1,4 +1,4 @@
-# Royal Rangers Frontend
+# Royal Rangers [Frontend app]
 
 Frontend-side for Royal Rangers activity.
 
