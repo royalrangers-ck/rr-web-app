@@ -45,7 +45,7 @@ gulp.task('copyDep:app', () => {
         'bower_components/angular-growl-v2/build/angular-growl.min.js',
         'bower_components/ngstorage/ngStorage.min.js',
         'bower_components/moment/min/moment.min.js',
-
+        'bower_components/footable/dist/footable.all.min.js',
         'bower_components/jquery-slimscroll/jquery.slimscroll.min.js',
         'bower_components/metisMenu/dist/metisMenu.min.js',
 
@@ -255,9 +255,15 @@ gulp.task('copyImages:landing', () => {
 gulp.task('copyFonts:app', () => {
     let src = [
         'bower_components/font-awesome/fonts/*.*',
+        'bower_components/footable/css/fonts/*.*',
         'app/static/fonts/*.*'
     ];
     let dest = 'app/static/vendor/fonts/.';
+
+    /** FooTable need special folder for his fonts*/
+    /** if need, please refactor this*/
+    gulp.src('bower_components/footable/css/fonts/*.*')
+        .pipe(gulp.dest('app/static/vendor/css/fonts/.'));
 
     return gulp
         .src(src)
