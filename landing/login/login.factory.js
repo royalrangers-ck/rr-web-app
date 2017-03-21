@@ -8,8 +8,8 @@
 
     Login.$inject = ['$resource', '$log', 'Endpoints'];
     function Login($resource, Endpoints) {
-        return $resource(Endpoints.API.AUTH, null, {
-            'send': {
+        return $resource(Endpoints.AUTH, null, {
+            'login': {
                 method: 'POST'
             }
         })

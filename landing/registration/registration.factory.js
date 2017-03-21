@@ -9,7 +9,7 @@
     Registration.$inject = ['$resource', '$log', 'Endpoints'];
     function Registration($resource, $log, Endpoints) {
         return $resource(Endpoints.REGISTRATION + '/:id', null, {
-            'save': {method: 'POST'},
+            'register': {method: 'POST'},
             'countries': {
                 method: 'GET',
                 url: `${Endpoints.REGISTRATION}/countries`,

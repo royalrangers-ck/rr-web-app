@@ -7,8 +7,8 @@
                     <div class="col-sm-12 rr-signup__form-cell">
                         <select name="status" ng-model="vm.data.status" id="status" class="form-control" title="СТАТУС">
                             <option value="" selected disabled>СТАТУС</option>
-                            <option value="user">Користувач</option>
-                            <option value="teacher">Вчитель</option>
+                            <option value="STUDENT">Користувач</option>
+                            <option value="TEACHER">Вчитель</option>
                         </select>
                     </div>
 
@@ -96,7 +96,8 @@
             </div>
 
             <div class="row">
-                <button type="submit" ng-disabled="vm.form.$pristine || vm.form.$invalid || vm.form.$submitted" class="btn btn-danger">ЗАРЕЄСТРУВАТИСЯ</button>
+                <!--<button type="submit" ng-disabled="vm.form.$pristine || vm.form.$invalid || vm.form.$submitted" class="btn btn-danger">ЗАРЕЄСТРУВАТИСЯ</button>-->
+                <button type="submit" ng-disabled="vm.form.$pristine || vm.form.$invalid" class="btn btn-danger">ЗАРЕЄСТРУВАТИСЯ</button>
             </div>
         </form>
 
