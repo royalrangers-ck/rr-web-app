@@ -10,7 +10,8 @@
             'ngStorage',
             'route-segment',
             'view-segment',
-            'angular-growl'
+            'angular-growl',
+            'ui.bootstrap'
         ]).run(['$log', ($log) => {
         $log.debug('app is running...');
     }]);

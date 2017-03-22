@@ -4,10 +4,10 @@
 
     angular
         .module('app')
-        .service('ModalService', ModalService);
+        .service('LandingModalService', LandingModalService);
 
-    ModalService.$inject = ['$uibModal'];
-    function ModalService($uibModal) {
+    LandingModalService.$inject = ['$uibModal'];
+    function LandingModalService($uibModal) {
 
         this.homeVideoModal = homeVideoModal;
 
