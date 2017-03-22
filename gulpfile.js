@@ -48,6 +48,10 @@ gulp.task('copyDep:app', () => {
         'bower_components/footable/dist/footable.all.min.js',
         'bower_components/jquery-slimscroll/jquery.slimscroll.min.js',
         'bower_components/metisMenu/dist/metisMenu.min.js',
+        'bower_components/angular-bootstrap/ui-bootstrap.min.js',
+        'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+
+
 
         'app/static/js/*.js'
     ];
@@ -72,6 +76,9 @@ gulp.task('copyDep:landing', () => {
         'bower_components/angular-growl-v2/build/angular-growl.min.js',
         'bower_components/ngstorage/ngStorage.min.js',
         'bower_components/moment/min/moment.min.js',
+        'bower_components/angular-bootstrap/ui-bootstrap.min.js',
+        'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+
 
         'landing/static/js/*.js',
         '!landing/static/js/google-maps.js'
@@ -286,7 +293,6 @@ gulp.task('copyFonts:landing', () => {
 
 
 gulp.task('build:dev', gulp.parallel(
-
     /** Build Main Application */
     gulp.series(
         'clear:app',
@@ -325,7 +331,6 @@ gulp.task('sass:app:watch', () => {
 });
 
 gulp.task('build:app:prod', gulp.parallel(
-
     /** Build Main Application */
     gulp.series(
         'clear:app',

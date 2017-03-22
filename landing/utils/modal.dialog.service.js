@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
     'use strict';
 
@@ -9,23 +9,15 @@
     ModalService.$inject = ['$uibModal'];
     function ModalService($uibModal) {
 
-        this.simpleConfirmation = simpleConfirmation;
+        this.homeVideoModal = homeVideoModal;
 
-        ////
-
-        function simpleConfirmation(options) {
+        function homeVideoModal() {
             return $uibModal.open({
                 animation: true,
-                templateUrl: 'utils/confirmation/confirmation.html',
-                controller: 'ConfirmationController',
+                templateUrl: 'home/videoModal/videoModal.html',
+                controller: 'VideoModalController',
                 controllerAs: 'vm',
-                resolve: {
-                    options: function() {
-                        return options;
-                    }
-                }
             });
         }
-
     }
 })();
