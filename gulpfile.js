@@ -318,15 +318,37 @@ gulp.task('build:dev', gulp.parallel(
 //));
 
 /**
- * Watch and compile styles
+ * Landing: Watch & Compile styles
+ */
+gulp.task('sass:landing:watch', () => {
+    gulp.watch('landing/static/sass/**/*.scss', gulp.series('sass:landing:prod'));
+});
+
+/**
+ * Application: Watch & Compile styles
  */
 gulp.task('sass:app:watch', () => {
     gulp.watch('app/static/sass/**/*.scss', gulp.series('sass:app:prod'));
 });
 
-gulp.task('build:app:prod', gulp.parallel(
+/**
+ * Build Landing
+ */
+gulp.task('build:landing:prod', gulp.parallel(
+    gulp.series(
+        'clear:landing',
+        gulp.parallel('copyScripts:landing', 'copyDep:landing', 'copyApp:landing'),
+        'copyJs:landing',
+        'copyImages:landing',
+        'sass:landing:prod',
+        'copyFonts:landing'
+    )
+));
 
-    /** Build Main Application */
+/**
+ * Build Application
+ */
+gulp.task('build:app:prod', gulp.parallel(
     gulp.series(
         'clear:app',
         gulp.parallel('copyScripts:app', 'copyDep:app', 'copyApp:app'),
