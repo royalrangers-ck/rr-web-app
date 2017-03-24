@@ -27,12 +27,19 @@
                 password: vm.data.password
             };
 
-            $http.post('/api/auth', req, (res) => {
-                if (res.success) {
-                    TokenService.save(res.data.token);
-                    $window.location.pathname = '/app/';
-                }
-            })
+            $http.post('/api/auth', req, {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                })
+                .then((res) => {
+                    if (res.status == 200) {
+                        TokenService.save(res.data.data.token);
+                        $window.location.pathname = '/app/';
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         }
     }
 })();
