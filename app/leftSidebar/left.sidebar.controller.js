@@ -3,11 +3,15 @@
 
     angular
         .module('app')
-        .controller('sidebarCtrl', sidebarCtrl);
+        .controller('SideBarController', SideBarController);
 
-    function sidebarCtrl($scope) {
+    SideBarController.$inject = ['$log'];
+    function SideBarController($log) {
+        vm = this;
 
-        $scope.leftSidebarSchema = [{
+        activate();
+
+        vm.leftSidebarSchema = [{
             name: 'Система досягнень',
             route: '',
             submenu: [
@@ -83,5 +87,10 @@
             name: 'Створити',
             route: ''
         }];
+
+
+        function activate() {
+            $log.debug('Init TopBarController ...');
+        }
     }
 })();
