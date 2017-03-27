@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./static/vendor/css/app.css">
     <script type="text/javascript" src="./static/vendor/js/app.min.js"></script>
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-controller="MainController as vm">
 
 <div growl></div>
 
@@ -106,14 +106,14 @@
     <div class="row rr-footer-bg">
 
         <div class="col-xs-12">
-            <form action="" method="post">
+            <form name="vm.form" ng-submit="vm.submit()">
                 <div class="rr-subscribe-form">
                     <div class="rr-subscribe-form-email">
-                        <input type="email" class="form-control" placeholder="email">
+                        <input type="email" name="email" ng-model="vm.email" class="form-control" placeholder="ex. john.doe@gmail.com">
                     </div>
                     <div class="rr-subscribe-form-separator"></div>
                     <div class="rr-subscribe-form-btn">
-                        <button type="submit" class="btn btn-danger">підписатись</button>
+                        <button type="submit" ng-disabled="vm.form.$invalid || vm.form.$pristine || vm.form.$submitted" class="btn btn-danger">підписатись</button>
                     </div>
                 </div>
             </form>
