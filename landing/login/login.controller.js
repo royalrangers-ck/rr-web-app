@@ -6,8 +6,8 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$log', '$route', 'LoginService', 'TokenService'];
-    function LoginController($log, $window, LoginService, TokenService) {
+    LoginController.$inject = ['$log', '$window', '$route', '$http', 'TokenService'];
+    function LoginController($log, $window, $route, $http, TokenService) {
         const vm = this;
 
         vm.data = {};
@@ -22,19 +22,24 @@
         }
 
         function login() {
-            let afterSend = function (res) {
-                if (res.success) {
-                    TokenService.save(res.data.token);
-                    $window.location.pathname = '/app/';
-                }
-            };
-
             let req = {
                 email: vm.data.email,
                 password: vm.data.password
             };
 
-            LoginService.login(req, afterSend);
+            $http.post('/api/auth', req, {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                })
+                .then((res) => {
+                    if (res.status == 200) {
+                        TokenService.save(res.data.data.token);
+                        $window.location.pathname = '/app/';
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         }
     }
 })();

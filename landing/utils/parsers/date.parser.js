@@ -15,7 +15,7 @@
             require: 'ngModel',
             link: ($scope, element, attrs, ngModel) => {
                 ngModel.$parsers.push((value) => {
-                    return value && moment(value).format('DD.MM.YYYY');
+                    return value && +moment(value);
                 })
             }
         }

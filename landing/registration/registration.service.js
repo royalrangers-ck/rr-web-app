@@ -9,7 +9,7 @@
     RegistrationService.$inject = ['$log', 'Registration'];
     function RegistrationService($log, Registration) {
 
-        this.register = Registration.save;
+        this.register = Registration.register;
 
         /** Get data for registration */
         this.countries = Registration.countries;

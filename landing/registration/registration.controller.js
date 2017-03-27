@@ -6,8 +6,8 @@
         .module('app')
         .controller('RegistrationController', RegistrationController);
 
-    RegistrationController.$inject = ['countries', 'growl', '$log', '$window', 'RegistrationService'];
-    function RegistrationController(countries, growl, $log, $window, RegistrationService) {
+    RegistrationController.$inject = ['countries', 'growl', '$log', '$window', '$location', 'RegistrationService'];
+    function RegistrationController(countries, growl, $log, $window, $location, RegistrationService) {
         const vm = this;
 
         vm.data = {};
@@ -42,22 +42,25 @@
             let afterSave = function (res) {
                 if (res.success) {
                     growl.success(res.data.message);
-                    $window.location.pathname = '/app/';
+                    //$window.location.pathname = '/app/';
+                    $location.path('/login');
                 }
             };
 
             let req = {
-                firstName: vm.data.firstName,
-                lastName: vm.data.lastName,
                 email: vm.data.email,
                 password: vm.data.password,
+                firstName: vm.data.firstName,
+                lastName: vm.data.lastName,
+                gender: vm.data.gender,
+                telephonNumber: vm.data.telephonNumber,
                 birthDate: vm.data.birthDate,
                 status: vm.data.status,
-                country: vm.data.country.name,
-                city: vm.data.city.name,
-                group: vm.data.group.name,
-                platoon: vm.data.platoon.name,
-                section: vm.data.section.name
+                countryId: vm.data.country.id,
+                cityId: vm.data.city.id,
+                groupId: vm.data.group.id,
+                platoonId: vm.data.platoon.id,
+                sectionId: vm.data.section.id
             };
 
             RegistrationService.register(req, afterSave)
