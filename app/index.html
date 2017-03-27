@@ -14,7 +14,7 @@
 <body class="pace-done fixed-nav fixed-nav-basic fixed-sidebar" ng-app="app">
 
 <div id="wrapper">
-    <nav class="navbar-default navbar-static-side" role="navigation" ng-controller="sidebarCtrl">
+    <nav class="navbar-default navbar-static-side" role="navigation" ng-controller="SideBarController">
 
         <div class="sidebar-collapse" style="overflow: hidden; width: auto; height: 100%;">
             <ul class="nav metismenu" id="side-menu">
@@ -22,7 +22,8 @@
                     <div class="dropdown profile-element">
                         <a href="#/">
                             <span>
-                                <img alt="image" class="img-circle" src="static/images/demo/profile_photo.jpg" height="50">
+                                <img alt="image" class="img-circle" src="static/images/demo/profile_photo.jpg"
+                                     height="50">
                             </span>
                             <span class="clear">
                                 <span class="block m-t-xs">
@@ -54,12 +55,14 @@
 
     <div id="page-wrapper" class="gray-bg dashbard-1" style="min-height: 280px;">
         <div class="row border-bottom">
-            <nav class="navbar navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+            <nav class="navbar navbar-fixed-top" role="navigation" style="margin-bottom: 0"
+                 ng-controller="TopBarController as vm">
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary"><i class="fa fa-bars"></i></a>
                     <form role="search" class="navbar-form-custom" action="">
                         <div class="form-group">
-                            <input type="text" placeholder="Пошук..." class="form-control" name="top-search" id="top-search">
+                            <input type="text" placeholder="Пошук..." class="form-control" name="top-search"
+                                   id="top-search">
                         </div>
                     </form>
                 </div>
@@ -70,11 +73,10 @@
                     <li>
                         <a href="#/">
                             <i class="fa fa-sign-out"></i>
-                            <span>Вихід</span>
+                            <span ng-click="vm.logout()">Вихід</span>
                         </a>
                     </li>
                 </ul>
-
             </nav>
         </div>
 

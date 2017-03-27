@@ -11,6 +11,7 @@
 
         this.get = get;
         this.save = save;
+        this.clean = clean;
 
         ////
 
@@ -22,6 +23,11 @@
         function save(token) {
             $log.debug(`==> Save token: ${token}`);
             return $localStorage.token = token;
+        }
+
+        function clean() {
+            $log.debug(`==> Clean token: ${$localStorage.token}`);
+            $localStorage.token = null;
         }
     }
 })();
