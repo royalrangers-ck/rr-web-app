@@ -6,13 +6,13 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$log'];
-    function HomeController($log) {
+    HomeController.$inject = ['$log', 'LandingModalService'];
+    function HomeController($log, LandingModalService) {
         const vm = this;
 
-        activate();
+        vm.homeVideoModal = LandingModalService.homeVideoModal;
 
-        ///
+        activate();
 
         function activate() {
             $log.debug('Init HomeController ...');
