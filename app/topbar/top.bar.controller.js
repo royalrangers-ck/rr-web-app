@@ -10,7 +10,6 @@
     function TopBarController($log, $window, TokenService) {
         const vm = this;
 
-        /*Logout*/
         vm.logout = logout;
 
         activate();

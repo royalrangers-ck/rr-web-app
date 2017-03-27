@@ -11,8 +11,6 @@
 
         this.get = get;
         this.save = save;
-
-        /*Logout*/
         this.clean = clean;
 
         ////
@@ -28,6 +26,7 @@
         }
 
         function clean() {
+            $log.debug(`==> Clean token: ${$localStorage.token}`);
             $localStorage.token = null;
         }
     }
