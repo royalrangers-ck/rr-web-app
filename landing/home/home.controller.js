@@ -11,11 +11,16 @@
         const vm = this;
 
         vm.homeVideoModal = LandingModalService.homeVideoModal;
+        vm.submit = submit;
 
         activate();
 
         function activate() {
             $log.debug('Init HomeController ...');
+        }
+
+        function submit() {
+            console.log(vm.email)
         }
     }
 })();

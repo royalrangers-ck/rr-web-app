@@ -1,13 +1,17 @@
 @import "sprites";
-//@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
 
 $brand-color: #cc252b;
 $text-color: #333;
 
 .rr-footer-wrapper {
-    background-image: url('./../images/footer-bg.png');
-    background-repeat: no-repeat;
-    background-size: contain;
+  background: url('./../images/pattern.svg') repeat;
+  -webkit-background-size: 7%;
+  background-size: 7%;
+
+  .rr-footer-bg {
+    background-size: cover;
+    background: url('./../images/footer-bg-opacity.png') 50% 100% no-repeat;
+  }
 }
 
 .rr-footer {
@@ -15,7 +19,7 @@ $text-color: #333;
   background-color: rgba(255, 255, 255, .7);
   font-family: 'Yanone Kaffeesatz', sans-serif;
   font-size: 22px;
-  margin: 443px auto 30px;
+  margin: 0 auto 30px;
 
   .rr-footer-logo {
     position: absolute;
