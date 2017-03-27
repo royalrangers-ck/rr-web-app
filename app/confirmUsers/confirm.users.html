@@ -1,4 +1,5 @@
 <div class="ibox">
+    <div growl></div> <!-- this div needed to activate growl popups -->
     <div class="ibox-title">
         <h1>Сторінка підтвердження нових користувачів</h1>
     </div>
@@ -9,19 +10,24 @@
                 <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big">ПІБ</th>
                 <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-hide="phone">Телефон</th>
                 <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-hide="phone">Email</th>
-                <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-hide="phone,tablet">Дата народження
+                <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-hide="phone,tablet">Дата
+                    народження
                 </th>
                 <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-sort-ignore="true"></th>
             </tr>
             </thead>
             <tbody>
             <tr class="a-cu-table__row" ng-repeat="user in usersList">
-                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">{{user.firstName + " " + user.lastName}}</td>
+                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">{{user.firstName + " " +
+                    user.lastName}}
+                </td>
                 <td class="a-cu-table__item a-cu-cell-text">{{user.phoneNumber}}</td>
                 <td class="a-cu-table__item a-cu-cell-text">{{user.email}}</td>
                 <td class="a-cu-table__item a-cu-cell-text">{{user.birthDate | date: "dd MMMM yyyy"}}</td>
                 <td class="a-cu-table__item a-cu-cell-text">
-                    <button class="btn btn-white" ng-click="setCurrentUser(user.id)" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Підтвердити</button>
+                    <button class="btn btn-white" ng-click="editUser(user.id)"><i class="fa fa-pencil"></i>
+                        Підтвердити
+                    </button>
                 </td>
             </tr>
             </tbody>
@@ -36,23 +42,24 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- This bootstrap modal be used to edit, confirm or decline user -->
+<div class="modal fade" id="EditUser" tabindex="-1" role="dialog" aria-labelledby="EditUserLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Підтвердити Користувача</h4>
+                <h4 class="modal-title" id="EditUserLabel">Підтвердити Користувача</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" ng-submit="approveUser()">
                     <input type="hidden" name="id" ng-readonly="true" ng-model="currentUser.id">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email" class="col-sm-3 control-label">Email</label>
                                 <div class="col-sm-9">
-                                    <input type="email" name="email" ng-readonly="true" ng-model="currentUser.email" id="email" class="form-control" placeholder="Email">
+                                    <input type="email" name="email" ng-readonly="true" ng-model="currentUser.email"
+                                           id="email" class="form-control" placeholder="Email">
                                 </div>
                             </div>
                         </div>
@@ -60,7 +67,8 @@
                             <div class="form-group">
                                 <label for="phone" class="col-sm-3 control-label">Телефон</label>
                                 <div class="col-sm-9">
-                                    <input type="tel" id="phone" name="phoneNumber" ng-model="currentUser.phoneNumber" class="form-control" placeholder="Телефон">
+                                    <input type="tel" id="phone" name="phoneNumber" ng-model="currentUser.phoneNumber"
+                                           class="form-control" placeholder="Телефон" required>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +78,8 @@
                             <div class="form-group">
                                 <label for="firstName" class="col-sm-3 control-label">Ім'я</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="firstName" name="firstName" ng-model="currentUser.firstName" class="form-control" placeholder="Ім'я">
+                                    <input type="text" id="firstName" name="firstName" ng-model="currentUser.firstName"
+                                           class="form-control" placeholder="Ім'я" required>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +87,8 @@
                             <div class="form-group">
                                 <label for="subName" class="col-sm-3 control-label">Прізвище</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="subName" name="lastName" ng-model="currentUser.lastName" class="form-control" placeholder="Прізвище">
+                                    <input type="text" id="subName" name="lastName" ng-model="currentUser.lastName"
+                                           class="form-control" placeholder="Прізвище" required>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +98,8 @@
                             <div class="form-group">
                                 <label for="birth" class="col-sm-3 control-label">Народився</label>
                                 <div class="col-sm-9">
-                                    <input type="date" id="birth" name="birthDate" ng-model="currentUser.birthDate" class="form-control" placeholder="Дата народження">
+                                    <input type="date" id="birth" name="birthDate" ng-model="currentUser.birthDate"
+                                           class="form-control" placeholder="Дата народження" required>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +107,8 @@
                             <div class="form-group">
                                 <label for="sex" class="col-sm-3 control-label">Стать</label>
                                 <div class="col-sm-9">
-                                    <select id="sex" name="gender" ng-model="currentUser.gender" class="form-control" title="СТАТЬ">
+                                    <select id="sex" name="gender" ng-model="currentUser.gender" class="form-control"
+                                            title="СТАТЬ" required>
                                         <option value="male">Мужской</option>
                                         <option value="female">Женский</option>
                                     </select>
@@ -109,7 +121,10 @@
                             <div class="form-group">
                                 <label for="city" class="col-sm-3 control-label">Місто</label>
                                 <div class="col-sm-9">
-                                    <select id="city" name="cityId" ng-disabled="cities.length == 0" ng-model="currentUser.cityId" ng-options="record.id as record.name for record in cities" ng-change="getGroups(currentUser.cityId)" class="form-control">
+                                    <select id="city" name="cityId" ng-disabled="cities.length == 0"
+                                            ng-model="currentUser.cityId"
+                                            ng-options="record.id as record.name for record in cities"
+                                            ng-change="getGroups(currentUser.cityId)" class="form-control" required>
                                         <option value="" disabled hidden>Виберіть місто</option>
                                     </select>
                                 </div>
@@ -119,7 +134,10 @@
                             <div class="form-group">
                                 <label for="groupNumber" class="col-sm-3 control-label">Група</label>
                                 <div class="col-sm-9">
-                                    <select id="groupNumber" name="groupId" ng-disabled="groups.length == 0" ng-model="currentUser.groupId" ng-options="record.id as record.name for record in groups" ng-change="getPlatoons(currentUser.groupId)" class="form-control">
+                                    <select id="groupNumber" name="groupId" ng-disabled="groups.length == 0"
+                                            ng-model="currentUser.groupId"
+                                            ng-options="record.id as record.name for record in groups"
+                                            ng-change="getPlatoons(currentUser.groupId)" class="form-control" required>
                                         <option value="" disabled hidden>Виберіть группу</option>
                                     </select>
                                 </div>
@@ -131,7 +149,11 @@
                             <div class="form-group">
                                 <label for="platoon" class="col-sm-3 control-label">Загін</label>
                                 <div class="col-sm-9">
-                                    <select id="platoon" name="platoonId" ng-disabled="platoons.length == 0" ng-model="currentUser.platoonId" ng-options="record.id as record.name for record in platoons" ng-change="getSections(currentUser.platoonId)"class="form-control">
+                                    <select id="platoon" name="platoonId" ng-disabled="platoons.length == 0"
+                                            ng-model="currentUser.platoonId"
+                                            ng-options="record.id as record.name for record in platoons"
+                                            ng-change="getSections(currentUser.platoonId)" class="form-control"
+                                            required>
                                         <option value="" disabled hidden>Виберіть загін</option>
                                     </select>
                                 </div>
@@ -141,7 +163,10 @@
                             <div class="form-group">
                                 <label for="sectionId" class="col-sm-3 control-label">Ланка</label>
                                 <div class="col-sm-9">
-                                    <select id="sectionId" name="sectionId" ng-disabled="sections.length == 0" ng-model="currentUser.sectionId" ng-options="record.id as record.name for record in sections" class="form-control">
+                                    <select id="sectionId" name="sectionId" ng-disabled="sections.length == 0"
+                                            ng-model="currentUser.sectionId"
+                                            ng-options="record.id as record.name for record in sections"
+                                            class="form-control" required>
                                         <option value="" disabled hidden>Виберіть ланку</option>
                                     </select>
                                 </div>
@@ -153,7 +178,10 @@
                             <div class="form-group">
                                 <label for="rank" class="col-sm-3 control-label">Звання</label>
                                 <div class="col-sm-9">
-                                    <select id="rank" name="rank" ng-disabled="ranks.length == 0" ng-model="currentUser.rankId" ng-options="record.id as record.name for record in ranks" class="form-control">
+                                    <select id="rank" name="rank" ng-disabled="ranks.length == 0"
+                                            ng-model="currentUser.rankId"
+                                            ng-options="record.id as record.name for record in ranks"
+                                            class="form-control" required>
                                         <option value="" disabled hidden>Виберіть звання</option>
                                     </select>
                                 </div>
@@ -162,10 +190,35 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
-                        <button type="button" class="btn btn-danger" ng-click="declineUser()" data-dismiss="modal">Відмовити</button>
-                        <button type="submit" class="btn btn-primary" ng-click="approveUser()" data-dismiss="modal">Прийняти</button>
+                        <button type="button" data-dismiss="alert" class="btn btn-danger"
+                                ng-click="showConfirmDecline()">
+                            Відмовити
+                        </button>
+                        <button type="submit" class="btn btn-primary">Прийняти</button>
                     </div>
                 </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- in this modal admin will be see confirm to decline user-->
+<div class="modal fade" id="ConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="ConfirmDeleteLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="ConfirmDeleteLabel">Ви впевнені?</h4>
+            </div>
+            <div class="modal-body">
+                <div>Відмовити в реєстрації:</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Ні
+                </button>
+                <button type="submit" class="btn btn-primary" ng-click="declineUser()">Так</button>
             </div>
 
         </div>
