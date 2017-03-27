@@ -6,8 +6,8 @@
         .module('app')
         .service('TokenService', TokenService);
 
-    TokenService.$inject = ['$log', '$localStorage', '$window'];
-    function TokenService($log, $localStorage, $window) {
+    TokenService.$inject = ['$log', '$localStorage'];
+    function TokenService($log, $localStorage) {
 
         this.get = get;
         this.save = save;
@@ -29,7 +29,6 @@
 
         function clean() {
             $localStorage.token = null;
-            $window.location.pathname = '/';
         }
     }
 })();

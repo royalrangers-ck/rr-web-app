@@ -6,12 +6,12 @@
         .module('app')
         .controller('TopBarController', TopBarController);
 
-    TopBarController.$inject = ['$log', 'TokenService'];
-    function TopBarController($log, TokenService) {
+    TopBarController.$inject = ['$log', '$window', 'TokenService'];
+    function TopBarController($log, $window, TokenService) {
         const vm = this;
 
         /*Logout*/
-        vm.clean = TokenService.clean;
+        vm.logout = logout;
 
         activate();
 
@@ -20,6 +20,10 @@
             $log.debug('Init TopBarController ...');
         }
 
+        function logout() {
+            TokenService.clean();
+            $window.location.pathname = '/';
+        }
     }
 })();
 
