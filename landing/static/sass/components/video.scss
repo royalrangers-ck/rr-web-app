@@ -1,13 +1,41 @@
-.rr-p-video {
-  font-family: 'Yanone Kaffeesatz', sans-serif;
-}
 
 .rr-video-bg {
-  background: url('../../vendor/images/video.png') 80% 50% no-repeat;
-  height: 817px;
+  background: url('../../vendor/images/video.png');
+  background-size: cover;
+  height: 900px;
 }
 
 .rr-video-wrapper {
   text-align: center;
-  padding: 200px 50px;
+  padding-top: 20%;
+}
+
+@media(max-width: 768px) {
+  .rr-video-bg {
+
+    background-size: 100%;
+
+    .video-but {
+      padding-top: 20%;
+      width: 20%;
+      height: 20%;
+
+    }
+  }
+}
+
+#home-video-modal {
+  .modal-header {
+    padding: 4px 5px 0 15px;
+    button {
+      margin: 0;
+    }
+  }
+  .modal-body {
+    font-size: 0;
+    iframe {
+      width: 100%;
+      height: 315px
+    }
+  }
 }

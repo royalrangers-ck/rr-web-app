@@ -13,7 +13,7 @@ $map-height-sm: 350px;
 
 .rr-subscribe-form {
     width: 50%;
-    margin: 50px auto;
+    margin: 50px auto 150px;
     display: flex;
     justify-content: space-between;
 
@@ -26,5 +26,13 @@ $map-height-sm: 350px;
         border-right: 2px solid darkred;
     }
 
-    .rr-subscribe-form-btn {}
+    .rr-subscribe-form-btn {
+        .btn {
+            padding-top: 4px;
+            padding-bottom: 0px;
+            background-color: darkred;
+            border-color: darkred;
+            border-radius: 0;
+        }
+    }
 }
