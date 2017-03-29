@@ -4,20 +4,21 @@
 
     angular
         .module('app')
-        .service('TokenSheduler', TokenSheduler);
+        .service('TokenScheduler', TokenScheduler);
 
-    TokenSheduler.$inject = ['$log', '$interval', '$http', 'TokenService'];
-    function TokenSheduler($log, $interval, $http, TokenService) {
+    TokenScheduler.$inject = ['$interval', '$http', 'TokenService'];
+    function TokenScheduler($interval, $http, TokenService) {
 
-        $interval(function () {
-            $http.get('/api/refresh').then(function (res) {
-                TokenService.save(res.data.data.token)
-            }, function (err) {
-                $log.debug(err)
-            });
-        },1800000);
+        this.refresh = refresh;
 
-        $log.debug('Init TokenSheduler ...');
+        ////
 
+        function refresh(interval) {
+            $interval(function () {
+                $http.get('/api/refresh').then(function (res) {
+                    TokenService.save(res.data.data.token)
+                });
+            }, interval);
+        }
     }
 })();

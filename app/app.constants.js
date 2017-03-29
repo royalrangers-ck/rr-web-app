@@ -33,6 +33,9 @@
         // Demo /user  returns autorized user info
         constants.USER = constants.API + '/user';
 
+        // Token refresh interval
+        constants.TOKEN_REFRESH_INTERVAL = 1000 * 60 * 30; // 30min
+
         return constants;
     }
 })();
