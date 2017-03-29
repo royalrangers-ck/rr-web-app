@@ -38,7 +38,7 @@
 
         function addToken(config) {
             config.headers = {
-                "Autorization": TokenService.get()
+                "Authorization": TokenService.get()
             }
         }
 
