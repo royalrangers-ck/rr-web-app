@@ -16,3 +16,4 @@ app/slider/bootstrap/
 # Landing Application
 landing/static/vendor/*
 
+/nginx

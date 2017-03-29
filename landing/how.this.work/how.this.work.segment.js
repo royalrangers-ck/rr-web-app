@@ -10,7 +10,7 @@
     function AboutUsSegment($routeSegmentProvider) {
 
         $routeSegmentProvider.when('/howThisWork', 'howThisWork').segment('howThisWork', {
-            templateUrl: 'howThisWork/howThisWork.html',
+            templateUrl: 'how.this.work/how.this.work.html',
             controller: 'HowThisWorkController'
         });
 
