@@ -11,7 +11,8 @@
 
         $routeSegmentProvider.when('/confirm-users', 'confirmUsers').segment('confirmUsers', {
             templateUrl: 'confirmUsers/confirm.users.html',
-            controller: 'ConfirmUsersController'
+            controller: 'ConfirmUsersController',
+            controllerAs: 'vm'
         });
     }
 })();

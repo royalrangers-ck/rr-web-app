@@ -33,8 +33,11 @@
         // Demo /user  returns autorized user info
         constants.USER = constants.API + '/user';
 
-        // GET UNAPPROVED USERS LIST
-        constants.UNAPPROVED_USERS_LIST = constants.USER + '/approve';
+        // APPROVE user request
+        constants.APPROVE_USERS = constants.USER + '/approve';
+
+        // DECLINE user request
+        constants.DECLINE_USERS = constants.USER + '/reject';
 
         return constants;
     }

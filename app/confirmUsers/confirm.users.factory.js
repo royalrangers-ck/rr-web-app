@@ -6,24 +6,27 @@
         .module('app')
         .factory('ConfirmUsers', ConfirmUsers);
 
-    ConfirmUsers.$inject = ['$resource', '$log', 'Endpoints', 'TokenService'];
-    function ConfirmUsers($resource, $log, Endpoints, TokenService) {
-        //this $resource can be used to get unapproved users list
-        //and accept or decline them
-        //TODO: delete 'Authorization' in headers, if problem with authorization will solved
-        return $resource(Endpoints.USER + '/:userId', null, {
+    ConfirmUsers.$inject = ['$resource', 'Endpoints'];
+
+    //This function return $resource with all needed request
+    //to get, approve and decline unapproved users
+    function ConfirmUsers($resource, Endpoints) {
+        return $resource(null , null, {
             'getUsers': {
                 method: 'GET',
-                url: `${Endpoints.UNAPPROVED_USERS_LIST}/:platoonId`,
-                headers: { 'Authorization': TokenService.get() }
+                url: Endpoints.APPROVE_USERS + '/:platoonId'
             },
             'approveUser': {
-                method: 'PUT',
-                headers: { 'Authorization': TokenService.get() }
+                method: 'POST',
+                url: Endpoints.APPROVE_USERS
             },
             'declineUser': {
-                method: 'DELETE',
-                headers: { 'Authorization': TokenService.get() }
+                method: 'POST',
+                url: Endpoints.DECLINE_USERS,
+            },
+            'updateUser': {
+                method: 'PUT',
+                url: Endpoints.USER + '/:userId'
             },
             'countries': {
                 method: 'GET',

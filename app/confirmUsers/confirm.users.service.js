@@ -6,9 +6,9 @@
         .module('app')
         .service('ConfirmUsersService', ConfirmUsersService);
 
-    ConfirmUsersService.$inject = ['$log', 'ConfirmUsers'];
+    ConfirmUsersService.$inject = ['ConfirmUsers'];
     //this service connect factory to controller
-    function ConfirmUsersService($log, ConfirmUsers) {
+    function ConfirmUsersService(ConfirmUsers) {
         this.getUsers = ConfirmUsers.getUsers;
         this.approveUser = ConfirmUsers.approveUser;
         this.declineUser = ConfirmUsers.declineUser;

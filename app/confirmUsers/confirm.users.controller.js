@@ -15,6 +15,7 @@
     //TODO: delete JSON.parse();
     //TODO: use vm instead of $scope;
     //TODO: try to use angular modal instead of bootstrap ones
+    //TODO: use new api to approve and decline users
     function ConfirmUsersController($scope, growl, $log, ConfirmUsersService) {
         $log.debug('Init ConfirmUsersController ...');
 
@@ -39,7 +40,6 @@
         function activate(){
             //Get list of unapproved users with same 'platoonId' as admin's
             getUsers(1);
-
         }
 
         //Function to set in $scope user list with specified platoonId
