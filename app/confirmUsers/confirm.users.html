@@ -17,7 +17,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="a-cu-table__row" ng-repeat="user in usersList">
+            <tr class="a-cu-table__row" ng-repeat="user in vm.usersList">
                 <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">{{user.firstName + " " +
                     user.lastName}}
                 </td>
@@ -25,7 +25,7 @@
                 <td class="a-cu-table__item a-cu-cell-text">{{user.email}}</td>
                 <td class="a-cu-table__item a-cu-cell-text">{{user.birthDate | date: "dd MMMM yyyy"}}</td>
                 <td class="a-cu-table__item a-cu-cell-text">
-                    <button class="btn btn-white" ng-click="editUser(user.id)"><i class="fa fa-pencil"></i>
+                    <button class="btn btn-white" ng-click="vm.editUser(user.id)"><i class="fa fa-pencil"></i>
                         Підтвердити
                     </button>
                 </td>
@@ -51,14 +51,14 @@
                 <h4 class="modal-title" id="EditUserLabel">Підтвердити Користувача</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" ng-submit="approveUser()">
-                    <input type="hidden" name="id" ng-readonly="true" ng-model="currentUser.id">
+                <form class="form-horizontal" ng-submit="vm.approveUser()">
+                    <input type="hidden" name="id" ng-readonly="true" ng-model="vm.currentUser.id">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="email" class="col-sm-3 control-label">Email</label>
                                 <div class="col-sm-9">
-                                    <input type="email" name="email" ng-readonly="true" ng-model="currentUser.email"
+                                    <input type="email" name="email" ng-readonly="true" ng-model="vm.currentUser.email"
                                            id="email" class="form-control" placeholder="Email">
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <label for="phone" class="col-sm-3 control-label">Телефон</label>
                                 <div class="col-sm-9">
-                                    <input type="tel" id="phone" name="phoneNumber" ng-model="currentUser.phoneNumber"
+                                    <input type="tel" id="phone" name="phoneNumber" ng-model="vm.currentUser.phoneNumber"
                                            class="form-control" placeholder="Телефон" required>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                             <div class="form-group">
                                 <label for="firstName" class="col-sm-3 control-label">Ім'я</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="firstName" name="firstName" ng-model="currentUser.firstName"
+                                    <input type="text" id="firstName" name="firstName" ng-model="vm.currentUser.firstName"
                                            class="form-control" placeholder="Ім'я" required>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                             <div class="form-group">
                                 <label for="subName" class="col-sm-3 control-label">Прізвище</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="subName" name="lastName" ng-model="currentUser.lastName"
+                                    <input type="text" id="subName" name="lastName" ng-model="vm.currentUser.lastName"
                                            class="form-control" placeholder="Прізвище" required>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                             <div class="form-group">
                                 <label for="birth" class="col-sm-3 control-label">Народився</label>
                                 <div class="col-sm-9">
-                                    <input type="date" id="birth" name="birthDate" ng-model="currentUser.birthDate"
+                                    <input type="date" id="birth" name="birthDate" ng-model="vm.currentUser.birthDate"
                                            class="form-control" placeholder="Дата народження" required>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                             <div class="form-group">
                                 <label for="sex" class="col-sm-3 control-label">Стать</label>
                                 <div class="col-sm-9">
-                                    <select id="sex" name="gender" ng-model="currentUser.gender" class="form-control"
+                                    <select id="sex" name="gender" ng-model="vm.currentUser.gender" class="form-control"
                                             title="СТАТЬ" required>
                                         <option value="male">Мужской</option>
                                         <option value="female">Женский</option>
@@ -121,10 +121,10 @@
                             <div class="form-group">
                                 <label for="city" class="col-sm-3 control-label">Місто</label>
                                 <div class="col-sm-9">
-                                    <select id="city" name="cityId" ng-disabled="cities.length == 0"
-                                            ng-model="currentUser.cityId"
-                                            ng-options="record.id as record.name for record in cities"
-                                            ng-change="getGroups(currentUser.cityId)" class="form-control" required>
+                                    <select id="city" name="cityId" ng-disabled="vm.cities.length == 0"
+                                            ng-model="vm.currentUser.cityId"
+                                            ng-options="record.id as record.name for record in vm.cities"
+                                            ng-change="vm.getGroups(currentUser.cityId)" class="form-control" required>
                                         <option value="" disabled hidden>Виберіть місто</option>
                                     </select>
                                 </div>
@@ -134,10 +134,10 @@
                             <div class="form-group">
                                 <label for="groupNumber" class="col-sm-3 control-label">Група</label>
                                 <div class="col-sm-9">
-                                    <select id="groupNumber" name="groupId" ng-disabled="groups.length == 0"
-                                            ng-model="currentUser.groupId"
-                                            ng-options="record.id as record.name for record in groups"
-                                            ng-change="getPlatoons(currentUser.groupId)" class="form-control" required>
+                                    <select id="groupNumber" name="groupId" ng-disabled="vm.groups.length == 0"
+                                            ng-model="vm.currentUser.groupId"
+                                            ng-options="record.id as record.name for record in vm.groups"
+                                            ng-change="vm.getPlatoons(currentUser.groupId)" class="form-control" required>
                                         <option value="" disabled hidden>Виберіть группу</option>
                                     </select>
                                 </div>
@@ -149,10 +149,10 @@
                             <div class="form-group">
                                 <label for="platoon" class="col-sm-3 control-label">Загін</label>
                                 <div class="col-sm-9">
-                                    <select id="platoon" name="platoonId" ng-disabled="platoons.length == 0"
-                                            ng-model="currentUser.platoonId"
-                                            ng-options="record.id as record.name for record in platoons"
-                                            ng-change="getSections(currentUser.platoonId)" class="form-control"
+                                    <select id="platoon" name="platoonId" ng-disabled="vm.platoons.length == 0"
+                                            ng-model="vm.currentUser.platoonId"
+                                            ng-options="record.id as record.name for record in vm.platoons"
+                                            ng-change="vm.getSections(currentUser.platoonId)" class="form-control"
                                             required>
                                         <option value="" disabled hidden>Виберіть загін</option>
                                     </select>
@@ -163,9 +163,9 @@
                             <div class="form-group">
                                 <label for="sectionId" class="col-sm-3 control-label">Ланка</label>
                                 <div class="col-sm-9">
-                                    <select id="sectionId" name="sectionId" ng-disabled="sections.length == 0"
-                                            ng-model="currentUser.sectionId"
-                                            ng-options="record.id as record.name for record in sections"
+                                    <select id="sectionId" name="sectionId" ng-disabled="vm.sections.length == 0"
+                                            ng-model="vm.currentUser.sectionId"
+                                            ng-options="record.id as record.name for record in vm.sections"
                                             class="form-control" required>
                                         <option value="" disabled hidden>Виберіть ланку</option>
                                     </select>
@@ -178,9 +178,9 @@
                             <div class="form-group">
                                 <label for="rank" class="col-sm-3 control-label">Звання</label>
                                 <div class="col-sm-9">
-                                    <select id="rank" name="rank" ng-disabled="ranks.length == 0"
-                                            ng-model="currentUser.rankId"
-                                            ng-options="record.id as record.name for record in ranks"
+                                    <select id="rank" name="rank" ng-disabled="vm.ranks.length == 0"
+                                            ng-model="vm.currentUser.rankId"
+                                            ng-options="record.id as record.name for record in vm.ranks"
                                             class="form-control" required>
                                         <option value="" disabled hidden>Виберіть звання</option>
                                     </select>
@@ -191,7 +191,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                         <button type="button" data-dismiss="alert" class="btn btn-danger"
-                                ng-click="showConfirmDecline()">
+                                ng-click="vm.showConfirmDecline()">
                             Відмовити
                         </button>
                         <button type="submit" class="btn btn-primary">Прийняти</button>
@@ -218,7 +218,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Ні
                 </button>
-                <button type="submit" class="btn btn-primary" ng-click="declineUser()">Так</button>
+                <button type="submit" class="btn btn-primary" ng-click="vm.declineUser()">Так</button>
             </div>
 
         </div>

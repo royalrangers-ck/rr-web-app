@@ -5,7 +5,7 @@
     angular
         .module('app')
         .controller('ConfirmUsersController', ConfirmUsersController);
-    ConfirmUsersController.$inject = ['$scope', 'growl', '$log', 'ConfirmUsersService'];
+    ConfirmUsersController.$inject = ['growl', '$log', 'ConfirmUsersService'];
 
     //This controller allows administrator get, edit, approve or decline unapproved users
     //TODO: make use to getUsers(id) admin.platoonId instead of static id
@@ -13,25 +13,25 @@
     //TODO: complete function to get list of Ranks from server
     //TODO: disable some ui elements before them content fully loaded
     //TODO: delete JSON.parse();
-    //TODO: use vm instead of $scope;
     //TODO: try to use angular modal instead of bootstrap ones
     //TODO: use new api to approve and decline users
-    function ConfirmUsersController($scope, growl, $log, ConfirmUsersService) {
+    //TODO: move 'footable' script from view into controller
+    function ConfirmUsersController(growl, $log, ConfirmUsersService) {
         $log.debug('Init ConfirmUsersController ...');
 
         //Set variables
         const vm = this;
         var editUserModal = '#EditUser';            //name of modal bootstrap window to edit user
         var confirmDeleteModal = '#ConfirmDelete';  //same, but to confirm decline user
-        $scope.usersList = [];
-        $scope.currentUser = {};
-        $scope.editUser = editUser;
-        $scope.getGroups = getGroups;
-        $scope.getPlatoons = getPlatoons;
-        $scope.getSections = getSections;
-        $scope.approveUser = approveUser;
-        $scope.declineUser = declineUser;
-        $scope.showConfirmDecline = showConfirmDecline;
+        vm.usersList = [];
+        vm.currentUser = {};
+        vm.editUser = editUser;
+        vm.getGroups = getGroups;
+        vm.getPlatoons = getPlatoons;
+        vm.getSections = getSections;
+        vm.approveUser = approveUser;
+        vm.declineUser = declineUser;
+        vm.showConfirmDecline = showConfirmDecline;
 
         activate();
 
@@ -42,7 +42,7 @@
             getUsers(1);
         }
 
-        //Function to set in $scope user list with specified platoonId
+        //Function to set in 'vm' user list with specified platoonId
         function getUsers(grId) {
             ConfirmUsersService.getUsers({platoonId: grId}).$promise.then((res) => {
                 if (res.success) {
@@ -51,46 +51,46 @@
                     result.forEach((item) => {
                         item.birthDate = new Date(item.birthDate);  //use 'new Data()' instead of raw int
                     });
-                    $scope.usersList = result;
+                    vm.usersList = result;
                     $log.debug('Load users list:');
-                    $log.debug($scope.usersList);
+                    $log.debug(vm.usersList);
                 }
             });
         }
 
         //Function to edit currentUser
         function editUser(id) {
-            $scope.currentUser = $scope.usersList.find((item) => item.id == id) || {};
-            getCities($scope.currentUser.countryId);
-            getGroups($scope.currentUser.cityId);
-            getPlatoons($scope.currentUser.groupId);
-            getSections($scope.currentUser.platoonId);
+            vm.currentUser = vm.usersList.find((item) => item.id == id) || {};
+            getCities(vm.currentUser.countryId);
+            getGroups(vm.currentUser.cityId);
+            getPlatoons(vm.currentUser.groupId);
+            getSections(vm.currentUser.platoonId);
             getRanks();
             $(editUserModal).modal();       //load modal window in view (maybe incorrect)
             $log.debug('Edit user:');
-            $log.debug($scope.currentUser);
+            $log.debug(vm.currentUser);
         }
 
         //Function to approve currentUser
         function approveUser() {
             $(editUserModal).modal('hide'); //immediately hide modal window to prevent double confirm
             var valuesToSend = {
-                "firstName": $scope.currentUser.firstName,
-                "lastName": $scope.currentUser.lastName,
-                "gender": $scope.currentUser.gender,
-                "phoneNumber": $scope.currentUser.phoneNumber,
-                "birthDate": $scope.currentUser.birthDate.getTime(),
-                "cityId": $scope.currentUser.cityId,
-                "groupId": $scope.currentUser.groupId,
-                "platoonId": $scope.currentUser.platoonId,
-                "sectionId": $scope.currentUser.sectionId,
-                "rankId": $scope.currentUser.rankId
+                "firstName": vm.currentUser.firstName,
+                "lastName": vm.currentUser.lastName,
+                "gender": vm.currentUser.gender,
+                "phoneNumber": vm.currentUser.phoneNumber,
+                "birthDate": vm.currentUser.birthDate.getTime(),
+                "cityId": vm.currentUser.cityId,
+                "groupId": vm.currentUser.groupId,
+                "platoonId": vm.currentUser.platoonId,
+                "sectionId": vm.currentUser.sectionId,
+                "rankId": vm.currentUser.rankId
             };
-            ConfirmUsersService.approveUser({userId: $scope.currentUser.id}, valuesToSend,
+            ConfirmUsersService.approveUser({userId: vm.currentUser.id}, valuesToSend,
                 (res) => {
                     if (res.success) {
-                        growl.success('Користувач ' + $scope.currentUser.firstName + ' ' +
-                        $scope.currentUser.lastName + ' підтверджений');
+                        growl.success('Користувач ' + vm.currentUser.firstName + ' ' +
+                            vm.currentUser.lastName + ' підтверджений');
                         getUsers(1);
                     } else {
                         growl.error('Помилка:' + res.data.message);
@@ -102,11 +102,11 @@
         function declineUser() {
             $(confirmDeleteModal).modal('hide');    //prevent double decline
             $(editUserModal).modal('hide');         //also to prevent double decline
-            ConfirmUsersService.declineUser({userId: $scope.currentUser.id},
+            ConfirmUsersService.declineUser({userId: vm.currentUser.id},
                 (res) => {
                     if (res.success) {
-                        growl.info('Користувач ' + $scope.currentUser.firstName + ' ' +
-                            $scope.currentUser.lastName + ' видалений');
+                        growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
+                            vm.currentUser.lastName + ' видалений');
                         getUsers(1);
                     } else {
                         growl.error('Помилка:' + res.data.message);
@@ -119,45 +119,45 @@
             $(confirmDeleteModal).modal();
         }
 
-        //function to set in $scope list of Cities by countryId
+        //function to set in 'vm' list of Cities by countryId
         function getCities(countryId) {
             ConfirmUsersService.city({countryId: countryId}).$promise.then((res) => {
                 if (res.success) {
-                    $scope.cities = res.data;
+                    vm.cities = res.data;
                 }
             });
         }
 
-        //function to set in $scope list of Groups by cityId
+        //function to set in 'vm' list of Groups by cityId
         function getGroups(cityId) {
             ConfirmUsersService.group({cityId: cityId}).$promise.then((res) => {
                 if (res.success) {
-                    $scope.groups = res.data;
+                    vm.groups = res.data;
                 }
             });
         }
 
-        //function to set in $scope list of Platoons by groupId
+        //function to set in 'vm' list of Platoons by groupId
         function getPlatoons(groupId) {
             ConfirmUsersService.platoon({groupId: groupId}).$promise.then((res) => {
                 if (res.success) {
-                    $scope.platoons = res.data;
+                    vm.platoons = res.data;
                 }
             });
         }
 
-        //function to set in $scope list of Sections by platoonId
+        //function to set in 'vm' list of Sections by platoonId
         function getSections(platoonId) {
             ConfirmUsersService.section({platoonId: platoonId}).$promise.then((res) => {
                 if (res.success) {
-                    $scope.sections = res.data;
+                    vm.sections = res.data;
                 }
             });
         }
 
-        //function to set in $scope list of Ranks
+        //function to set in 'vm' list of Ranks
         function getRanks() {
-            $scope.ranks = [
+            vm.ranks = [
                 {id: 2, name: 'Помічник'},
                 {id: 3, name: 'Старший помічник'},
                 {id: 1, name: 'Молодший помічник'}];
