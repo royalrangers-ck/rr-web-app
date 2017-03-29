@@ -12,6 +12,7 @@
         this.getUsers = ConfirmUsers.getUsers;
         this.approveUser = ConfirmUsers.approveUser;
         this.declineUser = ConfirmUsers.declineUser;
+        this.updateUser = ConfirmUsers.updateUser;
         /** Get data for edit fields */
         this.countries = ConfirmUsers.countries;
         this.city = ConfirmUsers.city;

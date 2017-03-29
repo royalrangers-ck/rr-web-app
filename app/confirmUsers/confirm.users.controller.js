@@ -5,7 +5,7 @@
     angular
         .module('app')
         .controller('ConfirmUsersController', ConfirmUsersController);
-    ConfirmUsersController.$inject = ['growl', '$log', 'ConfirmUsersService'];
+    ConfirmUsersController.$inject = ['growl', '$log', '$route', 'ConfirmUsersService'];
 
     //This controller allows administrator get, edit, approve or decline unapproved users
     //TODO: make use to getUsers(id) admin.platoonId instead of static id
@@ -15,8 +15,8 @@
     //TODO: delete JSON.parse();
     //TODO: try to use angular modal instead of bootstrap ones
     //TODO: use new api to approve and decline users
-    //TODO: move 'footable' script from view into controller
-    function ConfirmUsersController(growl, $log, ConfirmUsersService) {
+    //TODO: use api to update user data
+    function ConfirmUsersController(growl, $log, $route, ConfirmUsersService) {
         //Set variables
         const vm = this;
         const editUserModal = '#EditUser';            //name of modal window to edit user
@@ -24,8 +24,8 @@
         vm.usersList = [];
         vm.currentUser = {};
         vm.editUser = editUser;
-        vm.getGroups = getGroups;
-        vm.getPlatoons = getPlatoons;
+        vm.changeGroup = changeGroup;
+        vm.changePlatoon = changePlatoon;
         vm.getSections = getSections;
         vm.approveUser = approveUser;
         vm.declineUser = declineUser;
@@ -35,7 +35,7 @@
 
         ////
 
-        function activate(){
+        function activate() {
             $log.debug('Init ConfirmUsersController ...');
             //Get list of unapproved users with same 'platoonId' as admin's
             getUsers(1);
@@ -56,8 +56,7 @@
                         item.birthDate = new Date(item.birthDate);  //use 'new Data()' instead of raw int
                     });
                     vm.usersList = result;
-                    $log.debug('Load users list:');
-                    $log.debug(vm.usersList);
+                    $log.debug('Load users list:', vm.usersList);
                 }
             });
         }
@@ -71,47 +70,56 @@
             getSections(vm.currentUser.platoonId);
             getRanks();
             $(editUserModal).modal();       //load modal window in view (maybe incorrect)
-            $log.debug('Edit user:');
-            $log.debug(vm.currentUser);
+            $log.debug('Edit user:', vm.currentUser);
         }
 
         //Function to approve currentUser
         function approveUser() {
             $(editUserModal).modal('hide'); //immediately hide modal window to prevent double confirm
-            let valuesToSend = {
-                "firstName": vm.currentUser.firstName,
-                "lastName": vm.currentUser.lastName,
-                "gender": vm.currentUser.gender,
-                "phoneNumber": vm.currentUser.phoneNumber,
-                "birthDate": vm.currentUser.birthDate.getTime(),
-                "cityId": vm.currentUser.cityId,
-                "groupId": vm.currentUser.groupId,
-                "platoonId": vm.currentUser.platoonId,
-                "sectionId": vm.currentUser.sectionId,
-                "rankId": vm.currentUser.rankId
-            };
-            ConfirmUsersService.approveUser({userId: vm.currentUser.id}, valuesToSend,
+            // let valuesToSend = {
+            //     "firstName": vm.currentUser.firstName,
+            //     "lastName": vm.currentUser.lastName,
+            //     "gender": vm.currentUser.gender,
+            //     "phoneNumber": vm.currentUser.phoneNumber,
+            //     "birthDate": vm.currentUser.birthDate.getTime(),
+            //     "cityId": vm.currentUser.cityId,
+            //     "groupId": vm.currentUser.groupId,
+            //     "platoonId": vm.currentUser.platoonId,
+            //     "sectionId": vm.currentUser.sectionId,
+            //     "rankId": vm.currentUser.rankId
+            // };
+            ConfirmUsersService.approveUser([vm.currentUser.id],
                 (res) => {
                     if (res.success) {
                         growl.success('Користувач ' + vm.currentUser.firstName + ' ' +
                             vm.currentUser.lastName + ' підтверджений');
-                        getUsers(1);
+                        $route.reload();
                     } else {
                         growl.error('Помилка:' + res.data.message);
                     }
                 });
+            // ConfirmUsersService.updateUser({userId: vm.currentUser.id}, valuesToSend,
+            //     (res) => {
+            //         if (res.success) {
+            //             growl.success('Користувач ' + vm.currentUser.firstName + ' ' +
+            //                 vm.currentUser.lastName + ' підтверджений');
+            //             $route.reload();
+            //         } else {
+            //             growl.error('Помилка:' + res.data.message);
+            //         }
+            //     });
         }
 
         //Function to decline currentUser
         function declineUser() {
             $(confirmDeleteModal).modal('hide');    //prevent double decline
             $(editUserModal).modal('hide');         //also to prevent double decline
-            ConfirmUsersService.declineUser({userId: vm.currentUser.id},
+            ConfirmUsersService.declineUser([vm.currentUser.id],
                 (res) => {
                     if (res.success) {
                         growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
                             vm.currentUser.lastName + ' видалений');
-                        getUsers(1);
+                        $route.reload();
                     } else {
                         growl.error('Помилка:' + res.data.message);
                     }
@@ -125,6 +133,7 @@
 
         //function to set in 'vm' list of Cities by countryId
         function getCities(countryId) {
+            if (countryId == null) return;
             ConfirmUsersService.city({countryId: countryId}).$promise.then((res) => {
                 if (res.success) {
                     vm.cities = res.data;
@@ -134,6 +143,7 @@
 
         //function to set in 'vm' list of Groups by cityId
         function getGroups(cityId) {
+            if (cityId == null) return;
             ConfirmUsersService.group({cityId: cityId}).$promise.then((res) => {
                 if (res.success) {
                     vm.groups = res.data;
@@ -143,6 +153,7 @@
 
         //function to set in 'vm' list of Platoons by groupId
         function getPlatoons(groupId) {
+            if (groupId == null) return;
             ConfirmUsersService.platoon({groupId: groupId}).$promise.then((res) => {
                 if (res.success) {
                     vm.platoons = res.data;
@@ -152,11 +163,25 @@
 
         //function to set in 'vm' list of Sections by platoonId
         function getSections(platoonId) {
+            if (platoonId == null) return;
             ConfirmUsersService.section({platoonId: platoonId}).$promise.then((res) => {
                 if (res.success) {
                     vm.sections = res.data;
                 }
             });
+        }
+
+        //Special function for view to correct change group
+        function changeGroup(cityId) {
+            getGroups(cityId);
+            vm.platoons = null;
+            vm.sections = null;
+        }
+
+        //Same, but to correct change platoon
+        function changePlatoon(groupId) {
+            getPlatoons(groupId);
+            vm.sections = null;
         }
 
         //function to set in 'vm' list of Ranks

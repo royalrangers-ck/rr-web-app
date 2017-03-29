@@ -22,7 +22,7 @@
             },
             'declineUser': {
                 method: 'POST',
-                url: Endpoints.DECLINE_USERS,
+                url: Endpoints.DECLINE_USERS
             },
             'updateUser': {
                 method: 'PUT',
