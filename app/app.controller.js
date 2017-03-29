@@ -5,10 +5,11 @@
         .module('app')
         .controller('AppController', AppController);
 
-    AppController.$inject = ['$log', '$rootScope', '$http', 'Menu'];
-    function AppController($log, $rootScope, $http, Menu) {
+    AppController.$inject = ['$log', '$rootScope', '$http', 'Menu', 'TokenSheduler'];
+    function AppController($log, $rootScope, $http, Menu, TokenSheduler) {
         const vm = $rootScope;
         vm.sidebarMenu = Menu;
+        TokenSheduler;
 
         let req = {
             method: 'GET',
