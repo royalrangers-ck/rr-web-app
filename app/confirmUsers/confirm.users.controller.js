@@ -5,18 +5,18 @@
     angular
         .module('app')
         .controller('ConfirmUsersController', ConfirmUsersController);
-    ConfirmUsersController.$inject = ['growl', '$log', '$route', 'ConfirmUsersService'];
+    ConfirmUsersController.$inject = ['$rootScope', 'growl', '$log', '$route', 'ConfirmUsersService'];
 
     //This controller allows administrator get, edit, approve or decline unapproved users
     //TODO: make use to getUsers(id) admin.platoonId instead of static id
     //TODO: confirm list of available fields for request to approve user
     //TODO: complete function to get list of Ranks from server
-    //TODO: disable some ui elements before them content fully loaded
+    //TODO: test how good disable some ui elements before them content fully loaded
     //TODO: delete JSON.parse();
     //TODO: try to use angular modal instead of bootstrap ones
-    //TODO: use new api to approve and decline users
+    //TODO: test api to approve and decline users
     //TODO: use api to update user data
-    function ConfirmUsersController(growl, $log, $route, ConfirmUsersService) {
+    function ConfirmUsersController($rootScope, growl, $log, $route, ConfirmUsersService) {
         //Set variables
         const vm = this;
         const editUserModal = '#EditUser';            //name of modal window to edit user
@@ -38,7 +38,7 @@
         function activate() {
             $log.debug('Init ConfirmUsersController ...');
             //Get list of unapproved users with same 'platoonId' as admin's
-            getUsers(1);
+            getUsers($rootScope.currentUser.platoon);
             //init "FooTable" plugin in all tables with 'footable' class
             $(document).ready(function () {
                 $('.footable').footable();
