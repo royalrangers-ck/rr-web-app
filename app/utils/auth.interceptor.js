@@ -37,7 +37,9 @@
         };
 
         function addToken(config) {
-            config.headers.token = TokenService.get();
+            config.headers = {
+                "Autorization": TokenService.get()
+            }
         }
 
         function checkAuth(response) {
