@@ -17,12 +17,10 @@
     //TODO: use new api to approve and decline users
     //TODO: move 'footable' script from view into controller
     function ConfirmUsersController(growl, $log, ConfirmUsersService) {
-        $log.debug('Init ConfirmUsersController ...');
-
         //Set variables
         const vm = this;
-        var editUserModal = '#EditUser';            //name of modal bootstrap window to edit user
-        var confirmDeleteModal = '#ConfirmDelete';  //same, but to confirm decline user
+        const editUserModal = '#EditUser';            //name of modal window to edit user
+        const confirmDeleteModal = '#ConfirmDelete';  //same, but to confirm decline user
         vm.usersList = [];
         vm.currentUser = {};
         vm.editUser = editUser;
@@ -38,15 +36,21 @@
         ////
 
         function activate(){
+            $log.debug('Init ConfirmUsersController ...');
             //Get list of unapproved users with same 'platoonId' as admin's
             getUsers(1);
+            //init "FooTable" plugin in all tables with 'footable' class
+            $(document).ready(function () {
+                $('.footable').footable();
+            });
+            $log.debug('Init complete.');
         }
 
         //Function to set in 'vm' user list with specified platoonId
         function getUsers(grId) {
             ConfirmUsersService.getUsers({platoonId: grId}).$promise.then((res) => {
                 if (res.success) {
-                    var result;
+                    let result;
                     result = JSON.parse(res.data.message);
                     result.forEach((item) => {
                         item.birthDate = new Date(item.birthDate);  //use 'new Data()' instead of raw int
@@ -74,7 +78,7 @@
         //Function to approve currentUser
         function approveUser() {
             $(editUserModal).modal('hide'); //immediately hide modal window to prevent double confirm
-            var valuesToSend = {
+            let valuesToSend = {
                 "firstName": vm.currentUser.firstName,
                 "lastName": vm.currentUser.lastName,
                 "gender": vm.currentUser.gender,
@@ -162,7 +166,5 @@
                 {id: 3, name: 'Старший помічник'},
                 {id: 1, name: 'Молодший помічник'}];
         }
-
-        $log.debug('Init complete.');
     }
 })();
