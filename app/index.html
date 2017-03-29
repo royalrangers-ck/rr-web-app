@@ -11,10 +11,10 @@
     <script src="static/vendor/js/app.min.js"></script>
 </head>
 
-<body class="pace-done fixed-nav fixed-nav-basic fixed-sidebar" ng-app="app">
+<body class="pace-done fixed-nav fixed-nav-basic fixed-sidebar" ng-app="app" ng-controller="AppController">
 
 <div id="wrapper">
-    <nav class="navbar-default navbar-static-side" role="navigation" ng-controller="SideBarController">
+    <nav class="navbar-default navbar-static-side" role="navigation">
 
         <div class="sidebar-collapse" style="overflow: hidden; width: auto; height: 100%;">
             <ul class="nav metismenu" id="side-menu">
@@ -22,12 +22,12 @@
                     <div class="dropdown profile-element">
                         <a href="#/">
                             <span>
-                                <img alt="image" class="img-circle" src="static/images/demo/profile_photo.jpg"
-                                     height="50">
+                                <!-- ToDo.zpawn: need real avatar -->
+                                <img alt="image" class="img-circle" src="static/images/demo/profile_photo.jpg" height="50">
                             </span>
                             <span class="clear">
                                 <span class="block m-t-xs">
-                                    <strong class="font-bold">Прізвище Ім’я</strong>
+                                    <strong class="font-bold">{{ currentUser.firstName }} {{ currentUser.lastName }}</strong>
                                 </span>
                                 <span class="block m-t-xs">
                                     <strong class="font-bold">Звання</strong>
@@ -37,7 +37,7 @@
                     </div>
                 </li>
 
-                <li ng-repeat="item in leftSidebarSchema">
+                <li ng-repeat="item in sidebarMenu">
                     <a href="{{ item.route }}">
                         <span class="nav-label">{{ item.name }}</span>
                         <span class="fa arrow" ng-if="item.submenu"></span>

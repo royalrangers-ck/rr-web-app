@@ -32,6 +32,13 @@ gulp.task('clear:landing', () => {
         .pipe(clean())
 });
 
+gulp.task('clear:app:js', () => {
+    let src = ['app/static/vendor/js/*'];
+
+    return gulp
+        .src(src, {read: false})
+        .pipe(clean());
+});
 
 gulp.task('copyDep:app', () => {
     let src = [
@@ -314,21 +321,29 @@ gulp.task('build:dev', gulp.parallel(
     )
 ));
 
-//gulp.task('build:prod', gulp.series(
-//    'clear',
-//    gulp.parallel('copyScripts', 'copyDep', 'copyApp'),
-//    'copyJs',
-//    'copyImages',
-//    'sass:prod',
-//    'copyFonts'
-//));
+/**
+ * Build Landing
+ */
+gulp.task('build:landing:prod', gulp.series(
+    'clear:landing',
+    gulp.parallel('copyScripts:landing', 'copyDep:landing', 'copyApp:landing'),
+    'copyJs:landing',
+    'copyImages:landing',
+    'sass:landing:prod',
+    'copyFonts:landing'
+));
 
 /**
- * Landing: Watch & Compile styles
+ * Build Application
  */
-gulp.task('sass:landing:watch', () => {
-    gulp.watch('landing/static/sass/**/*.scss', gulp.series('sass:landing:prod'));
-});
+gulp.task('build:app:prod', gulp.series(
+    'clear:app',
+    gulp.parallel('copyScripts:app', 'copyDep:app', 'copyApp:app'),
+    'copyJs:app',
+    'copyImages:app',
+    'sass:app:prod',
+    'copyFonts:app'
+));
 
 /**
  * Application: Watch & Compile styles
@@ -338,30 +353,24 @@ gulp.task('sass:app:watch', () => {
 });
 
 /**
- * Build Landing
+ * Landing: Watch & Compile styles
  */
-gulp.task('build:landing:prod', gulp.parallel(
-    gulp.series(
-        'clear:landing',
-        gulp.parallel('copyScripts:landing', 'copyDep:landing', 'copyApp:landing'),
-        'copyJs:landing',
-        'copyImages:landing',
-        'sass:landing:prod',
-        'copyFonts:landing'
-    )
-));
+gulp.task('sass:app:watch', () => {
+    gulp.watch('app/static/sass/**/*.scss', gulp.series('sass:app:prod'));
+});
 
 /**
- * Build Application
+ * Watch and compile App scripts
  */
-gulp.task('build:app:prod', gulp.parallel(
-    /** Build Main Application */
-    gulp.series(
-        'clear:app',
+gulp.task('js:app:watch', () => {
+    let src = [
+        'app/**/*.js',
+        '!app/static/vendor/**/*.*'
+    ];
+
+    gulp.watch(src, gulp.series(
+        'clear:app:js',
         gulp.parallel('copyScripts:app', 'copyDep:app', 'copyApp:app'),
-        'copyJs:app',
-        'copyImages:app',
-        'sass:app:prod',
-        'copyFonts:app'
-    )
-));
+        'copyJs:app'
+    ));
+});
