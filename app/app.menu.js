@@ -1,13 +1,13 @@
 (() => {
+
     'use strict';
 
     angular
         .module('app')
-        .controller('sidebarCtrl', sidebarCtrl);
+        .constant("Menu", Menu());
 
-    function sidebarCtrl($scope) {
-
-        $scope.leftSidebarSchema = [{
+    function Menu () {
+        return [{
             name: 'Система досягнень',
             route: '',
             submenu: [
@@ -85,3 +85,4 @@
         }];
     }
 })();
+
