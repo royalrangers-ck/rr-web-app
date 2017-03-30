@@ -4,7 +4,7 @@
 
     angular
         .module('app')
-        .constant("Endpoints", Endpoints());
+        .constant('Endpoints', Endpoints());
 
     function Endpoints() {
         let constants = {
@@ -14,11 +14,14 @@
         // REGISTRATION
         constants.REGISTRATION = constants.API + '/registration';
 
-        // GET DATA FOR REGISTRATION
-        constants.REGISTRATION_CITIES = constants.REGISTRATION + '/cities';
-        constants.REGISTRATION_GROUPS = constants.REGISTRATION + '/groups';
-        constants.REGISTRATION_PLATOONS = constants.REGISTRATION + '/platoons';
-        constants.REGISTRATION_SECTIONS = constants.REGISTRATION + '/sections';
+        // PUBLIC DATA API
+        constants.PUBLIC = constants.API + '/public';
+
+        constants.COUNTRIES = constants.PUBLIC + '/countries';
+        constants.CITIES = constants.PUBLIC + '/cities';
+        constants.GROUPS = constants.PUBLIC + '/groups';
+        constants.PLATOONS = constants.PUBLIC + '/platoons';
+        constants.SECTIONS = constants.PUBLIC + '/sections';
 
         // LOGIN
 

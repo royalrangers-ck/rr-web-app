@@ -6,8 +6,8 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$log', '$window', '$route', '$http', 'TokenService'];
-    function LoginController($log, $window, $route, $http, TokenService) {
+    LoginController.$inject = ['$log', '$window','$http', 'TokenService' , 'Endpoints'];
+    function LoginController($log, $window, $http, TokenService, Endpoints) {
         const vm = this;
 
         vm.data = {};
@@ -27,7 +27,7 @@
                 password: vm.data.password
             };
 
-            $http.post('/api/auth', req, {
+            $http.post(Endpoints.AUTH, req, {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 })

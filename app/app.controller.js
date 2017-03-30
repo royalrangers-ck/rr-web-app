@@ -20,7 +20,7 @@
         }
 
         function getUserInfo() {
-            $http.get('/api/user').then((res) => {
+            $http.get(Endpoints.USER).then((res) => {
                 if (res.data.success) {
                     vm.currentUser = res.data.data;
                     $log.debug('<== userInfoResponse:', res);
