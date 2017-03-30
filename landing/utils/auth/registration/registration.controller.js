@@ -53,7 +53,7 @@
                 firstName: vm.data.firstName,
                 lastName: vm.data.lastName,
                 gender: vm.data.gender,
-                telephonNumber: vm.data.telephonNumber,
+                telephoneNumber: vm.data.telephoneNumber,
                 birthDate: vm.data.birthDate,
                 status: vm.data.status,
                 countryId: vm.data.country.id,

@@ -10,7 +10,7 @@
     function RegistrationSegment($routeSegmentProvider) {
 
         $routeSegmentProvider.when('/registration', 'registration').segment('registration', {
-            templateUrl: 'registration/registration.html',
+            templateUrl: 'utils/auth/registration/registration.html',
             controller: 'RegistrationController',
             controllerAs: 'vm',
             resolve: {
