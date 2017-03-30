@@ -12,30 +12,30 @@
             'register': {method: 'POST'},
             'countries': {
                 method: 'GET',
-                url: `${Endpoints.REGISTRATION}/countries`,
+                url: Endpoints.COUNTRIES,
                 isArray: false
             },
             'city': {
                 method: 'GET',
-                url: `${Endpoints.REGISTRATION}/city`,
+                url: Endpoints.CITIES,
                 params: {countryId: '@countryId'},
                 isArray: false
             },
             'group': {
                 method: 'GET',
-                url: `${Endpoints.REGISTRATION}/group`,
+                url: Endpoints.GROUPS,
                 params: {cityId: '@cityId'},
                 isArray: false
             },
             'platoon': {
                 method: 'GET',
-                url: `${Endpoints.REGISTRATION}/platoon`,
+                url: Endpoints.PLATOONS,
                 params: {groupId: '@groupId'},
                 isArray: false
             },
             'section': {
                 method: 'GET',
-                url: `${Endpoints.REGISTRATION}/section`,
+                url: Endpoints.SECTIONS,
                 params: {platoonId: '@platoonId'},
                 isArray: false
             }
