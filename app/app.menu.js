@@ -1,18 +1,13 @@
 (() => {
+
     'use strict';
 
     angular
         .module('app')
-        .controller('SideBarController', SideBarController);
+        .constant("Menu", Menu());
 
-    SideBarController.$inject = ['$log'];
-    function SideBarController($log) {
-        const vm = this;
-
-        activate();
-
-        vm.leftSidebarSchema = [
-            {
+    function Menu () {
+        return [{
                 name: 'Система досягнень',
                 route: '',
                 submenu: [
@@ -46,11 +41,5 @@
             {name: 'Тех.підтримка', route: ''},
             {name: 'Створити', route: ''}
         ];
-
-        ////
-
-        function activate() {
-            $log.debug('Init TopBarController ...');
-        }
     }
 })();

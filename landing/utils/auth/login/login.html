@@ -6,17 +6,17 @@
 
             <form name="vm.form" ng-submit="vm.login()">
 
-                <div class="form-group">
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.email.$dirty && vm.form.email.$error.required || vm.form.email.$invalid}">
                     <input type="email" name="email" class="form-control" placeholder="E-mail" ng-model="vm.data.email" required>
-                    <span ng-show="vm.form.email.$dirty && vm.form.email.$error.required">This field is required.</span>
-                    <span ng-show="vm.form.email.$dirty && vm.form.email.$invalid">Enter a valid email.</span>
+                    <p ng-show="vm.form.email.$dirty && vm.form.email.$error.required">This field is required.</p>
+                    <p ng-show="vm.form.email.$dirty && vm.form.email.$invalid">Enter a valid email.</p>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.password.$dirty && vm.form.password.$error.minlength || vm.form.password.$error.maxlength}">
                     <input type="password" name="password" class="form-control" placeholder="Пароль" ng-model="vm.data.password" ng-minlength="5" ng-maxlength="25" >
-                    <span ng-show="vm.form.password.$dirty && vm.form.password.$error.required">This field is required.</span>
-                    <span ng-show="vm.form.password.$dirty && vm.form.password.$error.minlength">Password is too short.</span>
-                    <span ng-show="vm.form.password.$dirty && vm.form.password.$error.maxlength">Password is too long.</span>
+                    <p ng-show="vm.form.password.$dirty && vm.form.password.$error.required">This field is required.</p>
+                    <p ng-show="vm.form.password.$dirty && vm.form.password.$error.minlength">Password is too short.</p>
+                    <p ng-show="vm.form.password.$dirty && vm.form.password.$error.maxlength">Password is too long.</p>
                 </div>
 
                 <div class="form-group text-center">
