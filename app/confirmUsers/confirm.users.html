@@ -178,7 +178,7 @@
                                 <label for="rank" class="col-sm-3 control-label">Звання</label>
                                 <div class="col-sm-9">
                                     <select id="rank" ng-disabled="vm.ranks.length == 0"
-                                            ng-model="vm.currentUser.rankId"
+                                            ng-model="vm.currentUser.userRank"
                                             ng-options="record as record for record in vm.ranks"
                                             class="form-control" required>
                                         <option value="" disabled hidden>Виберіть звання</option>
