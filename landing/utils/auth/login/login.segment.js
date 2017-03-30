@@ -10,7 +10,7 @@
     function LoginSegment($routeSegmentProvider) {
 
         $routeSegmentProvider.when('/login', 'login').segment('login', {
-            templateUrl: 'login/login.html',
+            templateUrl: 'utils/auth/login/login.html',
             controller: 'LoginController',
             controllerAs: 'vm'
         });

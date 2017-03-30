@@ -10,7 +10,7 @@
     function AboutUsSegment($routeSegmentProvider) {
 
         $routeSegmentProvider.when('/aboutUs', 'aboutUs').segment('aboutUs', {
-            templateUrl: 'aboutUs/about.us.html',
+            templateUrl: 'about.us/about.us.html',
             controller: 'AboutUsController'
         });
     }
