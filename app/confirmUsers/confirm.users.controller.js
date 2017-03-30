@@ -15,6 +15,7 @@
     //TODO: try to use angular modal instead of bootstrap ones
     //TODO: test api to approve and decline users
     //TODO: use api to update user data
+    //TODO: delete all comments
     function ConfirmUsersController($rootScope, growl, $log, $route, ConfirmUsersService) {
         //Set variables
         const vm = this;
@@ -75,38 +76,37 @@
         //Function to approve currentUser
         function approveUser() {
             $(editUserModal).modal('hide'); //immediately hide modal window to prevent double confirm
-            // let valuesToSend = {
-            //     "firstName": vm.currentUser.firstName,
-            //     "lastName": vm.currentUser.lastName,
-            //     "gender": vm.currentUser.gender,
-            //     "phoneNumber": vm.currentUser.phoneNumber,
-            //     "birthDate": vm.currentUser.birthDate.getTime(),
-            //     "cityId": vm.currentUser.cityId,
-            //     "groupId": vm.currentUser.groupId,
-            //     "platoonId": vm.currentUser.platoonId,
-            //     "sectionId": vm.currentUser.sectionId,
-            //     "rankId": vm.currentUser.rankId
-            // };
+            let valuesToSend = {
+                firstName: vm.currentUser.firstName,
+                lastName: vm.currentUser.lastName,
+                gender: vm.currentUser.gender,
+                telephoneNumber: vm.currentUser.telephoneNumber,
+                birthDate: vm.currentUser.birthDate.getTime(),
+                cityId: vm.currentUser.cityId,
+                groupId: vm.currentUser.groupId,
+                platoonId: vm.currentUser.platoonId,
+                sectionId: vm.currentUser.sectionId,
+                userRank: vm.currentUser.userRank
+            };
             ConfirmUsersService.approveUser([vm.currentUser.id],
                 (res) => {
                     if (res.success) {
                         growl.success('Користувач ' + vm.currentUser.firstName + ' ' +
                             vm.currentUser.lastName + ' підтверджений');
-                        $route.reload();
                     } else {
                         growl.error('Помилка:' + res.data.message);
                     }
                 });
-            // ConfirmUsersService.updateUser({userId: vm.currentUser.id}, valuesToSend,
-            //     (res) => {
-            //         if (res.success) {
-            //             growl.success('Користувач ' + vm.currentUser.firstName + ' ' +
-            //                 vm.currentUser.lastName + ' підтверджений');
-            //             $route.reload();
-            //         } else {
-            //             growl.error('Помилка:' + res.data.message);
-            //         }
-            //     });
+            ConfirmUsersService.updateUser({userId: vm.currentUser.id}, valuesToSend,
+                (res) => {
+                    if (res.success) {
+                        growl.success('Користувач ' + vm.currentUser.firstName + ' ' +
+                            vm.currentUser.lastName + ' підтверджений');
+                        // $route.reload();
+                    } else {
+                        growl.error('Помилка:' + res.data.message);
+                    }
+                });
         }
 
         //Function to decline currentUser
