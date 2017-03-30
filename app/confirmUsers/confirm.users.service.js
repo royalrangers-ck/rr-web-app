@@ -19,5 +19,6 @@
         this.group = ConfirmUsers.group;
         this.platoon = ConfirmUsers.platoon;
         this.section = ConfirmUsers.section;
+        this.rank = ConfirmUsers.rank;
     }
 })();

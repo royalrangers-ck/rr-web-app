@@ -10,8 +10,7 @@
     //This controller allows administrator get, edit, approve or decline unapproved users
     //TODO: make use to getUsers(id) admin.platoonId instead of static id
     //TODO: confirm list of available fields for request to approve user
-    //TODO: complete function to get list of Ranks from server
-    //TODO: test how good disable some ui elements before them content fully loaded
+    //TODO: use function to reload controller after decline or approve user
     //TODO: delete JSON.parse();
     //TODO: try to use angular modal instead of bootstrap ones
     //TODO: test api to approve and decline users
@@ -38,7 +37,7 @@
         function activate() {
             $log.debug('Init ConfirmUsersController ...');
             //Get list of unapproved users with same 'platoonId' as admin's
-            getUsers($rootScope.currentUser.platoon);
+            getUsers(1);
             //init "FooTable" plugin in all tables with 'footable' class
             $(document).ready(function () {
                 $('.footable').footable();
@@ -133,40 +132,44 @@
 
         //function to set in 'vm' list of Cities by countryId
         function getCities(countryId) {
-            if (countryId == null) return;
+            if (countryId == null) return [];
             ConfirmUsersService.city({countryId: countryId}).$promise.then((res) => {
                 if (res.success) {
                     vm.cities = res.data;
+                    $log.debug('Set citys list: ', res.data);
                 }
             });
         }
 
         //function to set in 'vm' list of Groups by cityId
         function getGroups(cityId) {
-            if (cityId == null) return;
+            if (cityId == null) return [];
             ConfirmUsersService.group({cityId: cityId}).$promise.then((res) => {
                 if (res.success) {
                     vm.groups = res.data;
+                    $log.debug('Set groups list: ', res.data);
                 }
             });
         }
 
         //function to set in 'vm' list of Platoons by groupId
         function getPlatoons(groupId) {
-            if (groupId == null) return;
+            if (groupId == null) return [];
             ConfirmUsersService.platoon({groupId: groupId}).$promise.then((res) => {
                 if (res.success) {
                     vm.platoons = res.data;
+                    $log.debug('Set platoons list: ', res.data);
                 }
             });
         }
 
         //function to set in 'vm' list of Sections by platoonId
         function getSections(platoonId) {
-            if (platoonId == null) return;
+            if (platoonId == null) return [];
             ConfirmUsersService.section({platoonId: platoonId}).$promise.then((res) => {
                 if (res.success) {
                     vm.sections = res.data;
+                    $log.debug('Set sections list: ', res.data);
                 }
             });
         }
@@ -174,22 +177,24 @@
         //Special function for view to correct change group
         function changeGroup(cityId) {
             getGroups(cityId);
-            vm.platoons = null;
-            vm.sections = null;
+            vm.platoons = [];
+            vm.sections = [];
         }
 
         //Same, but to correct change platoon
         function changePlatoon(groupId) {
             getPlatoons(groupId);
-            vm.sections = null;
+            vm.sections = [];
         }
 
         //function to set in 'vm' list of Ranks
         function getRanks() {
-            vm.ranks = [
-                {id: 2, name: 'Помічник'},
-                {id: 3, name: 'Старший помічник'},
-                {id: 1, name: 'Молодший помічник'}];
+            ConfirmUsersService.rank().$promise.then((res) => {
+                if (res.success) {
+                    vm.ranks = res.data;
+                    $log.debug('Set ranks list: ', res.data);
+                }
+            });
         }
     }
 })();

@@ -14,47 +14,52 @@
         return $resource(null , null, {
             'getUsers': {
                 method: 'GET',
-                url: Endpoints.APPROVE_USERS + '/:platoonId'
+                url: `${Endpoints.USER}/approve/:platoonId`
             },
             'approveUser': {
                 method: 'POST',
-                url: Endpoints.APPROVE_USERS
+                url: `${Endpoints.USER}/approve`
             },
             'declineUser': {
                 method: 'POST',
-                url: Endpoints.DECLINE_USERS
+                url: `${Endpoints.USER}/decline`
             },
             'updateUser': {
                 method: 'PUT',
-                url: Endpoints.USER + '/:userId'
+                url: `${Endpoints.USER}/:userId`
             },
             'countries': {
                 method: 'GET',
-                url: `${Endpoints.REGISTRATION}/countries`,
+                url: `${Endpoints.PUBLIC}/countries`,
                 isArray: false
             },
             'city': {
                 method: 'GET',
-                url: `${Endpoints.REGISTRATION}/city`,
+                url: `${Endpoints.PUBLIC}/city`,
                 params: {countryId: '@countryId'},
                 isArray: false
             },
             'group': {
                 method: 'GET',
-                url: `${Endpoints.REGISTRATION}/group`,
+                url: `${Endpoints.PUBLIC}/group`,
                 params: {cityId: '@cityId'},
                 isArray: false
             },
             'platoon': {
                 method: 'GET',
-                url: `${Endpoints.REGISTRATION}/platoon`,
+                url: `${Endpoints.PUBLIC}/platoon`,
                 params: {groupId: '@groupId'},
                 isArray: false
             },
             'section': {
                 method: 'GET',
-                url: `${Endpoints.REGISTRATION}/section`,
+                url: `${Endpoints.PUBLIC}/section`,
                 params: {platoonId: '@platoonId'},
+                isArray: false
+            },
+            'rank': {
+                method: 'GET',
+                url: `${Endpoints.PUBLIC}/ranks`,
                 isArray: false
             }
         });
