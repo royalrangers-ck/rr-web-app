@@ -10,10 +10,7 @@
     function HomeController($log) {
         const vm = this;
 
-        activate();
+        ////
 
-        function activate() {
-            $log.debug('Init HomeController ...');
-        }
     }
 })();

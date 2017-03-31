@@ -9,12 +9,7 @@
     ForgotPasswordController.$inject = ['$log'];
     function ForgotPasswordController($log) {
 
-        activate();
+        ////
 
-        ///
-
-        function activate() {
-            $log.debug('Init ForgotPasswordController...');
-        }
     }
 })();

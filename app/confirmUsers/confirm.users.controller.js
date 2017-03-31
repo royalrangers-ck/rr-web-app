@@ -14,8 +14,9 @@
 
         activate();
 
+        ////
+
         function activate() {
-            $log.debug('Init ConfirmUsersController ...');
             $scope.usersList = loadUsers('./confirmUsers/users.json');
             //create function to set selected user in confirm menu
             $scope.setCurrentUser = function (id) {

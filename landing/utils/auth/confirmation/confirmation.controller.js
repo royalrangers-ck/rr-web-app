@@ -10,12 +10,7 @@
     function ConfirmationController($log) {
         const vm = this;
 
-        activate();
+        ////
 
-        ///
-
-        function activate() {
-            $log.debug('Init ConfirmationController ...');
-        }
     }
 })();

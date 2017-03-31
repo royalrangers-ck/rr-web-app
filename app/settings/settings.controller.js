@@ -10,12 +10,7 @@
     function SettingsController($log) {
         const vm = this;
 
-        activate();
+        ////
 
-        ///
-
-        function activate() {
-            $log.debug('Init SettingsController ...');
-        }
     }
 })();
