@@ -133,6 +133,10 @@ gulp.task('copyApp:app', () => {
         .src(src)
         .pipe(rename({dirname: ''}))
         .pipe(babel({presets: ['es2015']}))
+        .on('error', function(e) {
+            console.log('>>> ERROR', e.message);
+            this.emit('end');
+        })
         .pipe(concat('app.js'))
         .pipe(gulp.dest(dest))
 });
