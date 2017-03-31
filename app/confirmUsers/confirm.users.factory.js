@@ -7,9 +7,6 @@
         .factory('ConfirmUsers', ConfirmUsers);
 
     ConfirmUsers.$inject = ['$resource', 'Endpoints'];
-
-    //This function return $resource with all needed request
-    //to get, approve and decline unapproved users
     function ConfirmUsers($resource, Endpoints) {
         return $resource(Endpoints.USER , null, {
             'getUsers': {
@@ -49,6 +46,11 @@
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/platoon`,
                 params: {groupId: '@groupId'},
+                isArray: false
+            },
+            'allPlatoons': {
+                method: 'GET',
+                url: `${Endpoints.PUBLIC}/platoons`,
                 isArray: false
             },
             'section': {

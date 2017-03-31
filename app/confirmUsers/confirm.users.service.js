@@ -7,7 +7,6 @@
         .service('ConfirmUsersService', ConfirmUsersService);
 
     ConfirmUsersService.$inject = ['ConfirmUsers'];
-    //this service connect factory to controller
     function ConfirmUsersService(ConfirmUsers) {
         this.getUsers = ConfirmUsers.getUsers;
         this.approveUser = ConfirmUsers.approveUser;
@@ -18,6 +17,7 @@
         this.city = ConfirmUsers.city;
         this.group = ConfirmUsers.group;
         this.platoon = ConfirmUsers.platoon;
+        this.allPlatoons = ConfirmUsers.allPlatoons;
         this.section = ConfirmUsers.section;
         this.rank = ConfirmUsers.rank;
     }

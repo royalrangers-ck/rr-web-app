@@ -7,26 +7,20 @@
         .controller('ConfirmUsersController', ConfirmUsersController);
     ConfirmUsersController.$inject = ['$rootScope', 'growl', '$log', '$route', 'ConfirmUsersService'];
 
-    //This controller allows administrator get, edit, approve or decline unapproved users
-    //TODO: make use to getUsers(id) admin.platoonId instead of static id
-    //TODO: use function to reload controller after decline or approve user
+    //TODO: find answer - why $route.reload() doesn't work
     //TODO: try to use angular modal instead of bootstrap ones
-    //TODO: test api to approve and decline users
-    //TODO: use api to update user data
-    //TODO: delete all comments
     function ConfirmUsersController($rootScope, growl, $log, $route, ConfirmUsersService) {
-        //Set variables
         const vm = this;
         const editUserModal = '#EditUser';            //name of modal window to edit user
         const confirmDeleteModal = '#ConfirmDelete';  //same, but to confirm decline user
         vm.usersList = [];
         vm.currentUser = {};
-        vm.editUser = editUser;
+        vm.editUser = editCurrentUser;
         vm.changeGroup = changeGroup;
         vm.changePlatoon = changePlatoon;
-        vm.getSections = getSections;
-        vm.approveUser = approveUser;
-        vm.declineUser = declineUser;
+        vm.getSections = setSections;
+        vm.approveUser = approveCurrentUser;
+        vm.declineUser = declineCurrentUser;
         vm.showConfirmDecline = showConfirmDecline;
 
         activate();
@@ -35,8 +29,7 @@
 
         function activate() {
             $log.debug('Init ConfirmUsersController ...');
-            //Get list of unapproved users with same 'platoonId' as admin's
-            getUsers(1);
+            getUsers($rootScope.currentUser.platoon);
             //init "FooTable" plugin in all tables with 'footable' class
             $(document).ready(function () {
                 $('.footable').footable();
@@ -44,42 +37,47 @@
             $log.debug('Init complete.');
         }
 
-        //Function to set in 'vm' user list with specified platoonId
-        function getUsers(grId) {
-            ConfirmUsersService.getUsers({platoonId: grId}).$promise.then((res) => {
+        function getUsers(platoonName) {
+            ConfirmUsersService.allPlatoons().$promise.then((res) => {
                 if (res.success) {
-                    let result;
-                    result = res.data || [];
-                    result.forEach((item) => {
-                        item.birthDate = new Date(item.birthDate);  //use 'new Data()' instead of raw int
+                    let platoonId = res.data.find((item) => item.name == platoonName).id;
+                    ConfirmUsersService.getUsers({platoonId: platoonId}).$promise.then((res) => {
+                        if (res.success) {
+                            let result;
+                            result = res.data || [];
+                            result.forEach((item) => {
+                                item.birthDate = new Date(item.birthDate);
+                            });
+                            vm.usersList = result;
+                            $log.debug('Load users list:', vm.usersList);
+                        }
                     });
-                    vm.usersList = result;
-                    $log.debug('Load users list:', vm.usersList);
                 }
             });
+
         }
 
-        //Function to edit currentUser
-        function editUser(id) {
+        function editCurrentUser(id) {
             vm.currentUser = vm.usersList.find((item) => item.id == id) || {};
-            getCities(vm.currentUser.countryId);
-            getGroups(vm.currentUser.cityId);
-            getPlatoons(vm.currentUser.groupId);
-            getSections(vm.currentUser.platoonId);
-            getRanks();
-            $(editUserModal).modal();       //load modal window in view (maybe incorrect)
+            setCities(vm.currentUser.countryId);
+            setGroups(vm.currentUser.cityId);
+            setPlatoons(vm.currentUser.groupId);
+            setSections(vm.currentUser.platoonId);
+            setRanks();
+            $(editUserModal).modal();
             $log.debug('Edit user:', vm.currentUser);
         }
 
-        //Function to approve currentUser
-        function approveUser() {
-            $(editUserModal).modal('hide'); //immediately hide modal window to prevent double confirm
+        function approveCurrentUser() {
+            $(editUserModal).modal('hide');
             let valuesToSend = {
                 firstName: vm.currentUser.firstName,
                 lastName: vm.currentUser.lastName,
                 gender: vm.currentUser.gender,
+                userAgeGroup: vm.currentUser.userAgeGroup,
                 telephoneNumber: vm.currentUser.telephoneNumber,
                 birthDate: vm.currentUser.birthDate.getTime(),
+                countryId: vm.currentUser.countryId,
                 cityId: vm.currentUser.cityId,
                 groupId: vm.currentUser.groupId,
                 platoonId: vm.currentUser.platoonId,
@@ -89,28 +87,25 @@
             ConfirmUsersService.approveUser([vm.currentUser.id],
                 (res) => {
                     if (res.success) {
-                        growl.success('Користувач ' + vm.currentUser.firstName + ' ' +
-                            vm.currentUser.lastName + ' підтверджений');
-                    } else {
-                        growl.error('Помилка:' + res.data.message);
-                    }
-                });
-            ConfirmUsersService.updateUser({userId: vm.currentUser.id}, valuesToSend,
-                (res) => {
-                    if (res.success) {
-                        growl.success('Користувач ' + vm.currentUser.firstName + ' ' +
-                            vm.currentUser.lastName + ' підтверджений');
-                        // $route.reload();
+                        ConfirmUsersService.updateUser({userId: vm.currentUser.id}, valuesToSend,
+                            (res) => {
+                                if (res.success) {
+                                    growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
+                                        vm.currentUser.lastName + ' підтверджений');
+                                    $route.reload();
+                                } else {
+                                    growl.error('Помилка:' + res.data.message);
+                                }
+                            });
                     } else {
                         growl.error('Помилка:' + res.data.message);
                     }
                 });
         }
 
-        //Function to decline currentUser
-        function declineUser() {
-            $(confirmDeleteModal).modal('hide');    //prevent double decline
-            $(editUserModal).modal('hide');         //also to prevent double decline
+        function declineCurrentUser() {
+            $(confirmDeleteModal).modal('hide');
+            $(editUserModal).modal('hide');
             ConfirmUsersService.declineUser([vm.currentUser.id],
                 (res) => {
                     if (res.success) {
@@ -128,8 +123,7 @@
             $(confirmDeleteModal).modal();
         }
 
-        //function to set in 'vm' list of Cities by countryId
-        function getCities(countryId) {
+        function setCities(countryId) {
             if (countryId == null) return [];
             ConfirmUsersService.city({countryId: countryId}).$promise.then((res) => {
                 if (res.success) {
@@ -139,8 +133,7 @@
             });
         }
 
-        //function to set in 'vm' list of Groups by cityId
-        function getGroups(cityId) {
+        function setGroups(cityId) {
             if (cityId == null) return [];
             ConfirmUsersService.group({cityId: cityId}).$promise.then((res) => {
                 if (res.success) {
@@ -150,8 +143,7 @@
             });
         }
 
-        //function to set in 'vm' list of Platoons by groupId
-        function getPlatoons(groupId) {
+        function setPlatoons(groupId) {
             if (groupId == null) return [];
             ConfirmUsersService.platoon({groupId: groupId}).$promise.then((res) => {
                 if (res.success) {
@@ -161,8 +153,7 @@
             });
         }
 
-        //function to set in 'vm' list of Sections by platoonId
-        function getSections(platoonId) {
+        function setSections(platoonId) {
             if (platoonId == null) return [];
             ConfirmUsersService.section({platoonId: platoonId}).$promise.then((res) => {
                 if (res.success) {
@@ -174,19 +165,18 @@
 
         //Special function for view to correct change group
         function changeGroup(cityId) {
-            getGroups(cityId);
+            setGroups(cityId);
             vm.platoons = [];
             vm.sections = [];
         }
 
         //Same, but to correct change platoon
         function changePlatoon(groupId) {
-            getPlatoons(groupId);
+            setPlatoons(groupId);
             vm.sections = [];
         }
 
-        //function to set in 'vm' list of Ranks
-        function getRanks() {
+        function setRanks() {
             ConfirmUsersService.rank().$promise.then((res) => {
                 if (res.success) {
                     vm.ranks = res.data;
