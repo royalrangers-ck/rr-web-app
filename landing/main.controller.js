@@ -12,14 +12,9 @@
 
         vm.submit = submit;
 
-        activate();
-
-        function activate() {
-            $log.debug('Init MainController ...');
-        }
+        ////
 
         function submit() {
-            $log.debug(`==> Subscribe email: ${vm.email}`);
             $http.get('/api/create?email=' + vm.email, (res) => {
                 if (res.success) {
                     growl.success(`Email ${vm.email} subscribed successfully.`);

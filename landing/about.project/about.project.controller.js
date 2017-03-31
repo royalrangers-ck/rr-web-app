@@ -6,15 +6,10 @@
         .module('app')
         .controller('AboutProjectController', AboutProjectController);
 
-    AboutProjectController.$inject = ['$log'];
-    function AboutProjectController($log) {
+    AboutProjectController.$inject = [];
+    function AboutProjectController() {
 
-        activate();
+        ////
 
-        ///
-
-        function activate() {
-            $log.debug('Init AboutUsController ...');
-        }
     }
 })();

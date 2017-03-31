@@ -10,14 +10,10 @@
     function ConfirmRegistrationController($log, emailResponse) {
         const vm = this;
 
-        activate();
         logResponse();
         checkEmail();
 
-
-        function activate() {
-            $log.debug('Init ConfirmRegistrationController ...');
-        }
+        ////
 
         function logResponse() { /* We print our status in console for testing */
             $log.debug(emailResponse);
