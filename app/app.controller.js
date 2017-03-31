@@ -5,22 +5,27 @@
         .module('app')
         .controller('AppController', AppController);
 
-    AppController.$inject = ['$log', '$rootScope', '$http', 'Menu'];
-    function AppController($log, $rootScope, $http, Menu) {
+    AppController.$inject = ['$log', '$rootScope', '$http', 'Menu', 'Endpoints', 'TokenScheduler'];
+    function AppController($log, $rootScope, $http, Menu, Endpoints, TokenScheduler) {
         const vm = $rootScope;
         vm.sidebarMenu = Menu;
 
-        let req = {
-            method: 'GET',
-            url: '/api/user'
-        };
+        activate();
 
-        $http(req).then((res) => {
-            $log.debug('<== userInfoResponse:', res);
+        ////
 
-            if (res.data.success) {
-                vm.currentUser = res.data.data;
-            }
-        });
+        function activate() {
+            TokenScheduler.refresh(Endpoints.TOKEN_REFRESH_INTERVAL);
+            getUserInfo();
+        }
+
+        function getUserInfo() {
+            $http.get(Endpoints.USER).then((res) => {
+                if (res.data.success) {
+                    vm.currentUser = res.data.data;
+                    $log.debug('<== userInfoResponse:', res);
+                }
+            });
+        }
     }
 })();

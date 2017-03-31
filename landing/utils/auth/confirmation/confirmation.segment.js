@@ -10,7 +10,7 @@
     function ConfirmationSegment($routeSegmentProvider) {
 
         $routeSegmentProvider.when('/confirmation', 'confirmation').segment('confirmation', {
-            templateUrl: 'confirmation/confirmation.html',
+            templateUrl: 'utils/auth/confirmation/confirmation.html',
             controller: 'ConfirmationController'
         });
     }
