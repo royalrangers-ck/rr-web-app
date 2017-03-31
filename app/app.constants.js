@@ -30,8 +30,11 @@
         // Unsecured API maybe placed in /open/** path
         constants.OPEN = constants.API + '/open';
 
-        // Demo /user  returns autorized user info
+        // User  returns autorized user info
         constants.USER = constants.API + '/user';
+
+        // Token refresh interval
+        constants.TOKEN_REFRESH_INTERVAL = 1000 * 60 * 30; // 30min
 
         //PUBLIC INFO ENDPOINT
         constants.PUBLIC = constants.API + '/public';

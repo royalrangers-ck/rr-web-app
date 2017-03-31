@@ -10,7 +10,7 @@
     function AboutProjectSegment($routeSegmentProvider) {
 
         $routeSegmentProvider.when('/aboutProject', 'aboutProject').segment('aboutProject', {
-            templateUrl: 'aboutProject/about.project.html',
+            templateUrl: 'about.project/about.project.html',
             controller: 'AboutProjectController'
         });
     }
