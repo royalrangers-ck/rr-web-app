@@ -9,9 +9,7 @@
 
     //This controller allows administrator get, edit, approve or decline unapproved users
     //TODO: make use to getUsers(id) admin.platoonId instead of static id
-    //TODO: confirm list of available fields for request to approve user
     //TODO: use function to reload controller after decline or approve user
-    //TODO: delete JSON.parse();
     //TODO: try to use angular modal instead of bootstrap ones
     //TODO: test api to approve and decline users
     //TODO: use api to update user data
@@ -51,7 +49,7 @@
             ConfirmUsersService.getUsers({platoonId: grId}).$promise.then((res) => {
                 if (res.success) {
                     let result;
-                    result = JSON.parse(res.data.message);
+                    result = res.data || [];
                     result.forEach((item) => {
                         item.birthDate = new Date(item.birthDate);  //use 'new Data()' instead of raw int
                     });
