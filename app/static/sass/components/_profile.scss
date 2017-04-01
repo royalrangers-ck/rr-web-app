@@ -1,0 +1,29 @@
+.achievements {
+  .achievements__items {
+    position: relative;
+
+    a { color: $text-color; }
+  }
+
+  .achievements__items-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, .8);
+    margin: 0 15px;
+    padding: 10px 20px;
+    font-size: $font-size-h4;
+
+    > div {
+      &:first-child {
+        float: left;
+      }
+
+      &:nth-child(2) {
+        font-weight: bold;
+        float: right;
+      }
+    }
+  }
+}
