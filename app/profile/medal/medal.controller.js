@@ -10,8 +10,8 @@
     function ProfileMedalController ($log, AppModalService) {
         const vm = this;
         vm.medals = [
-            { id: 1, name: 'Medal of Valor'},
-            { id: 2, name: 'Outstanding Courage Medal'},
+            { id: 1, name: 'Medal of Valor', action: 'inProgress'},
+            { id: 2, name: 'Outstanding Courage Medal', action: 'notGet'},
             { id: 3, name: 'Honor Gold Medal of Achievement'},
             { id: 4, name: 'Global Leadership Award Medal'},
             { id: 5, name: 'National Meritorious Medal'},
@@ -27,11 +27,18 @@
         ];
 
         vm.profileMedalModal = function (medalId) {
-            vm.currentMedal = vm.medals.find((medal) => {
-                return medal.id === medalId;
-            });
+            AppModalService.profileMedalModal(findMedal(medalId));
+        };
 
-            AppModalService.profileMedalModal(vm.currentMedal);
+        vm.isInProgress = function (medalId) {
+            let currentMedal = findMedal(medalId);
+            return currentMedal.action == 'inProgress';
+        };
+
+        vm.isNotGet = function (medalId) {
+            let currentMedal = findMedal(medalId);
+            $log.debug('currentMedal:', medalId);
+            return currentMedal.action == 'notGet' ? 'not-get' : '';
         };
 
         activate();
@@ -40,6 +47,12 @@
 
         function activate() {
             $log.debug('Init ProfileController ...');
+        }
+
+        function findMedal (medalId) {
+            return vm.medals.find((medal) => {
+                return medal.id === medalId;
+            });
         }
     }
 })();
