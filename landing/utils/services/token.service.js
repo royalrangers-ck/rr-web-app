@@ -15,12 +15,10 @@
         ////
 
         function get() {
-            $log.debug(`<== Get token: ${$localStorage.token}`);
             return $localStorage.token;
         }
 
         function save(token) {
-            $log.debug(`==> Save token: ${token}`);
             return $localStorage.token = token;
         }
     }

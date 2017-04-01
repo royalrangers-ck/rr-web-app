@@ -9,17 +9,21 @@
     AppModalService.$inject = ['$uibModal'];
     function AppModalService($uibModal) {
 
-        //  EXAMPLE
-        //
-        // this.Modal = Modal;
-        //
-        // function Modal() {
-        //     return $uibModal.open({
-        //         animation: true,
-        //         templateUrl: 'Url relative to app.js',
-        //         controller: 'Is a Controller will use in modal window',
-        //         controllerAs: 'vm',
-        //     });
-        // }
+        this.profileMedalModal = profileMedalModal;
+
+        function profileMedalModal(_currentMedal) {
+
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'profile/medal/profileMedalModal/medal.modal.html',
+                controller: 'MedalModalController',
+                controllerAs: 'vm',
+                resolve: {
+                    currentModal: function () {
+                        return _currentMedal;
+                    }
+                }
+            });
+        }
     }
 })();
