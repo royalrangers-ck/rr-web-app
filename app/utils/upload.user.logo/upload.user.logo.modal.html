@@ -1,26 +1,22 @@
-<div class="modal-content" id="home-video-modal">
+<div class="modal-content" id="upload-user-logo-modal">
     <div class="modal-header">
         <button type="button" class="close" ng-click="vm.close()">&times;</button>
-        <h4 class="modal-title"> Video about us</h4>
+        <h3>Завантаження нового аватара користувача</h3>
     </div>
-    <div class="modal-body" uploadUserLogo>
+    <div class="modal-body">
 
-        <div class="form-group col-xs-12" ng-init="vm.filename='No File chosen'">
-            <label class="btn btn-primary btn-file-upload">
-                Browse File <input type="file"
-                                   accept="image/*"
-                                   class="file-upload-hide"
-                                   filename="vm.filename"
-                                   fileread="vm.data.organizationItem.imageUrl"
-                                   ng-model="vm.data.organizationItem.imageUrl"
-                                   ng-click="vm.form.$pristine = false">
-            </label>
-            <label class="label-file-upload" ng-bind="vm.filename"></label>
-        </div>
+        <input type="file" id="file" class="inputfile" upload-user-logo
+               accept="image/*"
+               image="vm.data.image"
+               ng-model="vm.data.image"
+               ng-click="vm.form.$pristine = false">
+        <label for="file" class="btn btn-primary btn-file" ng-switch on="vm.data.image">
+            <span ng-switch-when=''>Виберіть будь-ласка файл</span>
+            <span ng-switch-default>Обрати інший файл</span>
+        </label>
 
-        <div class="form-group col-xs-12">
-            <img class="item-image" id="image" alt="Item Image" title="{{ vm.filename }}"
-                 fallback-src="{{ vm.noImageAvailable }}" ng-src="{{ vm.data.organizationItem.imageUrl }}">
-        </div>
+        <img class="item-image" id="image" alt="Item Image"
+             fallback-src="{{ vm.noImageAvailable }}" ng-src="{{ vm.data.image }}">
+
     </div>
 </div>

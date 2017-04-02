@@ -10,14 +10,12 @@
         const vm = this;
 
         vm.close = close;
-
-
         // File upload
-        vm.noImageAvailable = 'http://kingofwallpapers.com/troll-face/troll-face-001.jpg';
-        vm.filename = '';
-        vm.data = {};
-        //
-
+        vm.noImageAvailable = 'static/images/user.png';
+        /* data.image - contain image, which was uploaded */
+        vm.data = {
+            image: ''
+        };
 
         activate();
 

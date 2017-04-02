@@ -3,35 +3,34 @@
 
     angular
         .module('app')
-        .directive('fileread', FileRead);
+        .directive('uploadUserLogo', uploadUserLogo);
 
-    FileRead.$inject = ['growl'];
-    function FileRead(growl) {
+    uploadUserLogo.$inject = ['growl'];
+    function uploadUserLogo(growl) {
         return {
+            strict: 'A', /* Binding using attribut */
             scope: {
-                fileread: "=",
-                filename: "="
+                image: "=" /* as userLogo: '=userLogo' */
             },
-            link: function (scope, element, attributes) {
-                element.bind("change", function (changeEvent) {
-                    console.log('changeEvent');
-                    var fileSize = ((changeEvent.target.files[0].size / 1024) / 1024).toFixed(4); // MB
+            link: function (scope, element, attributes) { /* Function called when we run first time directive */
+                element.bind("change", function (changeEvent) { /* changeEvent - Jquery object, contain all information about event*/
+                    const fileSize = ((changeEvent.target.files[0].size / 1024) / 1024).toFixed(4); // MB
                     if (fileSize >= 10) {
                         growl.error('File size greater than 10 MB.');
                         return;
                     }
 
-                    var reader = new FileReader();
+                    /* FileReader - special native API for downloading files*/
+                    const uploader = new FileReader();
 
-                    reader.onload = function (loadEvent) {
-                        console.log('loadEvent');
-                        scope.$apply(function () {
-                            scope.fileread = loadEvent.target.result;
-                            scope.filename = changeEvent.target.files[0].name;
+                    /* Uploading file  */
+                    uploader.readAsDataURL(changeEvent.target.files[0]);
+
+                    uploader.onload = function (loadEvent) {      /* Onload - event handler in FileReader (active when files successful upload)*/
+                        scope.$apply(function () {              /* Update scope*/
+                            scope.image = loadEvent.target.result;
                         });
                     };
-
-                    reader.readAsDataURL(changeEvent.target.files[0]);
                 });
             }
         }
