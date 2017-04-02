@@ -1,16 +1,16 @@
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" ng-click="vm.close()">&times;</button>
-        <h4 class="modal-title">{{ vm.currentMedal.name}}</h4>
+        <h4 class="modal-title">{{ vm.currentAchieve.name}}</h4>
     </div>
     <div class="modal-body">
 
         <div class="row">
             <div class="col-xs-12 col-sm-4">
-                <p><img class="media-object img-responsive" src="static/vendor/images/demo/profile.1.jpg" alt="Medal title"></p>
+                <p><img class="media-object img-responsive" src="static/vendor/images/demo/profile.1.jpg" alt="{{ vm.currentAchieve.name }}"></p>
             </div>
             <div class="col-xs-12 col-sm-8">
-                <h3 class="media-heading">{{ vm.currentMedal.name}}</h3>
+                <h3 class="media-heading">{{ vm.currentAchieve.name}}</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto assumenda delectus, deserunt dolorem ea facilis incidunt ipsa labore libero magni odit placeat quasi quibusdam quos reiciendis rerum temporibus vitae.</p>
             </div>
         </div>
