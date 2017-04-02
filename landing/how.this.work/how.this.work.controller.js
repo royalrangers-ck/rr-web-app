@@ -9,12 +9,7 @@
     HowThisWorkController.$inject = ['$log'];
     function HowThisWorkController($log) {
 
-        activate();
+        ////
 
-        ///
-
-        function activate() {
-            $log.debug('Init HowThisWorkController ...');
-        }
     }
 })();

@@ -10,12 +10,11 @@
     function HomeController($log, AppModalService) {
         const vm = this;
 
+
         vm.UploadUserLogo = AppModalService.UploadUserLogo;
 
         activate();
 
-        function activate() {
-            $log.debug('Init HomeController ...');
-        }
+
     }
 })();

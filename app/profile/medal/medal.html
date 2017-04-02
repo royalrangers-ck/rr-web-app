@@ -1,0 +1,20 @@
+<div class="ibox">
+    <div class="ibox-title">
+        <h1>Profile Detail</h1>
+    </div>
+
+    <div class="ibox-content">
+        <section class="row achievements">
+
+            <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__items" ng-repeat="medal in vm.medals">
+                <a data-id="{{ medal.id }}" ng-click="vm.profileMedalModal(medal.id)">
+                    <img class="img-responsive" src="static/vendor/images/demo/profile.1.jpg" alt="Медалі">
+                    <figcaption class="achievements__items-description text-center">
+                        <span>{{ medal.name }}</span>
+                    </figcaption>
+                </a>
+            </figure>
+
+        </section>
+    </div>
+</div>

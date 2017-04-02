@@ -13,13 +13,7 @@
         vm.data = {};
         vm.login = login;
 
-        activate();
-
-        ///
-
-        function activate() {
-            $log.debug('Init LoginController ...');
-        }
+        ////
 
         function login() {
             let req = {

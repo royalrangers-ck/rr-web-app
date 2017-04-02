@@ -12,12 +12,7 @@
 
         vm.logout = logout;
 
-        activate();
-
-
-        function activate() {
-            $log.debug('Init TopBarController ...');
-        }
+        ////
 
         function logout() {
             TokenService.clean();
@@ -25,8 +20,3 @@
         }
     }
 })();
-
-
-
-
-

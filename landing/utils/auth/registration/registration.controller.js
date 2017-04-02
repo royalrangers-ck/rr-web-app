@@ -26,7 +26,7 @@
 
         activate();
 
-        ///
+        ////
 
         function activate() {
             if (countries && countries.$promise) {

@@ -12,10 +12,7 @@
 
         vm.homeModalVideo = ModalWindowService.homeModalVideo;
 
-        activate();
+        ////
 
-        function activate() {
-            $log.debug('Init HomeController ...');
-        }
     }
 })();

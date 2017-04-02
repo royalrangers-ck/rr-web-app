@@ -10,12 +10,7 @@
     function LibraryController($log) {
         const vm = this;
 
-        activate();
+        ////
 
-        ///
-
-        function activate() {
-            $log.debug('Init LibraryController ...');
-        }
     }
 })();
