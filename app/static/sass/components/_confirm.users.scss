@@ -46,3 +46,20 @@ $a-cu-table-border-style: 1px solid #e7eaec; //styles to top and bottom borders 
     font-size: 1.3em;
   }
 }
+
+//styles to header
+.a-cu-page-header {
+  text-align: center;
+  &__platoon-name {
+    font-weight: bold;
+    color: #18a689;
+  }
+}
+
+//styles to no users text
+.a-cu-no-users {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 10px;
+}

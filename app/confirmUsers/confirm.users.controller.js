@@ -5,39 +5,53 @@
     angular
         .module('app')
         .controller('ConfirmUsersController', ConfirmUsersController);
+    ConfirmUsersController.$inject = ['$rootScope', 'growl', '$log', '$route', 'ConfirmUsersService', 'AppModalService'];
 
-    ConfirmUsersController.$inject = ['$scope', '$log'];
-    function ConfirmUsersController($scope, $log) {
+    //TODO: find answer - why $route.reload() doesn't work
+    function ConfirmUsersController($rootScope, growl, $log, $route, ConfirmUsersService, AppModalService) {
         const vm = this;
-        $scope.userList = [];
-        $scope.currentUser = {};
+        vm.usersList = [];
+        vm.currentUser = {};
+        vm.adminInfo = $rootScope.currentUser;
+        vm.editUser = editCurrentUser;
 
         activate();
 
         ////
 
         function activate() {
-            $scope.usersList = loadUsers('./confirmUsers/users.json');
-            //create function to set selected user in confirm menu
-            $scope.setCurrentUser = function (id) {
-                $scope.currentUser = $scope.usersList.find((item) => item.id == id);
-            }
+            $log.debug('Init ConfirmUsersController ...');
+            getUsers($rootScope.currentUser.platoon);
+            //init "FooTable" plugin in all tables with 'footable' class
+            $(document).ready(function () {
+                $('.footable').footable();
+            });
+            $log.debug('Init complete.');
         }
 
-        //function to load users from file
-        function loadUsers(fileName) {
-            var users;
-            $.ajax({
-                url: fileName,
-                async: false,
-                dataType: 'json',
-                success: function (data) {
-                    //replace string date to new Date() in all users
-                    data.forEach((item) => item.birth = new Date(item.birth));
-                    users = data;
+        function getUsers(platoonName) {
+            ConfirmUsersService.allPlatoons().$promise.then((res) => {
+                if (res.success) {
+                    let platoonId = res.data.find((item) => item.name == platoonName).id;
+                    ConfirmUsersService.getUsers({platoonId: platoonId}).$promise.then((res) => {
+                        if (res.success) {
+                            let result;
+                            result = res.data || [];
+                            result.forEach((item) => {
+                                item.birthDate = new Date(item.birthDate);
+                            });
+                            vm.usersList = result;
+                            $log.debug('Load users list:', vm.usersList);
+                        }
+                    });
                 }
             });
-            return users;
+        }
+
+        function editCurrentUser(id) {
+            let currentUser = vm.usersList.find((item) => item.id == id) || {};
+            AppModalService.approveCurrentUserModal(currentUser);
+            $log.debug('Set user to modal window:', vm.currentUser);
         }
     }
 })();

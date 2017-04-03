@@ -10,6 +10,7 @@
     function AppModalService($uibModal) {
 
         this.profileModal = profileModal;
+        this.approveCurrentUserModal = approveCurrentUserModal;
 
         function profileModal (_currentAchieve) {
 
@@ -21,6 +22,22 @@
                 resolve: {
                     currentAchieve: function () {
                         return _currentAchieve;
+                    }
+                }
+            });
+        }
+
+        function approveCurrentUserModal(_currentUser) {
+
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'confirmUsers/approve.current.user.modal/approve.current.user.modal.html',
+                controller: 'ApproveCurrentUserModalController',
+                controllerAs: 'vm',
+                size: 'lg',
+                resolve: {
+                    currentUser: function () {
+                        return _currentUser;
                     }
                 }
             });
