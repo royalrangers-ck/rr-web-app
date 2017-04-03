@@ -9,19 +9,19 @@
     AppModalService.$inject = ['$uibModal'];
     function AppModalService($uibModal) {
 
-        this.profileMedalModal = profileMedalModal;
+        this.profileModal = profileModal;
         this.approveCurrentUserModal = approveCurrentUserModal;
 
-        function profileMedalModal(_currentMedal) {
+        function profileModal (_currentAchieve) {
 
             return $uibModal.open({
                 animation: true,
-                templateUrl: 'profile/medal/profileMedalModal/medal.modal.html',
-                controller: 'MedalModalController',
+                templateUrl: 'profile/profile.modal/modal.html',
+                controller: 'ProfileModalController',
                 controllerAs: 'vm',
                 resolve: {
-                    currentModal: function () {
-                        return _currentMedal;
+                    currentAchieve: function () {
+                        return _currentAchieve;
                     }
                 }
             });

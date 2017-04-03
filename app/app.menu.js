@@ -20,13 +20,14 @@
                 name: 'Мої нагороди',
                 route: '',
                 submenu: [
-                    { name: 'Медалі', route: '#/profile/medal' },
-                    { name: 'Планки', route: '' },
-                    { name: 'За табори', route: '' },
-                    { name: 'За походи', route: '' },
-                    { name: 'Зірки', route: '' },
-                    { name: 'Чверть/рік', route: '' },
-                    { name: 'Начання', route: '' }
+                    { name: 'Медалі', route: '#/profile/medals' },
+                    { name: 'Планки', route: '#/profile/strips' },
+                    { name: 'За табори', route: '#/profile/camps' },
+                    { name: 'За походи', route: '#/profile/trips' },
+                    { name: 'Тести', route: '#/profile/tests' },
+                    { name: 'Зірки', route: '#/profile/stars' },
+                    { name: 'Чверть/рік', route: '#/profile/terms-years' },
+                    { name: 'Начання', route: '#/profile/study' }
                 ]
             },
             { name: 'Виконую', route: '' },
