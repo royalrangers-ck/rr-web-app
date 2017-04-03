@@ -71,3 +71,16 @@
     }
   }
 }
+
+.profile {
+  .profile__title {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    h1, .profile__info-box {}
+    .profile__info-box {
+      align-self: center;
+    }
+  }
+}
