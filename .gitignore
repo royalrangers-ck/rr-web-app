@@ -1,11 +1,14 @@
 # Files
 *.iml
 *.css
+*.tar.gz
 
 # Foulders
 .idea/
 node_modules/
 bower_components/
+.vagrant/
+project/
 .sass-cache/
 template-sources/
 
