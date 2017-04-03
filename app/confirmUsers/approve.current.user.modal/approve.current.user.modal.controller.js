@@ -50,7 +50,7 @@
                 sectionId: vm.currentUser.sectionId,
                 userRank: vm.currentUser.userRank
             };
-            ApproveCurrentUserModalService.approveUser([vm.currentUser.id],
+            ApproveCurrentUserModalService.approveUser({"ids": [vm.currentUser.id]},
                 (res) => {
                     if (res.success) {
                         ApproveCurrentUserModalService.updateUser({userId: vm.currentUser.id}, valuesToSend,
@@ -71,7 +71,7 @@
 
         function declineCurrentUser() {
             close();
-            ApproveCurrentUserModalService.declineUser([vm.currentUser.id],
+            ApproveCurrentUserModalService.declineUser({"ids": [vm.currentUser.id]},
                 (res) => {
                     if (res.success) {
                         growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
