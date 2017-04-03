@@ -36,6 +36,8 @@
 
         function approveCurrentUser() {
             close();
+            growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
+                                        vm.currentUser.lastName + ' підтверджується...');
             let valuesToSend = {
                 firstName: vm.currentUser.firstName,
                 lastName: vm.currentUser.lastName,
@@ -71,6 +73,8 @@
 
         function declineCurrentUser() {
             close();
+            growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
+                                        vm.currentUser.lastName + ' видаляється...');
             ApproveCurrentUserModalService.declineUser({"ids": [vm.currentUser.id]},
                 (res) => {
                     if (res.success) {
