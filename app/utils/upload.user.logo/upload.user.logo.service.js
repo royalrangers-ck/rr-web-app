@@ -9,6 +9,6 @@
     UploadUserLogoService.$inject = [];
     function UploadUserLogoService() {
 
-
     }
+
 })();

@@ -6,15 +6,11 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$log', 'AppModalService'];
-    function HomeController($log, AppModalService) {
+    HomeController.$inject = ['AppModalService'];
+    function HomeController(AppModalService) {
         const vm = this;
 
-
         vm.UploadUserLogo = AppModalService.UploadUserLogo;
-
-        activate();
-
 
     }
 })();
