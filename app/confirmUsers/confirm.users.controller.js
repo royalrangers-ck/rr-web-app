@@ -5,14 +5,13 @@
     angular
         .module('app')
         .controller('ConfirmUsersController', ConfirmUsersController);
-    ConfirmUsersController.$inject = ['$rootScope', 'growl', '$log', '$route', 'ConfirmUsersService', 'AppModalService'];
+    ConfirmUsersController.$inject = ['$rootScope', 'growl', '$log', '$route', 'AppModalService', 'usersList', 'platoons'];
 
-    //TODO: find answer - why $route.reload() doesn't work
-    function ConfirmUsersController($rootScope, growl, $log, $route, ConfirmUsersService, AppModalService) {
+    function ConfirmUsersController($rootScope, growl, $log, $route, AppModalService, usersList, platoons) {
         const vm = this;
         vm.usersList = [];
         vm.currentUser = {};
-        vm.adminInfo = $rootScope.currentUser;
+        vm.adminPlatoonName = '';
         vm.editUser = editCurrentUser;
 
         activate();
@@ -21,7 +20,8 @@
 
         function activate() {
             $log.debug('Init ConfirmUsersController ...');
-            getUsers($rootScope.currentUser.platoon);
+            getUsers($rootScope.currentUser.platoonId);
+            getAdminPlatoonName();
             //init "FooTable" plugin in all tables with 'footable' class
             $(document).ready(function () {
                 $('.footable').footable();
@@ -29,21 +29,16 @@
             $log.debug('Init complete.');
         }
 
-        function getUsers(platoonName) {
-            ConfirmUsersService.allPlatoons().$promise.then((res) => {
+        function getUsers(platoonId) {
+            usersList.$promise.then((res) => {
                 if (res.success) {
-                    let platoonId = res.data.find((item) => item.name == platoonName).id;
-                    ConfirmUsersService.getUsers({platoonId: platoonId}).$promise.then((res) => {
-                        if (res.success) {
-                            let result;
-                            result = res.data || [];
-                            result.forEach((item) => {
-                                item.birthDate = new Date(item.birthDate);
-                            });
-                            vm.usersList = result;
-                            $log.debug('Load users list:', vm.usersList);
-                        }
+                    let result;
+                    result = res.data || [];
+                    result.forEach((item) => {
+                        item.birthDate = new Date(item.birthDate);
                     });
+                    vm.usersList = result;
+                    $log.debug('Load users list:', vm.usersList);
                 }
             });
         }
@@ -52,6 +47,14 @@
             let currentUser = vm.usersList.find((item) => item.id == id) || {};
             AppModalService.approveCurrentUserModal(currentUser);
             $log.debug('Set user to modal window:', vm.currentUser);
+        }
+
+        function getAdminPlatoonName() {
+            return platoons.$promise.then((res) => {
+                if (res.success) {
+                    vm.adminPlatoonName = res.data.find((item) =>  item.id == $rootScope.currentUser.platoonId).name;
+                }
+            })
         }
     }
 })();
