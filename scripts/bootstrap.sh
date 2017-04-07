@@ -31,23 +31,16 @@ npm install gulpjs/gulp-cli -g
 npm install gulpjs/gulp#4.0 -D
 
 # ------------------- #
+#      dos2unix       #
+# ------------------- #
 
-# Install App dependencies
-#cd /project
-#rm -rf node_modules
-#npm install --unsafe-perm
-#grunt install
+apt-get install -y dos2unix
 
 # ------------------- #
 #       NGINX         #
 # ------------------- #
 
-# install nginx
 apt-get install -y nginx
-
-# install dos2unix
-apt-get install -y dos2unix
-#dos2unix build.sh
 
 # configure default site
 cat >/etc/nginx/sites-available/default <<EOL
