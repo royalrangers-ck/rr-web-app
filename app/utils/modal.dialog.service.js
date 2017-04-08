@@ -11,6 +11,7 @@
 
         this.profileModal = profileModal;
         this.approveCurrentUserModal = approveCurrentUserModal;
+        this.editUserModal = editUserModal;
 
         function profileModal (_currentAchieve) {
 
@@ -40,6 +41,17 @@
                         return _currentUser;
                     }
                 }
+            });
+        }
+
+        function editUserModal() {
+            
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'edit.user.modal/edit.user.modal.html',
+                controller: 'EditUserModalController',
+                controllerAs: 'vm',
+                size: 'lg'
             });
         }
     }
