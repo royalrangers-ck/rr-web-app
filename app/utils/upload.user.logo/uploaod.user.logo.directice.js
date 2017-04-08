@@ -10,7 +10,8 @@
         return {
             strict: 'A', /* Binding using attribut */
             scope: {
-                image: "=" /* as userLogo: '=userLogo' */
+                image: "=", /* as userLogo: '=userLogo',  used for setting setting url for image */
+                formData: "="   /* as file: '=formData', used for setting data in controller */
             },
             link: function (scope, element, attributes) { /* Function called when we run first time directive */
                 element.bind("change", function (changeEvent) { /* changeEvent - Jquery object, contain all information about event*/
@@ -20,14 +21,20 @@
                         return;
                     }
 
-                    /* FileReader - special native API for downloading files*/
-                    const uploader = new FileReader();
+                    /* FormData - special native API */
+                    let formData = new FormData();
+                    /* FileReader - special native API */
+                    let reader = new FileReader();
 
-                    /* Uploading file  */
-                    uploader.readAsDataURL(changeEvent.target.files[0]);
+                    formData.append('file', changeEvent.target.files[0]);
+                    /* Adding in form image file with key 'file'*/
+                    reader.readAsDataURL(changeEvent.target.files[0]);
+                    /* Reading image url for present image in modal window*/
 
-                    uploader.onload = function (loadEvent) {      /* Onload - event handler in FileReader (active when files successful upload)*/
+                    reader.onload = function (loadEvent) {
+                        /* Onload - event handler in FileReader (active when files successful upload)*/
                         scope.$apply(function () {              /* Update scope*/
+                            scope.formData = formData;
                             scope.image = loadEvent.target.result;
                         });
                     };

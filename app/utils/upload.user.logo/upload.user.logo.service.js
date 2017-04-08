@@ -6,8 +6,10 @@
         .module('app')
         .service('UploadUserLogoService', UploadUserLogoService);
 
-    UploadUserLogoService.$inject = [];
-    function UploadUserLogoService() {
+    UploadUserLogoService.$inject = ['UploadUserLogoFactory'];
+    function UploadUserLogoService(UploadUserLogoFactory) {
+
+        this.uploadImage = UploadUserLogoFactory.uploadImage;
 
     }
 

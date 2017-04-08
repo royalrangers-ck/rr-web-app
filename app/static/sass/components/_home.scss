@@ -19,7 +19,7 @@
     }
   }
   .modal-body {
-    .inputfile {
+    .input-file {
       /*First off, we need to hide the ugly input.
        CSS properties such as display: none or visibility: hidden will not work out.*/
       width: 0.1px;
@@ -29,7 +29,7 @@
       position: absolute;
       z-index: -1;
     }
-    .inputfile + label {
+    .input-file + label {
       font-size: 1.25em;
       font-weight: 700;
       color: white;
@@ -40,7 +40,7 @@
         text-align: center;
       }
     }
-    .inputfile:focus + label {
+    .input-file:focus + label {
       outline: 1px dotted #000;
       outline: -webkit-focus-ring-color auto 5px;
     }
@@ -48,6 +48,14 @@
       display: block;
       margin: auto;
       max-height: 400px;
+    }
+    .modal-upload-confirm-btn {
+      font-size: 1.25em;
+      font-weight: 700;
+      color: white;
+      display: block;
+      margin: 10px 0 0 0;
+      cursor: pointer; /* "hand" cursor */
     }
   }
 }
