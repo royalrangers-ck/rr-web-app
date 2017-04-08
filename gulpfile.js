@@ -359,12 +359,12 @@ gulp.task('sass:app:watch', () => {
 /**
  * Landing: Watch & Compile styles
  */
-gulp.task('sass:app:watch', () => {
-    gulp.watch('app/static/sass/**/*.scss', gulp.series('sass:app:prod'));
+gulp.task('sass:landing:watch', () => {
+    gulp.watch('landing/static/sass/**/*.scss', gulp.series('sass:landing:prod'));
 });
 
 /**
- * Watch and compile App scripts
+ * Application: Watch & compile scripts
  */
 gulp.task('js:app:watch', () => {
     let src = [
@@ -376,5 +376,21 @@ gulp.task('js:app:watch', () => {
         'clear:app:js',
         gulp.parallel('copyScripts:app', 'copyDep:app', 'copyApp:app'),
         'copyJs:app'
+    ));
+});
+
+/**
+ * Landing: Watch & compile scripts
+ */
+gulp.task('js:landing:watch', () => {
+    let src = [
+        'landing/**/*.js',
+        '!landing/static/vendor/**/*.*'
+    ];
+
+    gulp.watch(src, gulp.series(
+        'clear:landing:js',
+        gulp.parallel('copyScripts:landing', 'copyDep:landing', 'copyApp:landing'),
+        'copyJs:landing'
     ));
 });

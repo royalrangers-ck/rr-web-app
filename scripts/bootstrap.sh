@@ -48,26 +48,28 @@ server {
         listen 80 default_server;
         listen [::]:80 default_server ipv6only=on;
 
-        root /project;
-
         location / {
-            return 301 http://localhost:9990/landing/;
-        }
-
-        location /landing {
+            root /project/landing;
             index index.html index.html;
         }
 
         location /app {
+            root /project;
             index index.html index.html;
         }
 
+        location ~* .*\/app\/.*(js|jpg|png|ico|css|otf|eot|svg|ttf|woff|woff2)$ {
+            root /project;
+            sendfile off;
+        }
+
         location ~* \.(js|jpg|png|ico|css|otf|eot|svg|ttf|woff|woff2)$ {
+            root /project/landing;
             sendfile off;
         }
 
         location ~ /api {
-            proxy_pass http://172.16.1.1:8080;
+            proxy_pass http://192.168.2.130:8080;
         }
 
         # Max upload size
@@ -77,7 +79,3 @@ EOL
 
 # reload configuration
 service nginx reload
-
-# convert files, which was broken by Windows
-cd /vagrant
-dos2unix build.sh

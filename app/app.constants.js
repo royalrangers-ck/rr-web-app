@@ -36,6 +36,9 @@
         // Token refresh interval
         constants.TOKEN_REFRESH_INTERVAL = 1000 * 60 * 30; // 30min
 
+        //PUBLIC INFO ENDPOINT
+        constants.PUBLIC = constants.API + '/public';
+
         return constants;
     }
 })();

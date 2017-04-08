@@ -9,18 +9,35 @@
     AppModalService.$inject = ['$uibModal'];
     function AppModalService($uibModal) {
 
-        this.profileMedalModal = profileMedalModal;
-        this.UploadUserLogo = UploadUserLogo;
+        this.profileModal = profileModal;
+        this.approveCurrentUserModal = approveCurrentUserModal;
 
-        function profileMedalModal(_currentMedal) {
+        function profileModal(_currentAchieve) {
+
             return $uibModal.open({
                 animation: true,
-                templateUrl: 'profile/medal/profileMedalModal/medal.modal.html',
-                controller: 'MedalModalController',
+                templateUrl: 'profile/profile.modal/modal.html',
+                controller: 'ProfileModalController',
                 controllerAs: 'vm',
                 resolve: {
-                    currentModal: function () {
-                        return _currentMedal;
+                    currentAchieve: function () {
+                        return _currentAchieve;
+                    }
+                }
+            });
+        }
+
+        function approveCurrentUserModal(_currentUser) {
+
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'confirmUsers/approve.current.user.modal/approve.current.user.modal.html',
+                controller: 'ApproveCurrentUserModalController',
+                controllerAs: 'vm',
+                size: 'lg',
+                resolve: {
+                    currentUser: function () {
+                        return _currentUser;
                     }
                 }
             });
