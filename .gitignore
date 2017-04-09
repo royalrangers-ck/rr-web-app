@@ -8,6 +8,7 @@
 node_modules/
 bower_components/
 .vagrant/
+ssh/
 project/
 .sass-cache/
 template-sources/
