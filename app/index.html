@@ -23,7 +23,10 @@
                         <a href="#/">
                             <span>
                                 <!-- ToDo.zpawn: need real avatar -->
-                                <img alt="image" class="img-circle" src="static/images/demo/profile_photo.jpg" height="50">
+                                <img alt="image" class="img-circle" fallback-src="{{ noImageAvailable }}"
+                                     ng-src="{{ avatarUrl}}"
+                                     height="50">
+
                             </span>
                             <span class="clear">
                                 <span class="block m-t-xs">

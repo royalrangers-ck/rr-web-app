@@ -2,9 +2,13 @@
     <div class="ibox-content">
         <div class="row home">
             <div class="col-xs-4 col-sm-3">
-                <img class="img-circle img-responsive center-block m-b-sm" src="static/images/demo/profile_photo.jpg" alt="profile photo">
+                <img class="img-circle img-responsive center-block m-b-sm" fallback-src="{{ noImageAvailable }}"
+                     ng-src="{{ avatarUrl}}" alt="profile photo" ng-click="vm.UploadUserLogo()">
+
+
                 <ul class="list-unstyled visible-xs">
-                    <li class="m-b"><img class="img-responsive center-block" src="static/images/demo/platoon.png" alt="platoon"></li>
+                    <li class="m-b"><img class="img-responsive center-block" src="static/images/demo/platoon.png"
+                                         alt="platoon"></li>
                     <li><img class="img-responsive center-block" src="static/images/demo/rank.png" alt="rank"></li>
                 </ul>
             </div>
@@ -21,7 +25,9 @@
                     <p class="h4">Звання</p>
                     <ul class="list-unstyled">
                         <li><span class="text-uppercase">{{ currentUser.group }}</span></li>
-                        <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet architecto cumque dolor expedita illo ipsa magnam, magni, nulla numquam quis quisquam sunt ullam ut vitae. Ab ea nam nihil.</p></li>
+                        <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet architecto cumque dolor
+                            expedita illo ipsa magnam, magni, nulla numquam quis quisquam sunt ullam ut vitae. Ab ea nam
+                            nihil.</p></li>
                     </ul>
                 </div>
             </div>

@@ -12,7 +12,7 @@
         this.profileModal = profileModal;
         this.approveCurrentUserModal = approveCurrentUserModal;
 
-        function profileModal (_currentAchieve) {
+        function profileModal(_currentAchieve) {
 
             return $uibModal.open({
                 animation: true,
@@ -42,5 +42,16 @@
                 }
             });
         }
+
+        function UploadUserLogo() {
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'utils/upload.user.logo/upload.user.logo.modal.html',
+                controller: 'UploadUserLogoController',
+                controllerAs: 'vm',
+                // size: 'lg'
+            })
+        }
     }
+
 })();
