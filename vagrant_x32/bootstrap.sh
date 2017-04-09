@@ -31,18 +31,15 @@ npm install gulpjs/gulp-cli -g
 npm install gulpjs/gulp#4.0 -D
 
 # ------------------- #
+#      dos2unix       #
+# ------------------- #
 
-# Install App dependencies
-#cd /project
-#rm -rf node_modules
-#npm install --unsafe-perm
-#grunt install
+apt-get install -y dos2unix
 
 # ------------------- #
 #       NGINX         #
 # ------------------- #
 
-# install nginx
 apt-get install -y nginx
 
 # configure default site
@@ -80,3 +77,7 @@ EOL
 
 # reload configuration
 service nginx reload
+
+# convert files, which was broken by Windows
+cd /vagrant
+dos2unix build.sh

@@ -4,7 +4,7 @@ Vagrant.configure(2) do |config|
 
   # Configure VM
   config.vm.provider "virtualbox" do |v|
-	### Change network card to PCnet-FAST III
+  ### Change network card to PCnet-FAST III
     # For NAT adapter
     v.customize ["modifyvm", :id, "--nictype1", "Am79C973"]
     # For host-only adapter
@@ -15,7 +15,7 @@ Vagrant.configure(2) do |config|
   end
 
   # forward application port
-  config.vm.network "forwarded_port", guest: 80, host: 9990
+  config.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 80, host: 9990
 
   # create private network
   config.vm.network "private_network", ip: "172.16.1.88"
@@ -25,4 +25,7 @@ Vagrant.configure(2) do |config|
 
   # install nginx and dev dependencies
   config.vm.provision "shell", path: "./bootstrap.sh"
+
+  # create web-app.tar.gz for deploying
+  config.vm.provision "shell", path: "./build.sh"
 end

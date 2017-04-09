@@ -6,11 +6,12 @@
         .module('app')
         .controller('ApproveCurrentUserModalController', ApproveCurrentUserModalController);
 
-    ApproveCurrentUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'currentUser', 'ApproveCurrentUserModalService', '$routeSegment'];
-    function ApproveCurrentUserModalController ($log, growl, $uibModalInstance, currentUser, ApproveCurrentUserModalService, $routeSegment) {
+    ApproveCurrentUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'currentUser', 'ApproveCurrentUserModalService', '$routeSegment', 'Ranks'];
+    function ApproveCurrentUserModalController ($log, growl, $uibModalInstance, currentUser, ApproveCurrentUserModalService, $routeSegment, Ranks) {
         const vm = this;
         const confirmDeleteModal = '#ConfirmDelete';
 
+        vm.ranksNames = Ranks;
         vm.currentUser = currentUser;
         vm.changeGroup = changeGroup;
         vm.changePlatoon = changePlatoon;
