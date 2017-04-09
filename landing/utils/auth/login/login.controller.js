@@ -6,8 +6,8 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$log', '$window','$http', 'TokenService' , 'Endpoints'];
-    function LoginController($log, $window, $http, TokenService, Endpoints) {
+    LoginController.$inject = ['$window', '$http', 'TokenService', 'Endpoints'];
+    function LoginController($window, $http, TokenService, Endpoints) {
         const vm = this;
 
         vm.data = {};
@@ -21,19 +21,25 @@
                 password: vm.data.password
             };
 
-            $http.post(Endpoints.AUTH, req, {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                })
-                .then((res) => {
-                    if (res.status == 200) {
+            let config = {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            };
+
+            $http.post(Endpoints.AUTH, req, config).then((res) => {
+                if (res.status == 200) {
+                    if (res.data.success) {
                         TokenService.save(res.data.data.token);
                         $window.location.pathname = '/app/';
+                    } else {
+                        growl.info(res.data.data.message);
                     }
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+                }
+
+                vm.form.$setUntouched();
+                vm.form.$setPristine();
+                vm.form.$setDirty();
+            })
         }
     }
 })();

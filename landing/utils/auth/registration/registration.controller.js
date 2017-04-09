@@ -42,9 +42,14 @@
             let afterSave = function (res) {
                 if (res.success) {
                     growl.success(res.data.message);
-                    //$window.location.pathname = '/app/';
                     $location.path('/login');
+                } else {
+                    growl.info(res.data.message);
                 }
+
+                vm.form.$setUntouched();
+                vm.form.$setPristine();
+                vm.form.$setDirty();
             };
 
             let req = {
