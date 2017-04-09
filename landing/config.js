@@ -17,7 +17,8 @@
         // Configure prefix for hash part
         $locationProvider.hashPrefix('');
 
-        growlProvider.globalTimeToLive({success: 1000, error: 2000, warning: 3000, info: 4000});
+        // Configure notification
+        growlProvider.globalTimeToLive(5000);
         growlProvider.globalPosition('top-center');
     }
 })();
