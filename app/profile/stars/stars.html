@@ -1,0 +1,75 @@
+<div class="ibox profile">
+    <div class="ibox-title profile__title">
+        <h1>Зірки</h1>
+    </div>
+</div>
+
+<div class="ibox profile">
+    <div class="ibox-title profile__title">
+        <h2>Бронзові</h2>
+    </div>
+
+    <div class="ibox-content">
+        <section class="row achievements">
+
+            <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-class="vm.isNotGet(star.id, 'bronze')" ng-repeat="star in vm.stars.bronze">
+
+                <a ng-click="vm.profileModal(star.id, 'bronze')">
+                    <div class="ribbon-in-progress__box" ng-if="vm.isInProgress(star.id, 'bronze')">
+                        <div class="ribbon-in-progress">
+                            <span>in progress</span>
+                        </div>
+                    </div>
+
+                    <img class="img-responsive" src="static/vendor/images/demo/profile.6.jpg" alt="{{ star.name }}">
+                </a>
+            </figure>
+        </section>
+    </div>
+</div>
+
+<div class="ibox profile">
+    <div class="ibox-title profile__title">
+        <h2>Срібні</h2>
+    </div>
+
+    <div class="ibox-content">
+        <section class="row achievements">
+            <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-class="vm.isNotGet(star.id, 'silver')" ng-repeat="star in vm.stars.silver">
+
+                <a ng-click="vm.profileModal(star.id, 'silver')">
+                    <div class="ribbon-in-progress__box" ng-if="vm.isInProgress(star.id, 'silver')">
+                        <div class="ribbon-in-progress">
+                            <span>in progress</span>
+                        </div>
+                    </div>
+
+                    <img class="img-responsive" src="static/vendor/images/demo/profile.6.jpg" alt="{{ star.name }}">
+                </a>
+            </figure>
+        </section>
+    </div>
+</div>
+
+<div class="ibox profile">
+    <div class="ibox-title profile__title">
+        <h2>Золоті</h2>
+    </div>
+
+    <div class="ibox-content">
+        <section class="row achievements">
+            <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-class="vm.isNotGet(star.id, 'gold')" ng-repeat="star in vm.stars.gold">
+
+                <a ng-click="vm.profileModal(star.id, 'gold')">
+                    <div class="ribbon-in-progress__box" ng-if="vm.isInProgress(star.id, 'gold')">
+                        <div class="ribbon-in-progress">
+                            <span>in progress</span>
+                        </div>
+                    </div>
+
+                    <img class="img-responsive" src="static/vendor/images/demo/profile.6.jpg" alt="{{ star.name }}">
+                </a>
+            </figure>
+        </section>
+    </div>
+</div>
