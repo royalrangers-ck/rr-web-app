@@ -6,8 +6,8 @@
         .module('app')
         .controller('EditUserModalController', EditUserModalController);
 
-    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'EditUserModalService', '$routeSegment', 'user'];
-    function EditUserModalController($log, growl, $uibModalInstance, EditUserModalService, $routeSegment, user) {
+    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'EditUserModalService', '$routeSegment', 'user', 'Ranks'];
+    function EditUserModalController($log, growl, $uibModalInstance, EditUserModalService, $routeSegment, user, Ranks) {
         const vm = this;
 
         vm.currentUser = {};
@@ -15,6 +15,7 @@
         vm.changePlatoon = changePlatoon;
         vm.setSections = setSections;
         vm.updateUser = updateUser;
+        vm.ranksNames = Ranks;
         vm.close = close;
 
         activate();
@@ -49,7 +50,7 @@
                 userRank: vm.currentUser.userRank,
                 status: vm.currentUser.status
             };
-            EditUserModalService.updateUser({ userId: vm.currentUser.id }, valuesToSend,
+            EditUserModalService.updateUser(valuesToSend,
                 (res) => {
                     if (res.success) {
                         growl.info('Дані оновлено');
