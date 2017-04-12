@@ -51,7 +51,12 @@
                 templateUrl: 'edit.user.modal/edit.user.modal.html',
                 controller: 'EditUserModalController',
                 controllerAs: 'vm',
-                size: 'lg'
+                size: 'lg',
+                resolve: {
+                    user: function($rootScope) {
+                        return $rootScope.currentUser;
+                    }
+                }
             });
         }
     }

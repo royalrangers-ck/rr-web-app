@@ -6,15 +6,15 @@
         .module('app')
         .controller('EditUserModalController', EditUserModalController);
 
-    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'EditUserModalService', '$routeSegment',  '$rootScope'];
-    function EditUserModalController($log, growl, $uibModalInstance, EditUserModalService, $routeSegment, $rootScope) {
+    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'EditUserModalService', '$routeSegment', 'user'];
+    function EditUserModalController($log, growl, $uibModalInstance, EditUserModalService, $routeSegment, user) {
         const vm = this;
 
-        vm.currentUser = $rootScope.currentUser;
+        vm.currentUser = {};
         vm.changeGroup = changeGroup;
         vm.changePlatoon = changePlatoon;
         vm.setSections = setSections;
-        vm.updateUser = updateCurrentUser;
+        vm.updateUser = updateUser;
         vm.close = close;
 
         activate();
@@ -22,7 +22,8 @@
         ///
 
         function activate() {
-            $log.debug('Init modal window...')
+            $log.debug('Init modal window...');
+            angular.copy(user, vm.currentUser);
             setCities(vm.currentUser.countryId);
             setGroups(vm.currentUser.cityId);
             setPlatoons(vm.currentUser.groupId);
@@ -39,19 +40,20 @@
                 gender: vm.currentUser.gender,
                 userAgeGroup: vm.currentUser.userAgeGroup,
                 telephoneNumber: vm.currentUser.telephoneNumber,
-                birthDate: vm.currentUser.birthDate.getTime(),
+                birthDate: +moment(vm.currentUser.birthDate),
                 countryId: vm.currentUser.countryId,
                 cityId: vm.currentUser.cityId,
                 groupId: vm.currentUser.groupId,
                 platoonId: vm.currentUser.platoonId,
                 sectionId: vm.currentUser.sectionId,
-                userRank: vm.currentUser.userRank
+                userRank: vm.currentUser.userRank,
+                status: vm.currentUser.status
             };
             EditUserModalService.updateUser({ userId: vm.currentUser.id }, valuesToSend,
                 (res) => {
                     if (res.success) {
                         growl.info('Дані оновлено');
-                        $routeSegment.chain[0].reload();
+                        window.location.reload();
                     } else {
                         growl.error('Помилка:' + res.data.message);
                     }
