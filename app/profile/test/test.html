@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-3">
+        <div class="wrapper wrapper-content">
+            <img class="img-responsive center-block" src="static/images/demo/platoon.png" alt="platoon">
+        </div>
+    </div>
+
+    <div class="col-xs-12 m-b-sm visible-xs">
+        <a href="/" class="btn btn-primary btn-block btn-lg">Виконати</a>
+    </div>
+
+    <div class="col-xs-12 col-sm-9">
+        <div class="ibox">
+            <div class="ibox-content">
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <h2>Назва завдання {{ vm.test.id }}</h2>
+                        <p class="h5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad at eum fuga.</p>
+                    </div>
+
+                    <div class="col-xs-12 hidden-xs">
+                        <a href="/" class="btn btn-primary btn-block btn-lg">Виконати</a>
+                    </div>
+
+                    <div class="col-xs-12">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque beatae dolore dolores doloribus earum eos ex exercitationem facilis, hic inventore mollitia nobis perspiciatis provident quasi soluta, ullam, ut voluptatum.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque beatae dolore dolores doloribus earum eos ex exercitationem facilis, hic inventore mollitia nobis perspiciatis provident quasi soluta, ullam, ut voluptatum.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque beatae dolore dolores doloribus earum eos ex exercitationem facilis, hic inventore mollitia nobis perspiciatis provident quasi soluta, ullam, ut voluptatum.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque beatae dolore dolores doloribus earum eos ex exercitationem facilis, hic inventore mollitia nobis perspiciatis provident quasi soluta, ullam, ut voluptatum.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque beatae dolore dolores doloribus earum eos ex exercitationem facilis, hic inventore mollitia nobis perspiciatis provident quasi soluta, ullam, ut voluptatum.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row m-b">
+    <div class="col-xs-12 col-sm-5">
+        <span class="h2">738 виконань</span>
+    </div>
+    <div class="col-xs-12 col-sm-7">
+        <span class="h2 text-uppercase">Залишилося днів 15</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="tabs-container">
+            <uib-tabset>
+                <uib-tab index="0" heading="Виконують">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>ПІП</th>
+                                <th>Загін №</th>
+                                <th>Дата</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="user in vm.users.inProgress">
+                                <td class="text-center"><img alt="image" class="img-circle" fallback-src="{{ noImageAvailable }}" ng-src="{{ avatarUrl}}" height="50"></td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.platoon }}</td>
+                                <td>{{ user.date }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </uib-tab>
+
+                <uib-tab index="1" heading="Виконали">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>ПІП</th>
+                                <th>Загін №</th>
+                                <th>Дата</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="user in vm.users.completed">
+                                <td class="text-center"><img alt="image" class="img-circle" fallback-src="{{ noImageAvailable }}" ng-src="{{ avatarUrl}}" height="50"></td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.platoon }}</td>
+                                <td>{{ user.date }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </div>
+</div>
