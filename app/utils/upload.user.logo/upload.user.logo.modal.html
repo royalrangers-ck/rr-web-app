@@ -1,0 +1,27 @@
+<div class="modal-content" id="upload-user-logo-modal">
+
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="vm.close()">&times;</button>
+        <h3>Завантаження нового аватара користувача</h3>
+    </div>
+
+    <div class="modal-body">
+        <input type="file" id="file" class="input-file" upload-user-logo
+               accept="image/*"
+               image="vm.data.image"
+               ng-model="vm.data.image"
+               form-data='vm.data.formData'
+               ng-click="vm.form.$pristine = false">
+        <label for="file" class="btn btn-primary btn-file" ng-switch on="vm.data.image">
+            <span ng-switch-when=''>Виберіть будь-ласка файл</span>
+            <span ng-switch-default>Обрати інший файл</span>
+        </label>
+        <img class="item-image img-responsive" id="image" alt="Item Image"
+             fallback-src="{{ vm.noImageAvailable }}" ng-src="{{ vm.data.image }}">
+        <span class="btn btn-primary modal-upload-confirm-btn" ng-click="vm.uploadImage()">Підтвердити</span>
+        <div growl></div>
+
+    </div>
+
+
+</div>

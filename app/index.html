@@ -17,14 +17,13 @@
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
 
-            <div class="sidebar-collapse" style="overflow: hidden; width: auto; height: 100%;">
-                <ul class="nav metismenu" id="side-menu">
-                    <li class="nav-header">
-                        <div class="dropdown profile-element">
-                            <a href="#/">
-                                <span>
-                                <!-- ToDo.zpawn: need real avatar -->
-                                <img alt="image" class="img-circle" src="static/images/demo/profile_photo.jpg" height="50">
+        <div class="sidebar-collapse" style="overflow: hidden; width: auto; height: 100%;">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <a href="#/">
+                            <span>
+                                <img alt="image" class="img-circle" fallback-src="{{ noImageAvailable }}" ng-src="{{ avatarUrl}}" height="50">
                             </span>
                                 <span class="clear">
                                 <span class="block m-t-xs">

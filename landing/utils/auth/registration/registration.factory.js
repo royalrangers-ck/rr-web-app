@@ -6,10 +6,15 @@
         .module('app')
         .factory('Registration', Registration);
 
-    Registration.$inject = ['$resource', '$log', 'Endpoints'];
-    function Registration($resource, $log, Endpoints) {
+    Registration.$inject = ['$resource', 'Endpoints'];
+    function Registration($resource, Endpoints) {
         return $resource(Endpoints.REGISTRATION + '/:id', null, {
             'register': {method: 'POST'},
+            'confirm': {
+                method: 'GET',
+                url: Endpoints.REGISTRATION + '/confirm',
+                params: {token: '@token'}
+            },
             'countries': {
                 method: 'GET',
                 url: Endpoints.COUNTRIES,

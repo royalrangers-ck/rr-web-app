@@ -18,6 +18,17 @@
                     return RegistrationService.countries()
                 }
             }
-        })
+        });
+
+        $routeSegmentProvider.when('/registration/confirm', 'confirm').segment('confirm', {
+            templateUrl: 'utils/auth/registration/confirm/confirm.html',
+            controller: 'RegistrationConfirmController',
+            controllerAs: 'vm',
+            resolve: {
+                confirmation: function (RegistrationService, $route) {
+                    return RegistrationService.confirm({token: $route.current.params.token});
+                }
+            }
+        });
     }
 })();

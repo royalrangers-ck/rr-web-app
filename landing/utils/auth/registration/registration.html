@@ -24,7 +24,7 @@
 
                     <!-- Telephone Number -->
                     <div class="col-sm-12 rr-signup__form-cell form-group"  ng-class="{ 'has-error' : vm.form.telephoneNumber.$invalid && !vm.form.telephoneNumber.$pristine }">
-                        <input type="tel" name="telephoneNumber" ng-model="vm.data.telephoneNumber" class="form-control" value="" size="10" ng-minlength="5" ng-maxlength="10" title="093" placeholder="Телефон" required>
+                        <input type="tel" name="telephoneNumber" ng-model="vm.data.telephoneNumber" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_" class="form-control" title="Телефон" placeholder="Телефон" required>
                     </div>
 
                     <!-- Email -->
@@ -98,9 +98,8 @@
             </div>
 
             <div class="row">
-                <!--<button type="submit" ng-disabled="vm.form.$pristine || vm.form.$invalid || vm.form.$submitted" class="btn btn-danger">ЗАРЕЄСТРУВАТИСЯ</button>-->
                 <div class="form-group text-center">
-                    <button type="submit" ng-disabled="vm.form.$pristine || vm.form.$invalid" class="btn btn-danger">ЗАРЕЄСТРУВАТИСЯ</button>
+                    <button type="submit" ng-disabled="vm.form.$pristine || vm.form.$invalid || vm.form.$submitted" class="btn btn-danger">ЗАРЕЄСТРУВАТИСЯ</button>
                 </div>
             </div>
         </form>

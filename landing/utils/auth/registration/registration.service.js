@@ -6,10 +6,11 @@
         .module('app')
         .service('RegistrationService', RegistrationService);
 
-    RegistrationService.$inject = ['$log', 'Registration'];
-    function RegistrationService($log, Registration) {
+    RegistrationService.$inject = ['Registration'];
+    function RegistrationService(Registration) {
 
         this.register = Registration.register;
+        this.confirm = Registration.confirm;
 
         /** Get data for registration */
         this.countries = Registration.countries;

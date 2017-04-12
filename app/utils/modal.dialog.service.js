@@ -13,7 +13,7 @@
         this.approveCurrentUserModal = approveCurrentUserModal;
         this.editUserModal = editUserModal;
 
-        function profileModal (_currentAchieve) {
+        function profileModal(_currentAchieve, _type) {
 
             return $uibModal.open({
                 animation: true,
@@ -22,6 +22,7 @@
                 controllerAs: 'vm',
                 resolve: {
                     currentAchieve: function () {
+                        _currentAchieve.type = _type;
                         return _currentAchieve;
                     }
                 }
@@ -58,6 +59,15 @@
                     }
                 }
             });
+        }
+        function UploadUserLogo() {
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'utils/upload.user.logo/upload.user.logo.modal.html',
+                controller: 'UploadUserLogoController',
+                controllerAs: 'vm',
+                // size: 'lg'
+            })
         }
     }
 })();
