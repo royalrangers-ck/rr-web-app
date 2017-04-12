@@ -39,7 +39,12 @@
         //PUBLIC INFO ENDPOINT
         constants.PUBLIC = constants.API + '/public';
 
+        // ACHIEVEMENTS
+        constants.ACHIEVEMENTS = constants.API + '/achievements';
+
+        // PROFILE
+        constants.TEST = constants.ACHIEVEMENTS + '/test';
+
         return constants;
     }
 })();
-

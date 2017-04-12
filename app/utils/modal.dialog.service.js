@@ -12,7 +12,7 @@
         this.profileModal = profileModal;
         this.approveCurrentUserModal = approveCurrentUserModal;
 
-        function profileModal(_currentAchieve) {
+        function profileModal(_currentAchieve, _type) {
 
             return $uibModal.open({
                 animation: true,
@@ -21,6 +21,7 @@
                 controllerAs: 'vm',
                 resolve: {
                     currentAchieve: function () {
+                        _currentAchieve.type = _type;
                         return _currentAchieve;
                     }
                 }
