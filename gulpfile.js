@@ -282,6 +282,11 @@ gulp.task('copyFonts:app', () => {
     /** if need, please refactor this*/
     gulp.src('bower_components/footable/css/fonts/*.*')
         .pipe(gulp.dest('app/static/vendor/css/fonts/.'));
+    
+    // Same, but to boostsrap
+    // if need, please refactor this
+    gulp.src('bower_components/bootstrap/fonts/*.*')
+        .pipe(gulp.dest('app/static/vendor/fonts/bootstrap/.'));
 
     return gulp
         .src(src)

@@ -6,17 +6,22 @@
         .module('app')
         .controller('TopBarController', TopBarController);
 
-    TopBarController.$inject = ['$log', '$window', 'TokenService'];
-    function TopBarController($log, $window, TokenService) {
+    TopBarController.$inject = ['$log', '$window', 'TokenService', 'AppModalService'];
+    function TopBarController($log, $window, TokenService, AppModalService) {
         const vm = this;
 
         vm.logout = logout;
+        vm.editUser = editUser;
 
         ////
 
         function logout() {
             TokenService.clean();
             $window.location.pathname = '/';
+        }
+
+        function editUser() {
+            AppModalService.editUserModal();
         }
     }
 })();
