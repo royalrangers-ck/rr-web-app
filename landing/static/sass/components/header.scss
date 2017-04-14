@@ -20,6 +20,7 @@ $lph-slogan-font-size: $lph-title-font-size; //font to page slogan
 $lph-link-font-size: 46px; //font to links
 $lph-button-color: #f00; //buttons color
 $lph-font-color: #000; //primary font color
+$lph-fixed-top-navbar-color: rgba(198, 232, 197, 0.8); //color to fixed top navbar
 
 //mixins
 @mixin setFont($f-size, $f-line-height, $f-family) {
@@ -51,8 +52,6 @@ $lph-font-color: #000; //primary font color
   &__title {
     margin: 0;
   }
-  &__slogan {
-  }
   &__auth-block {
     text-align: right;
     white-space: nowrap;
@@ -79,6 +78,7 @@ $lph-font-color: #000; //primary font color
   border-radius: 0;
   padding-top: 5px;
   background-color: rgba(255, 255, 255, 0.7);
+  transition: visibility 0s linear 0s, opacity 0.5s;
   z-index: 100;
   &__item {
     text-align: right;
@@ -126,8 +126,10 @@ $lph-font-color: #000; //primary font color
     margin: 0 auto;
     padding-top: 0;
     padding-left: 16px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: $lph-fixed-top-navbar-color;
+    box-shadow: 5px black;
     .navbar-collapse {
+      background-color: $lph-fixed-top-navbar-color;
       margin-left: -10px;
       margin-top: -1px;
     }
@@ -140,8 +142,13 @@ $lph-font-color: #000; //primary font color
       margin: 0 auto;
       height: 66px;
       top: 23px;
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: $lph-fixed-top-navbar-color;
     }
+  }
+  &_hide {
+    transition: visibility 0s linear 0.5s, opacity 0.5s;
+    visibility: hidden;
+    opacity: 0;
   }
 }
 
