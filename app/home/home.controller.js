@@ -9,7 +9,7 @@
     HomeController.$inject = ['$log', 'AppModalService', '$rootScope'];
     function HomeController($log, AppModalService, $rootScope) {
         const vm = this;
-        vm.UploadUserLogo = AppModalService.UploadUserLogo;
+        vm.uploadUserLogo = AppModalService.uploadUserLogo;
         vm.noImageAvailable = $rootScope.noImageAvailable;
         vm.avatarUrl = $rootScope.avatarUrl;
 
@@ -17,6 +17,7 @@
 
         function activate() {
             $log.debug('Init HomeController ...');
+            $log.debug('Init $rootScope ...', $rootScope);
         }
     }
 
