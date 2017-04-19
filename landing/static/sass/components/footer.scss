@@ -1,12 +1,10 @@
-@import "sprites";
-
 $brand-color: #cc252b;
 $text-color: #333;
 
 .rr-footer-wrapper {
-  background: url('./../images/pattern.svg') repeat;
-  -webkit-background-size: 7%;
-  background-size: 7%;
+  background: url('./../images/pattern.png') repeat;
+  //-webkit-background-size: 7%;
+  //background-size: 7%;
 
   .rr-footer-bg {
     background-size: cover;
@@ -21,52 +19,81 @@ $text-color: #333;
   font-size: 22px;
   margin: 0 auto 30px;
 
-  .rr-footer-logo {
-    position: absolute;
-    width: 230px;
-    bottom: -20px;
-
-    img {
+  @media (min-width: $screen-lg-min) {
+    .rr-footer-logo {
+      position: absolute;
       width: 230px;
+      bottom: -20px;
+
+      img {
+        width: 230px;
+      }
+    }
+
+    .rr-footer-contacts {
+
+      .rr-footer-contacts-icons, .rr-footer-contacts-info {
+        float: right;
+        margin: 15px 0 10px;
+      }
+
+      .rr-footer-contacts-icons {
+        .item {
+          padding: 0 22px;
+
+          &:first-child {
+            padding-left: 0;
+          }
+
+          &:last-child {
+            padding-right: 60px;
+          }
+        }
+
+        .rr-scroll-to-top {
+          padding-right: 60px;
+          margin-right: 0;
+          border-right: 3px solid $brand-color;
+
+          + .item {
+            padding-left: 60px;
+          }
+        }
+      }
+
+      .rr-footer-contacts-info {
+        text-transform: uppercase;
+
+        a {
+          color: $text-color;
+        }
+      }
     }
   }
 
-  .rr-footer-contacts {
+  @media (max-width: $screen-md-max) {
+    .rr-footer-logo {}
 
-    .rr-footer-contacts-icons, .rr-footer-contacts-info {
-      float: right;
-      margin: 15px 0 10px;
-    }
+    .rr-footer-contacts {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap-reverse;
 
-    .rr-footer-contacts-icons {
-      .item {
-        padding: 0 22px;
-
-        &:first-child {
-          padding-left: 0;
-        }
-
-        &:last-child {
-          padding-right: 60px;
-        }
+      .rr-footer-contacts-icons, .rr-footer-contacts-info {
+        margin-top: 10px;
+        flex-grow: 1;
       }
 
-      .rr-scroll-to-top {
-        padding-right: 60px;
-        margin-right: 0;
-        border-right: 3px solid $brand-color;
-
-        + .item {
-          padding-left: 60px;
-        }
+      .rr-footer-contacts-icons {
+        order: 1;
+        text-align: center;
+        margin-bottom: 0;
       }
-    }
 
-    .rr-footer-contacts-info {
-      text-transform: uppercase;
+      .rr-footer-contacts-info {
+        order:2;
 
-      a {
-        color: $text-color;
+        > * { text-align: center }
       }
     }
   }

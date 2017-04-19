@@ -1,0 +1,12 @@
+.subscribe-form {
+  margin-top: 30px;
+  margin-bottom: 130px;
+
+  @media (max-width: $screen-md-max) and (min-width: $screen-md-min) {
+    margin-bottom: 100px;
+  }
+
+  @media (max-width: $screen-sm-max) {
+    margin-bottom: 50px;
+  }
+}

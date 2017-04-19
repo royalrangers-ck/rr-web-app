@@ -1,14 +1,31 @@
-$rr-brand-primary:  #cc252b;
+$rr-btn-padding-top:    3px;
+$rr-btn-padding-bottom: 2px;
+$rr-btn-offset: 6px;
+
+$rr-btn-height: $line-height-computed + $rr-btn-padding-top + $rr-btn-padding-bottom;
+$rr-btn-arrow-height: $rr-btn-height + $rr-btn-offset;
 
 .btn {
+  position: relative;
+  padding: $rr-btn-padding-top $padding-base-horizontal $rr-btn-padding-bottom;
+  border-color: $brand-primary;
 
-  &.rr-btn-primary {
-    position: relative;
-    border-radius: 0;
-    background-color: $rr-brand-primary;
-    border-color: $rr-brand-primary;
-    color: #fff;
+  &.btn__arrow {
+    &:after {
+      display: block;
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: -(1px + $rr-btn-offset);
+      right: -($rr-btn-arrow-height * 2);
+      border-width: $rr-btn-arrow-height;
+      border-style: solid;
+      border-color: transparent transparent transparent $brand-primary;
+    }
+  }
 
+  &.btn__shaft {
     &:before {
       display: block;
       content: '';
@@ -16,21 +33,12 @@ $rr-brand-primary:  #cc252b;
       top: -1px;
       bottom: -1px;
       left: -10px;
-      border: 1px solid $rr-brand-primary;
+      border: 1px solid $brand-primary;
     }
+  }
 
-    &:after {
-      display: block;
-      content: '';
-      position: absolute;
-      top: -8px;
-      width: 0;
-      height: 0;
-
-      right: -70px;
-      border-width: 35px;
-      border-style: solid;
-      border-color: transparent transparent transparent $rr-brand-primary;
-    }
+  &:focus {
+    color: transparent;
+    text-decoration: none;
   }
 }

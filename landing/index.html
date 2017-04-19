@@ -98,59 +98,64 @@
     </div>
 </header>
 
-<div class="rr-container">
-    <div app-view-segment="0"></div>
-</div>
+<div class="container" app-view-segment="0"></div>
 
-<footer class="container rr-footer-wrapper">
-    <div class="row rr-footer-bg">
+<footer class="container">
+    <div class="row">
 
         <div class="col-xs-12">
-            <form name="vm.form" ng-submit="vm.submit()">
-                <div class="rr-subscribe-form">
-                    <div class="rr-subscribe-form-email">
-                        <input type="email" name="email" ng-model="vm.email" class="form-control" placeholder="ex. john.doe@gmail.com">
+            <div class="rr-footer-wrapper clearfix">
+                <div class="rr-footer-bg clearfix">
+
+                    <div class="col-xs-12 text-center subscribe-form">
+                        <form class="form-inline" name="vm.form" ng-submit="vm.submit()">
+
+                            <div class="form-group">
+                                <input type="email" name="email" ng-model="vm.email" class="form-control" placeholder="ex. john.doe@gmail.com">
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" ng-disabled="vm.form.$invalid || vm.form.$pristine || vm.form.$submitted" class="btn btn-danger">підписатись</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="rr-subscribe-form-separator"></div>
-                    <div class="rr-subscribe-form-btn">
-                        <button type="submit" ng-disabled="vm.form.$invalid || vm.form.$pristine || vm.form.$submitted" class="btn btn-danger">підписатись</button>
+
+                    <div class="col-xs-12 rr-footer">
+
+                        <div class="rr-footer-logo visible-lg">
+                            <a href="/">
+                                <img src="./static/vendor/images/rr-logo.svg" alt="Royal Rangers"/>
+                            </a>
+                        </div>
+
+                        <div class="rr-footer-contacts">
+                            <div class="rr-footer-contacts-info">
+                                <ul class="list-unstyled text-right">
+                                    <li><a href="tel:+380671234567">+38 (067) 123 4567</a></li>
+                                    <li><a href="mailto:royal.rangers@gmail.com">royal.rangers@gmail.com</a></li>
+                                </ul>
+                            </div>
+                            <ul class="list-inline rr-footer-contacts-icons">
+                                <li class="item rr-scroll-to-top rra-scroll-to-top hidden-xs hidden-sm">
+                                    <a href="#"><i class="rr-icon-up"></i></a>
+                                </li>
+                                <li class="item">
+                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon-fb"></i></a>
+                                </li>
+                                <li class="item">
+                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon-vk"></i></a>
+                                </li>
+                                <li class="item">
+                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon-twitter"></i></a>
+                                </li>
+                                <li class="item">
+                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon-rr"></i></a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+
                 </div>
-            </form>
-        </div>
-
-        <div class="col-xs-12 rr-footer">
-
-            <div class="rr-footer-logo">
-                <a href="/">
-                    <img src="./static/vendor/images/rr-logo.svg" alt="Royal Rangers"/>
-                </a>
-            </div>
-
-            <div class="rr-footer-contacts">
-                <div class="rr-footer-contacts-info">
-                    <ul class="list-unstyled text-right">
-                        <li><a href="tel:+380671234567">+38 (067) 123 4567</a></li>
-                        <li><a href="mailto:royal.rangers@gmail.com">royal.rangers@gmail.com</a></li>
-                    </ul>
-                </div>
-                <ul class="list-inline rr-footer-contacts-icons">
-                    <li class="item rr-scroll-to-top rra-scroll-to-top">
-                        <a href="#"><i class="rr-icon-up"></i></a>
-                    </li>
-                    <li class="item">
-                        <a href="http://royal-rangers.com.ua/"><i class="rr-icon-fb"></i></a>
-                    </li>
-                    <li class="item">
-                        <a href="http://royal-rangers.com.ua/"><i class="rr-icon-vk"></i></a>
-                    </li>
-                    <li class="item">
-                        <a href="http://royal-rangers.com.ua/"><i class="rr-icon-twitter"></i></a>
-                    </li>
-                    <li class="item">
-                        <a href="http://royal-rangers.com.ua/"><i class="rr-icon-rr"></i></a>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>

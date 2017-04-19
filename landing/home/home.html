@@ -1,55 +1,68 @@
-<!-- Add only for testing -->
-<div class="container">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-            <li data-target="#myCarousel" data-slide-to="3"></li>
-            <li data-target="#myCarousel" data-slide-to="4"></li>
-            <li data-target="#myCarousel" data-slide-to="5"></li>
-        </ol>
+<div class="row">
+    <div class="col-xs-12">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="4"></li>
+                <li data-target="#myCarousel" data-slide-to="5"></li>
+            </ol>
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <img src="http://placehold.it/1200x400" alt="">
-            </div>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="http://placehold.it/1200x400" alt="">
+                </div>
 
-            <div class="item">
-                <img src="http://placehold.it/1200x400" alt="">
-            </div>
+                <div class="item">
+                    <img src="http://placehold.it/1200x400" alt="">
+                </div>
 
-            <div class="item">
-                <img src="http://placehold.it/1200x400" alt="">
-            </div>
+                <div class="item">
+                    <img src="http://placehold.it/1200x400" alt="">
+                </div>
 
-            <div class="item">
-                <img src="http://placehold.it/1200x400" alt="">
-            </div>
+                <div class="item">
+                    <img src="http://placehold.it/1200x400" alt="">
+                </div>
 
-            <div class="item">
-                <img src="http://placehold.it/1200x400" alt="">
-            </div>
+                <div class="item">
+                    <img src="http://placehold.it/1200x400" alt="">
+                </div>
 
-            <div class="item">
-                <img src="http://placehold.it/1200x400" alt="">
+                <div class="item">
+                    <img src="http://placehold.it/1200x400" alt="">
+                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="rr-video-bg">
-        <div class="rr-video-wrapper">
-            <img class="video-but" src="static/vendor/images/video-but.png" alt="button" ng-click="vm.homeModalVideo()">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="rr-video">
+            <img class="rr-video__bg" src="static/vendor/images/video.bg.png" alt="">
+
+            <div class="rr-video__button-wrapper">
+                <span class="rr-video__button">
+                    <img src="static/vendor/images/video-but.png" alt="button" ng-click="vm.homeModalVideo()">
+                </span>
+            </div>
         </div>
     </div>
+</div>
 
-    <div>
-        <!-- Temporary add google maps here. Change it if needed. -->
-        <script type="application/javascript" src="./static/vendor/js/google-maps.js"></script>
-        <div class="rr-google-map-wrapper">
-            <div class="rr-google-map"></div>
+<div class="row">
+    <!-- Temporary add google maps here. Change it if needed. -->
+    <script type="application/javascript" src="./static/vendor/js/google-maps.js"></script>
+    <div class="col-xs-12">
+        <div class="rr-google-map__curve">
+            <div class="rr-google-map__wrapper">
+                <div class="rr-google-map"></div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,25 +1,36 @@
+.rr-video {
+  background: url('./../images/video.bg.png') no-repeat 50% 100%;
+  position: relative;
+  margin-top: 50px;
 
-.rr-video-bg {
-  background: url('../../vendor/images/video.png');
-  background-size: cover;
-  height: 900px;
-}
+  .rr-video__bg {
+    vertical-align: top;
+    width: 100%;
+    opacity: 0;
+  }
 
-.rr-video-wrapper {
-  text-align: center;
-  padding-top: 20%;
-}
+  .rr-video__button-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-@media(max-width: 768px) {
-  .rr-video-bg {
+    .rr-video__button {}
+  }
 
-    background-size: 100%;
-
-    .video-but {
-      padding-top: 20%;
-      width: 20%;
-      height: 20%;
-
+  @media (min-width: $screen-lg-min) {
+    &:before {
+      display: block;
+      content: ' ';
+      width: 100%;
+      height: 50px;
+      position: absolute;
+      background: url("./../images/curve.down.png") no-repeat;
+      background-size: contain;
     }
   }
 }
