@@ -1,11 +1,15 @@
 <section class="section__signup">
     <div class="container">
+        <div class="alert alert-info text-center">
+            <span><strong class="pull-left">Info!</strong> Для реєстрації заповни всі поля.</span>
+        </div>
+
         <form name="vm.form" ng-submit="vm.submit()" class="rr-signup__form">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
                     <!-- Status -->
                     <div class="col-sm-12 rr-signup__form-cell form-group">
-                        <select name="status" ng-model="vm.data.status" id="status" class="form-control" title="СТАТУС">
+                        <select name="status" ng-required="true" ng-model="vm.data.status" id="status" class="form-control" title="СТАТУС">
                             <option value="" selected disabled>СТАТУС</option>
                             <option value="STUDENT">Користувач</option>
                             <option value="TEACHER">Вчитель</option>
@@ -14,32 +18,32 @@
 
                     <!-- First Name -->
                     <div class="col-sm-12 rr-signup__form-cell form-group" ng-class="{ 'has-error' : vm.form.firstName.$invalid && !vm.form.firstName.$pristine }">
-                        <input type="text" name="firstName" ng-model="vm.data.firstName" class="form-control" maxlength="30" placeholder="Ім'я" required>
+                        <input type="text" name="firstName" ng-required="true" ng-model="vm.data.firstName" class="form-control" maxlength="30" placeholder="Ім'я" required>
                     </div>
 
                     <!-- Last Name -->
                     <div class="col-sm-12 rr-signup__form-cell form-group" ng-class="{ 'has-error' : vm.form.lastName.$invalid && !vm.form.lastName.$pristine }">
-                        <input type="text" name="lastName" ng-model="vm.data.lastName" class="form-control" maxlength="30" placeholder="Прізвище" required>
+                        <input type="text" name="lastName" ng-required="true" ng-model="vm.data.lastName" class="form-control" maxlength="30" placeholder="Прізвище" required>
                     </div>
 
                     <!-- Telephone Number -->
                     <div class="col-sm-12 rr-signup__form-cell form-group"  ng-class="{ 'has-error' : vm.form.telephoneNumber.$invalid && !vm.form.telephoneNumber.$pristine }">
-                        <input type="tel" name="telephoneNumber" ng-model="vm.data.telephoneNumber" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_" class="form-control" title="Телефон" placeholder="Телефон" required>
+                        <input type="tel" name="telephoneNumber" ng-required="true" ng-model="vm.data.telephoneNumber" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_" class="form-control" title="Телефон" placeholder="Телефон" required>
                     </div>
 
                     <!-- Email -->
                     <div class="col-sm-12 rr-signup__form-cell form-group" ng-class="{ 'has-error' : vm.form.email.$invalid && !vm.form.email.$pristine }">
-                        <input type="email" name="email" ng-model="vm.data.email" id="email" class="form-control" placeholder="Email" required>
+                        <input type="email" name="email" ng-required="true" ng-model="vm.data.email" id="email" class="form-control" placeholder="Email" required>
                     </div>
 
                     <!-- Password -->
                     <div class="col-sm-12 rr-signup__form-cell form-group" ng-class="{ 'has-error' : vm.form.password.$invalid && !vm.form.password.$pristine }">
-                        <input type="password" name="password" ng-model="vm.data.password" class="form-control" id="pass" placeholder="Пароль" ng-minlength="5" ng-maxlength="25" required>
+                        <input type="password" name="password" ng-required="true" ng-model="vm.data.password" class="form-control" id="pass" placeholder="Пароль" ng-minlength="5" ng-maxlength="25" required>
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="col-sm-12 rr-signup__form-cell form-group" ng-class="{ 'has-error' : vm.form.confirmPassword.$invalid && !vm.form.confirmPassword.$pristine }">
-                        <input type="password" name="confirmPassword" ng-model="vm.data.confirmPassword" class="form-control" id="confirmPass" placeholder="Підтвердження паролю" ng-minlength="5" ng-maxlength="25" required>
+                        <input type="password" name="confirmPassword" ng-required="true" ng-model="vm.data.confirmPassword" class="form-control" id="confirmPass" placeholder="Підтвердження паролю" ng-minlength="5" ng-maxlength="25" required>
                     </div>
 
                 </div>
@@ -47,42 +51,42 @@
                 <div class="col-xs-12 col-sm-6">
                     <!-- Country -->
                     <div class="col-sm-12 rr-signup__form-cell form-group">
-                        <select name="country" id="country" ng-model="vm.data.country" ng-options="record as record.name for record in vm.countries" ng-change="vm.getCities(vm.data.country.id)" class="form-control">
+                        <select name="country" id="country" ng-required="true" ng-model="vm.data.country" ng-options="record as record.name for record in vm.countries" ng-change="vm.getCities(vm.data.country.id)" class="form-control">
                             <option value="" disabled>КРАЇНА</option>
                         </select>
                     </div>
 
                     <!-- City -->
                     <div class="col-sm-12 rr-signup__form-cell form-group">
-                        <select name="city" id="city" ng-disabled="!vm.data.country" ng-model="vm.data.city" ng-options="record as record.name for record in vm.cities" ng-change="vm.getGroups(vm.data.city.id)" class="form-control">
+                        <select name="city" id="city" ng-required="true" ng-disabled="!vm.data.country" ng-model="vm.data.city" ng-options="record as record.name for record in vm.cities" ng-change="vm.getGroups(vm.data.city.id)" class="form-control">
                             <option value="" disabled>МІСТО</option>
                         </select>
                     </div>
 
                     <!-- Group -->
                     <div class="col-sm-12 rr-signup__form-cell form-group">
-                        <select name="group" id="group" ng-disabled="!vm.data.city" ng-model="vm.data.group" ng-options="record as record.name for record in vm.groups" ng-change="vm.getPlatoons(vm.data.city.id)" class="form-control">
+                        <select name="group" id="group" ng-required="true" ng-disabled="!vm.data.city" ng-model="vm.data.group" ng-options="record as record.name for record in vm.groups" ng-change="vm.getPlatoons(vm.data.city.id)" class="form-control">
                             <option value="" disabled>ГРУПА</option>
                         </select>
                     </div>
 
                     <!-- Platoon -->
                     <div class="col-sm-12 rr-signup__form-cell form-group">
-                        <select name="platoon" id="platoon" ng-disabled="!vm.data.group" ng-model="vm.data.platoon" ng-options="record as record.name for record in vm.platoons" ng-change="vm.getSections(vm.data.city.id)" class="form-control">
+                        <select name="platoon" id="platoon" ng-required="true" ng-disabled="!vm.data.group" ng-model="vm.data.platoon" ng-options="record as record.name for record in vm.platoons" ng-change="vm.getSections(vm.data.city.id)" class="form-control">
                             <option value="" disabled>НОМЕР ЗАГОНУ</option>
                         </select>
                     </div>
 
                     <!-- Section -->
                     <div class="col-sm-12 rr-signup__form-cell form-group">
-                        <select name="section" id="section" ng-disabled="!vm.data.platoon" ng-model="vm.data.section" ng-options="record as record.name for record in vm.sections" class="form-control">
+                        <select name="section" id="section" ng-required="true" ng-disabled="!vm.data.platoon" ng-model="vm.data.section" ng-options="record as record.name for record in vm.sections" class="form-control">
                             <option value="" disabled>НАЗВА ЛАНКИ</option>
                         </select>
                     </div>
 
                     <!-- Gender -->
                     <div class="col-sm-12 rr-signup__form-cell form-group">
-                        <select name="gender" ng-model="vm.data.gender" class="form-control" title="СТАТЬ">
+                        <select name="gender" ng-required="true" ng-model="vm.data.gender" class="form-control" title="СТАТЬ">
                             <option value="" selected disabled>СТАТЬ</option>
                             <option value="male">Чоловік</option>
                             <option value="female">Жінка</option>
@@ -91,7 +95,7 @@
 
                     <!-- Birth Date -->
                     <div class="col-sm-12 rr-signup__form-cell form-group">
-                        <input type="date" name="birthDate" ng-model="vm.data.birthDate" date-parser class="form-control" placeholder="Дата народження" title="дата народження">
+                        <input type="date" name="birthDate" ng-required="true" ng-model="vm.data.birthDate" date-parser class="form-control" placeholder="Дата народження" title="дата народження">
                     </div>
 
                 </div>
