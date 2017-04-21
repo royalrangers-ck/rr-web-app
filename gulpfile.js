@@ -1,15 +1,15 @@
 "use strict";
 
-const gulp = require('gulp');
-const clean = require('gulp-clean');
-const rename = require('gulp-rename');
-const sass = require('gulp-sass');
-const concat = require('gulp-concat');
-const babel = require('gulp-babel');
+var gulp = require('gulp');
+var clean = require('gulp-clean');
+var rename = require('gulp-rename');
+var sass = require('gulp-sass');
+var concat = require('gulp-concat');
+var babel = require('gulp-babel');
 
 
-gulp.task('clear:app', () => {
-    let src = [
+gulp.task('clear:app', function() {
+    var src = [
         'app/*.css',
         'app/**/*.css',
         'app/static/vendor/*'
@@ -20,8 +20,8 @@ gulp.task('clear:app', () => {
         .pipe(clean())
 });
 
-gulp.task('clear:landing', () => {
-    let src = [
+gulp.task('clear:landing', function() {
+    var src = [
         'landing/*.css',
         'landing/**/*.css',
         'landing/static/vendor/*'
@@ -32,16 +32,16 @@ gulp.task('clear:landing', () => {
         .pipe(clean())
 });
 
-gulp.task('clear:app:js', () => {
-    let src = ['app/static/vendor/js/*'];
+gulp.task('clear:app:js', function() {
+    var src = ['app/static/vendor/js/*'];
 
     return gulp
         .src(src, {read: false})
         .pipe(clean());
 });
 
-gulp.task('clear:landing:js', () => {
-    let src = ['landing/static/vendor/js/*'];
+gulp.task('clear:landing:js', function () {
+    var src = ['landing/static/vendor/js/*'];
 
     return gulp
         .src(src, {read: false})
@@ -70,7 +70,7 @@ gulp.task('copyDep:app', () => {
 
         'app/static/js/*.js'
     ];
-    let dest = 'app/static/vendor/js/.';
+    var dest = 'app/static/vendor/js/.';
 
     return gulp
         .src(src)
@@ -79,8 +79,8 @@ gulp.task('copyDep:app', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyDep:landing', () => {
-    let src = [
+gulp.task('copyDep:landing', function() {
+    var src = [
         'bower_components/jquery/dist/jquery.min.js',
         'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
         'bower_components/angular/angular.min.js',
@@ -98,7 +98,7 @@ gulp.task('copyDep:landing', () => {
         'landing/static/js/*.js',
         '!landing/static/js/google-maps.js'
     ];
-    let dest = 'landing/static/vendor/js/.';
+    var dest = 'landing/static/vendor/js/.';
 
     return gulp
         .src(src)
@@ -108,9 +108,9 @@ gulp.task('copyDep:landing', () => {
 });
 
 
-gulp.task('copyScripts:app', () => {
-    let src = ['app/static/js/*.js'];
-    let dest = 'app/static/vendor/js/.';
+gulp.task('copyScripts:app', function() {
+    var src = ['app/static/js/*.js'];
+    var dest = 'app/static/vendor/js/.';
 
     return gulp
         .src(src)
@@ -118,9 +118,9 @@ gulp.task('copyScripts:app', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyScripts:landing', () => {
-    let src = ['landing/static/js/*.js'];
-    let dest = 'landing/static/vendor/js/.';
+gulp.task('copyScripts:landing', function() {
+    var src = ['landing/static/js/*.js'];
+    var dest = 'landing/static/vendor/js/.';
 
     return gulp
         .src(src)
@@ -128,14 +128,14 @@ gulp.task('copyScripts:landing', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyApp:app', () => {
-    let src = [
+gulp.task('copyApp:app', function() {
+    var src = [
         'app/app.js',
         'app/config.js',
         'app/**/*.js',
         '!app/static/js/*.js'
     ];
-    let dest = 'app/static/vendor/js/.';
+    var dest = 'app/static/vendor/js/.';
 
     return gulp
         .src(src)
@@ -149,14 +149,14 @@ gulp.task('copyApp:app', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyApp:landing', () => {
-    let src = [
+gulp.task('copyApp:landing', function() {
+    var src = [
         'landing/app.js',
         'landing/config.js',
         'landing/**/*.js',
         '!landing/static/js/*.js'
     ];
-    let dest = 'landing/static/vendor/js/.';
+    var dest = 'landing/static/vendor/js/.';
 
     return gulp
         .src(src)
@@ -171,12 +171,12 @@ gulp.task('copyApp:landing', () => {
 });
 
 
-gulp.task('copyJs:app', () => {
-    let src = [
+gulp.task('copyJs:app', function() {
+    var src = [
         'app/static/vendor/js/dep.js',
         'app/static/vendor/js/app.js'
     ];
-    let dest = 'app/static/vendor/js/.';
+    var dest = 'app/static/vendor/js/.';
 
     return gulp
         .src(src)
@@ -185,12 +185,12 @@ gulp.task('copyJs:app', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyJs:landing', () => {
-    let src = [
+gulp.task('copyJs:landing', function() {
+    var src = [
         'landing/static/vendor/js/dep.js',
         'landing/static/vendor/js/app.js'
     ];
-    let dest = 'landing/static/vendor/js/.';
+    var dest = 'landing/static/vendor/js/.';
 
     return gulp
         .src(src)
@@ -200,14 +200,14 @@ gulp.task('copyJs:landing', () => {
 });
 
 
-gulp.task('sass:app:dev', () => {
-    let src = [
+gulp.task('sass:app:dev', function() {
+    var src = [
         'app/*.scss',
         'app/**/*.scss',
         '!app/static/sass/*.scss',
         '!app/static/sass/**/*.scss'
     ];
-    let dest = './';
+    var dest = './';
 
     return gulp
         .src(src, {base: './'})
@@ -215,9 +215,9 @@ gulp.task('sass:app:dev', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('sass:app:prod', () => {
-    let src = ['app/static/sass/app.scss'];
-    let dest = 'app/static/vendor/css/.';
+gulp.task('sass:app:prod', function() {
+    var src = ['app/static/sass/app.scss'];
+    var dest = 'app/static/vendor/css/.';
 
     return gulp
         .src(src)
@@ -230,14 +230,14 @@ gulp.task('sass:app:prod', () => {
 gulp.task('sass:app', gulp.parallel('sass:app:dev', 'sass:app:prod'));
 
 
-gulp.task('sass:landing:dev', () => {
-    let src = [
+gulp.task('sass:landing:dev', function() {
+    var src = [
         'landing/*.scss',
         'landing/**/*.scss',
         '!landing/static/sass/*.scss',
         '!landing/static/sass/**/*.scss'
     ];
-    let dest = './';
+    var dest = './';
 
     return gulp
         .src(src, {base: './'})
@@ -245,9 +245,9 @@ gulp.task('sass:landing:dev', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('sass:landing:prod', () => {
-    let src = ['landing/static/sass/app.scss'];
-    let dest = 'landing/static/vendor/css/.';
+gulp.task('sass:landing:prod', function() {
+    var src = ['landing/static/sass/app.scss'];
+    var dest = 'landing/static/vendor/css/.';
 
     return gulp
         .src(src)
@@ -260,9 +260,9 @@ gulp.task('sass:landing:prod', () => {
 gulp.task('sass:landing', gulp.parallel('sass:landing:dev', 'sass:landing:prod'));
 
 
-gulp.task('copyImages:app', () => {
-    let src = ['app/static/images/**/*.*'];
-    let dest = 'app/static/vendor/images/.';
+gulp.task('copyImages:app', function() {
+    var src = ['app/static/images/**/*.*'];
+    var dest = 'app/static/vendor/images/.';
 
     return gulp
         .src(src)
@@ -271,9 +271,9 @@ gulp.task('copyImages:app', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyImages:landing', () => {
-    let src = ['landing/static/images/**/*.*'];
-    let dest = 'landing/static/vendor/images/.';
+gulp.task('copyImages:landing', function() {
+    var src = ['landing/static/images/**/*.*'];
+    var dest = 'landing/static/vendor/images/.';
 
     return gulp
         .src(src)
@@ -282,13 +282,13 @@ gulp.task('copyImages:landing', () => {
 });
 
 
-gulp.task('copyFonts:app', () => {
-    let src = [
+gulp.task('copyFonts:app', function() {
+    var src = [
         'bower_components/font-awesome/fonts/*.*',
         'bower_components/footable/css/fonts/*.*',
         'app/static/fonts/*.*'
     ];
-    let dest = 'app/static/vendor/fonts/.';
+    var dest = 'app/static/vendor/fonts/.';
 
     /** FooTable need special folder for his fonts*/
     /** if need, please refactor this*/
@@ -306,12 +306,12 @@ gulp.task('copyFonts:app', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyFonts:landing', () => {
-    let src = [
+gulp.task('copyFonts:landing', function() {
+    var src = [
         'bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*',
         'landing/static/fonts/*.*'
     ];
-    let dest = 'landing/static/vendor/fonts/.';
+    var dest = 'landing/static/vendor/fonts/.';
 
     return gulp
         .src(src)
@@ -369,22 +369,22 @@ gulp.task('build:app:prod', gulp.series(
 /**
  * Application: Watch & Compile styles
  */
-gulp.task('sass:app:watch', () => {
+gulp.task('sass:app:watch', function() {
     gulp.watch('app/static/sass/**/*.scss', gulp.series('sass:app:prod'));
 });
 
 /**
  * Landing: Watch & Compile styles
  */
-gulp.task('sass:landing:watch', () => {
+gulp.task('sass:landing:watch', function() {
     gulp.watch('landing/static/sass/**/*.scss', gulp.series('sass:landing:prod'));
 });
 
 /**
  * Application: Watch & compile scripts
  */
-gulp.task('js:app:watch', () => {
-    let src = [
+gulp.task('js:app:watch', function() {
+    var src = [
         'app/**/*.js',
         '!app/static/vendor/**/*.*'
     ];
@@ -399,8 +399,8 @@ gulp.task('js:app:watch', () => {
 /**
  * Landing: Watch & compile scripts
  */
-gulp.task('js:landing:watch', () => {
-    let src = [
+gulp.task('js:landing:watch', function() {
+    var src = [
         'landing/**/*.js',
         '!landing/static/vendor/**/*.*'
     ];
