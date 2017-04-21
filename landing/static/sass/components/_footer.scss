@@ -1,12 +1,7 @@
-$brand-color: #cc252b;
-$text-color: #333;
-
-.rr-footer-wrapper {
+.rr-footer__wrapper {
   background: url('./../images/pattern.png') repeat;
-  //-webkit-background-size: 7%;
-  //background-size: 7%;
 
-  .rr-footer-bg {
+  .rr-footer__bg {
     background-size: cover;
     background: url('./../images/footer-bg-opacity.png') 50% 100% no-repeat;
   }
@@ -20,24 +15,22 @@ $text-color: #333;
   margin: 0 auto 30px;
 
   @media (min-width: $screen-lg-min) {
-    .rr-footer-logo {
+    .rr-footer__logo {
       position: absolute;
       width: 230px;
       bottom: -20px;
 
-      img {
-        width: 230px;
-      }
+      img { width: 230px; }
     }
 
-    .rr-footer-contacts {
+    .rr-footer__contacts {
 
-      .rr-footer-contacts-icons, .rr-footer-contacts-info {
+      .rr-footer__contacts-icons, .rr-footer__contacts-info {
         float: right;
         margin: 15px 0 10px;
       }
 
-      .rr-footer-contacts-icons {
+      .rr-footer__contacts-icons {
         .item {
           padding: 0 22px;
 
@@ -53,7 +46,7 @@ $text-color: #333;
         .rr-scroll-to-top {
           padding-right: 60px;
           margin-right: 0;
-          border-right: 3px solid $brand-color;
+          border-right: 3px solid $brand-primary;
 
           + .item {
             padding-left: 60px;
@@ -61,7 +54,7 @@ $text-color: #333;
         }
       }
 
-      .rr-footer-contacts-info {
+      .rr-footer__contacts-info {
         text-transform: uppercase;
 
         a {
@@ -72,25 +65,25 @@ $text-color: #333;
   }
 
   @media (max-width: $screen-md-max) {
-    .rr-footer-logo {}
+    .rr-footer__logo {}
 
-    .rr-footer-contacts {
+    .rr-footer__contacts {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap-reverse;
 
-      .rr-footer-contacts-icons, .rr-footer-contacts-info {
+      .rr-footer__contacts-icons, .rr-footer__contacts-info {
         margin-top: 10px;
         flex-grow: 1;
       }
 
-      .rr-footer-contacts-icons {
+      .rr-footer__contacts-icons {
         order: 1;
         text-align: center;
         margin-bottom: 0;
       }
 
-      .rr-footer-contacts-info {
+      .rr-footer__contacts-info {
         order:2;
 
         > * { text-align: center }

@@ -40,6 +40,14 @@ gulp.task('clear:app:js', () => {
         .pipe(clean());
 });
 
+gulp.task('clear:landing:js', () => {
+    let src = ['landing/static/vendor/js/*'];
+
+    return gulp
+        .src(src, {read: false})
+        .pipe(clean());
+});
+
 gulp.task('copyDep:app', () => {
     let src = [
         'bower_components/jquery/dist/jquery.min.js',
@@ -154,6 +162,10 @@ gulp.task('copyApp:landing', () => {
         .src(src)
         .pipe(rename({dirname: ''}))
         .pipe(babel({presets: ['es2015']}))
+        .on('error', function(e) {
+            console.log('>>> ERROR', e.message);
+            this.emit('end');
+        })
         .pipe(concat('app.js'))
         .pipe(gulp.dest(dest))
 });

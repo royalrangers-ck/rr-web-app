@@ -54,7 +54,7 @@
             </div>
         </div>
         <!-- navigation -->
-        <nav class="lp-header__nav navbar navbar-default lph-nav" role="navigation">
+        <nav class="lp-header__nav navbar navbar-default lph-nav lp-header__curve" role="navigation">
             <div class="container-fluid">
                 <!--service block to create mobile menu-->
                 <div class="navbar-header">
@@ -93,19 +93,18 @@
                     </ul>
                 </div>
             </div>
-            <div class="rr-curve rr-header-curve"></div>
         </nav>
     </div>
 </header>
 
-<div class="container" app-view-segment="0"></div>
+<div app-view-segment="0"></div>
 
 <footer class="container">
     <div class="row">
 
         <div class="col-xs-12">
-            <div class="rr-footer-wrapper clearfix">
-                <div class="rr-footer-bg clearfix">
+            <div class="rr-footer__wrapper clearfix">
+                <div class="rr-footer__bg clearfix">
 
                     <div class="col-xs-12 text-center subscribe-form">
                         <form class="form-inline" name="vm.form" ng-submit="vm.submit()">
@@ -115,41 +114,41 @@
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" ng-disabled="vm.form.$invalid || vm.form.$pristine || vm.form.$submitted" class="btn btn-danger">підписатись</button>
+                                <button type="submit" ng-disabled="vm.form.$invalid || vm.form.$pristine || vm.form.$submitted" class="btn btn-danger btn__shaft">підписатись</button>
                             </div>
                         </form>
                     </div>
 
                     <div class="col-xs-12 rr-footer">
 
-                        <div class="rr-footer-logo visible-lg">
+                        <div class="rr-footer__logo visible-lg">
                             <a href="/">
                                 <img src="./static/vendor/images/rr-logo.svg" alt="Royal Rangers"/>
                             </a>
                         </div>
 
-                        <div class="rr-footer-contacts">
-                            <div class="rr-footer-contacts-info">
+                        <div class="rr-footer__contacts">
+                            <div class="rr-footer__contacts-info">
                                 <ul class="list-unstyled text-right">
                                     <li><a href="tel:+380671234567">+38 (067) 123 4567</a></li>
                                     <li><a href="mailto:royal.rangers@gmail.com">royal.rangers@gmail.com</a></li>
                                 </ul>
                             </div>
-                            <ul class="list-inline rr-footer-contacts-icons">
+                            <ul class="list-inline rr-footer__contacts-icons">
                                 <li class="item rr-scroll-to-top rra-scroll-to-top hidden-xs hidden-sm">
-                                    <a href="#"><i class="rr-icon-up"></i></a>
+                                    <a href="#"><i class="rr-icon rr-icon__up"></i></a>
                                 </li>
                                 <li class="item">
-                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon-fb"></i></a>
+                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon rr-icon__fb"></i></a>
                                 </li>
                                 <li class="item">
-                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon-vk"></i></a>
+                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon rr-icon__vk"></i></a>
                                 </li>
                                 <li class="item">
-                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon-twitter"></i></a>
+                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon rr-icon__twitter"></i></a>
                                 </li>
                                 <li class="item">
-                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon-rr"></i></a>
+                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon rr-icon__rr"></i></a>
                                 </li>
                             </ul>
                         </div>

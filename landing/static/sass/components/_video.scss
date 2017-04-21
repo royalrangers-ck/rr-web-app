@@ -22,16 +22,14 @@
     .rr-video__button {}
   }
 
-  @media (min-width: $screen-lg-min) {
-    &:before {
-      display: block;
-      content: ' ';
-      width: 100%;
-      height: 50px;
-      position: absolute;
-      background: url("./../images/curve.down.png") no-repeat;
-      background-size: contain;
-    }
+  &:before {
+    display: block;
+    content: ' ';
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    background: url("./../images/curve.down.png") no-repeat center top;
+    background-size: contain;
   }
 }
 

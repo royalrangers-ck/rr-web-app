@@ -1,0 +1,23 @@
+.rr-slider__wrapper {
+  margin-top: 50px;
+
+  .rr-slider {
+    padding: 15px;
+    background-color: #000;
+
+    .rr-slider__control {
+      @extend .rr-icon, .rr-icon__controls-bg;
+      width: 10px;
+      height: 10px;
+
+      &.active {
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    @media (max-width: $screen-xs-max) {
+      padding: 10px;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+$rr-btn-offset: 4px;
+$rr-btn-arrow-height: $font-size-base + $line-height-base + $rr-btn-offset;
+
+.btn {
+  position: relative;
+  border-color: $brand-primary;
+  text-transform: uppercase;
+
+  &.btn__arrow {
+    &:after {
+      display: block;
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: -($rr-btn-offset * 2 - 1);
+      right: -($rr-btn-arrow-height * 2);
+      border-width: $rr-btn-arrow-height;
+      border-style: solid;
+      border-color: transparent transparent transparent $brand-primary;
+    }
+
+    &:hover:not([disabled]), &:focus:not([disabled]) {
+      border-color: darken($brand-primary, 10%);
+
+      &:after {
+        border-color: transparent transparent transparent darken($brand-primary, 10%);
+      }
+    }
+  }
+
+  &.btn__shaft {
+    margin-left: 15px;
+
+    &:before {
+      display: block;
+      content: '';
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -10px;
+      border: 1px solid $brand-primary;
+    }
+
+    &:hover:not([disabled]), &:focus:not([disabled]) {
+      :before {
+        border-color: darken($brand-primary, 10%);
+      }
+    }
+  }
+
+  // fix browser border
+  &:focus, &.focus { outline: transparent auto 0 !important; }
+}
