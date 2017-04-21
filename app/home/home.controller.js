@@ -6,10 +6,9 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$log', 'AppModalService', '$rootScope'];
-    function HomeController($log, AppModalService, $rootScope) {
+    HomeController.$inject = ['$log', '$rootScope'];
+    function HomeController($log, $rootScope) {
         const vm = this;
-        vm.uploadUserLogo = AppModalService.uploadUserLogo;
         vm.noImageAvailable = $rootScope.noImageAvailable;
         vm.avatarUrl = $rootScope.avatarUrl;
 

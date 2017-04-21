@@ -18,7 +18,7 @@
         vm.ranksNames = Ranks;
         vm.close = close;
 
-        vm.uploadUserLogo = AppModalService.uploadUserLogo;
+        vm.uploadUserLogo = uploadUserLogo;
         vm.noImageAvailable = $rootScope.noImageAvailable;
         vm.avatarUrl = $rootScope.avatarUrl;
 
@@ -131,6 +131,10 @@
             $uibModalInstance.close(data);
         }
 
+        function uploadUserLogo() {
+            $uibModalInstance.close();
+            AppModalService.uploadUserLogo();
+        }
     }
 })();
 
