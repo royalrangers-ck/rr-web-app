@@ -11,6 +11,7 @@
         vm.sidebarMenu = Menu;
         vm.noImageAvailable = 'static/vendor/images/user.png';
 
+
         activate();
 
         ////
@@ -24,7 +25,7 @@
             $http.get(Endpoints.USER).then((res) => {
                 if (res.data.success) {
                     vm.currentUser = res.data.data;
-                    vm.avatarUrl = vm.currentUser.avatarUrl;
+                    vm.avatarUrl = res.data.data.avatarUrl;
                     $log.debug('<== userInfoResponse:', res);
                 }
             });

@@ -6,8 +6,8 @@
         .module('app')
         .controller('EditUserModalController', EditUserModalController);
 
-    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'EditUserModalService', '$routeSegment', 'user', 'Ranks'];
-    function EditUserModalController($log, growl, $uibModalInstance, EditUserModalService, $routeSegment, user, Ranks) {
+    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'EditUserModalService', '$routeSegment', 'user', 'Ranks', 'AppModalService', '$rootScope'];
+    function EditUserModalController($log, growl, $uibModalInstance, EditUserModalService, $routeSegment, user, Ranks, AppModalService, $rootScope) {
         const vm = this;
 
         vm.currentUser = {};
@@ -17,6 +17,10 @@
         vm.updateUser = updateUser;
         vm.ranksNames = Ranks;
         vm.close = close;
+
+        vm.uploadUserLogo = uploadUserLogo;
+        vm.noImageAvailable = $rootScope.noImageAvailable;
+        vm.avatarUrl = $rootScope.avatarUrl;
 
         activate();
 
@@ -63,7 +67,7 @@
 
         function setCities(countryId) {
             if (countryId == null) return [];
-            EditUserModalService.city({ countryId: countryId }).$promise.then((res) => {
+            EditUserModalService.city({countryId: countryId}).$promise.then((res) => {
                 if (res.success) {
                     vm.cities = res.data;
                     $log.debug('Set citys list: ', res.data);
@@ -73,7 +77,7 @@
 
         function setGroups(cityId) {
             if (cityId == null) return [];
-            EditUserModalService.group({ cityId: cityId }).$promise.then((res) => {
+            EditUserModalService.group({cityId: cityId}).$promise.then((res) => {
                 if (res.success) {
                     vm.groups = res.data;
                     $log.debug('Set groups list: ', res.data);
@@ -83,7 +87,7 @@
 
         function setPlatoons(groupId) {
             if (groupId == null) return [];
-            EditUserModalService.platoon({ groupId: groupId }).$promise.then((res) => {
+            EditUserModalService.platoon({groupId: groupId}).$promise.then((res) => {
                 if (res.success) {
                     vm.platoons = res.data;
                     $log.debug('Set platoons list: ', res.data);
@@ -93,7 +97,7 @@
 
         function setSections(platoonId) {
             if (platoonId == null) return [];
-            EditUserModalService.section({ platoonId: platoonId }).$promise.then((res) => {
+            EditUserModalService.section({platoonId: platoonId}).$promise.then((res) => {
                 if (res.success) {
                     vm.sections = res.data;
                     $log.debug('Set sections list: ', res.data);
@@ -127,6 +131,10 @@
             $uibModalInstance.close(data);
         }
 
+        function uploadUserLogo() {
+            $uibModalInstance.close();
+            AppModalService.uploadUserLogo();
+        }
     }
 })();
 
