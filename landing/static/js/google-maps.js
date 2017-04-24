@@ -19,7 +19,7 @@
             zoom: 10
         });
 
-        var contentString = '<h3>this is Cherkasyyy !!!</h3>';
+        var contentString = '<h5>this is Cherkasyyy !!!</h5>';
 
         var infowindow = new google.maps.InfoWindow({
             content: contentString

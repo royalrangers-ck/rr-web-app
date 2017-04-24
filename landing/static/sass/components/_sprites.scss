@@ -1,0 +1,53 @@
+.rr-icon {
+  background-image: url('./../images/sprites.png?v=2');
+  background-repeat: no-repeat;
+  display: inline-block;
+
+  &__controls-bg {
+    width: 143px;
+    height: 100px;
+    background-position: -5px -5px;
+  }
+
+  &__fb {
+    width: 61px;
+    height: 62px;
+    background-position: -158px -5px;
+  }
+
+  &__play {
+    width: 312px;
+    height: 311px;
+    background-position: -229px -5px;
+  }
+
+  &__play-xs {
+    width: 100px;
+    height: 100px;
+    background-position: -551px -5px;
+  }
+
+  &__rr {
+    width: 61px;
+    height: 61px;
+    background-position: -5px -115px;
+  }
+
+  &__twitter {
+    width: 61px;
+    height: 61px;
+    background-position: -76px -115px;
+  }
+
+  &__up {
+    width: 61px;
+    height: 62px;
+    background-position: -147px -115px;
+  }
+
+  &__vk {
+    width: 61px;
+    height: 61px;
+    background-position: -551px -115px;
+  }
+}

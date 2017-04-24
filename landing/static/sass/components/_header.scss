@@ -1,10 +1,8 @@
-//Styles for "landing page - header"
-//Aliases: lp - "Landing page", lph - "Landing page header"
-//Author: Vasiliy Dikun
-
-.p-header {
-  font-family: 'Yanone Kaffeesatz', sans-serif;
-}
+/**
+ * Styles for "landing page - header"
+ * Aliases: lp - "Landing page", lph - "Landing page header"
+ * Author: Vasiliy Dikun
+ */
 
 //Variables
 $lph-height: 357px; //header height for big screens
@@ -14,19 +12,17 @@ $lph-height-medium: 297px; //header height, regular screens
 $lph-top-row-height: 229px; //height of first row in page header
 $lph-top-row-height-small: 147px; //height of first row in page header on small screens
 $lph-top-row-height-medium: 191px; //height of first row in page header on regular screens
-$lph-font-family: 'Yanone Kaffeesatz', sans-serif; //primary font
-$lph-title-font-size: 80px; //font size to page title
+//$lph-font-family: 'Yanone Kaffeesatz', sans-serif; //primary font
+$lph-title-font-size: $font-size-h3; //font size to page title
 $lph-slogan-font-size: $lph-title-font-size; //font to page slogan
-$lph-link-font-size: 46px; //font to links
+$lph-link-font-size: $font-size-h3; //font to links
 $lph-button-color: #f00; //buttons color
 $lph-font-color: #000; //primary font color
-$lph-fixed-top-navbar-color: rgba(198, 232, 197, 0.8); //color to fixed top navbar
 
 //mixins
-@mixin setFont($f-size, $f-line-height, $f-family) {
+@mixin setFont($f-size, $f-line-height) {
   font-size: $f-size;
   line-height: $f-line-height;
-  font-family: $f-family;
 }
 
 //Here was used part of BEM methodology to keep styles isolated and structured
@@ -56,6 +52,8 @@ $lph-fixed-top-navbar-color: rgba(198, 232, 197, 0.8); //color to fixed top navb
     text-align: right;
     white-space: nowrap;
     overflow: hidden;
+    display: flex;
+    align-items: baseline;
   }
   &__register {
     display: inline-block;
@@ -78,7 +76,6 @@ $lph-fixed-top-navbar-color: rgba(198, 232, 197, 0.8); //color to fixed top navb
   border-radius: 0;
   padding-top: 5px;
   background-color: rgba(255, 255, 255, 0.7);
-  transition: visibility 0s linear 0s, opacity 0.5s;
   z-index: 100;
   &__item {
     text-align: right;
@@ -116,51 +113,56 @@ $lph-fixed-top-navbar-color: rgba(198, 232, 197, 0.8); //color to fixed top navb
     margin-top: -5px;
   }
   //special styles to fixed menu
-  &_fixed_top {
-    position: fixed;
-    top: 10px;
-    left: -21px;
-    right: 0;
-    width: 90%;
-    height: 66px;
-    margin: 0 auto;
-    padding-top: 0;
-    padding-left: 16px;
-    background-color: $lph-fixed-top-navbar-color;
-    box-shadow: 5px black;
-    .navbar-collapse {
-      background-color: $lph-fixed-top-navbar-color;
-      margin-left: -10px;
-      margin-top: -1px;
-    }
-    &:before {
+  //&_fixed_top {
+  //  position: fixed;
+  //  top: 10px;
+  //  left: -21px;
+  //  right: 0;
+  //  width: 90%;
+  //  height: 66px;
+  //  margin: 0 auto;
+  //  padding-top: 0;
+  //  padding-left: 16px;
+  //  background-color: rgba(255, 255, 255, 0.5);
+  //  .navbar-collapse {
+  //    margin-left: -10px;
+  //    margin-top: -1px;
+  //  }
+  //  &:before {
+  //    content: '';
+  //    position: fixed;
+  //    left: 21px;
+  //    right: 0;
+  //    width: 90%;
+  //    margin: 0 auto;
+  //    height: 66px;
+  //    top: 23px;
+  //    background-color: rgba(255, 255, 255, 0.5);
+  //  }
+  //}
+
+  @media (min-width: $grid-float-breakpoint) {
+    &.lp-header__curve:after {
+      display: block;
       content: '';
-      position: fixed;
-      left: 21px;
-      right: 0;
-      width: 90%;
-      margin: 0 auto;
-      height: 66px;
-      top: 23px;
-      background-color: $lph-fixed-top-navbar-color;
+      position: absolute;
+      width: 100%;
+      height: 42px;
+      background: url("./../images/curve.up.png") no-repeat center bottom;
+      background-size: contain;
+      bottom: -1px;
     }
-  }
-  &_hide {
-    transition: visibility 0s linear 0.5s, opacity 0.5s;
-    visibility: hidden;
-    opacity: 0;
   }
 }
 
 /*Styles to logo image*/
 .lph-logo {
   width: 100%;
-  cursor: default;
 }
 
 /*Styles to site title*/
 .lph-title {
-  @include setFont($lph-title-font-size, $lph-title-font-size, $lph-font-family);
+  @include setFont($lph-title-font-size, $lph-title-font-size);
   color: $lph-font-color;
   cursor: default;
   &_small {
@@ -175,7 +177,7 @@ $lph-fixed-top-navbar-color: rgba(198, 232, 197, 0.8); //color to fixed top navb
 
 /*Styles to site slogan*/
 .lph-slogan {
-  @include setFont($lph-slogan-font-size, $lph-slogan-font-size, $lph-font-family);
+  @include setFont($lph-slogan-font-size, $lph-slogan-font-size);
   cursor: default;
 }
 
@@ -189,10 +191,11 @@ $lph-fixed-top-navbar-color: rgba(198, 232, 197, 0.8); //color to fixed top navb
   padding-left: 3px;
   background-color: $lph-button-color;
   color: #fff;
-  @include setFont(26px, 30px, $lph-font-family);
+  @include setFont(26px, 30px);
   text-transform: uppercase;
   text-align: center;
   transition: background-color 1s;
+
   &::before {
     content: '';
     display: block;
@@ -204,6 +207,7 @@ $lph-fixed-top-navbar-color: rgba(198, 232, 197, 0.8); //color to fixed top navb
     background-color: $lph-button-color;
     transition: background-color 1s;
   }
+
   &::after {
     content: '';
     display: block;
@@ -235,7 +239,7 @@ $lph-fixed-top-navbar-color: rgba(198, 232, 197, 0.8); //color to fixed top navb
 .lph-link {
   display: block;
   text-transform: uppercase;
-  @include setFont($lph-link-font-size, $lph-link-font-size, $lph-font-family);
+  @include setFont($lph-link-font-size, $lph-link-font-size);
   color: $lph-font-color !important; //bootstrap nav links have too big specificity
   &:hover {
     text-decoration: underline !important; //bootstrap nav links have too big specificity
@@ -298,21 +302,21 @@ $lph-fixed-top-navbar-color: rgba(198, 232, 197, 0.8); //color to fixed top navb
     .navbar-collapse {
       background-color: transparent;
     }
-    &_fixed_top {
-      left: -52px;
-      width: 700px;
-      height: 66px;
-      padding-top: 15px;
-      padding-left: 16px;
-      .navbar-collapse {
-        margin-left: -10px;
-        margin-top: -1px;
-      }
-      &:before {
-        left: 52px;
-        width: 700px;
-      }
-    }
+    //&_fixed_top {
+    //  left: -52px;
+    //  width: 700px;
+    //  height: 66px;
+    //  padding-top: 15px;
+    //  padding-left: 16px;
+    //  .navbar-collapse {
+    //    margin-left: -10px;
+    //    margin-top: -1px;
+    //  }
+    //  &:before {
+    //    left: 52px;
+    //    width: 700px;
+    //  }
+    //}
   }
 
   .lph-logo {
@@ -384,21 +388,21 @@ $lph-fixed-top-navbar-color: rgba(198, 232, 197, 0.8); //color to fixed top navb
     &__item {
       padding-right: 20px;
     }
-    &_fixed_top {
-      left: -52px;
-      width: 918px;
-      height: 66px;
-      padding-top: 15px;
-      padding-left: 16px;
-      .navbar-collapse {
-        margin-left: -10px;
-        margin-top: -1px;
-      }
-      &:before {
-        left: 52px;
-        width: 918px;
-      }
-    }
+    //&_fixed_top {
+    //  left: -52px;
+    //  width: 918px;
+    //  height: 66px;
+    //  padding-top: 15px;
+    //  padding-left: 16px;
+    //  .navbar-collapse {
+    //    margin-left: -10px;
+    //    margin-top: -1px;
+    //  }
+    //  &:before {
+    //    left: 52px;
+    //    width: 918px;
+    //  }
+    //}
   }
 
   .lph-logo {
@@ -467,21 +471,21 @@ $lph-fixed-top-navbar-color: rgba(198, 232, 197, 0.8); //color to fixed top navb
     &__item {
       padding-right: 26px;
     }
-    &_fixed_top {
-      left: -52px;
-      width: 1118px;
-      height: 66px;
-      padding-top: 15px;
-      padding-left: 16px;
-      .navbar-collapse {
-        margin-left: -10px;
-        margin-top: -1px;
-      }
-      &:before {
-        left: 52px;
-        width: 1118px;
-      }
-    }
+    //&_fixed_top {
+    //  left: -52px;
+    //  width: 1118px;
+    //  height: 66px;
+    //  padding-top: 15px;
+    //  padding-left: 16px;
+    //  .navbar-collapse {
+    //    margin-left: -10px;
+    //    margin-top: -1px;
+    //  }
+    //  &:before {
+    //    left: 52px;
+    //    width: 1118px;
+    //  }
+    //}
   }
 
   .lph-logo {

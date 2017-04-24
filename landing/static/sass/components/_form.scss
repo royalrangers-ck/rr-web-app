@@ -1,0 +1,17 @@
+$placeholder-color: #999 !default;
+
+.form-control {
+    &::-moz-placeholder {
+        color: $placeholder-color;
+        opacity: 1;
+        text-transform: uppercase;
+    }
+    &:-ms-input-placeholder {
+        color: $placeholder-color;
+        text-transform: uppercase;
+    }
+    &::-webkit-input-placeholder  {
+        color: $placeholder-color;
+        text-transform: uppercase;
+    }
+}
