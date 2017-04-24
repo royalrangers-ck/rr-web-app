@@ -13,6 +13,11 @@
         vm.logout = logout;
         vm.editUser = editUser;
 
+        // vm.avatarUrl = $rootScope.currentUser.avatarUrl;
+
+        activate();
+
+
         ////
 
         function logout() {
@@ -22,6 +27,10 @@
 
         function editUser() {
             AppModalService.editUserModal();
+        }
+
+        function activate() {
+            $log.debug('Init TopBarController...');
         }
     }
 })();
