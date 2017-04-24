@@ -1,5 +1,5 @@
-$rr-btn-offset: 4px;
-$rr-btn-arrow-height: $font-size-base + $line-height-base + $rr-btn-offset;
+$rr-btn-offset: 2px;
+$rr-btn-arrow-height: ($line-height-computed / 2) + ($rr-btn-offset * 2) + 1;
 
 .btn {
   position: relative;
@@ -13,8 +13,8 @@ $rr-btn-arrow-height: $font-size-base + $line-height-base + $rr-btn-offset;
       position: absolute;
       width: 0;
       height: 0;
-      top: -($rr-btn-offset * 2 - 1);
-      right: -($rr-btn-arrow-height * 2);
+      top: -($rr-btn-offset * 2 + 1);
+      right: -($rr-btn-arrow-height * 2 + 1);
       border-width: $rr-btn-arrow-height;
       border-style: solid;
       border-color: transparent transparent transparent $brand-primary;

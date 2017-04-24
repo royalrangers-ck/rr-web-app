@@ -19,26 +19,17 @@
                     <span ng-show="vm.form.password.$dirty && vm.form.password.$error.maxlength">Password is too long.</span>
                 </div>
 
+                <div class="form-group">
+                    <ul class="list-unstyled text-right rr-info-menu">
+                        <li class="rr-info-menu__item"><a href="#/forgotPassword">Забули пароль?</a></li>
+                        <li class="rr-info-menu__item"><a href="#/confirmation">Не отримали листа про підтвердження реєстрації?</a></li>
+                    </ul>
+                </div>
+
                 <div class="form-group text-center">
                     <button ng-disabled="vm.form.$pristine || vm.form.$invalid || vm.form.$submitted" class="btn btn-primary btn__arrow btn__shaft">Вхід</button>
                 </div>
             </form>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1">
-            <hr/>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12">
-            <ul class="list-unstyled text-center rr-info-menu">
-                <li class="rr-info-menu__item"><a href="#/registration">Реєстрація</a></li>
-                <li class="rr-info-menu__item"><a href="#/forgotPassword">Забули пароль?</a></li>
-                <li class="rr-info-menu__item"><a href="#/confirmation">Не отримали листа про підтвердження реєстрації?</a></li>
-            </ul>
         </div>
     </div>
 </div>

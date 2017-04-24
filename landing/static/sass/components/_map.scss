@@ -3,8 +3,8 @@ $map-height-sm: 350px;
 
 .rr-google-map__curve {
     position: relative;
-    padding: 42px 0;
-    margin: -42px 0;
+    padding-bottom: 42px;
+    margin-bottom: -42px;
 
     &:before, &:after {
         display: block;
@@ -15,10 +15,10 @@ $map-height-sm: 350px;
         z-index: 1;
     }
 
-    &:before {
-        background: url("./../images/curve.up.gray.png") no-repeat center bottom;
-        top: 0;
-    }
+    //&:before {
+    //    background: url("./../images/curve.up.gray.png") no-repeat center bottom;
+    //    top: 0;
+    //}
 
     &:after {
         background: url("./../images/curve.down.gray.png") no-repeat center top;
@@ -43,7 +43,7 @@ $map-height-sm: 350px;
     margin: 0 auto;
     position: relative;
     background-color: #d9dada;
-    padding: 50px 0;
+    padding-bottom: 50px;
 
     .rr-google-map {
         width: 100%;

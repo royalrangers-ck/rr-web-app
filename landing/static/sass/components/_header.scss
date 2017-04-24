@@ -13,9 +13,9 @@ $lph-top-row-height: 229px; //height of first row in page header
 $lph-top-row-height-small: 147px; //height of first row in page header on small screens
 $lph-top-row-height-medium: 191px; //height of first row in page header on regular screens
 //$lph-font-family: 'Yanone Kaffeesatz', sans-serif; //primary font
-$lph-title-font-size: 80px; //font size to page title
+$lph-title-font-size: $font-size-h3; //font size to page title
 $lph-slogan-font-size: $lph-title-font-size; //font to page slogan
-$lph-link-font-size: 46px; //font to links
+$lph-link-font-size: $font-size-h3; //font to links
 $lph-button-color: #f00; //buttons color
 $lph-font-color: #000; //primary font color
 
@@ -54,6 +54,8 @@ $lph-font-color: #000; //primary font color
     text-align: right;
     white-space: nowrap;
     overflow: hidden;
+    display: flex;
+    align-items: baseline;
   }
   &__register {
     display: inline-block;
@@ -113,33 +115,33 @@ $lph-font-color: #000; //primary font color
     margin-top: -5px;
   }
   //special styles to fixed menu
-  &_fixed_top {
-    position: fixed;
-    top: 10px;
-    left: -21px;
-    right: 0;
-    width: 90%;
-    height: 66px;
-    margin: 0 auto;
-    padding-top: 0;
-    padding-left: 16px;
-    background-color: rgba(255, 255, 255, 0.5);
-    .navbar-collapse {
-      margin-left: -10px;
-      margin-top: -1px;
-    }
-    &:before {
-      content: '';
-      position: fixed;
-      left: 21px;
-      right: 0;
-      width: 90%;
-      margin: 0 auto;
-      height: 66px;
-      top: 23px;
-      background-color: rgba(255, 255, 255, 0.5);
-    }
-  }
+  //&_fixed_top {
+  //  position: fixed;
+  //  top: 10px;
+  //  left: -21px;
+  //  right: 0;
+  //  width: 90%;
+  //  height: 66px;
+  //  margin: 0 auto;
+  //  padding-top: 0;
+  //  padding-left: 16px;
+  //  background-color: rgba(255, 255, 255, 0.5);
+  //  .navbar-collapse {
+  //    margin-left: -10px;
+  //    margin-top: -1px;
+  //  }
+  //  &:before {
+  //    content: '';
+  //    position: fixed;
+  //    left: 21px;
+  //    right: 0;
+  //    width: 90%;
+  //    margin: 0 auto;
+  //    height: 66px;
+  //    top: 23px;
+  //    background-color: rgba(255, 255, 255, 0.5);
+  //  }
+  //}
 
   @media (min-width: $grid-float-breakpoint) {
     &.lp-header__curve:after {
@@ -149,12 +151,8 @@ $lph-font-color: #000; //primary font color
       width: 100%;
       height: 42px;
       background: url("./../images/curve.up.png") no-repeat center bottom;
-      background-size: cover;
+      background-size: contain;
       bottom: -1px;
-
-      @media (max-width: $screen-md-max) {
-        background-size: contain;
-      }
     }
   }
 }
@@ -162,7 +160,6 @@ $lph-font-color: #000; //primary font color
 /*Styles to logo image*/
 .lph-logo {
   width: 100%;
-  cursor: default;
 }
 
 /*Styles to site title*/
@@ -307,21 +304,21 @@ $lph-font-color: #000; //primary font color
     .navbar-collapse {
       background-color: transparent;
     }
-    &_fixed_top {
-      left: -52px;
-      width: 700px;
-      height: 66px;
-      padding-top: 15px;
-      padding-left: 16px;
-      .navbar-collapse {
-        margin-left: -10px;
-        margin-top: -1px;
-      }
-      &:before {
-        left: 52px;
-        width: 700px;
-      }
-    }
+    //&_fixed_top {
+    //  left: -52px;
+    //  width: 700px;
+    //  height: 66px;
+    //  padding-top: 15px;
+    //  padding-left: 16px;
+    //  .navbar-collapse {
+    //    margin-left: -10px;
+    //    margin-top: -1px;
+    //  }
+    //  &:before {
+    //    left: 52px;
+    //    width: 700px;
+    //  }
+    //}
   }
 
   .lph-logo {
@@ -393,21 +390,21 @@ $lph-font-color: #000; //primary font color
     &__item {
       padding-right: 20px;
     }
-    &_fixed_top {
-      left: -52px;
-      width: 918px;
-      height: 66px;
-      padding-top: 15px;
-      padding-left: 16px;
-      .navbar-collapse {
-        margin-left: -10px;
-        margin-top: -1px;
-      }
-      &:before {
-        left: 52px;
-        width: 918px;
-      }
-    }
+    //&_fixed_top {
+    //  left: -52px;
+    //  width: 918px;
+    //  height: 66px;
+    //  padding-top: 15px;
+    //  padding-left: 16px;
+    //  .navbar-collapse {
+    //    margin-left: -10px;
+    //    margin-top: -1px;
+    //  }
+    //  &:before {
+    //    left: 52px;
+    //    width: 918px;
+    //  }
+    //}
   }
 
   .lph-logo {
@@ -476,21 +473,21 @@ $lph-font-color: #000; //primary font color
     &__item {
       padding-right: 26px;
     }
-    &_fixed_top {
-      left: -52px;
-      width: 1118px;
-      height: 66px;
-      padding-top: 15px;
-      padding-left: 16px;
-      .navbar-collapse {
-        margin-left: -10px;
-        margin-top: -1px;
-      }
-      &:before {
-        left: 52px;
-        width: 1118px;
-      }
-    }
+    //&_fixed_top {
+    //  left: -52px;
+    //  width: 1118px;
+    //  height: 66px;
+    //  padding-top: 15px;
+    //  padding-left: 16px;
+    //  .navbar-collapse {
+    //    margin-left: -10px;
+    //    margin-top: -1px;
+    //  }
+    //  &:before {
+    //    left: 52px;
+    //    width: 1118px;
+    //  }
+    //}
   }
 
   .lph-logo {

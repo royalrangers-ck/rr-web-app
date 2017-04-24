@@ -6,15 +6,16 @@
 @import "../../../bower_components/angular-growl-v2/build/angular-growl.min";
 
 /** App */
+@import "components/sprites";
 @import "components/base";
 @import "components/form";
-@import "components/sprites";
 @import "components/buttons";
+@import "components/header";
+@import "components/parallax";
+@import "components/footer";
 @import "components/map";
 @import "components/subscribe.form";
-@import "components/header";
-@import "components/footer";
 @import "components/video";
 @import "components/slider";
-@import "components/parallax";
 @import "components/common";
+@import "components/about.us";

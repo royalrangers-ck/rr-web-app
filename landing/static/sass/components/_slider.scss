@@ -3,7 +3,7 @@
 
   .rr-slider {
     padding: 15px;
-    background-color: #000;
+    background: #d9dada url("./../images/pattern.tree.jpg") repeat;
 
     .rr-slider__control {
       @extend .rr-icon, .rr-icon__controls-bg;
