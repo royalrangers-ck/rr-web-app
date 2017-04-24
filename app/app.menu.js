@@ -35,7 +35,6 @@
             { name: 'Мій загін', route: '' },
             { name: 'Мої друзі', route: '' },
             { name: 'Бібліотека', route: '#/library' },
-            { name: 'Налаштування', route: '#/settings' },
             { name: 'Підтвердити', route: '#/confirm-users' },
             { name: 'Тех.підтримка', route: '' },
             { name: 'Створити', route: '' }
