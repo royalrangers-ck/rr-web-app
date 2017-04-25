@@ -12,6 +12,7 @@
         this.profileModal = profileModal;
         this.approveCurrentUserModal = approveCurrentUserModal;
         this.editUserModal = editUserModal;
+        this.uploadUserLogo = uploadUserLogo;
 
         function profileModal(_currentAchieve, _type) {
 
@@ -60,7 +61,8 @@
                 }
             });
         }
-        function UploadUserLogo() {
+
+        function uploadUserLogo() {
             return $uibModal.open({
                 animation: true,
                 templateUrl: 'utils/upload.user.logo/upload.user.logo.modal.html',

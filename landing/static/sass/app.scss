@@ -1,29 +1,21 @@
 /** Bootstrap */
-@import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-@import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "components/bootstrap.variables";
+@import "components/bootstrap.includes";
 
 /** Angular Growl Notification v.2 */
 @import "../../../bower_components/angular-growl-v2/build/angular-growl.min";
 
 /** App */
+@import "components/sprites";
+@import "components/base";
+@import "components/form";
 @import "components/buttons";
-@import "components/login";
-@import "components/map";
-@import "components/subscribe-form";
 @import "components/header";
-@import "components/footer";
-@import "components/video";
-@import "components/about-us";
-@import "components/slider";
 @import "components/parallax";
-@import "components/styles";
-@import "components/container";
-@import "components/confirmation";
-@import "components/forgot.password";
-@import "components/registration";
-
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
+@import "components/footer";
+@import "components/map";
+@import "components/subscribe.form";
+@import "components/video";
+@import "components/slider";
+@import "components/common";
+@import "components/about.us";

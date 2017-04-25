@@ -6,8 +6,8 @@
         .module('app')
         .factory('UploadUserLogoFactory', UploadUserLogoFactory);
 
-    UploadUserLogoFactory.$inject = ['$log', '$http', 'TokenService'];
-    function UploadUserLogoFactory($log, $http, TokenService) {
+    UploadUserLogoFactory.$inject = ['$log', '$http', 'TokenService', '$rootScope'];
+    function UploadUserLogoFactory($log, $http, TokenService, $rootScope) {
 
         let userToken = TokenService.get();
 
@@ -31,7 +31,8 @@
                     },
                     data: formdata
                 }).then(function successCallback(response) {
-                    $log.debug('Good, are uploaded image', response);
+                    $log.debug('Good,we are uploaded image', response);
+                    $rootScope.avatarUrl = response.data.data.avatarUrl;
                 }, function errorCallback(response) {
                     $log.debug('Bad, some problems', response)
                 });

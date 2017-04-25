@@ -5,16 +5,18 @@
         .module('app')
         .controller('UploadUserLogoController', UploadUserLogoController);
 
-    UploadUserLogoController.$inject = ['$log', '$uibModalInstance', 'UploadUserLogoService', 'growl'];
-    function UploadUserLogoController($log, $uibModalInstance, UploadUserLogoService, growl) {
+    UploadUserLogoController.$inject = ['$log', '$uibModalInstance', 'UploadUserLogoService', 'growl', '$rootScope', 'AppModalService'];
+    function UploadUserLogoController($log, $uibModalInstance, UploadUserLogoService, growl, $rootScope, AppModalService) {
         const vm = this;
 
         vm.close = close;
         vm.uploadImage = uploadImage;
+        vm.editUserModal = AppModalService.editUserModal;
+        vm.avatarUrl = $rootScope.avatarUrl;
 
         vm.noImageAvailable = 'static/vendor/images/user.png';
         vm.data = {
-            image: '',
+            image: vm.avatarUrl,
             formData: ''
         };
         /* data.image - contain image url, which represented in modal */
@@ -26,17 +28,29 @@
             $log.debug('Init UploadUserLogoController ...');
         }
 
-        function close(data) {
-            $uibModalInstance.close(data);
+        function close() {
+            $uibModalInstance.close();
+            vm.editUserModal();
         }
 
         function uploadImage() {
             if (!vm.data.formData) {
-                growl.error('Ви маєте вибрати зображення');
+                growl.error('Ви маєте вибрати зображення', {
+                    ttl: 5000,
+                    disableCountDown: true,
+                });
                 return
             }
+
+            // Needs correct async
             UploadUserLogoService.uploadImage(vm.data.formData);
 
+            growl.info('Іде завантаження, будь-ласка зачекайте...', {
+                ttl: 10000,
+                disableCountDown: true,
+            });
+
+            vm.close();
         }
     }
 
