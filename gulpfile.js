@@ -308,6 +308,7 @@ gulp.task('copyFonts:app', function() {
 
 gulp.task('copyFonts:landing', function() {
     var src = [
+        'bower_components/font-awesome/fonts/*.*',
         'bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*',
         'landing/static/fonts/*.*'
     ];
