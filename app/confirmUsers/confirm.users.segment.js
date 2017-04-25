@@ -15,7 +15,7 @@
             controllerAs: 'vm',
             resolve: {
                 usersList: function (ConfirmUsersService, $rootScope) {
-                    return ConfirmUsersService.getUsers({platoonId: $rootScope.currentUser.platoonId});
+                    return ConfirmUsersService.getUsers({platoonId: $rootScope.currentUser.platoon.id});
                 },
                 platoons: function (ConfirmUsersService){
                     return ConfirmUsersService.allPlatoons();
