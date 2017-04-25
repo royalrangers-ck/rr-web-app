@@ -30,6 +30,7 @@ $a-eum-avatar-title-height: 15%; //size of avatar title text
     
 .a-eum-avatar {
     text-align: center;
+    overflow: hidden;
     &>img {
         height: auto;
         width: 45%;

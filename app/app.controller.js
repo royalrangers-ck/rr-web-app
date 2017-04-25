@@ -18,12 +18,13 @@
 
         function activate() {
             TokenScheduler.refresh(Endpoints.TOKEN_REFRESH_INTERVAL);
-            getUserInfo();
-            setSidebarMenu();
+            getUserInfo().then(() => {
+                setSidebarMenu();
+            }); 
         }
 
         function getUserInfo() {
-            $http.get(Endpoints.USER).then((res) => {
+            return $http.get(Endpoints.USER).then((res) => {
                 if (res.data.success) {
                     vm.currentUser = res.data.data;
                     vm.avatarUrl = res.data.data.avatarUrl;
@@ -33,19 +34,23 @@
         }
 
         function setSidebarMenu() {
-            vm.sidebarMenu = filterMenu(Menu, Endpoints.ROLES.admin);
+            vm.sidebarMenu = filterMenu(Menu, vm.currentUser.authorities);
+            $log.debug('<== init sidebarMenu:', vm.sidebarMenu);
         }
 
-        function filterMenu(menu, role) {
+        function filterMenu(menu, roles) {
             return menu.filter((item) => {
                 if (Array.isArray(item.submenu)) {
-                    item.submenu = filterMenu(item.submenu, role);
+                    item.submenu = filterMenu(item.submenu, roles);
                 }
                 if (item.adminsOnly) {
-                    if (role !== Endpoints.ROLES.admin &&
-                        role !== Endpoints.ROLES.superAdmin) {
-                        return false;
+                    for (let role in roles) {
+                        if (roles[role].name === Endpoints.ROLES.admin ||
+                            roles[role].name === Endpoints.ROLES.superAdmin) {
+                            return true;
+                        }
                     }
+                    return false;
                 }
                 return true;
             });
