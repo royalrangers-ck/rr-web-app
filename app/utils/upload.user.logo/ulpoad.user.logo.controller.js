@@ -43,14 +43,16 @@
             }
 
             // Needs correct async
-            UploadUserLogoService.uploadImage(vm.data.formData);
+            UploadUserLogoService.uploadImage(vm.data.formData, function (res) {
+                if (res.success) {
+                    vm.close();
+                }
+            });
 
             growl.info('Іде завантаження, будь-ласка зачекайте...', {
                 ttl: 10000,
                 disableCountDown: true,
             });
-
-            vm.close();
         }
     }
 
