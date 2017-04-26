@@ -42,17 +42,27 @@
                 return
             }
 
-            // Needs correct async
-            UploadUserLogoService.uploadImage(vm.data.formData, function (res) {
-                if (res.success) {
+            UploadUserLogoService.uploadImage(vm.data.formData, function (response) {
+                if (response.success) {
+                    growl.info('Нове зображення успішно завантажене', {
+                        ttl: 15000, // 15 sec
+                        disableCountDown: true,
+                    });
                     vm.close();
                 }
+
+                growl.error('Помилка завантаження \n' + response, {
+                    ttl: 15000, // 15 sec
+                    disableCountDown: true,
+                });
+
             });
 
             growl.info('Іде завантаження, будь-ласка зачекайте...', {
-                ttl: 10000,
+                ttl: 15000, // 15 sec
                 disableCountDown: true,
             });
+
         }
     }
 
