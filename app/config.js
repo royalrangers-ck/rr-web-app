@@ -7,8 +7,8 @@
         .config(config)
         .run(run);
 
-    config.$inject = ['$httpProvider', '$logProvider', '$locationProvider', 'growlProvider', 'KeepaliveProvider'];
-    function config($httpProvider, $logProvider, $locationProvider, growlProvider, KeepaliveProvider) {
+    config.$inject = ['$httpProvider', '$logProvider', '$locationProvider', 'growlProvider'];
+    function config($httpProvider, $logProvider, $locationProvider, growlProvider ) {
         $httpProvider.interceptors.push('AuthInterceptor');
         $httpProvider.interceptors.push('ErrorInterceptor');
         $httpProvider.defaults.withCredentials = true;
@@ -22,17 +22,10 @@
         growlProvider.globalTimeToLive({success: 1000, error: 2000, warning: 3000, info: 4000});
         growlProvider.globalPosition('top-center');
 
-        // Configure idle users
-        // TODO: update health api url
-        KeepaliveProvider.http('/api/public/cities');
-        KeepaliveProvider.interval(10); // sec
     }
 
-    run.$inject = ['$rootScope', '$http', 'Endpoints', '$window', 'Keepalive'];
-    function run($rootScope, $http, Endpoints, $window, Keepalive) {
-        // Starts pinging backend
-        Keepalive.start();
-        Keepalive.ping();
+    run.$inject = ['$rootScope', '$http', 'Endpoints', '$window'];
+    function run($rootScope, $http, Endpoints, $window) {
 
         $http.get(Endpoints.USER).then((res) => {
             if (res.data.success) {

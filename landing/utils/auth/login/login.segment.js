@@ -14,12 +14,6 @@
             controller: 'LoginController',
             controllerAs: 'vm'
         });
-
-        $routeSegmentProvider.when('/login/:message', 'login.message').segment('login.message', {
-            templateUrl: 'utils/auth/login/login.html',
-            controller: 'LoginControllerSpec',
-            controllerAs: 'vm',
-            //dependencies: ['message']
-        });
+        
     }
 })();
