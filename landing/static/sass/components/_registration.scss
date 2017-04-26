@@ -1,0 +1,17 @@
+.rr-registration {
+  @include rr-curve(#fff, 'curve.up.png', 'curve.down.png');
+
+  [class^='col-'] {
+    padding: 0 $padding-base-horizontal;
+  }
+
+  .rr-registration__info {
+    border-top: 1px solid $placeholder-color;
+    color: $placeholder-color;
+    padding-top: 10px;
+  }
+
+  .rr-registration__button {
+    margin-top: 15px;
+  }
+}

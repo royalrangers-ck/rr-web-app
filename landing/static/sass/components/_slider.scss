@@ -1,9 +1,11 @@
 .rr-slider__wrapper {
-  margin-top: 50px;
+
+  @include rr-curve(#fff, 'curve.up.png', 'curve.down.png');
 
   .rr-slider {
     padding: 15px;
-    background: #d9dada url("./../images/pattern.tree.jpg") repeat;
+    margin: 30px 0;
+    background: #d9dada url("#{$rr-images-path}/pattern.tree.jpg") repeat;
 
     .rr-slider__control {
       @extend .rr-icon, .rr-icon__controls-bg;
