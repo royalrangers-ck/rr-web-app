@@ -7,9 +7,10 @@
 
     AppController.$inject = ['$log', '$rootScope', '$http', 'Menu', 'Endpoints', 'TokenScheduler'];
     function AppController($log, $rootScope, $http, Menu, Endpoints, TokenScheduler) {
-        const vm = $rootScope;
-        vm.sidebarMenu = {};
+        const vm = this;
+        vm.sidebarMenu = Menu;
         vm.noImageAvailable = 'static/vendor/images/user.png';
+        vm.showItem = showItem;
 
 
         activate();
@@ -18,13 +19,11 @@
 
         function activate() {
             TokenScheduler.refresh(Endpoints.TOKEN_REFRESH_INTERVAL);
-            getUserInfo().then(() => {
-                setSidebarMenu();
-            }); 
+            getUserInfo();
         }
 
         function getUserInfo() {
-            return $http.get(Endpoints.USER).then((res) => {
+            $http.get(Endpoints.USER).then((res) => {
                 if (res.data.success) {
                     vm.currentUser = res.data.data;
                     vm.avatarUrl = res.data.data.avatarUrl;
@@ -35,6 +34,7 @@
 
         function setSidebarMenu() {
             vm.sidebarMenu = filterMenu(Menu, vm.currentUser.authorities);
+            //vm.sidebarMenu = filterMenu(Menu, {});
             $log.debug('<== init sidebarMenu:', vm.sidebarMenu);
         }
 
@@ -54,6 +54,17 @@
                 }
                 return true;
             });
+        }
+
+        function showItem(item) {
+            if (!item.adminsOnly) {
+                return true;
+            } else {
+                let allow = vm.currentUser.authorities.filter((role) => {
+                    return (role == 'ROLE_ADMIN') || (role == 'ROLE_SUPER_ADMIN');
+                }).length > 0;
+                return allow;
+            }
         }
     }
 

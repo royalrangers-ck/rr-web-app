@@ -42,13 +42,13 @@
                 </li>
 
                 <li ng-repeat="item in sidebarMenu">
-                    <a href="{{ item.route }}">
+                    <a href="{{ item.route }}" ng-show="showItem(item)">
                         <span class="nav-label">{{ item.name }}</span>
                         <span class="fa arrow" ng-if="item.submenu"></span>
                     </a>
                     <ul class="nav nav-second-level collapse" ng-if="item.submenu">
                         <li ng-repeat="subItem in item.submenu">
-                            <a href="{{ subItem.route }}">{{ subItem.name }}</a>
+                            <a href="{{ subItem.route }}" ng-show="showItem(item)">{{ subItem.name }}</a>
                         </li>
                     </ul>
                 </li>
