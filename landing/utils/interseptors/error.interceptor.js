@@ -6,9 +6,15 @@
         .module('app')
         .factory('ErrorInterceptor', ErrorInterceptor);
 
-    ErrorInterceptor.$inject = ['$q', '$injector', 'growl'];
-    function ErrorInterceptor($q, $injector, growl) {
+    ErrorInterceptor.$inject = ['$q', '$location', 'growl'];
+    function ErrorInterceptor($q, $location, growl) {
         let checkError = function (response) {
+            if (response && response.status == 502) {
+                growl.error(response.statusText, response.statusText);
+                $location.path('/');
+                return;
+            }
+
             if (response && response.status !== 200) {
                 growl.error(response.data.message, response.data.error)
             }
