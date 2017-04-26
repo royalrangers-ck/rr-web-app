@@ -5,6 +5,9 @@
 /** Angular Growl Notification v.2 */
 @import "../../../bower_components/angular-growl-v2/build/angular-growl.min";
 
+/** Font-Awesome */
+@import "../../../bower_components/font-awesome/scss/font-awesome.scss";
+
 /** App */
 @import "components/sprites";
 @import "components/base";
@@ -19,3 +22,4 @@
 @import "components/slider";
 @import "components/common";
 @import "components/about.us";
+@import "components/spinner";
