@@ -18,6 +18,7 @@
                         $location.path('/');
                     },
                 });
+
                 return;
             }
 
