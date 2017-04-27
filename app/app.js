@@ -11,7 +11,8 @@
             'route-segment',
             'view-segment',
             'angular-growl',
-            'ui.bootstrap'
+            'ui.bootstrap',
+            'ngIdle'
         ]).run(['$log', ($log) => {
         $log.debug('app is running...');
     }]);

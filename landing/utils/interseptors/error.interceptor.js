@@ -6,17 +6,24 @@
         .module('app')
         .factory('ErrorInterceptor', ErrorInterceptor);
 
-    ErrorInterceptor.$inject = ['$q', '$location', 'growl'];
-    function ErrorInterceptor($q, $location, growl) {
+    ErrorInterceptor.$inject = ['$q', 'growl', '$location'];
+    function ErrorInterceptor($q, growl, $location) {
         let checkError = function (response) {
-            if (response && response.status == 502) {
-                growl.error(response.statusText, response.statusText);
-                $location.path('/');
+
+            if (response && (response.status == 502 || response.status == 504)) {
+                growl.error('Internal server error \n' + response.statusText, {
+                    ttl: 7000,
+                    disableCountDown: true,
+                    onclose: function () {
+                        $location.path('/');
+                    },
+                });
+
                 return;
             }
 
             if (response && response.status !== 200) {
-                growl.error(response.data.message, response.data.error)
+                growl.error(response.data.message)
             }
         };
 

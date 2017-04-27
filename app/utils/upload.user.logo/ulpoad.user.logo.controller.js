@@ -35,22 +35,36 @@
 
         function uploadImage() {
             if (!vm.data.formData) {
-                growl.error('Ви маєте вибрати зображення', {
+                growl.error('You must choose image first', {
                     ttl: 5000,
                     disableCountDown: true,
                 });
                 return
             }
 
-            // Needs correct async
-            UploadUserLogoService.uploadImage(vm.data.formData);
+            UploadUserLogoService.uploadImage(vm.data.formData, function (response) {
+                if (response.success) {
+                    growl.info('Image successful', {
+                        ttl: 3000, // 3 sec
+                        disableCountDown: true,
+                        onclose: function () {
+                            vm.close();
+                        }
+                    });
+                }
 
-            growl.info('Іде завантаження, будь-ласка зачекайте...', {
-                ttl: 10000,
+                growl.error('Upload error \n' + response, {
+                    ttl: 15000, // 15 sec
+                    disableCountDown: true,
+                });
+
+            });
+
+            growl.info('Uploading... Please wait', {
+                ttl: 15000, // 15 sec
                 disableCountDown: true,
             });
 
-            vm.close();
         }
     }
 

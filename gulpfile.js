@@ -65,6 +65,7 @@ gulp.task('copyDep:app', () => {
         'bower_components/metisMenu/dist/metisMenu.min.js',
         'bower_components/angular-bootstrap/ui-bootstrap.min.js',
         'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+        'bower_components/ng-idle/angular-idle.min.js',
 
 
 

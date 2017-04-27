@@ -14,5 +14,6 @@
             controller: 'LoginController',
             controllerAs: 'vm'
         });
+        
     }
 })();
