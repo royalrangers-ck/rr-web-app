@@ -6,11 +6,22 @@
         .module('app')
         .factory('ErrorInterceptor', ErrorInterceptor);
 
-    ErrorInterceptor.$inject = ['$q', '$injector', 'growl'];
-    function ErrorInterceptor($q, $injector, growl) {
+    ErrorInterceptor.$inject = ['$q', 'growl', '$location'];
+    function ErrorInterceptor($q, growl, $location) {
         let checkError = function (response) {
+
+            if (response && response.status == 502 || response && response.status == 504) {
+                growl.error('Вибачте, нажаль сервер зараз не доступний \n' + response.statusText, {
+                    ttl: 7000,
+                    onclose: function () {
+                        $location.path('/');
+                    },
+                });
+                return;
+            }
+
             if (response && response.status !== 200) {
-                growl.error(response.data.message, response.data.error)
+                growl.error(response.data.message)
             }
         };
 
