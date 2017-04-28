@@ -10,14 +10,14 @@
                accept="image/*"
                image="vm.data.image"
                ng-model="vm.data.image"
-               form-data='vm.data.formData'
                ng-click="vm.form.$pristine = false">
         <label for="file" class="btn btn-primary btn-file" ng-switch on="vm.data.image">
             <span ng-switch-when=''>Обрати зображення</span>
             <span ng-switch-default>Обрати нове зображення</span>
         </label>
-        <img class="item-image img-responsive" id="image" alt="Item Image"
-             fallback-src="{{ vm.noImageAvailable }}" ng-src="{{ vm.data.image }}">
+        <div class="cropArea">
+            <img-crop image="vm.data.image" result-image="vm.data.croppedImage"></img-crop>
+        </div>
         <span class="btn btn-primary modal-upload-confirm-btn" ng-click="vm.uploadImage()">Підтвердити</span>
         <div growl></div>
 

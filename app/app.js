@@ -12,7 +12,8 @@
             'view-segment',
             'angular-growl',
             'ui.bootstrap',
-            'ngIdle'
+            'ngIdle',
+            'ngImgCrop'
         ]).run(['$log', ($log) => {
         $log.debug('app is running...');
     }]);
