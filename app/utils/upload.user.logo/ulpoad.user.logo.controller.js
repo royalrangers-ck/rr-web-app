@@ -44,7 +44,7 @@
 
             UploadUserLogoService.uploadImage(vm.data.formData, function (response) {
                 if (response.success) {
-                    growl.info('Image successful', {
+                    growl.info('Avatar successful change', {
                         ttl: 3000, // 3 sec
                         disableCountDown: true,
                         onclose: function () {
