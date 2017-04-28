@@ -11,7 +11,6 @@
         vm.sidebarMenu = Menu;
         vm.noImageAvailable = 'static/vendor/images/user.png';
 
-
         activate();
 
         ////

@@ -1,4 +1,5 @@
-<div class="rr-registration">
+<div id="registration" class="rr-registration">
+
     <form name="vm.form" ng-submit="vm.submit()" class="rr-signup__form">
         <div class="row">
 
@@ -8,63 +9,70 @@
             </p>
 
             <div class="col-xs-12 col-sm-6">
+                <!-- Status -->
+                <div class="form-group">
+                    <select name="status" ng-required="true" ng-model="vm.data.status" id="status" class="form-control" title="СТАТУС">
+                        <option value="" selected disabled>СТАТУС</option>
+                        <option value="STUDENT">Користувач</option>
+                        <option value="TEACHER">Вчитель</option>
+                    </select>
+                </div>
 
                 <!-- First Name -->
                 <div class="form-group" ng-class="{ 'has-error' : vm.form.firstName.$invalid && !vm.form.firstName.$pristine }">
-                    <input type="text" name="firstName" ng-required="true" ng-model="vm.data.firstName" class="form-control" maxlength="30" placeholder="Ім'я" required>
+                    <input type="text" name="firstName" ng-required="true" ng-model="vm.data.firstName" class="form-control" ng-maxlength="30" placeholder="Ім'я" required>
+                    <p ng-show="vm.form.firstName.$error.maxlength" class="help-block">First name is too long.</p>
+                    <p ng-show="vm.form.firstName.$dirty && vm.form.firstName.$error.required" class="help-block">This field is required.</p>
                 </div>
 
                 <!-- Last Name -->
                 <div class="form-group" ng-class="{ 'has-error' : vm.form.lastName.$invalid && !vm.form.lastName.$pristine }">
-                    <input type="text" name="lastName" ng-required="true" ng-model="vm.data.lastName" class="form-control" maxlength="30" placeholder="Прізвище" required>
+                    <input type="text" name="lastName" ng-required="true" ng-model="vm.data.lastName" class="form-control" ng-maxlength="30" placeholder="Прізвище" required>
+                    <p ng-show="vm.form.lastName.$error.maxlength" class="help-block">Last name is too long.</p>
+                    <p ng-show="vm.form.lastName.$dirty && vm.form.lastName.$error.required" class="help-block">This field is required.</p>
                 </div>
 
                 <!-- Telephone Number -->
                 <div class="form-group"  ng-class="{ 'has-error' : vm.form.telephoneNumber.$invalid && !vm.form.telephoneNumber.$pristine }">
                     <input type="tel" name="telephoneNumber" ng-required="true" ng-model="vm.data.telephoneNumber" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_" class="form-control" title="Телефон" placeholder="Телефон" required>
+                    <p ng-show="vm.form.telephoneNumber.$dirty && vm.form.telephoneNumber.$error.required" class="help-block">This field is required.</p>
                 </div>
 
                 <!-- Email -->
                 <div class="form-group" ng-class="{ 'has-error' : vm.form.email.$invalid && !vm.form.email.$pristine }">
                     <input type="email" name="email" ng-required="true" ng-model="vm.data.email" id="email" class="form-control" placeholder="Email" required>
-                </div>
-
-                <!-- Birth Date -->
-                <div class="form-group">
-                    <input type="date" name="birthDate" ng-required="true" ng-model="vm.data.birthDate" date-parser class="form-control" placeholder="Дата народження" title="дата народження">
+                    <p ng-show="vm.form.email.$dirty && vm.form.email.$error.required" class="help-block">This field is required.</p>
                 </div>
 
                 <!-- Password -->
                 <div class="form-group" ng-class="{ 'has-error' : vm.form.password.$invalid && !vm.form.password.$pristine }">
                     <input type="password" name="password" ng-required="true" ng-model="vm.data.password" class="form-control" id="pass" placeholder="Пароль" ng-minlength="5" ng-maxlength="25" required>
+                    <p ng-show="vm.form.password.$error.minlength" class="help-block">Password is too short.</p>
+                    <p ng-show="vm.form.password.$error.maxlength" class="help-block">Password is too long.</p>
+                    <p ng-show="vm.form.password.$dirty && vm.form.password.$error.required" class="help-block">This field is required.</p>
                 </div>
 
                 <!-- Confirm Password -->
                 <div class="form-group" ng-class="{ 'has-error' : vm.form.confirmPassword.$invalid && !vm.form.confirmPassword.$pristine }">
-                    <input type="password" name="confirmPassword" ng-required="true" ng-model="vm.data.confirmPassword" class="form-control" id="confirmPass" placeholder="Підтвердження паролю" ng-minlength="5" ng-maxlength="25" required>
+                    <input type="password" name="confirmPassword" ng-required="true" ng-model="vm.data.confirmPassword" compare-to="vm.data.password" class="form-control" id="confirmPass" placeholder="Підтвердження паролю" ng-minlength="5" ng-maxlength="25" required>
+                    <p ng-show="vm.form.confirmPassword.$error.minlength" class="help-block">Password is too short.</p>
+                    <p ng-show="vm.form.confirmPassword.$error.maxlength" class="help-block">Password is too long.</p>
+                    <p ng-show="vm.form.confirmPassword.$dirty && vm.form.confirmPassword.$error.required" class="help-block">This field is required.</p>
+                    <p ng-show="vm.form.confirmPassword.$dirty && vm.form.confirmPassword.$error.compareTo" class="help-block">Password not equal with confirm password.</p>
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-6">
-                <!-- Gender -->
-                <div class="form-group">
-                    <select name="gender" ng-required="true" ng-model="vm.data.gender" class="form-control" title="СТАТЬ">
-                        <option value="" selected disabled>СТАТЬ</option>
-                        <option value="male">Чоловік</option>
-                        <option value="female">Жінка</option>
-                    </select>
-                </div>
-
                 <!-- Country -->
                 <div class="form-group">
-                        <select name="country" id="country" ng-required="true" ng-model="vm.data.country" ng-options="record as record.name for record in vm.countries" ng-change="vm.getCities(vm.data.country.id)" class="form-control">
+                    <select name="country" id="country" ng-required="true" ng-model="vm.data.country" ng-options="record as record.name for record in vm.countries" ng-change="vm.getCities(vm.data.country.id)" class="form-control">
                         <option value="" disabled>КРАЇНА</option>
                     </select>
                 </div>
 
                 <!-- City -->
                 <div class="form-group">
-                        <select name="city" id="city" ng-required="true" ng-disabled="!vm.data.country" ng-model="vm.data.city" ng-options="record as record.name for record in vm.cities" ng-change="vm.getGroups(vm.data.city.id)" class="form-control">
+                    <select name="city" id="city" ng-required="true" ng-disabled="!vm.data.country" ng-model="vm.data.city" ng-options="record as record.name for record in vm.cities" ng-change="vm.getGroups(vm.data.city.id)" class="form-control">
                         <option value="" disabled>МІСТО</option>
                     </select>
                 </div>
@@ -85,18 +93,23 @@
 
                 <!-- Section -->
                 <div class="form-group">
-                        <select name="section" id="section" ng-required="true" ng-disabled="!vm.data.platoon" ng-model="vm.data.section" ng-options="record as record.name for record in vm.sections" class="form-control">
+                    <select name="section" id="section" ng-required="true" ng-disabled="!vm.data.platoon" ng-model="vm.data.section" ng-options="record as record.name for record in vm.sections" class="form-control">
                         <option value="" disabled>НАЗВА ЛАНКИ</option>
                     </select>
                 </div>
 
-                <!-- Status -->
+                <!-- Gender -->
                 <div class="form-group">
-                    <select name="status" ng-required="true" ng-model="vm.data.status" id="status" class="form-control" title="СТАТУС">
-                        <option value="" selected disabled>СТАТУС</option>
-                        <option value="STUDENT">Користувач</option>
-                        <option value="TEACHER">Вчитель</option>
+                    <select name="gender" ng-required="true" ng-model="vm.data.gender" class="form-control" title="СТАТЬ">
+                        <option value="" selected disabled>СТАТЬ</option>
+                        <option value="male">Чоловік</option>
+                        <option value="female">Жінка</option>
                     </select>
+                </div>
+
+                <!-- Birth Date -->
+                <div class="form-group">
+                    <input type="date" name="birthDate" ng-required="true" ng-model="vm.data.birthDate" date-parser class="form-control" placeholder="Дата народження" title="дата народження">
                 </div>
             </div>
         </div>
@@ -104,7 +117,9 @@
         <div class="row rr-registration__button">
             <div class="col-xs-12 col-sm-6 col-sm-offset-3">
                 <div class="form-group">
-                    <button type="submit" ng-disabled="vm.form.$pristine || vm.form.$invalid || vm.form.$submitted" class="btn btn-primary btn-block">ЗАРЕЄСТРУВАТИСЯ</button>
+                    <button type="submit" ng-disabled="vm.form.$pristine || vm.form.$invalid || vm.form.$submitted" class="btn btn-primary btn-block">
+                        <span ng-if="vm.form.$submitted" class="spinner-wrapper"><i class="fa fa-refresh fa-spin"></i></span> Зареєструватися
+                    </button>
                 </div>
             </div>
         </div>
