@@ -16,7 +16,6 @@
 
         function activate() {
             $log.debug('Init HomeController ...');
-            $log.debug('Init $rootScope ...', $rootScope);
         }
     }
 

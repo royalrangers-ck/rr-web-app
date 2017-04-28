@@ -6,8 +6,8 @@
         .module('app')
         .controller('RegistrationController', RegistrationController);
 
-    RegistrationController.$inject = ['countries', 'growl', '$log', '$window', '$location', 'RegistrationService'];
-    function RegistrationController(countries, growl, $log, $window, $location, RegistrationService) {
+    RegistrationController.$inject = ['countries', 'growl', '$routeSegment', '$location', 'RegistrationService'];
+    function RegistrationController(countries, growl, $routeSegment, $location, RegistrationService) {
         const vm = this;
 
         vm.data = {};
@@ -45,6 +45,7 @@
                     $location.path('/login');
                 } else {
                     growl.info(res.data.message);
+                    $routeSegment.chain[0].reload();
                 }
 
                 vm.form.$setUntouched();
