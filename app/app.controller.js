@@ -5,8 +5,8 @@
         .module('app')
         .controller('AppController', AppController);
 
-    AppController.$inject = ['$log', '$rootScope', '$http', 'Menu', 'Endpoints', 'TokenScheduler'];
-    function AppController($log, $rootScope, $http, Menu, Endpoints, TokenScheduler) {
+    AppController.$inject = ['$log', '$rootScope', '$http', 'Menu', 'Endpoints', 'TokenScheduler', '$timeout'];
+    function AppController($log, $rootScope, $http, Menu, Endpoints, TokenScheduler, $timeout) {
         const vm = $rootScope;
         vm.sidebarMenu = {};
         vm.noImageAvailable = 'static/vendor/images/user.png';
@@ -35,6 +35,10 @@
 
         function setSidebarMenu() {
             vm.sidebarMenu = filterMenu(Menu, vm.currentUser.authorities);
+            $timeout(() => {
+                $('#side-menu').metisMenu('dispose');
+                $('#side-menu').metisMenu();
+            }, 500);
             $log.debug('<== init sidebarMenu:', vm.sidebarMenu);
         }
 
