@@ -2,9 +2,6 @@
 //Author - Vasiliy Dikun
 //aliases: "a-eum" - "application - edit user modal"
 
-//variables
-$a-eum-avatar-title-height: 15%; //size of avatar title text
-
 .a-eum-modal {
     &__section-header {
         margin: 0 15px 15px;
@@ -12,13 +9,9 @@ $a-eum-avatar-title-height: 15%; //size of avatar title text
     &__avatar-wrapper {
         margin-bottom: 15px;
     }
-    &__avatar-title {
-        height: $a-eum-avatar-title-height;
-        padding-bottom: 10px;
-    }
 
     &__avatar-img {
-        height: 100% - $a-eum-avatar-title-height;
+        height: 100%;
     }
 }
 
@@ -31,6 +24,7 @@ $a-eum-avatar-title-height: 15%; //size of avatar title text
 .a-eum-avatar {
     text-align: center;
     overflow: hidden;
+    cursor: pointer;
     &>img {
         height: auto;
         width: 45%;
