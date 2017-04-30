@@ -6,14 +6,19 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['growl', '$window', '$http', '$routeSegment', 'TokenService', 'Endpoints'];
-    function LoginController(growl, $window, $http, $routeSegment, TokenService, Endpoints) {
+    LoginController.$inject = ['growl', '$window', '$http', '$routeSegment', 'TokenService', 'Endpoints', '$localStorage'];
+    function LoginController(growl, $window, $http, $routeSegment, TokenService, Endpoints, $localStorage) {
         const vm = this;
 
         vm.data = {};
         vm.login = login;
 
         ////
+        // If we have token, we don`t need input mail and password
+        if ($localStorage.token) {
+            console.log($localStorage.token);
+            $window.location.pathname = '/app/';
+        }
 
         function login() {
             let req = {

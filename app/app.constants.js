@@ -45,6 +45,13 @@
         // PROFILE
         constants.TEST = constants.ACHIEVEMENTS + '/test';
 
+        //ROLES
+        constants.ROLES = {
+            user: 'ROLE_USER',
+            admin: 'ROLE_ADMIN',
+            superAdmin: 'ROLE_SUPER_ADMIN'
+        };
+
         return constants;
     }
 })();

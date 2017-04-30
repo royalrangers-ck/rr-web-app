@@ -20,7 +20,7 @@
 
         function activate() {
             $log.debug('Init ConfirmUsersController ...');
-            getUsers($rootScope.currentUser.platoonId);
+            getUsers($rootScope.currentUser.platoon.id);
             getAdminPlatoonName();
             //init "FooTable" plugin in all tables with 'footable' class
             $(document).ready(function () {
@@ -52,7 +52,7 @@
         function getAdminPlatoonName() {
             return platoons.$promise.then((res) => {
                 if (res.success) {
-                    vm.adminPlatoonName = res.data.find((item) =>  item.id == $rootScope.currentUser.platoonId).name;
+                    vm.adminPlatoonName = res.data.find((item) =>  item.id == $rootScope.currentUser.platoon.id).name;
                 }
             })
         }
