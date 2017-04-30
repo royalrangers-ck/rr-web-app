@@ -29,10 +29,10 @@
         function activate() {
             $log.debug('Init modal window...');
             angular.copy(user, vm.currentUser);
-            setCities(vm.currentUser.countryId);
-            setGroups(vm.currentUser.cityId);
-            setPlatoons(vm.currentUser.groupId);
-            setSections(vm.currentUser.platoonId);
+            setCities(vm.currentUser.country.id);
+            setGroups(vm.currentUser.city.id);
+            setPlatoons(vm.currentUser.group.id);
+            setSections(vm.currentUser.platoon.id);
             setRanks();
             $log.debug('User loaded to modal window:', vm.currentUser);
         }
@@ -46,13 +46,12 @@
                 userAgeGroup: vm.currentUser.userAgeGroup,
                 telephoneNumber: vm.currentUser.telephoneNumber,
                 birthDate: +moment(vm.currentUser.birthDate),
-                countryId: vm.currentUser.countryId,
-                cityId: vm.currentUser.cityId,
-                groupId: vm.currentUser.groupId,
-                platoonId: vm.currentUser.platoonId,
-                sectionId: vm.currentUser.sectionId,
-                userRank: vm.currentUser.userRank,
-                status: vm.currentUser.status
+                countryId: vm.currentUser.country.id,
+                cityId: vm.currentUser.city.id,
+                groupId: vm.currentUser.group.id,
+                platoonId: vm.currentUser.platoon.id,
+                sectionId: vm.currentUser.section.id,
+                userRank: vm.currentUser.userRank
             };
             EditUserModalService.updateUser(valuesToSend,
                 (res) => {

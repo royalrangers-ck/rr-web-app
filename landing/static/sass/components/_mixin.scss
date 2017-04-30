@@ -1,0 +1,25 @@
+@mixin rr-curve ($bg-color, $top-curve, $bottom-curve) {
+  position: relative;
+  background-color: $bg-color;
+
+  &:after, &:before {
+    display: block;
+    content: '';
+    position: absolute;
+    height: $rr-height-curve;
+    width: 100%;
+    z-index: $rr-z-index-curve;
+  }
+
+  &:before {
+    top: -($rr-height-curve);
+    background: url("#{$rr-images-path}/#{$top-curve}") no-repeat center bottom;
+    background-size: contain;
+  }
+
+  &:after {
+    bottom: -($rr-height-curve);
+    background: url("#{$rr-images-path}/#{$bottom-curve}") no-repeat center top;
+    background-size: contain;
+  }
+}

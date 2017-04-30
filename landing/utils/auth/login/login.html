@@ -1,10 +1,10 @@
-<div class="container">
-    <div id="login" class="row">
+<div id="login" class="rr-login">
 
-        <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
-            <h4 class="text-center">вхід</h4>
+    <form name="vm.form" ng-submit="vm.login()" novalidate>
+        <div class="row">
+            <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+                <h4 class="text-center">вхід</h4>
 
-            <form name="vm.form" ng-submit="vm.login()" novalidate>
 
                 <div class="form-group" ng-class="{ 'has-error' : vm.form.email.$invalid && !vm.form.email.$pristine }">
                     <input type="email" name="email" class="form-control" placeholder="E-mail" ng-model="vm.data.email" required>
@@ -31,7 +31,7 @@
                          <span ng-if="vm.form.$submitted" class="spinner-wrapper"><i class="fa fa-refresh fa-spin"></i></span> Вхід
                     </button>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
