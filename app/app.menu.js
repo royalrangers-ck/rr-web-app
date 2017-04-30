@@ -10,11 +10,11 @@
                 name: 'Система досягнень',
                 route: '',
                 submenu: [
-                    { name: 'Початківці', route: '' },
+                    { name: 'Початківці', route: ''},
                     { name: 'Відкривачі', route: '' },
                     { name: 'Слідопити', route: '' },
                     { name: 'Рейнджери', route: '' },
-                    { name: 'Командири', route: '' }
+                    { name: 'Командири', route: ''}
                 ]
             }, {
                 name: 'Мої нагороди',
@@ -25,9 +25,9 @@
                     { name: 'За табори', route: '#/profile/camps' },
                     { name: 'За походи', route: '#/profile/trips' },
                     { name: 'Тести', route: '#/profile/tests' },
-                    { name: 'Зірки', route: '#/profile/stars' },
+                    { name: 'Зірки', route: '#/profile/stars'},
                     { name: 'Чверть/рік', route: '#/profile/terms-years' },
-                    { name: 'Начання', route: '#/profile/study' }
+                    { name: 'Начання', route: '#/profile/study'}
                 ]
             },
             { name: 'Виконую', route: '' },
@@ -35,7 +35,7 @@
             { name: 'Мій загін', route: '' },
             { name: 'Мої друзі', route: '' },
             { name: 'Бібліотека', route: '#/library' },
-            { name: 'Підтвердити', route: '#/confirm-users' },
+            { name: 'Підтвердити', route: '#/confirm-users', adminsOnly: true },
             { name: 'Тех.підтримка', route: '' },
             { name: 'Створити', route: '' }
         ];

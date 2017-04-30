@@ -10,7 +10,6 @@
             </div>
             <div class="row a-eum-modal__section">
                 <div class="col-md-5 a-eum-modal__avatar-wrapper">
-                    <div class="a-eum-modal__avatar-title a-eum-title">Аватар</div>
                     <div class="a-eum-modal__avatar-img a-eum-avatar">
                         <!--<img class="img-circle" src="static/images/demo/profile_photo.jpg" alt="profile photo">-->
                         <img class="img-circle"
@@ -84,9 +83,9 @@
                     <div class="form-group">
                         <label for="city" class="col-sm-3 control-label">Місто</label>
                         <div class="col-sm-9">
-                            <select id="city" ng-disabled="vm.cities.length == 0" ng-model="vm.currentUser.cityId"
+                            <select id="city" ng-disabled="vm.cities.length == 0" ng-model="vm.currentUser.city.id"
                                     ng-options="record.id as record.name for record in vm.cities"
-                                    ng-change="vm.changeGroup(vm.currentUser.cityId)" class="form-control" required>
+                                    ng-change="vm.changeGroup(vm.currentUser.city.id)" class="form-control" required>
                                 <option value="" disabled hidden>Виберіть місто</option>
                             </select>
                         </div>
@@ -97,9 +96,9 @@
                         <label for="groupNumber" class="col-sm-3 control-label">Група</label>
                         <div class="col-sm-9">
                             <select id="groupNumber" ng-disabled="vm.groups.length == 0"
-                                    ng-model="vm.currentUser.groupId"
+                                    ng-model="vm.currentUser.group.id"
                                     ng-options="record.id as record.name for record in vm.groups"
-                                    ng-change="vm.changePlatoon(vm.currentUser.groupId)" class="form-control" required>
+                                    ng-change="vm.changePlatoon(vm.currentUser.group.id)" class="form-control" required>
                                 <option value="" disabled hidden>Виберіть группу</option>
                             </select>
                         </div>
@@ -112,9 +111,9 @@
                         <label for="platoon" class="col-sm-3 control-label">Загін</label>
                         <div class="col-sm-9">
                             <select id="platoon" ng-disabled="vm.platoons.length == 0"
-                                    ng-model="vm.currentUser.platoonId"
+                                    ng-model="vm.currentUser.platoon.id"
                                     ng-options="record.id as record.name for record in vm.platoons"
-                                    ng-change="vm.setSections(vm.currentUser.platoonId)" class="form-control" required>
+                                    ng-change="vm.setSections(vm.currentUser.platoon.id)" class="form-control" required>
                                 <option value="" disabled hidden>Виберіть загін</option>
                             </select>
                         </div>
@@ -125,7 +124,7 @@
                         <label for="sectionId" class="col-sm-3 control-label">Ланка</label>
                         <div class="col-sm-9">
                             <select id="sectionId" ng-disabled="vm.sections.length == 0"
-                                    ng-model="vm.currentUser.sectionId"
+                                    ng-model="vm.currentUser.section.id"
                                     ng-options="record.id as record.name for record in vm.sections"
                                     class="form-control" required>
                                 <option value="" disabled hidden>Виберіть ланку</option>
