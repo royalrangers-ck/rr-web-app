@@ -1,0 +1,7 @@
+.rr-login {
+  @include rr-curve(#fff, 'curve.up.png', 'curve.down.png');
+
+  [class^='col-'] {
+    padding: 0 $padding-base-horizontal;
+  }
+}
