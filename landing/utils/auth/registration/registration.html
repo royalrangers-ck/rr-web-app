@@ -1,12 +1,14 @@
-<div id="registration" class="container">
+<div id="registration" class="rr-registration">
 
     <form name="vm.form" ng-submit="vm.submit()" class="rr-signup__form">
         <div class="row">
 
-            <h4 class="text-center">Реєстрація</h4>
+            <h4 class="text-center rr-registration__title">Реєстрація</h4>
+            <p class="text-center">
+                <span class="rr-registration__info">Всі поля обов’язкові для заповнення</span>
+            </p>
 
             <div class="col-xs-12 col-sm-6">
-
                 <!-- Status -->
                 <div class="form-group">
                     <select name="status" ng-required="true" ng-model="vm.data.status" id="status" class="form-control" title="СТАТУС">
@@ -112,7 +114,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row rr-registration__button">
             <div class="col-xs-12 col-sm-6 col-sm-offset-3">
                 <div class="form-group">
                     <button type="submit" ng-disabled="vm.form.$pristine || vm.form.$invalid || vm.form.$submitted" class="btn btn-primary btn-block">
@@ -124,7 +126,7 @@
     </form>
 
     <div class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
             <hr>
         </div>
     </div>

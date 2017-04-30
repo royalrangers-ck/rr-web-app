@@ -14,147 +14,109 @@
 
 <div growl></div>
 
-<header class="lp-header">
+<!-- Parallax -->
+<div class="rr-parallax" style="z-index: 1">
+    <div class="rr-parallax_front-tree"></div>
+    <div class="rr-parallax_middle-tree"></div>
+    <div class="rr-parallax_back-rocks"></div>
+</div>
+<!-- ./Parallax -->
 
-    <!-- Parallax -->
-    <div class="rr-parallax">
-        <div class="rr-parallax_front-tree"></div>
-        <div class="rr-parallax_middle-tree"></div>
-        <div class="rr-parallax_back-rocks"></div>
-    </div>
-    <!-- ./Parallax -->
+<div class="container-fluid rr-wrapper" style="z-index: 2;">
 
-    <div class="container">
-        <!--top row-->
-        <div class="lp-header__top-row row">
-            <!--block with logo-->
-            <h1 class="lp-header__logo-block col-sm-3">
-                <a href="#/">
-                    <img class="lph-logo" src="./static/vendor/images/rr-logo.svg" alt="Логотип сайту">
-                </a>
-            </h1>
-            <!--block with site description and sign-in-->
-            <div class="col-sm-9">
-                <div class="row">
-                    <!--sign-in block-->
-                    <ul class="lp-header__auth-block col-sm-6 col-sm-offset-6 col-md-5 col-md-offset-7">
-                        <li class="lp-header__register">
-                            <a href="#/registration" class="lph-link"><small>реєстрація</small></a>
-                        </li>
-                        <li class="lp-header__signin">
-                            <!--<a href="#/login" class="lph-btn">вхід</a>-->
-                            <a href="#/login" class="btn btn-primary btn__arrow btn__shaft">вхід</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <header class="navbar navbar-static-top rr-header" id="top">
+
+        <div class="navbar-header">
+            <a class="navbar-brand visible-xs" href="/">Royal Rangers</a>
+
+            <button class="navbar-btn navbar-toggle dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                <li><a href="#/aboutUs">Про нас</a></li>
+                <li><a href="#/aboutProject">Суть проекту</a></li>
+                <li><a href="#/howThisWork">Як це працює</a></li>
+                <li><a href="#/locator">Локатор</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#/registration">Реєстрація</a></li>
+                <li><a href="#/login">Вхід</a></li>
+            </ul>
         </div>
-        <!-- navigation -->
-        <nav class="lp-header__nav navbar navbar-default lph-nav lp-header__curve" role="navigation">
-            <div class="container-fluid">
-                <!--service block to create mobile menu-->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!--this block visible only in mobile version-->
-                    <div class="lph-nav__mobile-title visible-xs">
-                        <a class="lph-title lph-title_small" href="javascript:void(0);">Royal-Rangers</a>
-                    </div>
-                </div>
-                <!--menu items-->
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="lph-nav__item visible-xs">
-                            <a class="lph-link lph-link_size_small lph-link_alert" href="#/registration">Реєстрація</a>
-                        </li>
-                        <li class="lph-nav__item visible-xs">
-                            <a class="lph-link lph-link_size_small" href="#/login">Вхід</a>
-                        </li>
-                        <li class="lph-nav__item">
-                            <a class="lph-link lph-link_size_small" href="#/aboutUs">Про нас</a>
-                        </li>
-                        <li class="lph-nav__item">
-                            <a class="lph-link lph-link_size_small" href="#/aboutProject">Суть проекту</a>
-                        </li>
-                        <li class="lph-nav__item">
-                            <a class="lph-link lph-link_size_small" href="#/howThisWork">Як це працює</a>
-                        </li>
-                        <li class="lph-nav__item">
-                            <a class="lph-link lph-link_size_small" href="#/locator">Локатор</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
+        <nav class="navbar-collapse collapse">
+
+            <ul class="list-inline rr-sign">
+                <li class="rr-sign__up"><a href="#/registration">Реєстрація</a></li>
+                <li class="rr-sign__in"><a href="#/login" class="btn btn-primary btn__shaft btn__arrow">Вхід</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav rr-menu text-right">
+                <li class="rr-menu__item rr-logo__wrapper">
+                    <a href="/">
+                        <img src="/landing/static/vendor/images/rr-logo.svg" class="rr-logo" alt="Royal Rangers">
+                    </a>
+                </li>
+                <li class="rr-menu__item"><a href="#/aboutUs">Про нас</a></li>
+                <li class="rr-menu__item"><a href="#/aboutProject">Суть проекту</a></li>
+                <li class="rr-menu__item"><a href="#/howThisWork">Як це працює</a></li>
+                <li class="rr-menu__item"><a href="#/locator">Локатор</a></li>
+            </ul>
         </nav>
-    </div>
-</header>
+    </header>
 
-<div app-view-segment="0"></div>
+    <div app-view-segment="0"></div>
 
-<footer class="container">
-    <div class="row">
+    <footer class="row rr-footer__wrapper">
 
-        <div class="col-xs-12">
-            <div class="rr-footer__wrapper clearfix">
-                <div class="rr-footer__bg clearfix">
+        <div class="col-xs-12 text-center subscribe-form">
+            <form class="form-inline" name="vm.form" ng-submit="vm.submit()">
 
-                    <div class="col-xs-12 text-center subscribe-form">
-                        <form class="form-inline" name="vm.form" ng-submit="vm.submit()">
-
-                            <div class="form-group">
-                                <input type="email" name="email" ng-model="vm.email" class="form-control" placeholder="ex. john.doe@gmail.com">
-                            </div>
-
-                            <div class="form-group">
-                                <button type="submit" ng-disabled="vm.form.$invalid || vm.form.$pristine || vm.form.$submitted" class="btn btn-danger btn__shaft">підписатись</button>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="col-xs-12 rr-footer">
-
-                        <div class="rr-footer__logo visible-lg">
-                            <a href="/">
-                                <img src="./static/vendor/images/rr-logo.svg" alt="Royal Rangers"/>
-                            </a>
-                        </div>
-
-                        <div class="rr-footer__contacts">
-                            <div class="rr-footer__contacts-info">
-                                <ul class="list-unstyled text-right">
-                                    <li><a href="tel:+380671234567">+38 (067) 123 4567</a></li>
-                                    <li><a href="mailto:royal.rangers@gmail.com">royal.rangers@gmail.com</a></li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline rr-footer__contacts-icons">
-                                <li class="item rr-scroll-to-top rra-scroll-to-top hidden-xs hidden-sm">
-                                    <a href="#"><i class="rr-icon rr-icon__up"></i></a>
-                                </li>
-                                <li class="item">
-                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon rr-icon__fb"></i></a>
-                                </li>
-                                <li class="item">
-                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon rr-icon__vk"></i></a>
-                                </li>
-                                <li class="item">
-                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon rr-icon__twitter"></i></a>
-                                </li>
-                                <li class="item">
-                                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon rr-icon__rr"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
+                <div class="form-group">
+                    <input type="email" name="email" ng-model="vm.email" class="form-control" placeholder="ex. john.doe@gmail.com">
                 </div>
-            </div>
+
+                <div class="form-group">
+                    <button type="submit" ng-disabled="vm.form.$invalid || vm.form.$pristine || vm.form.$submitted" class="btn btn-danger btn__shaft">підписатись</button>
+                </div>
+            </form>
         </div>
-    </div>
-</footer>
+
+        <div class="col-xs-12 rr-footer">
+
+            <div class="rr-footer__logo-wrapper visible-lg">
+                <a href="/">
+                    <img class="rr-footer__logo" src="./static/vendor/images/rr-logo.svg" alt="Royal Rangers"/>
+                </a>
+            </div>
+
+            <ul class="list-inline rr-contacts-icons">
+                <li class="contacts-icons__item rra-scroll-to-top hidden-xs">
+                    <a href="#"><i class="rr-icon rr-icon__up"></i></a>
+                </li>
+                <li class="contacts-icons__item contacts-icons__item-separator hidden-xs"></li>
+                <li class="contacts-icons__item">
+                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon rr-icon__fb"></i></a>
+                </li>
+                <li class="contacts-icons__item">
+                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon rr-icon__vk"></i></a>
+                </li>
+                <li class="contacts-icons__item">
+                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon rr-icon__twitter"></i></a>
+                </li>
+                <li class="contacts-icons__item">
+                    <a href="http://royal-rangers.com.ua/"><i class="rr-icon rr-icon__rr"></i></a>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled rr-footer__contacts-info">
+                <li><a href="tel:+380671234567">+38 (067) 123 4567</a></li>
+                <li><a href="mailto:royal.rangers@gmail.com">royal.rangers@gmail.com</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
 
 </body>
 </html>

@@ -1,60 +1,49 @@
-$image-path:        './../images';
-$bg-parallax-base:  #c6e8c5;
+$bg-parallax-base:  transparent;
 
 /**
  * Return height of parallax box ( plus 24.5% of base height )
  */
 @function fn-parallax-box-height ($height) {
-    @return $lph-height + (($lph-height * 24.5) / 100);
+    @return $rr-header-height + (($rr-header-height * 24.5) / 100);
 }
 
 .rr-parallax {
     position: absolute;
-    height: $lph-height;
+    height: $rr-header-height;
     width: 100%;
     overflow: hidden;
+    z-index: $rr-z-index-parallax;
 
-    @media (min-width: $screen-lg-min) {
+    @media (min-width: $screen-sm-min) {
         background-image: none;
 
         .rr-parallax_front-tree, .rr-parallax_middle-tree, .rr-parallax_back-rocks {
             position: absolute;
             width: 100%;
-            height: fn-parallax-box-height($lph-height);
+            height: fn-parallax-box-height($rr-header-height);
             background-repeat: repeat-x;
             background-position: bottom;
         }
 
         .rr-parallax_front-tree {
-            background-image: url("#{$image-path}/parallax-tree-front.png");
+            background-image: url("#{$rr-images-path}/parallax-tree-front.png");
             z-index: -1;
         }
 
         .rr-parallax_middle-tree {
-            background-image: url("#{$image-path}/parallax-tree-middle.png");
+            background-image: url("#{$rr-images-path}/parallax-tree-middle.png");
             z-index: -2;
         }
 
         .rr-parallax_back-rocks {
-            background: url("#{$image-path}/parallax-rocks.png") $bg-parallax-base;
+            background: url("#{$rr-images-path}/parallax-rocks.jpg") $bg-parallax-base;
             z-index: -3;
             background-position-x: -50%;
         }
     }
 
-    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-        height: $lph-height-medium;
-        background: url('#{$image-path}/header-bg.jpg') no-repeat;
-        background-size: cover;
-    }
-
-    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-        height: $lph-height-small;
-        background: url('#{$image-path}/header-bg.jpg') no-repeat;
-        background-size: cover;
-    }
     @media (max-width: $screen-xs-max) {
-        height: $lph-height-mobile;
+        height: $navbar-height;
         background-image: none;
         background-color: $bg-parallax-base;
     }

@@ -1,93 +1,58 @@
 .rr-footer__wrapper {
-  background: url('./../images/pattern.png') repeat;
-
-  .rr-footer__bg {
-    background-size: cover;
-    background: url('./../images/footer-bg-opacity.png') 50% 100% no-repeat;
-  }
+  background: url('#{$rr-images-path}/footer.bg.png') center bottom no-repeat;
+  background-size: cover;
 }
 
 .rr-footer {
   position: relative;
-  background-color: rgba(255, 255, 255, .7);
-  font-family: 'Yanone Kaffeesatz', sans-serif;
-  font-size: 22px;
+  background-color: rgba(255, 255, 255, .8);
   margin: 0 auto 30px;
+  padding: 5px $padding-base-horizontal 0;
 
-  @media (min-width: $screen-lg-min) {
-    .rr-footer__logo {
-      position: absolute;
-      width: 230px;
-      bottom: -20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 
-      img { width: 230px; }
+  .rr-footer__logo-wrapper {
+
+    @media (min-width: $grid-float-breakpoint) {
+      position: relative;
+      flex-basis: 230px;
+
+      .rr-footer__logo {
+        position: absolute;
+        bottom: 0;
+      }
     }
 
-    .rr-footer__contacts {
-
-      .rr-footer__contacts-icons, .rr-footer__contacts-info {
-        float: right;
-        margin: 15px 0 10px;
-      }
-
-      .rr-footer__contacts-icons {
-        .item {
-          padding: 0 22px;
-
-          &:first-child {
-            padding-left: 0;
-          }
-
-          &:last-child {
-            padding-right: 60px;
-          }
-        }
-
-        .rr-scroll-to-top {
-          padding-right: 60px;
-          margin-right: 0;
-          border-right: 3px solid $brand-primary;
-
-          + .item {
-            padding-left: 60px;
-          }
-        }
-      }
-
-      .rr-footer__contacts-info {
-        text-transform: uppercase;
-
-        a {
-          color: $text-color;
-        }
-      }
+    @media (max-width: $grid-float-breakpoint - 1) {
+      display: none;
     }
   }
 
-  @media (max-width: $screen-md-max) {
-    .rr-footer__logo {}
 
-    .rr-footer__contacts {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap-reverse;
+  .rr-contacts-icons {
+    flex-grow: 1;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
-      .rr-footer__contacts-icons, .rr-footer__contacts-info {
-        margin-top: 10px;
-        flex-grow: 1;
-      }
+    .contacts-icons__item {}
 
-      .rr-footer__contacts-icons {
-        order: 1;
-        text-align: center;
-        margin-bottom: 0;
-      }
-
-      .rr-footer__contacts-info {
-        order:2;
-
-        > * { text-align: center }
-      }
+    .contacts-icons__item-separator{
+      height: $line-height-computed * 1.8;
+      padding: 0;
+      border: 1px solid $brand-primary;
     }
+  }
+
+  .rr-footer__contacts-info {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    flex-wrap: wrap-reverse;
+    justify-content: center;
   }
 }
