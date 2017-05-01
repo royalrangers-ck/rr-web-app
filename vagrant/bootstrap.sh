@@ -62,7 +62,7 @@ server {
             index index.html index.html;
         }
 
-        location ~* \.(js|jpg|png|ico|css|otf|eot|svg|ttf|woff|woff2)$ {
+        location ~* \.(js|jpg|png|gif|ico|css|otf|eot|svg|ttf|woff|woff2)$ {
             sendfile off;
         }
 

@@ -17,7 +17,7 @@ $(document).ready(function () {
     }
 
     // MetsiMenu
-    $('#side-menu').metisMenu();
+    //$('#side-menu').metisMenu();
 
     // Collapse ibox function
     $('.collapse-link').click(function () {

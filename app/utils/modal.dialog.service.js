@@ -53,22 +53,23 @@
                 templateUrl: 'edit.user.modal/edit.user.modal.html',
                 controller: 'EditUserModalController',
                 controllerAs: 'vm',
-                size: 'lg',
-                resolve: {
-                    user: function($rootScope) {
-                        return $rootScope.currentUser;
-                    }
-                }
+                size: 'lg'
             });
         }
 
-        function uploadUserLogo() {
+        function uploadUserLogo(options) {
+            options || (options = {});
+
             return $uibModal.open({
                 animation: true,
                 templateUrl: 'utils/upload.user.logo/upload.user.logo.modal.html',
                 controller: 'UploadUserLogoController',
                 controllerAs: 'vm',
-                // size: 'lg'
+                resolve: {
+                    options: () => {
+                        return options;
+                    }
+                }
             })
         }
     }

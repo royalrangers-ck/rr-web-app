@@ -2,11 +2,17 @@
     <div class="ibox-content">
         <div class="row home">
             <div class="col-xs-4 col-sm-3">
-                <img class="img-circle img-responsive center-block m-b-sm"
-                     fallback-src="{{ noImageAvailable }}"
-                     ng-src="{{ avatarUrl}}"
-                     alt="profile photo">
-                
+                <div class="text-center">
+                    <img class="img-circle img-responsive center-block m-b-sm"
+                         fallback-src="{{ vm.defaultImage }}"
+                         ng-src="{{ vm.currentUser.avatarUrl}}"
+                         alt="profile photo">
+
+                    <button type="button" ng-click="vm.uploadUserLogo()" class="btn btn-default update-logo-btn">
+                        Оновити фотографію
+                    </button>
+                </div>
+
                 <ul class="list-unstyled visible-xs">
                     <li class="m-b"><img class="img-responsive center-block" src="static/images/demo/platoon.png"
                                          alt="platoon"></li>

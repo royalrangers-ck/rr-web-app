@@ -13,8 +13,6 @@
         vm.logout = logout;
         vm.editUser = editUser;
 
-        // vm.avatarUrl = $rootScope.currentUser.avatarUrl;
-
         activate();
 
 

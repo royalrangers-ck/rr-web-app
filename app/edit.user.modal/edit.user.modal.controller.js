@@ -6,40 +6,37 @@
         .module('app')
         .controller('EditUserModalController', EditUserModalController);
 
-    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'EditUserModalService', '$routeSegment', 'user', 'Ranks', 'AppModalService', '$rootScope'];
-    function EditUserModalController($log, growl, $uibModalInstance, EditUserModalService, $routeSegment, user, Ranks, AppModalService, $rootScope) {
+    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'EditUserModalService', 'Constants', 'UserService', 'Ranks', 'AppModalService', '$rootScope'];
+    function EditUserModalController($log, growl, $uibModalInstance, EditUserModalService, Constants, UserService, Ranks, AppModalService, $rootScope) {
         const vm = this;
 
-        vm.currentUser = {};
+        vm.ranksNames = Ranks;
+        vm.currentUser = UserService.get();
+        vm.defaultImage = Constants.DEFAULT_IMG_SRC;
+
         vm.changeGroup = changeGroup;
         vm.changePlatoon = changePlatoon;
         vm.setSections = setSections;
         vm.updateUser = updateUser;
-        vm.ranksNames = Ranks;
-        vm.close = close;
-
         vm.uploadUserLogo = uploadUserLogo;
-        vm.noImageAvailable = $rootScope.noImageAvailable;
-        vm.avatarUrl = $rootScope.avatarUrl;
+        vm.close = close;
 
         activate();
 
         ///
 
         function activate() {
-            $log.debug('Init modal window...');
-            angular.copy(user, vm.currentUser);
             setCities(vm.currentUser.country.id);
             setGroups(vm.currentUser.city.id);
             setPlatoons(vm.currentUser.group.id);
             setSections(vm.currentUser.platoon.id);
             setRanks();
-            $log.debug('User loaded to modal window:', vm.currentUser);
         }
 
         function updateUser() {
             close();
-            let valuesToSend = {
+
+            let request = {
                 firstName: vm.currentUser.firstName,
                 lastName: vm.currentUser.lastName,
                 gender: vm.currentUser.gender,
@@ -53,15 +50,15 @@
                 sectionId: vm.currentUser.section.id,
                 userRank: vm.currentUser.userRank
             };
-            EditUserModalService.updateUser(valuesToSend,
-                (res) => {
-                    if (res.success) {
-                        growl.info('Дані оновлено');
-                        window.location.reload();
-                    } else {
-                        growl.error('Помилка:' + res.data.message);
-                    }
-                });
+
+            EditUserModalService.updateUser(request, (res) => {
+                if (res.success) {
+                    growl.info('Дані оновлено');
+                    window.location.reload();
+                } else {
+                    growl.error('Помилка:' + res.data.message);
+                }
+            });
         }
 
         function setCities(countryId) {
@@ -132,7 +129,9 @@
 
         function uploadUserLogo() {
             $uibModalInstance.close();
-            AppModalService.uploadUserLogo();
+            AppModalService.uploadUserLogo({
+                callback: AppModalService.editUserModal
+            });
         }
     }
 })();

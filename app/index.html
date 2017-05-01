@@ -13,9 +13,9 @@
     <script src="static/vendor/js/app.min.js"></script>
 </head>
 
-<body class="pace-done fixed-nav fixed-nav-basic fixed-sidebar" ng-app="app" ng-controller="AppController">
+<body class="pace-done fixed-nav fixed-nav-basic fixed-sidebar" ng-controller="AppController as vm">
 
-<div id="wrapper">
+<div id="wrapper" ng-cloak>
     <nav class="navbar-default navbar-static-side" role="navigation">
 
         <div class="sidebar-collapse" style="overflow: hidden; width: auto; height: 100%;">
@@ -24,26 +24,26 @@
                     <div class="dropdown profile-element">
                         <a href="#/">
                             <span>
-                                <img alt="image" class="img-circle" fallback-src="{{ noImageAvailable }}"
-                                     ng-src="{{ avatarUrl}}" height="50">
+                                <img alt="image" class="img-circle" fallback-src="{{ vm.defaultImage }}"
+                                     ng-src="{{ vm.currentUser.avatarUrl}}" height="50">
                             </span>
                             <span class="clear">
                                 <span class="block m-t-xs">
                                     <strong class="font-bold">
-                                        <span ng-bind="currentUser.firstName"></span>
-                                        <span ng-bind="currentUser.lastName"></span>
+                                        <span ng-bind="vm.currentUser.firstName"></span>
+                                        <span ng-bind="vm.currentUser.lastName"></span>
                                     </strong>
                                 </span>
                                 <span class="block m-t-xs">
                                     <strong class="font-bold">Звання</strong>
                                 </span>
-                                </span>
+                            </span>
                         </a>
                     </div>
                 </li>
 
-                <li ng-repeat="item in sidebarMenu">
-                    <a href="{{ item.route }}">
+                <li ng-repeat="item in vm.sidebarMenu">
+                    <a ng-show="vm.isShow(item)" href="{{ item.route }}">
                         <span class="nav-label">{{ item.name }}</span>
                         <span class="fa arrow" ng-if="item.submenu"></span>
                     </a>
@@ -64,7 +64,7 @@
                  ng-controller="TopBarController as vm">
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary"><i class="fa fa-bars"></i></a>
-                    <!--this feature will be enabled soon-->
+                    <!-- TODO: Enable search feature if need -->
                     <!--<form role="search" class="navbar-form-custom" action="">
                         <div class="form-group">
                             <input type="text" placeholder="Пошук..." class="form-control" name="top-search" id="top-search">
@@ -103,6 +103,21 @@
 
     </div>
 </div>
+
+<!-- Loading Modal -->
+<div class="modal fade" id="loading-modal" data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <h2><img src="static/vendor/images/loading-spinner.gif" height="50" alt="Loading"> Loading...</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#loading-modal').modal({show: true});
+</script>
 
 </body>
 

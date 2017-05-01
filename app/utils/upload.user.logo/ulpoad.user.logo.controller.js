@@ -5,32 +5,30 @@
         .module('app')
         .controller('UploadUserLogoController', UploadUserLogoController);
 
-    UploadUserLogoController.$inject = ['$log', '$uibModalInstance', 'UploadUserLogoService', 'growl', '$rootScope', 'AppModalService'];
-    function UploadUserLogoController($log, $uibModalInstance, UploadUserLogoService, growl, $rootScope, AppModalService) {
+    UploadUserLogoController.$inject = ['options', '$uibModalInstance', 'UploadUserLogoService', 'growl', 'UserService', 'AppModalService'];
+    function UploadUserLogoController(options, $uibModalInstance, UploadUserLogoService, growl, UserService, AppModalService) {
         const vm = this;
 
         vm.close = close;
         vm.uploadImage = uploadImage;
-        vm.editUserModal = AppModalService.editUserModal;
-        vm.avatarUrl = $rootScope.avatarUrl;
-        vm.formData = new FormData(); // Special native API for uploading avatar
+        vm.currentUser = UserService.get();
 
-        vm.noImageAvailable = 'static/vendor/images/user.png';
         vm.data = {
-            image: vm.avatarUrl,
-            croppedImage: '',
+            image: vm.currentUser.avatarUrl,
+            croppedImage: ''
         };
-        /* data.image - contain image url, which represented in modal */
 
         activate();
 
         function activate() {
-            $log.debug('Init UploadUserLogoController ...');
         }
 
         function close() {
             $uibModalInstance.close();
-            vm.editUserModal();
+
+            if (options.callback) {
+                options.callback();
+            }
         }
 
         /**
@@ -59,15 +57,15 @@
             }
 
             let file = dataURLtoFile(vm.data.croppedImage, 'img.png');
-            vm.formData.append('file', file);
-            /* Adding in form image file with key 'file'*/
+            let formData = new FormData();
+            formData.append('file', file);
 
             let loading = growl.info('Uploading... Please wait', {
-                ttl: 15000, // 15 sec
-                disableCountDown: true,
+                ttl: 15 * 1000,
+                disableCountDown: true
             });
 
-            UploadUserLogoService.uploadImage(vm.formData, function (response) {
+            UploadUserLogoService.uploadImage(formData, function (response) {
                 loading.destroy(); // Destroy loading growl notification
                 if (response.success) {
                     growl.success('Avatar successful change', {

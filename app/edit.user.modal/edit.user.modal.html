@@ -13,8 +13,8 @@
                     <div class="a-eum-modal__avatar-img a-eum-avatar">
                         <!--<img class="img-circle" src="static/images/demo/profile_photo.jpg" alt="profile photo">-->
                         <img class="img-circle"
-                             fallback-src="{{vm.noImageAvailable}}"
-                             ng-src="{{vm.avatarUrl}}"
+                             fallback-src="{{vm.defaultImage}}"
+                             ng-src="{{vm.currentUser.avatarUrl}}"
                              ng-click="vm.uploadUserLogo()"
                              alt="profile photo">
                     </div>

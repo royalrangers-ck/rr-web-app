@@ -35,6 +35,7 @@
                 if (res.status == 200) {
                     if (res.data.success) {
                         TokenService.save(res.data.data.token);
+                        window.localStorage.setItem('token', res.data.data.token);
                         $window.location.pathname = '/app/';
                     } else {
                         growl.info(res.data.data.message);

@@ -62,7 +62,11 @@
                             </thead>
                             <tbody>
                             <tr ng-repeat="user in vm.users.inProgress">
-                                <td class="text-center"><img alt="image" class="img-circle" fallback-src="{{ noImageAvailable }}" ng-src="{{ avatarUrl}}" height="50"></td>
+                                <td class="text-center">
+                                    <img alt="image" class="img-circle" 
+                                         fallback-src="{{ vm.defaultImage }}" 
+                                         ng-src="{{ vm.currentUser.avatarUrl }}" height="50">
+                                </td>
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.platoon }}</td>
                                 <td>{{ user.date }}</td>
@@ -85,7 +89,11 @@
                             </thead>
                             <tbody>
                             <tr ng-repeat="user in vm.users.completed">
-                                <td class="text-center"><img alt="image" class="img-circle" fallback-src="{{ noImageAvailable }}" ng-src="{{ avatarUrl}}" height="50"></td>
+                                <td class="text-center">
+                                    <img alt="image" class="img-circle"
+                                         fallback-src="{{ vm.defaultImage }}"
+                                         ng-src="{{ vm.currentUser.avatarUrl }}" height="50">
+                                </td>
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.platoon }}</td>
                                 <td>{{ user.date }}</td>
