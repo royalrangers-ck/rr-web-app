@@ -19,6 +19,7 @@
         }
 
         function save(token) {
+            window.localStorage.setItem('token', token);
             return $localStorage.token = token;
         }
     }
