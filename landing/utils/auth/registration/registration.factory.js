@@ -22,25 +22,25 @@
             },
             'city': {
                 method: 'GET',
-                url: Endpoints.CITIES,
+                url: Endpoints.CITY,
                 params: {countryId: '@countryId'},
                 isArray: false
             },
             'group': {
                 method: 'GET',
-                url: Endpoints.GROUPS,
+                url: Endpoints.GROUP,
                 params: {cityId: '@cityId'},
                 isArray: false
             },
             'platoon': {
                 method: 'GET',
-                url: Endpoints.PLATOONS,
+                url: Endpoints.PLATOON,
                 params: {groupId: '@groupId'},
                 isArray: false
             },
             'section': {
                 method: 'GET',
-                url: Endpoints.SECTIONS,
+                url: Endpoints.SECTION,
                 params: {platoonId: '@platoonId'},
                 isArray: false
             }

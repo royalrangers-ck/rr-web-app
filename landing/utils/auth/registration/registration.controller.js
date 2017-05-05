@@ -45,7 +45,6 @@
                     $location.path('/login');
                 } else {
                     growl.info(res.data.message);
-                    $routeSegment.chain[0].reload();
                 }
 
                 vm.form.$setUntouched();
