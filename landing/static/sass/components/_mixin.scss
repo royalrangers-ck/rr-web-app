@@ -22,4 +22,10 @@
     background: url("#{$rr-images-path}/#{$bottom-curve}") no-repeat center top;
     background-size: contain;
   }
+
+  @media (max-width: $screen-xs-max) {
+    &:after, &:before { height: $rr-height-curve-sm }
+    &:before { top: -($rr-height-curve-sm) }
+    &:after { bottom: -($rr-height-curve-sm) }
+  }
 }
