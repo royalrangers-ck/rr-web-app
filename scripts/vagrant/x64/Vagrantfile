@@ -16,11 +16,8 @@ Vagrant.configure(2) do |config|
   config.vm.network "private_network", ip: "172.16.1.88"
 
   # share app folder
-  config.vm.synced_folder "../", "/project"
+  config.vm.synced_folder "../../../", "/project"
 
   # install nginx and dev dependencies
-  config.vm.provision "shell", path: "./bootstrap.sh"
-
-  # create web-app.tar.gz for deploying
-  config.vm.provision "shell", path: "./build.sh"
+  config.vm.provision "shell", path: "./../../bootstrap.sh"
 end
