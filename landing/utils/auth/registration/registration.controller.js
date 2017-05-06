@@ -72,35 +72,43 @@
         }
 
         function getCities(id) {
-            RegistrationService.city({countryId: id}).$promise.then((res) => {
-                if (res.success) {
-                    vm.cities = res.data;
-                }
-            })
+            if (id) {
+                RegistrationService.city({countryId: id}).$promise.then((res) => {
+                    if (res.success) {
+                        vm.cities = res.data;
+                    }
+                })
+            }
         }
 
         function getGroups(id) {
-            RegistrationService.group({cityId: id}).$promise.then((res) => {
-                if (res.success) {
-                    vm.groups = res.data;
-                }
-            })
+            if (id) {
+                RegistrationService.group({cityId: id}).$promise.then((res) => {
+                    if (res.success) {
+                        vm.groups = res.data;
+                    }
+                })
+            }
         }
 
         function getPlatoons(id) {
-            RegistrationService.platoon({groupId: id}).$promise.then((res) => {
-                if (res.success) {
-                    vm.platoons = res.data;
-                }
-            })
+            if (id) {
+                RegistrationService.platoon({groupId: id}).$promise.then((res) => {
+                    if (res.success) {
+                        vm.platoons = res.data;
+                    }
+                })
+            }
         }
 
         function getSections(id) {
-            RegistrationService.section({platoonId: id}).$promise.then((res) => {
-                if (res.success) {
-                    vm.sections = res.data;
-                }
-            })
+            if (id) {
+                RegistrationService.section({platoonId: id}).$promise.then((res) => {
+                    if (res.success) {
+                        vm.sections = res.data;
+                    }
+                })
+            }
         }
     }
 })();
