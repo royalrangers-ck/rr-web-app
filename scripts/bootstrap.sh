@@ -51,25 +51,29 @@ server {
         location / {
             root /project/landing;
             index index.html index.html;
+            sendfile off;
         }
 
         location /app {
             root /project;
             index index.html index.html;
+            sendfile off;
         }
 
-        location ~* .*\/app\/.*(js|jpg|png|ico|css|otf|eot|svg|ttf|woff|woff2)$ {
+        location ~* .*\/app\/.*(js|jpg|png|gif|ico|css|otf|eot|svg|ttf|woff|woff2)$ {
+            expires   -1;
             root /project;
             sendfile off;
         }
 
-        location ~* \.(js|jpg|png|ico|css|otf|eot|svg|ttf|woff|woff2)$ {
+        location ~* \.(js|jpg|png|gif|ico|css|otf|eot|svg|ttf|woff|woff2)$ {
+            expires   -1;
             root /project/landing;
             sendfile off;
         }
 
         location ~ /api {
-            proxy_pass http://192.168.2.130:8080;
+            proxy_pass http://172.16.1.1:8080;
         }
 
         # Max upload size
