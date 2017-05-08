@@ -19,7 +19,11 @@
     justify-content: center;
     align-items: center;
 
-    .rr-video__button {}
+    .rr-video__button {
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }
 
