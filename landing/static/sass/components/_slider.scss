@@ -8,7 +8,7 @@
     background: #d9dada url("#{$rr-images-path}/pattern.tree.jpg") repeat;
 
     .rr-slider__control {
-      @extend .rr-icon, .rr-icon__controls-bg;
+      @extend .rr-icon;
       width: 10px;
       height: 10px;
 
