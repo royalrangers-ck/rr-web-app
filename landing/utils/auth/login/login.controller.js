@@ -44,7 +44,6 @@
                         $window.location.pathname = '/app/';
                     } else {
                         growl.info(res.data.data.message);
-                        $routeSegment.chain[0].reload();
                     }
                 }
 
