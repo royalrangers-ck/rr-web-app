@@ -13,7 +13,8 @@
             'angular-growl',
             'ui.bootstrap',
             'ngIdle',
-            'ngImgCrop'
+            'ngImgCrop',
+            'ui.mask'
         ]).run(['$log', ($log) => {
         $log.debug('app is running...');
     }]);

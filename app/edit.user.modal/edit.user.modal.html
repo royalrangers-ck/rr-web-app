@@ -62,8 +62,7 @@
                     <div class="form-group">
                         <label for="phone" class="col-sm-3 control-label">Телефон</label>
                         <div class="col-sm-9">
-                            <input type="tel" id="phone" ng-model="vm.currentUser.telephoneNumber" class="form-control"
-                                   placeholder="Телефон" required>
+                            <input type="tel" id="phone" ng-model="vm.currentUser.telephoneNumber" class="form-control" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_" placeholder="Телефон" required>
                         </div>
                     </div>
                     <div class="form-group">
