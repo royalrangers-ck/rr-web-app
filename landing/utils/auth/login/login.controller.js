@@ -16,12 +16,31 @@
         activate();
 
         ////
-
+        /**
+         * @description When user go to login page and have token we must check token.
+         * If token not dead we redirect user to app without input email and pass.
+         * If token dead we clean local token and user must login with email and pass.
+         */
         function activate() {
+
             let authorizationToken = TokenService.get();
             if (authorizationToken) {
-                TokenService.save(authorizationToken);
-                $window.location.pathname = '/app/';
+                let req = {
+                    method: 'GET',
+                    url: '/api/refresh',
+                    headers: {
+                        'Authorization': authorizationToken
+                    }
+                };
+
+                $http(req).then(function successCallback(response) {
+                    console.log('YEAH we have good response', response);
+                    $window.location.pathname = '/app/'
+                }, function errorCallback(response) {
+                    console.log('No! We have bad response', response);
+                    TokenService.clean();
+                    $window.location.pathname = '/'
+                });
             }
         }
 
