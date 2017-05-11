@@ -21,6 +21,9 @@
         growlProvider.globalTimeToLive(5000);
         growlProvider.globalPosition('top-center');
 
+        // Time to live Countdown
+        growlProvider.globalDisableCountDown(true);
+
         // Disable message about unhandled rejection
         $qProvider.errorOnUnhandledRejections(false);
     }

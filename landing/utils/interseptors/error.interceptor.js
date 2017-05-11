@@ -12,8 +12,7 @@
 
             if (response && (response.status == 502 || response.status == 504)) {
                 growl.error('Internal server error \n' + response.statusText, {
-                    ttl: 7000,
-                    disableCountDown: true,
+                    ttl: -1,
                     onclose: function () {
                         $location.path('/');
                     },
