@@ -13,6 +13,7 @@
         vm.ranksNames = Ranks;
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
         vm.currentUser = UserService.get();
+        vm.getUserRank = vm.ranksNames[vm.currentUser.userRank];
         vm.uploadUserLogo = AppModalService.uploadUserLogo;
 
         activate();

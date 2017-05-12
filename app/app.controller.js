@@ -16,6 +16,7 @@
         vm.sidebarMenu = Menu;
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
         vm.currentUser = UserService.get();
+        vm.getUserRank = vm.ranksNames[vm.currentUser.userRank];
         vm.isShow = isShow;
 
         activate();
