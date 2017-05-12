@@ -40,6 +40,9 @@
         // Demo /user  returns autorized user info
         constants.USER = constants.API + '/user';
 
+        // Subscribe
+        constants.SUBSCRIBE = constants.API + '/subscribe';
+
         return constants;
     }
 })();

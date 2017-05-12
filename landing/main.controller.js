@@ -6,19 +6,32 @@
         .module('app')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$log', '$http', 'growl'];
-    function MainController($log, $http, growl) {
+    MainController.$inject = ['$log', '$http', 'growl', 'Endpoints'];
+    function MainController($log, $http, growl, Endpoints) {
         const vm = this;
 
         vm.submit = submit;
 
         ////
 
+        /**
+         * description Function for subscribe users on landing page
+         */
         function submit() {
-            $http.get('/api/create?email=' + vm.email, (res) => {
-                if (res.success) {
-                    growl.success(`Email ${vm.email} subscribed successfully.`);
+            let req = {
+                method: 'POST',
+                url: Endpoints.SUBSCRIBE,
+                data: {
+                    "mail": vm.email
                 }
+            };
+
+            $http(req).then(function successCallback(response) {
+                growl.success(response.data.data.message);
+                $log.debug('Success subscribe', response);
+            }, function errorCallback(response) {
+                growl.error(response.data.data.message);
+                $log.debug('Error subscribe', response);
             });
         }
     }
