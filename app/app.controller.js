@@ -16,7 +16,7 @@
         vm.sidebarMenu = Menu;
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
         vm.currentUser = UserService.get();
-        vm.getUserRank = vm.ranksNames[vm.currentUser.userRank];
+        vm.getUserRank = getUserRank;
         vm.isShow = isShow;
 
         activate();
@@ -27,6 +27,10 @@
             TokenScheduler.refresh(Endpoints.TOKEN_REFRESH_INTERVAL);
             initMenu();
             hideLoadingModal();
+        }
+        
+        function getUserRank(currentUser) {
+            return vm.ranksNames[currentUser.userRank];
         }
 
         function initMenu() {
