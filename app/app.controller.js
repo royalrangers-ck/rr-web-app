@@ -5,16 +5,18 @@
         .module('app')
         .controller('AppController', AppController);
 
-    AppController.$inject = ['Menu', 'Constants', 'Endpoints', 'TokenScheduler', 'UserService', '$timeout'];
-    function AppController(Menu, Constants, Endpoints, TokenScheduler, UserService, $timeout) {
+    AppController.$inject = ['Menu', 'Ranks', 'Constants', 'Endpoints', 'TokenScheduler', 'UserService', '$timeout'];
+    function AppController(Menu, Ranks, Constants, Endpoints, TokenScheduler, UserService, $timeout) {
         const vm = this;
 
         let currentUser = UserService.fetchFromStorage();
         UserService.save(currentUser);
 
+        vm.ranksNames = Ranks;
         vm.sidebarMenu = Menu;
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
         vm.currentUser = UserService.get();
+        vm.getUserRank = getUserRank;
         vm.isShow = isShow;
 
         activate();
@@ -25,6 +27,10 @@
             TokenScheduler.refresh(Endpoints.TOKEN_REFRESH_INTERVAL);
             initMenu();
             hideLoadingModal();
+        }
+        
+        function getUserRank(currentUser) {
+            return vm.ranksNames[currentUser.userRank];
         }
 
         function initMenu() {
