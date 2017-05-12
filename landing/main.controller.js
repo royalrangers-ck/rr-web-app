@@ -27,15 +27,10 @@
             };
 
             $http(req).then(function successCallback(response) {
-                if (response.data.success === true) {
-                    growl.success(response.data.data.message);
-                    $log.debug('Success subscribe', response);
-                } else {
-                    growl.error('Some thing wrong ...');
-                    $log.debug('Some thing wrong with subscribe', response);
-                }
+                growl.success(response.data.data.message);
+                $log.debug('Success subscribe', response);
             }, function errorCallback(response) {
-                growl.error(Response.data.data.message);
+                growl.error(response.data.data.message);
                 $log.debug('Error subscribe', response);
             });
         }
