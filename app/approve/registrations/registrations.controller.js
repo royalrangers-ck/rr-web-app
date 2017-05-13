@@ -4,10 +4,10 @@
 
     angular
         .module('app')
-        .controller('ConfirmUsersController', ConfirmUsersController);
-    ConfirmUsersController.$inject = ['$rootScope', 'growl', '$log', '$route', 'AppModalService', 'usersList', 'platoons'];
+        .controller('ApproveRegistrationsController', ApproveRegistrationsController);
+    ApproveRegistrationsController.$inject = ['$rootScope', 'growl', '$log', '$route', 'AppModalService', 'usersList', 'platoons'];
 
-    function ConfirmUsersController($rootScope, growl, $log, $route, AppModalService, usersList, platoons) {
+    function ApproveRegistrationsController($rootScope, growl, $log, $route, AppModalService, usersList, platoons) {
         const vm = this;
         vm.usersList = [];
         vm.currentUser = {};
@@ -19,7 +19,7 @@
         ////
 
         function activate() {
-            $log.debug('Init ConfirmUsersController ...');
+            $log.debug('Init ApproveRegistrationsController ...');
             getUsers($rootScope.currentUser.platoon.id);
             getAdminPlatoonName();
             //init "FooTable" plugin in all tables with 'footable' class
@@ -29,7 +29,7 @@
             $log.debug('Init complete.');
         }
 
-        function getUsers(platoonId) {
+        function getUsers() {
             usersList.$promise.then((res) => {
                 if (res.success) {
                     let result;

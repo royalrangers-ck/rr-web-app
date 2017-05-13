@@ -34,7 +34,7 @@
 
             return $uibModal.open({
                 animation: true,
-                templateUrl: 'confirmUsers/approve.current.user.modal/approve.current.user.modal.html',
+                templateUrl: 'approve/approve.current.user.modal/approve.current.user.modal.html',
                 controller: 'ApproveCurrentUserModalController',
                 controllerAs: 'vm',
                 size: 'lg',

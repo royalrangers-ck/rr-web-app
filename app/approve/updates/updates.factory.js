@@ -4,10 +4,10 @@
 
     angular
         .module('app')
-        .factory('ConfirmUsers', ConfirmUsers);
+        .factory('ApproveUpdates', ApproveUpdates);
 
-    ConfirmUsers.$inject = ['$resource', 'Endpoints'];
-    function ConfirmUsers($resource, Endpoints) {
+    ApproveUpdates.$inject = ['$resource', 'Endpoints'];
+    function ApproveUpdates($resource, Endpoints) {
         return $resource(Endpoints.USER , null, {
             'getUsers': {
                 method: 'GET',
