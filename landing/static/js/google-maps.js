@@ -104,18 +104,6 @@
             zoom: 6
         });
 
-        // Create a marker and set its position.
-        // let marker = new google.maps.Marker({
-        //     map: map,
-        //     position: centerUkraine
-        // });
-
-        // map.data.setStyle(function(feature) {
-        //     return {
-        //         title: feature.getProperty('name'),
-        //         optimized: false
-        //     };
-        // });
         map.data.addGeoJson(cities);
     }
 

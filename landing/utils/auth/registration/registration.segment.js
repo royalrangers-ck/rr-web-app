@@ -16,6 +16,9 @@
             resolve: {
                 countries: (RegistrationService) => {
                     return RegistrationService.countries()
+                },
+                ranks: (RegistrationService) => {
+                    return RegistrationService.ranks();
                 }
             }
         });
