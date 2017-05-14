@@ -39,6 +39,10 @@
         }
 
         function submit() {
+            if (!vm.form || vm.form.$invalid) {
+                return vm.form.$submitted = false;
+            }
+
             let afterSave = function (res) {
                 if (res.success) {
                     growl.success(res.data.message);
@@ -47,9 +51,7 @@
                     growl.info(res.data.message);
                 }
 
-                vm.form.$setUntouched();
-                vm.form.$setPristine();
-                vm.form.$setDirty();
+                vm.form.$submitted = false;
             };
 
             let req = {
