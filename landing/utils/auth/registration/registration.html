@@ -11,11 +11,11 @@
             <div class="col-xs-12 col-sm-6">
                 <!-- Status -->
                 <div class="form-group" ng-class="{ 'has-error' : vm.form.status.$invalid && !vm.form.status.$pristine }">
-                    <select name="status" id="status" class="form-control" title="Статус"
+                    <select name="status" id="status" class="form-control text-uppercase" title="Статус"
                             ng-required="true"
                             ng-model="vm.data.status"
                             lazy-validation-on="vm.form.$submitted">
-                        <option value="" ng-selected="selected" disabled>СТАТУС</option>
+                        <option class="hidden" value="" disabled>Статус</option>
                         <option value="STUDENT">Користувач</option>
                         <option value="TEACHER">Вчитель</option>
                     </select>
@@ -105,81 +105,14 @@
             </div>
 
             <div class="col-xs-12 col-sm-6">
-                <!-- Country -->
-                <div class="form-group" ng-class="{ 'has-error' : vm.form.country.$invalid && !vm.form.country.$pristine }">
-                    <select name="country" id="country" class="form-control" title="Країна"
-                            ng-required="true"
-                            ng-model="vm.data.country"
-                            ng-options="record as record.name for record in vm.countries"
-                            ng-change="vm.getCities(vm.data.country.id)"
-                            lazy-validation-on="vm.form.$submitted">
-                        <option value="" disabled>КРАЇНА</option>
-                    </select>
-                    <p ng-show="vm.form.country.$dirty && vm.form.country.$error.required" class="help-block">This field is required.</p>
-                </div>
-
-                <!-- City -->
-                <div class="form-group" ng-class="{ 'has-error' : vm.form.city.$invalid && !vm.form.city.$pristine }">
-                    <select name="city" id="city" class="form-control" title="Місто"
-                            ng-required="true"
-                            ng-disabled="!vm.data.country"
-                            ng-model="vm.data.city"
-                            ng-options="record as record.name for record in vm.cities"
-                            ng-change="vm.getGroups(vm.data.city.id)"
-                            lazy-validation-on="vm.form.$submitted">
-                        <option value="" disabled>МІСТО</option>
-                    </select>
-                    <p ng-show="vm.form.city.$dirty && vm.form.city.$error.required" class="help-block">This field is required.</p>
-                </div>
-
-                <!-- Group -->
-                <div class="form-group" ng-class="{ 'has-error' : vm.form.group.$invalid && !vm.form.group.$pristine }">
-                    <select name="group" id="group" class="form-control" title="Група"
-                            ng-required="true"
-                            ng-disabled="!vm.data.city"
-                            ng-model="vm.data.group"
-                            ng-options="record as record.name for record in vm.groups"
-                            ng-change="vm.getPlatoons(vm.data.city.id)"
-                            lazy-validation-on="vm.form.$submitted">
-                        <option value="" disabled>ГРУПА</option>
-                    </select>
-                    <p ng-show="vm.form.group.$dirty && vm.form.group.$error.required" class="help-block">This field is required.</p>
-                </div>
-
-                <!-- Platoon -->
-                <div class="form-group" ng-class="{ 'has-error' : vm.form.platoon.$invalid && !vm.form.platoon.$pristine }">
-                    <select name="platoon" id="platoon" class="form-control" title="Загін"
-                            ng-required="true"
-                            ng-disabled="!vm.data.group"
-                            ng-model="vm.data.platoon"
-                            ng-options="record as record.name for record in vm.platoons"
-                            ng-change="vm.getSections(vm.data.city.id)"
-                            lazy-validation-on="vm.form.$submitted">
-                        <option value="" disabled>НОМЕР ЗАГОНУ</option>
-                    </select>
-                    <p ng-show="vm.form.platoon.$dirty && vm.form.platoon.$error.required" class="help-block">This field is required.</p>
-                </div>
-
-                <!-- Section -->
-                <div class="form-group" ng-class="{ 'has-error' : vm.form.section.$invalid && !vm.form.section.$pristine }">
-                    <select name="section" id="section" class="form-control" title="Ланка"
-                            ng-required="true"
-                            ng-disabled="!vm.data.platoon"
-                            ng-model="vm.data.section"
-                            ng-options="record as record.name for record in vm.sections"
-                            lazy-validation-on="vm.form.$submitted">
-                        <option value="" disabled>НАЗВА ЛАНКИ</option>
-                    </select>
-                    <p ng-show="vm.form.section.$dirty && vm.form.section.$error.required" class="help-block">This field is required.</p>
-                </div>
 
                 <!-- Gender -->
                 <div class="form-group" ng-class="{ 'has-error' : vm.form.gender.$invalid && !vm.form.gender.$pristine }">
-                    <select name="gender" id="gender" class="form-control" title="Стать"
+                    <select name="gender" id="gender" class="form-control text-uppercase" title="Стать"
                             ng-required="true"
                             ng-model="vm.data.gender"
                             lazy-validation-on="vm.form.$submitted">
-                        <option value="" ng-selected="selected" disabled>СТАТЬ</option>
+                        <option class="hidden" value="" disabled>СТАТЬ</option>
                         <option value="male">Чоловік</option>
                         <option value="female">Жінка</option>
                     </select>
@@ -196,6 +129,93 @@
                            lazy-validation-on="vm.form.$submitted">
                     <p ng-show="vm.form.birthDate.$dirty && vm.form.birthDate.$error.required" class="help-block">This field is required.</p>
                 </div>
+
+                <!-- Country -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.country.$invalid && !vm.form.country.$pristine }">
+                    <select name="country" id="country" class="form-control text-uppercase" title="Країна"
+                            ng-required="true"
+                            ng-model="vm.data.country"
+                            ng-options="record as record.name for record in vm.countries"
+                            ng-change="vm.getCities(vm.data.country.id)"
+                            lazy-validation-on="vm.form.$submitted">
+                        <option class="hidden" value="" disabled>Країна</option>
+                    </select>
+                    <p ng-show="vm.form.country.$dirty && vm.form.country.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+                <!-- City -->
+                <div class="form-group text-uppercase" ng-class="{ 'has-error' : vm.form.city.$invalid && !vm.form.city.$pristine }">
+                    <select name="city" id="city" class="form-control text-uppercase" title="Місто"
+                            ng-required="true"
+                            ng-disabled="!vm.data.country"
+                            ng-model="vm.data.city"
+                            ng-options="record as record.name for record in vm.cities"
+                            ng-change="vm.getGroups(vm.data.city.id)"
+                            lazy-validation-on="vm.form.$submitted">
+                        <option class="hidden" value="" disabled>Місто</option>
+                    </select>
+                    <p ng-show="vm.form.city.$dirty && vm.form.city.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <!-- Group -->
+                        <div class="form-group" ng-class="{ 'has-error' : vm.form.group.$invalid && !vm.form.group.$pristine }">
+                            <select name="group" id="group" class="form-control text-uppercase" title="Група"
+                                    ng-required="true"
+                                    ng-disabled="!vm.data.city"
+                                    ng-model="vm.data.group"
+                                    ng-options="record as record.name for record in vm.groups"
+                                    ng-change="vm.getPlatoons(vm.data.city.id)"
+                                    lazy-validation-on="vm.form.$submitted">
+                                <option class="hidden" value="" disabled>Група</option>
+                            </select>
+                            <p ng-show="vm.form.group.$dirty && vm.form.group.$error.required" class="help-block">This field is required.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <!-- Platoon -->
+                        <div class="form-group" ng-class="{ 'has-error' : vm.form.platoon.$invalid && !vm.form.platoon.$pristine }">
+                            <select name="platoon" id="platoon" class="form-control text-uppercase" title="Загін"
+                                    ng-required="true"
+                                    ng-disabled="!vm.data.group"
+                                    ng-model="vm.data.platoon"
+                                    ng-options="record as record.name for record in vm.platoons"
+                                    ng-change="vm.getSections(vm.data.city.id)"
+                                    lazy-validation-on="vm.form.$submitted">
+                                <option class="hidden" value="" disabled>Номер загону</option>
+                            </select>
+                            <p ng-show="vm.form.platoon.$dirty && vm.form.platoon.$error.required" class="help-block">This field is required.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.section.$invalid && !vm.form.section.$pristine }">
+                    <select name="section" id="section" class="form-control text-uppercase" title="Ланка"
+                            ng-required="true"
+                            ng-disabled="!vm.data.platoon"
+                            ng-model="vm.data.section"
+                            ng-options="record as record.name for record in vm.sections"
+                            lazy-validation-on="vm.form.$submitted">
+                        <option class="hidden" value="" disabled>Назва ланки</option>
+                    </select>
+                    <p ng-show="vm.form.section.$dirty && vm.form.section.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+                <!-- Rank -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.rank.$invalid && !vm.form.rank.$pristine }">
+                    <select name="rank" id="rank" class="form-control text-uppercase" title="Звання"
+                            ng-required="true"
+                            ng-model="vm.data.rank"
+                            ng-options="record.value as record.name for record in vm.ranks"
+                            lazy-validation-on="vm.form.$submitted">
+                        <option value="" class="hidden" disabled>Звання</option>
+                    </select>
+                    <p ng-show="vm.form.rank.$dirty && vm.form.rank.$error.required" class="help-block">This field is required.</p>
+                </div>
+
             </div>
         </div>
 
