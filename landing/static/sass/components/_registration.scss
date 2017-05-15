@@ -3,6 +3,19 @@
 
   [class^='col-'] {
     padding: 0 $padding-base-horizontal;
+
+    > .row {
+      > div {
+        padding-left: 0;
+        padding-right: 0;
+
+        @media (min-width: $screen-sm-min) {
+          &:first-of-type {
+            padding-right: $padding-base-horizontal
+          }
+        }
+      }
+    }
   }
 
   .rr-registration__info {
