@@ -52,9 +52,7 @@
 
         // ACHIEVEMENTS
         endpoints.ACHIEVEMENTS = endpoints.API + '/achievements';
-
-        // PROFILE
-        endpoints.TEST = endpoints.ACHIEVEMENTS + '/test';
+        endpoints.ACHIEVEMENTS_TESTS = endpoints.ACHIEVEMENTS + '/test';
 
         //ROLES
         endpoints.ROLES = {
