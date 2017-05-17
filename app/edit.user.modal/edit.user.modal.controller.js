@@ -11,7 +11,7 @@
         const vm = this;
 
         vm.ranksNames = Ranks;
-        vm.currentUser = UserService.get();
+        vm.currentUser = getCurrentUser();
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
 
         vm.changeGroup = changeGroup;
@@ -24,6 +24,11 @@
         activate();
 
         ///
+
+        function getCurrentUser() {
+            let currentUser = UserService.get();
+            return angular.copy(currentUser, {});
+        }
 
         function activate() {
             setCities(vm.currentUser.country.id);
