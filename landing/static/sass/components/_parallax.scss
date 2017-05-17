@@ -42,7 +42,7 @@ $bg-parallax-base:  transparent;
         }
     }
 
-    @media (max-width: $screen-xs-max) {
+    @media (max-width: $screen-sm-min) {
         height: $navbar-height;
         background-image: none;
         background-color: $bg-parallax-base;

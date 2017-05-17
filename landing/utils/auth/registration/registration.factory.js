@@ -43,6 +43,11 @@
                 url: Endpoints.SECTION,
                 params: {platoonId: '@platoonId'},
                 isArray: false
+            },
+            'ranks': {
+                method: 'GET',
+                url: Endpoints.RANKS,
+                isArray: false
             }
         })
     }

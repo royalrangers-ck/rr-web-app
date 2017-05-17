@@ -6,8 +6,8 @@
         .module('app')
         .controller('RegistrationController', RegistrationController);
 
-    RegistrationController.$inject = ['countries', 'growl', '$routeSegment', '$location', 'RegistrationService'];
-    function RegistrationController(countries, growl, $routeSegment, $location, RegistrationService) {
+    RegistrationController.$inject = ['countries', 'ranks', 'Ranks', 'growl', '$routeSegment', '$location', 'RegistrationService'];
+    function RegistrationController(countries, ranks, Ranks, growl, $routeSegment, $location, RegistrationService) {
         const vm = this;
 
         vm.data = {};
@@ -17,12 +17,14 @@
         vm.groups = [];
         vm.platoons = [];
         vm.sections = [];
+        vm.ranks = [];
 
         vm.submit = submit;
         vm.getCities = getCities;
         vm.getGroups = getGroups;
         vm.getPlatoons = getPlatoons;
         vm.getSections = getSections;
+        vm.getRanks = getRanks;
 
         activate();
 
@@ -36,9 +38,27 @@
                     }
                 })
             }
+
+            if (ranks && ranks.$promise) {
+                ranks.$promise.then((res) => {
+                    if (res.success) {
+                        vm.ranks = res.data.reduce(function (ranks, rank) {
+                            ranks.push({
+                                value: rank,
+                                name: Ranks[rank]
+                            });
+                            return ranks;
+                        }, []);
+                    }
+                });
+            }
         }
 
         function submit() {
+            if (!vm.form || vm.form.$invalid) {
+                return vm.form.$submitted = false;
+            }
+
             let afterSave = function (res) {
                 if (res.success) {
                     growl.success(res.data.message);
@@ -47,9 +67,7 @@
                     growl.info(res.data.message);
                 }
 
-                vm.form.$setUntouched();
-                vm.form.$setPristine();
-                vm.form.$setDirty();
+                vm.form.$submitted = false;
             };
 
             let req = {
@@ -65,7 +83,8 @@
                 cityId: vm.data.city.id,
                 groupId: vm.data.group.id,
                 platoonId: vm.data.platoon.id,
-                sectionId: vm.data.section.id
+                sectionId: vm.data.section.id,
+                userRank: vm.data.rank
             };
 
             RegistrationService.register(req, afterSave)
@@ -109,6 +128,14 @@
                     }
                 })
             }
+        }
+
+        function getRanks () {
+            RegistrationService.ranks().$promise.then((res) => {
+                if (res.success) {
+                    vm.ranks = res.data;
+                }
+            });
         }
     }
 })();

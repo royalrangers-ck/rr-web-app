@@ -18,5 +18,6 @@
         this.group = Registration.group;
         this.platoon = Registration.platoon;
         this.section = Registration.section;
+        this.ranks = Registration.ranks;
     }
 })();
