@@ -6,8 +6,8 @@
         .module('app')
         .controller('EditUserModalController', EditUserModalController);
 
-    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'EditUserModalService', 'Constants', 'UserService', 'Ranks', 'AppModalService', '$rootScope'];
-    function EditUserModalController($log, growl, $uibModalInstance, EditUserModalService, Constants, UserService, Ranks, AppModalService, $rootScope) {
+    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'EditUserModalService', 'Constants', 'UserService', 'Ranks', 'AppModalService'];
+    function EditUserModalController($log, growl, $uibModalInstance, EditUserModalService, Constants, UserService, Ranks, AppModalService) {
         const vm = this;
 
         vm.ranksNames = Ranks;
@@ -53,7 +53,7 @@
 
             EditUserModalService.updateUser(request, (res) => {
                 if (res.success) {
-                    growl.info('Дані оновлено');
+                    growl.info('Дані відправлено на перевірку. Очікуйте підтвердження.');
                     window.location.reload();
                 } else {
                     growl.error('Помилка:' + res.data.message);
@@ -135,8 +135,3 @@
         }
     }
 })();
-
-
-
-
-
