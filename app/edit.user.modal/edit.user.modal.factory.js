@@ -10,6 +10,7 @@
     function EditUserModal($resource, Endpoints) {
         return $resource(Endpoints.USER , null, {
             'updateUser': {
+                url: `${Endpoints.USER}/update/temp`,
                 method: 'PUT'
             },
             'countries': {
