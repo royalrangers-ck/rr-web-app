@@ -1,44 +1,12 @@
 <div class="row" id="aboutUs">
     <div class="col-xs-12 rr-slider__wrapper">
 
-        <div id="rrCarousel" class="carousel slide rr-slider" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#rrCarousel" data-slide-to="0" class="rr-slider__control active"></li>
-                <li data-target="#rrCarousel" data-slide-to="1" class="rr-slider__control"></li>
-                <li data-target="#rrCarousel" data-slide-to="2" class="rr-slider__control"></li>
-                <li data-target="#rrCarousel" data-slide-to="3" class="rr-slider__control"></li>
-                <li data-target="#rrCarousel" data-slide-to="4" class="rr-slider__control"></li>
-                <li data-target="#rrCarousel" data-slide-to="5" class="rr-slider__control"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="./static/vendor/images/slider.01.jpg" alt="">
-                </div>
-
-                <div class="item">
-                    <img src="./static/vendor/images/slider.02.jpg" alt="">
-                </div>
-
-                <div class="item">
-                    <img src="./static/vendor/images/slider.03.jpg" alt="">
-                </div>
-
-                <div class="item">
-                    <img src="./static/vendor/images/slider.04.jpg" alt="">
-                </div>
-
-                <div class="item">
-                    <img src="./static/vendor/images/slider.05.jpg" alt="">
-                </div>
-
-                <div class="item">
-                    <img src="./static/vendor/images/slider.06.jpg" alt="">
-                </div>
+        <div uib-carousel active="vm.slider.active" interval="vm.slider.myInterval" class="carousel slide rr-slider">
+            <div uib-slide ng-repeat="slide in vm.slider.slides track by slide.id" index="slide.id">
+                <img ng-src="{{slide.image}}" class="img-responsive">
             </div>
         </div>
+
     </div>
 </div>
 

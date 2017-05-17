@@ -7,8 +7,12 @@
     margin: 30px 0;
     background: #d9dada url("#{$rr-images-path}/pattern.tree.jpg") repeat;
 
-    .rr-slider__control {
-      background-image: url("#{$rr-images-path}/pattern.tree.jpg");
+    .carousel-indicators {
+      li {
+        background-image: url("#{$rr-images-path}/pattern.tree.jpg");
+        margin-left: 3px;
+        margin-right: 3px;
+      }
     }
 
     @media (max-width: $screen-xs-max) {
