@@ -6,19 +6,19 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$log', 'ModalWindowService'];
-    function HomeController($log, ModalWindowService) {
+    HomeController.$inject = ['ModalWindowService'];
+    function HomeController(ModalWindowService) {
         const vm = this;
 
         vm.homeModalVideo = ModalWindowService.homeModalVideo;
-        vm.slider = initSlider();
+        vm.slider = getSlider();
 
         ////
 
-        function initSlider () {
+        function getSlider () {
 
             return {
-                myInterval: 2000,
+                interval: 2000,
                 noWrapSlides: false,
                 active: 0,
                 slides: [{

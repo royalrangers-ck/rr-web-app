@@ -1,7 +1,7 @@
 <div class="row" id="aboutUs">
     <div class="col-xs-12 rr-slider__wrapper">
 
-        <div uib-carousel active="vm.slider.active" interval="vm.slider.myInterval" class="carousel slide rr-slider">
+        <div uib-carousel active="vm.slider.active" interval="vm.slider.interval" class="carousel slide rr-slider">
             <div uib-slide ng-repeat="slide in vm.slider.slides track by slide.id" index="slide.id">
                 <img ng-src="{{slide.image}}" class="img-responsive">
             </div>
