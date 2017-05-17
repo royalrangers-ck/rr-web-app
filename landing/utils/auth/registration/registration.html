@@ -65,8 +65,10 @@
                            name="email"
                            ng-required="true"
                            ng-model="vm.data.email"
+                           ng-pattern="/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])? (?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/"
                            lazy-validation-on="vm.form.$submitted">
                     <p ng-show="vm.form.email.$dirty && vm.form.email.$error.required" class="help-block">This field is required.</p>
+                    <p ng-show="vm.form.$error.email" class="help-block">Not valid email</p>
                 </div>
 
                 <!-- Password -->
