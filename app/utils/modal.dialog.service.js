@@ -14,8 +14,9 @@
         this.editUserModal = editUserModal;
         this.uploadUserLogo = uploadUserLogo;
         this.taskFormModal = taskFormModal;
+        this.testFormModal = testFormModal;
 
-        function profileModal(_currentAchieve, _type) {
+        function profileModal(achievement, type) {
 
             return $uibModal.open({
                 animation: true,
@@ -23,9 +24,9 @@
                 controller: 'ProfileModalController',
                 controllerAs: 'vm',
                 resolve: {
-                    currentAchieve: function () {
-                        _currentAchieve.type = _type;
-                        return _currentAchieve;
+                    achievement: function () {
+                        achievement.achievementType = type;
+                        return achievement;
                     }
                 }
             });
@@ -72,6 +73,15 @@
                     }
                 }
             })
+        }
+
+        function testFormModal () {
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'profile/tests/test.form.modal/test.form.modal.html',
+                controller: 'TestFormModalController',
+                controllerAs: 'vm'
+            });
         }
 
         function taskFormModal () {
