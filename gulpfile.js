@@ -8,6 +8,28 @@ var concat = require('gulp-concat');
 var babel = require('gulp-babel');
 
 
+function updateSrcLinks(cb) {
+    var fs = require('fs'),
+        files = ['app/index.html', 'landing/index.html'];
+
+    files.forEach(function(path) {
+        var file = fs.readFileSync(path, 'utf8');
+        file = file.replace(/(\?t=[0-9]+)/g, '?t=' + Date.now());
+        fs.writeFileSync(path, file);
+    });
+
+    cb();
+}
+
+gulp.task('copy-index-html', function () {
+    var src = ['app/index.tmpl.html', 'landing/index.tmpl.html'];
+
+    return gulp
+        .src(src, {base: './'})
+        .pipe(rename({basename: 'index'}))
+        .pipe(gulp.dest('./'))
+})
+
 gulp.task('clear:app', function() {
     var src = [
         'app/*.css',
@@ -343,6 +365,13 @@ gulp.task('build:dev', gulp.parallel(
         'copyImages:landing',
         'sass:landing',
         'copyFonts:landing'
+    ),
+
+    gulp.series(
+        'copy-index-html',
+        function (cb) {
+            return updateSrcLinks(cb)
+        }
     )
 ));
 
