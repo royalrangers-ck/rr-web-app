@@ -6,8 +6,8 @@
         .module('app')
         .controller('RegistrationController', RegistrationController);
 
-    RegistrationController.$inject = ['countries', 'ranks', 'Ranks', 'growl', '$routeSegment', '$location', 'RegistrationService'];
-    function RegistrationController(countries, ranks, Ranks, growl, $routeSegment, $location, RegistrationService) {
+    RegistrationController.$inject = ['countriesResponse', 'ranksResponse', 'Ranks', 'growl', '$routeSegment', '$location', 'RegistrationService'];
+    function RegistrationController(countriesResponse, ranksResponse, Ranks, growl, $routeSegment, $location, RegistrationService) {
         const vm = this;
 
         vm.data = {};
@@ -31,26 +31,18 @@
         ////
 
         function activate() {
-            if (countries && countries.$promise) {
-                countries.$promise.then((res) => {
-                    if (res.success) {
-                        vm.countries = res.data;
-                    }
-                })
+            if (countriesResponse.success) {
+                vm.countries = countriesResponse.data;
             }
 
-            if (ranks && ranks.$promise) {
-                ranks.$promise.then((res) => {
-                    if (res.success) {
-                        vm.ranks = res.data.reduce(function (ranks, rank) {
-                            ranks.push({
-                                value: rank,
-                                name: Ranks[rank]
-                            });
-                            return ranks;
-                        }, []);
-                    }
-                });
+            if (ranksResponse.success) {
+                vm.ranks = ranksResponse.data.reduce(function (ranks, rank) {
+                    ranks.push({
+                        value: rank,
+                        name: Ranks[rank]
+                    });
+                    return ranks;
+                }, []);
             }
         }
 

@@ -5,12 +5,13 @@
     angular
         .module('app')
         .controller('ConfirmUsersController', ConfirmUsersController);
-    ConfirmUsersController.$inject = ['$rootScope', 'growl', '$log', '$route', 'AppModalService', 'usersList', 'platoons'];
 
-    function ConfirmUsersController($rootScope, growl, $log, $route, AppModalService, usersList, platoons) {
+    ConfirmUsersController.$inject = ['$rootScope', 'growl', '$log', '$route', 'AppModalService', 'usersList', 'platoons', 'UserService'];
+    function ConfirmUsersController($rootScope, growl, $log, $route, AppModalService, usersList, platoons, UserService) {
         const vm = this;
+
         vm.usersList = [];
-        vm.currentUser = {};
+        vm.currentUser = UserService.get();
         vm.adminPlatoonName = '';
         vm.editUser = editCurrentUser;
 
@@ -20,7 +21,7 @@
 
         function activate() {
             $log.debug('Init ConfirmUsersController ...');
-            getUsers($rootScope.currentUser.platoon.id);
+            getUsers(currentUser.platoon.id);
             getAdminPlatoonName();
             //init "FooTable" plugin in all tables with 'footable' class
             $(document).ready(function () {
@@ -52,7 +53,7 @@
         function getAdminPlatoonName() {
             return platoons.$promise.then((res) => {
                 if (res.success) {
-                    vm.adminPlatoonName = res.data.find((item) =>  item.id == $rootScope.currentUser.platoon.id).name;
+                    vm.adminPlatoonName = res.data.find((item) =>  item.id == vm.currentUser.platoon.id).name;
                 }
             })
         }
