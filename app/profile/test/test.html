@@ -5,10 +5,6 @@
         </div>
     </div>
 
-    <div class="col-xs-12 m-b-sm visible-xs">
-        <a href="/" class="btn btn-primary btn-block btn-lg">Виконати</a>
-    </div>
-
     <div class="col-xs-12 col-sm-9">
         <div class="ibox">
             <div class="ibox-content">
@@ -16,11 +12,6 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
                         <h2>Назва завдання {{ vm.test.id }}</h2>
-                        <p class="h5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad at eum fuga.</p>
-                    </div>
-
-                    <div class="col-xs-12 hidden-xs">
-                        <a href="/" class="btn btn-primary btn-block btn-lg">Виконати</a>
                     </div>
 
                     <div class="col-xs-12">
@@ -30,79 +21,78 @@
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque beatae dolore dolores doloribus earum eos ex exercitationem facilis, hic inventore mollitia nobis perspiciatis provident quasi soluta, ullam, ut voluptatum.
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque beatae dolore dolores doloribus earum eos ex exercitationem facilis, hic inventore mollitia nobis perspiciatis provident quasi soluta, ullam, ut voluptatum.
                     </div>
+
+                    <div class="col-xs-12 m-t">
+                        <a href="/" class="btn btn-primary btn-block btn-lg">Виконати</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row m-b">
-    <div class="col-xs-12 col-sm-5">
-        <span class="h2">738 виконань</span>
-    </div>
-    <div class="col-xs-12 col-sm-7">
-        <span class="h2 text-uppercase">Залишилося днів 15</span>
-    </div>
-</div>
-
 <div class="row">
     <div class="col-xs-12">
-        <div class="tabs-container">
-            <uib-tabset>
-                <uib-tab index="0" heading="Виконують">
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>ПІП</th>
-                                <th>Загін №</th>
-                                <th>Дата</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="user in vm.users.inProgress">
-                                <td class="text-center">
-                                    <img alt="image" class="img-circle" 
-                                         fallback-src="{{ vm.defaultImage }}" 
-                                         ng-src="{{ vm.currentUser.avatarUrl }}" height="50">
-                                </td>
-                                <td>{{ user.name }}</td>
-                                <td>{{ user.platoon }}</td>
-                                <td>{{ user.date }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </uib-tab>
+        <!--<div class="table-responsive">-->
 
-                <uib-tab index="1" heading="Виконали">
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>ПІП</th>
-                                <th>Загін №</th>
-                                <th>Дата</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="user in vm.users.completed">
-                                <td class="text-center">
-                                    <img alt="image" class="img-circle"
-                                         fallback-src="{{ vm.defaultImage }}"
-                                         ng-src="{{ vm.currentUser.avatarUrl }}" height="50">
-                                </td>
-                                <td>{{ user.name }}</td>
-                                <td>{{ user.platoon }}</td>
-                                <td>{{ user.date }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </uib-tab>
-            </uib-tabset>
+        <div class="ibox">
+            <div class="ibox-title">
+                <div class="ibox-tools">
+                    <a class="btn btn-white" ng-click="vm.taskFormModal()">Додати ще</a>
+                </div>
+            </div>
+            <div class="ibox-content" style="display: block;">
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Завдання</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem delectus doloribus eius eveniet illum in incidunt ipsa iure maxime nulla, omnis porro praesentium quisquam quod repudiandae similique soluta temporibus tenetur!</td>
+                        <td>
+                            <a class="text-info" href="/" ng-click="">
+                                <i class="fa fa-check fa-3x"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem delectus doloribus eius eveniet illum in incidunt ipsa iure maxime nulla, omnis porro praesentium quisquam quod repudiandae similique soluta temporibus tenetur!</td>
+                        <td>
+                            <a class="text-info" href="/" ng-click="">
+                                <i class="fa fa-check fa-3x"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>03</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem delectus doloribus eius eveniet illum in incidunt ipsa iure maxime nulla, omnis porro praesentium quisquam quod repudiandae similique soluta temporibus tenetur!</td>
+                        <td>
+                            <a class="text-danger" href="/" ng-click="">
+                                <i class="fa fa-times fa-3x"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>04</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem delectus doloribus eius eveniet illum in incidunt ipsa iure maxime nulla, omnis porro praesentium quisquam quod repudiandae similique soluta temporibus tenetur!</td>
+                        <td>
+                            <a class="text-info" href="/" ng-click="">
+                                <i class="fa fa-check fa-3x"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+
+        <!--</div>-->
     </div>
 </div>

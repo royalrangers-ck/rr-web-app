@@ -13,6 +13,7 @@
         this.approveCurrentUserModal = approveCurrentUserModal;
         this.editUserModal = editUserModal;
         this.uploadUserLogo = uploadUserLogo;
+        this.taskFormModal = taskFormModal;
 
         function profileModal(_currentAchieve, _type) {
 
@@ -71,6 +72,15 @@
                     }
                 }
             })
+        }
+
+        function taskFormModal () {
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'profile/test/task.form.modal/task.form.modal.html',
+                controller: 'TaskFormModalController',
+                controllerAs: 'vm'
+            });
         }
     }
 })();
