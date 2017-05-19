@@ -14,6 +14,21 @@
 
         constants.DEFAULT_IMG_SRC = 'static/vendor/images/user.png';
 
+        constants.AUTHORITIES = {
+            ROLE_USER: {
+                id: 1,
+                name: 'ROLE_USER'
+            },
+            ROLE_ADMIN: {
+                id: 2,
+                name: 'ROLE_ADMIN'
+            },
+            ROLE_SUPER_ADMIN: {
+                id: 3,
+                name: 'ROLE_SUPER_ADMIN'
+            }
+        };
+
         return constants;
     }
 
