@@ -4,6 +4,14 @@
     </div>
 </div>
 
+<div class="ibox" ng-show="vm.infoMessage.length != 0" >
+    <div class="ibox-content">
+        <div class="a-message-box">
+            <p>{{vm.infoMessage}}</p>
+        </div>
+    </div>
+</div>
+
 <div class="ibox profile" ng-repeat="testsGroup in vm.tests">
     <div class="ibox-title profile__title">
         <h2>{{ testsGroup.name }}</h2>
