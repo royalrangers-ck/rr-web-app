@@ -7,10 +7,11 @@
         .controller('ProfileTestsController', ProfileTestsController);
 
     ProfileTestsController.$inject = ['$log', '$http', 'AppModalService', 'Endpoints'];
-    function ProfileTestsController ($log, $http, AppModalService, Endpoints) {
+    function ProfileTestsController($log, $http, AppModalService, Endpoints) {
         const vm = this;
 
-        vm.tests = getTests();
+        vm.tests = [];
+        vm.infoMessage = '';
         vm.profileModal = profileModal;
         vm.newTestModal = newTestModal;
 
@@ -18,12 +19,24 @@
 
         ///
 
-        function activate() {}
+        function activate() {
+            getTests();
+        }
 
-        function getTests () {
+        function getTests() {
+            vm.infoMessage = 'Пошук тестів...';
             $http.get(Endpoints.TEST).then((res) => {
                 if (res.data.success) {
                     vm.tests = normalizeStructureTests(res.data.data);
+                    if (vm.tests.length != 0) {
+                        vm.infoMessage = '';
+                    }
+                    else {
+                        vm.infoMessage = 'Нажаль, доступних тестів не знайдено.';
+                    }
+                }
+                else {
+                    vm.infoMessage = 'Помилка сервера...';
                 }
             });
         }
@@ -42,7 +55,7 @@
          *      ...
          * }
          */
-        function normalizeStructureTests (denormalizeTests) {
+        function normalizeStructureTests(denormalizeTests) {
             return denormalizeTests.reduce((tests, test) => {
 
                 if (typeof tests[test.testType] === 'undefined') {
@@ -58,17 +71,17 @@
             }, {});
         }
 
-        function profileModal (testId, testType) {
+        function profileModal(testId, testType) {
             AppModalService.profileModal(findTest(testId, testType), 'test');
         }
 
-        function findTest (id, type) {
+        function findTest(id, type) {
             return vm.tests[type].list.find((test) => {
                 return test.id === id;
             });
         }
 
-        function newTestModal () {
+        function newTestModal() {
             AppModalService.testFormModal();
         }
     }
