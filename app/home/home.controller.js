@@ -30,5 +30,4 @@
             return vm.ranksNames[currentUser.userRank];
         }
     }
-
 })();
