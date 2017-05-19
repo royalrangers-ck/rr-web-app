@@ -5,9 +5,9 @@
     angular
         .module('app')
         .controller('ApproveRegistrationsController', ApproveRegistrationsController);
-    ApproveRegistrationsController.$inject = ['$rootScope', 'growl', '$log', '$route', 'AppModalService', 'usersList', 'UserService'];
+    ApproveRegistrationsController.$inject = ['growl', '$log', 'AppModalService', 'usersList', 'UserService'];
 
-    function ApproveRegistrationsController($rootScope, growl, $log, $route, AppModalService, usersList, UserService) {
+    function ApproveRegistrationsController(growl, $log, AppModalService, usersList, UserService) {
         const vm = this;
         let user = UserService.get();
 

@@ -14,11 +14,9 @@
             controller: 'ApproveUpdatesController',
             controllerAs: 'vm',
             resolve: {
-                usersList: function (ApproveUpdatesService, $rootScope) {
-                    return ApproveUpdatesService.getUsers({platoonId: $rootScope.currentUser.platoon.id});
-                },
-                platoons: function (ApproveUpdatesService){
-                    return ApproveUpdatesService.allPlatoons();
+                usersList: function (ApproveRegistrationsService, UserService) {
+                    let user = UserService.get();
+                    return ApproveRegistrationsService.getUsers({platoonId: user.platoon.id});
                 }
             }
         });

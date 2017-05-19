@@ -5,13 +5,15 @@
     angular
         .module('app')
         .controller('ApproveUpdatesController', ApproveUpdatesController);
-    ApproveUpdatesController.$inject = ['$rootScope', 'growl', '$log', '$route', 'AppModalService', 'usersList', 'platoons'];
+    ApproveUpdatesController.$inject = ['growl', '$log', '$route', 'AppModalService', 'usersList', 'UserService'];
 
-    function ApproveUpdatesController($rootScope, growl, $log, $route, AppModalService, usersList, platoons) {
+    function ApproveUpdatesController(growl, $log, $route, AppModalService, usersList, UserService) {
         const vm = this;
+        let user = UserService.get();
+
         vm.usersList = [];
         vm.currentUser = {};
-        vm.adminPlatoonName = '';
+        vm.adminPlatoonName = user.platoon.name;
         vm.editUser = editCurrentUser;
 
         activate();
@@ -20,8 +22,7 @@
 
         function activate() {
             $log.debug('Init ApproveUpdatesController ...');
-            getUsers($rootScope.currentUser.platoon.id);
-            getAdminPlatoonName();
+            getUsers();
             //init "FooTable" plugin in all tables with 'footable' class
             $(document).ready(function () {
                 $('.footable').footable();
@@ -47,14 +48,6 @@
             let currentUser = vm.usersList.find((item) => item.id == id) || {};
             AppModalService.approveCurrentUserModal(currentUser);
             $log.debug('Set user to modal window:', vm.currentUser);
-        }
-
-        function getAdminPlatoonName() {
-            return platoons.$promise.then((res) => {
-                if (res.success) {
-                    vm.adminPlatoonName = res.data.find((item) =>  item.id == $rootScope.currentUser.platoon.id).name;
-                }
-            })
         }
     }
 })();

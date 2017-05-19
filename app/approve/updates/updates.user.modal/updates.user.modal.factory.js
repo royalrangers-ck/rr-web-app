@@ -4,10 +4,10 @@
 
     angular
         .module('app')
-        .factory('ApproveCurrentUserModal', ApproveCurrentUserModal);
+        .factory('UpdatesUserModal', UpdatesUserModal);
 
-    ApproveCurrentUserModal.$inject = ['$resource', 'Endpoints'];
-    function ApproveCurrentUserModal($resource, Endpoints) {
+    UpdatesUserModal.$inject = ['$resource', 'Endpoints'];
+    function UpdatesUserModal($resource, Endpoints) {
         return $resource(Endpoints.USER , null, {
             'approveUser': {
                 method: 'POST',

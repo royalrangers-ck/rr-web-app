@@ -26,16 +26,4 @@
         growlProvider.globalDisableCountDown(true);
 
     }
-
-    run.$inject = ['$rootScope', '$http', 'Endpoints', '$window'];
-    function run($rootScope, $http, Endpoints, $window) {
-
-        $http.get(Endpoints.USER).then((res) => {
-            if (res.data.success) {
-                $rootScope.currentUser = res.data.data;
-            } else {
-                $window.location.pathname = '/';
-            }
-        });
-    }
 })();
