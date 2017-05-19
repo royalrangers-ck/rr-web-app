@@ -25,20 +25,21 @@
 
         function getTests() {
             vm.infoMessage = 'Пошук тестів...';
-            $http.get(Endpoints.TEST).then((res) => {
-                if (res.data.success) {
-                    vm.tests = normalizeStructureTests(res.data.data);
-                    if (vm.tests.length != 0) {
-                        vm.infoMessage = '';
+            $http.get(Endpoints.TEST).then(
+                (res) => {
+                    if (res.data.success) {
+                        vm.tests = normalizeStructureTests(res.data.data);
+                        if (vm.tests.length != 0) {
+                            vm.infoMessage = '';
+                        }
+                        else {
+                            vm.infoMessage = 'Нажаль, доступних тестів не знайдено.';
+                        }
                     }
-                    else {
-                        vm.infoMessage = 'Нажаль, доступних тестів не знайдено.';
-                    }
-                }
-                else {
-                    vm.infoMessage = 'Помилка сервера...';
-                }
-            });
+                },
+                (err) => {
+                    vm.infoMessage = '';
+                });
         }
 
         /**
