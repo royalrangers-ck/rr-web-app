@@ -11,12 +11,8 @@
         const vm = this;
 
         vm.ranksNames = Ranks;
-        vm.Constants = Constants;
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
         vm.currentUser = UserService.get();
-        vm.topAuthority = UserService.getTopAuthority();
-        console.log(vm.currentUser)
-        console.log(vm.topAuthority)
         vm.uploadUserLogo = uploadUserLogo;
         vm.getUserRank = getUserRank;
 
@@ -34,5 +30,4 @@
             return vm.ranksNames[currentUser.userRank];
         }
     }
-
 })();
