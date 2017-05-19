@@ -16,7 +16,12 @@
                 'default': true,
                 templateUrl: 'profile/tests/tests.html',
                 controller: 'ProfileTestsController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    testsResolve: function (ProfileTestsService) {
+                        return ProfileTestsService.getTests();
+                    }
+                }
             });
     }
 })();

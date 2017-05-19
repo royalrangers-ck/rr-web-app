@@ -6,9 +6,11 @@
         .module('app')
         .service('ProfileTestsService', ProfileTestsService);
 
-    ProfileTestsService.$inject = ['ProfileTestsFactory'];
-    function ProfileTestsService(ProfileTestsFactory) {
+    ProfileTestsService.$inject = ['$http', 'TestsFactory'];
+    function ProfileTestsService($http, TestsFactory) {
 
-        this.getAllTests = ProfileTestsFactory.getAllTests
+        this.getTests = TestsFactory.get;
+
     }
+
 })();
