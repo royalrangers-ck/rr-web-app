@@ -11,12 +11,7 @@
         return $resource(Endpoints.USER , null, {
             'getUsers': {
                 method: 'GET',
-                url: `${Endpoints.USER}/approve/:platoonId`
-            },
-            'allPlatoons': {
-                method: 'GET',
-                url: `${Endpoints.PUBLIC}/platoons`,
-                isArray: false
+                url: `${Endpoints.USER}/approve/update/:platoonId`
             }
         });
     }

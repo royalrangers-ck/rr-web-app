@@ -4,8 +4,7 @@
 
     angular
         .module('app')
-        .config(config)
-        .run(run);
+        .config(config);
 
     config.$inject = ['$httpProvider', '$logProvider', '$locationProvider', 'growlProvider'];
     function config($httpProvider, $logProvider, $locationProvider, growlProvider ) {
@@ -24,6 +23,5 @@
 
         // Time to live Countdown
         growlProvider.globalDisableCountDown(true);
-
     }
 })();
