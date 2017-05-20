@@ -14,11 +14,11 @@
             controller: 'RegistrationController',
             controllerAs: 'vm',
             resolve: {
-                countries: (RegistrationService) => {
-                    return RegistrationService.countries()
+                countriesResponse: (RegistrationService) => {
+                    return RegistrationService.countries().$promise;
                 },
-                ranks: (RegistrationService) => {
-                    return RegistrationService.ranks();
+                ranksResponse: (RegistrationService) => {
+                    return RegistrationService.ranks().$promise;
                 }
             }
         });

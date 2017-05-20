@@ -7,14 +7,11 @@
     margin: 30px 0;
     background: #d9dada url("#{$rr-images-path}/pattern.tree.jpg") repeat;
 
-    .rr-slider__control {
-      @extend .rr-icon;
-      width: 10px;
-      height: 10px;
-
-      &.active {
-        width: 12px;
-        height: 12px;
+    .carousel-indicators {
+      li {
+        background-image: url("#{$rr-images-path}/pattern.tree.jpg");
+        margin-left: 3px;
+        margin-right: 3px;
       }
     }
 

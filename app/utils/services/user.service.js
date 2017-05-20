@@ -10,8 +10,8 @@
         .module('app')
         .service('UserService', UserService);
 
-    UserService.$inject = [];
-    function UserService() {
+    UserService.$inject = ['Constants'];
+    function UserService(Constants) {
         let it = this;
 
         it.currentUser = {};
@@ -20,6 +20,7 @@
         it.save = save;
         it.clean = clean;
         it.fetchFromStorage = fetchFromStorage;
+        it.getTopAuthority = getTopAuthority;
 
         ////
 
@@ -47,6 +48,30 @@
                 currentUser = JSON.parse(currentUser);
             }
             return currentUser;
+        }
+
+        function getTopAuthority() {
+            let topAuthority;
+
+            it.currentUser.authorities.forEach((userAuthority) => {
+                if (userAuthority.name.toUpperCase() === Constants.AUTHORITIES.ROLE_USER.name.toUpperCase()) {
+                    topAuthority = Constants.AUTHORITIES.ROLE_USER.name.toUpperCase();
+                }
+            });
+
+            it.currentUser.authorities.forEach((userAuthority) => {
+                if (userAuthority.name.toUpperCase() === Constants.AUTHORITIES.ROLE_ADMIN.name.toUpperCase()) {
+                    topAuthority = Constants.AUTHORITIES.ROLE_ADMIN.name.toUpperCase();
+                }
+            });
+
+            it.currentUser.authorities.forEach((userAuthority) => {
+                if (userAuthority.name.toUpperCase() === Constants.AUTHORITIES.ROLE_SUPER_ADMIN.name.toUpperCase()) {
+                    topAuthority = Constants.AUTHORITIES.ROLE_SUPER_ADMIN.name.toUpperCase();
+                }
+            });
+
+            return topAuthority;
         }
     }
 })();
