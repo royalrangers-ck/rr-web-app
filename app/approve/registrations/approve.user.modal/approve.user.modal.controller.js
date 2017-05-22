@@ -4,10 +4,10 @@
 
     angular
         .module('app')
-        .controller('ApproveCurrentUserModalController', ApproveCurrentUserModalController);
+        .controller('ApproveUserModalController', ApproveUserModalController);
 
-    ApproveCurrentUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'currentUser', 'ApproveCurrentUserModalService', '$routeSegment', 'Ranks'];
-    function ApproveCurrentUserModalController ($log, growl, $uibModalInstance, currentUser, ApproveCurrentUserModalService, $routeSegment, Ranks) {
+    ApproveUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'currentUser', 'ApproveUserModalService', '$routeSegment', 'Ranks'];
+    function ApproveUserModalController ($log, growl, $uibModalInstance, currentUser, ApproveUserModalService, $routeSegment, Ranks) {
         const vm = this;
         const confirmDeleteModal = '#ConfirmDelete';
 
@@ -53,10 +53,10 @@
                 sectionId: vm.currentUser.section.id,
                 userRank: vm.currentUser.userRank
             };
-            ApproveCurrentUserModalService.approveUser({"ids": [vm.currentUser.id]},
+            ApproveUserModalService.approveUser({"ids": [vm.currentUser.id]},
                 (res) => {
                     if (res.success) {
-                        ApproveCurrentUserModalService.updateUser({userId: vm.currentUser.id}, valuesToSend,
+                        ApproveUserModalService.updateUser({userId: vm.currentUser.id}, valuesToSend,
                             (res) => {
                                 if (res.success) {
                                     growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
@@ -76,7 +76,7 @@
             close();
             growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
                                         vm.currentUser.lastName + ' видаляється...');
-            ApproveCurrentUserModalService.declineUser({"ids": [vm.currentUser.id]},
+            ApproveUserModalService.declineUser({"ids": [vm.currentUser.id]},
                 (res) => {
                     if (res.success) {
                         growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
@@ -95,7 +95,7 @@
 
         function setCities(countryId) {
             if (countryId == null) return [];
-            ApproveCurrentUserModalService.city({countryId: countryId}).$promise.then((res) => {
+            ApproveUserModalService.city({countryId: countryId}).$promise.then((res) => {
                 if (res.success) {
                     vm.cities = res.data;
                     $log.debug('Set citys list: ', res.data);
@@ -105,7 +105,7 @@
 
         function setGroups(cityId) {
             if (cityId == null) return [];
-            ApproveCurrentUserModalService.group({cityId: cityId}).$promise.then((res) => {
+            ApproveUserModalService.group({cityId: cityId}).$promise.then((res) => {
                 if (res.success) {
                     vm.groups = res.data;
                     $log.debug('Set groups list: ', res.data);
@@ -115,7 +115,7 @@
 
         function setPlatoons(groupId) {
             if (groupId == null) return [];
-            ApproveCurrentUserModalService.platoon({groupId: groupId}).$promise.then((res) => {
+            ApproveUserModalService.platoon({groupId: groupId}).$promise.then((res) => {
                 if (res.success) {
                     vm.platoons = res.data;
                     $log.debug('Set platoons list: ', res.data);
@@ -125,7 +125,7 @@
 
         function setSections(platoonId) {
             if (platoonId == null) return [];
-            ApproveCurrentUserModalService.section({platoonId: platoonId}).$promise.then((res) => {
+            ApproveUserModalService.section({platoonId: platoonId}).$promise.then((res) => {
                 if (res.success) {
                     vm.sections = res.data;
                     $log.debug('Set sections list: ', res.data);
@@ -134,7 +134,7 @@
         }
 
         function setRanks() {
-            ApproveCurrentUserModalService.rank().$promise.then((res) => {
+            ApproveUserModalService.rank().$promise.then((res) => {
                 if (res.success) {
                     vm.ranks = res.data;
                     $log.debug('Set ranks list: ', res.data);

@@ -6,15 +6,16 @@
         .module('app')
         .controller('EditUserModalController', EditUserModalController);
 
-    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'EditUserModalService', 'Constants', 'UserService', 'Ranks', 'AppModalService', '$rootScope'];
-    function EditUserModalController($log, growl, $uibModalInstance, EditUserModalService, Constants, UserService, Ranks, AppModalService, $rootScope) {
+    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'EditUserModalService', 'Constants', 'UserService', 'Ranks', 'AppModalService'];
+    function EditUserModalController($log, growl, $uibModalInstance, EditUserModalService, Constants, UserService, Ranks, AppModalService) {
         const vm = this;
 
-        vm.ranksNames = Ranks;
         vm.currentUser = getCurrentUser();
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
 
-        vm.changeGroup = changeGroup;
+        vm.changeCountry = changeCountry;
+        vm.changeRegion = changeRegion;
+        vm.changeCity = changeCity;
         vm.changePlatoon = changePlatoon;
         vm.setSections = setSections;
         vm.updateUser = updateUser;
@@ -31,9 +32,10 @@
         }
 
         function activate() {
-            setCities(vm.currentUser.country.id);
-            setGroups(vm.currentUser.city.id);
-            setPlatoons(vm.currentUser.group.id);
+            setCountries();
+            setRegions(vm.currentUser.country.id);
+            setCities(vm.currentUser.region.id);
+            setPlatoons(vm.currentUser.city.id);
             setSections(vm.currentUser.platoon.id);
             setRanks();
         }
@@ -49,46 +51,54 @@
                 telephoneNumber: vm.currentUser.telephoneNumber,
                 birthDate: +moment(vm.currentUser.birthDate),
                 countryId: vm.currentUser.country.id,
+                regionId: vm.currentUser.region.id,
                 cityId: vm.currentUser.city.id,
-                groupId: vm.currentUser.group.id,
                 platoonId: vm.currentUser.platoon.id,
                 sectionId: vm.currentUser.section.id,
-                userRank: vm.currentUser.userRank
+                userRank: vm.currentUser.userRank,
             };
 
             EditUserModalService.updateUser(request, (res) => {
                 if (res.success) {
-                    growl.info('Дані оновлено');
-                    window.location.reload();
+                    growl.info('Дані відправлено на перевірку. Очікуйте підтвердження.');
                 } else {
                     growl.error('Помилка:' + res.data.message);
                 }
             });
         }
 
-        function setCities(countryId) {
-            if (countryId == null) return [];
-            EditUserModalService.city({countryId: countryId}).$promise.then((res) => {
+        function setCountries() {
+            EditUserModalService.countries().$promise.then((res) => {
+                if (res.success) {
+                    vm.countries = res.data;
+                    $log.debug('Set countries list: ', res.data);
+                }
+            });
+        }
+
+        function setRegions(countryId) {
+            if (countryId === null) return [];
+            EditUserModalService.region({countryId: countryId}).$promise.then((res) => {
+                if (res.success) {
+                    vm.regions = res.data;
+                    $log.debug('Set regions list: ', res.data);
+                }
+            });
+        }
+
+        function setCities(regionId) {
+            if (regionId === null) return [];
+            EditUserModalService.city({regionId: regionId}).$promise.then((res) => {
                 if (res.success) {
                     vm.cities = res.data;
-                    $log.debug('Set citys list: ', res.data);
+                    $log.debug('Set cities list: ', res.data);
                 }
             });
         }
 
-        function setGroups(cityId) {
-            if (cityId == null) return [];
-            EditUserModalService.group({cityId: cityId}).$promise.then((res) => {
-                if (res.success) {
-                    vm.groups = res.data;
-                    $log.debug('Set groups list: ', res.data);
-                }
-            });
-        }
-
-        function setPlatoons(groupId) {
-            if (groupId == null) return [];
-            EditUserModalService.platoon({groupId: groupId}).$promise.then((res) => {
+        function setPlatoons(cityId) {
+            if (cityId === null) return [];
+            EditUserModalService.platoon({cityId: cityId}).$promise.then((res) => {
                 if (res.success) {
                     vm.platoons = res.data;
                     $log.debug('Set platoons list: ', res.data);
@@ -97,7 +107,7 @@
         }
 
         function setSections(platoonId) {
-            if (platoonId == null) return [];
+            if (platoonId === null) return [];
             EditUserModalService.section({platoonId: platoonId}).$promise.then((res) => {
                 if (res.success) {
                     vm.sections = res.data;
@@ -109,23 +119,42 @@
         function setRanks() {
             EditUserModalService.rank().$promise.then((res) => {
                 if (res.success) {
-                    vm.ranks = res.data;
-                    $log.debug('Set ranks list: ', res.data);
+                    vm.ranks = res.data.reduce((ranks, rank) => {
+                        ranks.push({
+                            value: rank,
+                            name: Ranks[rank]
+                        });
+                        return ranks;
+                    }, []);
+                    $log.debug('Set ranks list: ', vm.ranks);
                 }
             });
         }
 
-        //Special function for view to correct change group
-        function changeGroup(cityId) {
-            setGroups(cityId);
-            vm.platoons = [];
-            vm.sections = [];
+        //Special function for view to correct change country
+        function changeCountry() {
+            setRegions(vm.currentUser.country.id);
+            vm.currentUser.region = {};
+            vm.currentUser.city = {};
+            vm.currentUser.platoon = {};
+        }
+
+        //Special function for view to correct change region
+        function changeRegion() {
+            setCities(vm.currentUser.region.id);
+            vm.currentUser.city = {};
+            vm.currentUser.platoon = {};
+        }
+
+        //Same, but to correct change city
+        function changeCity() {
+            setPlatoons(vm.currentUser.city.id);
+            vm.currentUser.platoon = {};
         }
 
         //Same, but to correct change platoon
-        function changePlatoon(groupId) {
-            setPlatoons(groupId);
-            vm.sections = [];
+        function changePlatoon() {
+            setSections(vm.currentUser.platoon.id);
         }
 
         function close(data) {
@@ -140,8 +169,3 @@
         }
     }
 })();
-
-
-
-
-

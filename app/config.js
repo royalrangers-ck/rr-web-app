@@ -21,5 +21,7 @@
         growlProvider.globalTimeToLive({success: 1000, error: 2000, warning: 3000, info: 4000});
         growlProvider.globalPosition('top-center');
 
+        // Time to live Countdown
+        growlProvider.globalDisableCountDown(true);
     }
 })();

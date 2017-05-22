@@ -113,7 +113,14 @@
             {name: 'Мій загін', route: ''},
             {name: 'Мої друзі', route: ''},
             {name: 'Бібліотека', route: '#/library'},
-            {name: 'Підтвердити', route: '#/confirm-users', adminsOnly: true},
+            {
+                name: 'Підтвердити',
+                adminsOnly: true,
+                submenu: [
+                    {name: 'Реєстрації', route: '#approve/registrations'},
+                    {name: 'Оновлення даних', route: '#approve/updates'}
+                ]
+            },
             {name: 'Тех.підтримка', route: ''},
             {name: 'Створити', route: ''}
         ];

@@ -10,7 +10,8 @@
     function AppModalService($uibModal) {
 
         this.profileModal = profileModal;
-        this.approveCurrentUserModal = approveCurrentUserModal;
+        this.approveUserModal = approveUserModal;
+        this.updatesUserModal = updatesUserModal;
         this.editUserModal = editUserModal;
         this.uploadUserLogo = uploadUserLogo;
         this.taskFormModal = taskFormModal;
@@ -32,12 +33,28 @@
             });
         }
 
-        function approveCurrentUserModal(_currentUser) {
+        function approveUserModal(_currentUser) {
 
             return $uibModal.open({
                 animation: true,
-                templateUrl: 'confirmUsers/approve.current.user.modal/approve.current.user.modal.html',
+                templateUrl: 'approve/registrations/approve.user.modal/approve.user.modal.html',
                 controller: 'ApproveCurrentUserModalController',
+                controllerAs: 'vm',
+                size: 'lg',
+                resolve: {
+                    currentUser: function () {
+                        return _currentUser;
+                    }
+                }
+            });
+        }
+
+        function updatesUserModal(_currentUser) {
+
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'approve/updates/updates.user.modal/updates.user.modal.html',
+                controller: 'UpdatesCurrentUserModalController',
                 controllerAs: 'vm',
                 size: 'lg',
                 resolve: {
