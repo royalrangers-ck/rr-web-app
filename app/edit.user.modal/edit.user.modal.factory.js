@@ -18,22 +18,22 @@
                 url: `${Endpoints.PUBLIC}/countries`,
                 isArray: false
             },
+            'region': {
+                method: 'GET',
+                url: `${Endpoints.PUBLIC}/region`,
+                params: {cityId: '@countryId'},
+                isArray: false
+            },
             'city': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/city`,
-                params: {countryId: '@countryId'},
-                isArray: false
-            },
-            'group': {
-                method: 'GET',
-                url: `${Endpoints.PUBLIC}/group`,
-                params: {cityId: '@cityId'},
+                params: {countryId: '@regionId'},
                 isArray: false
             },
             'platoon': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/platoon`,
-                params: {groupId: '@groupId'},
+                params: {groupId: '@cityId'},
                 isArray: false
             },
             'section': {

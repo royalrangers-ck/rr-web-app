@@ -77,7 +77,7 @@
                            name="password"
                            ng-required="true"
                            ng-model="vm.data.password"
-                           ng-minlength="5"
+                           ng-minlength="4"
                            ng-maxlength="25"
                            lazy-validation-on="vm.form.$submitted">
                     <p ng-show="vm.form.password.$error.minlength" class="help-block">Password is too short.</p>
@@ -91,7 +91,7 @@
                            name="confirmPassword"
                            ng-required="true"
                            ng-model="vm.data.confirmPassword"
-                           ng-minlength="5"
+                           ng-minlength="4"
                            ng-maxlength="25"
                            uic-group="true"
                            uic-compare="true"
