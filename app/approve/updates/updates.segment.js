@@ -14,9 +14,9 @@
             controller: 'ApproveUpdatesController',
             controllerAs: 'vm',
             resolve: {
-                usersList: function (ApproveRegistrationsService, UserService) {
+                usersList: function (ApproveUpdatesService, UserService) {
                     let user = UserService.get();
-                    return ApproveRegistrationsService.getUsers({platoonId: user.platoon.id});
+                    return ApproveUpdatesService.getUsers({platoonId: user.platoon.id});
                 }
             }
         });

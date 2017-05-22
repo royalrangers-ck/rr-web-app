@@ -30,7 +30,7 @@
             $log.debug('Init complete.');
         }
 
-        function getUsers(platoonId) {
+        function getUsers() {
             usersList.$promise.then((res) => {
                 if (res.success) {
                     let result;

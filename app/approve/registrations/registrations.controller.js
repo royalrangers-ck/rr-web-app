@@ -46,7 +46,7 @@
 
         function editCurrentUser(id) {
             let currentUser = vm.usersList.find((item) => item.id == id) || {};
-            AppModalService.approveCurrentUserModal(currentUser);
+            AppModalService.approveUserModal(currentUser);
             $log.debug('Set user to modal window:', vm.currentUser);
         }
     }

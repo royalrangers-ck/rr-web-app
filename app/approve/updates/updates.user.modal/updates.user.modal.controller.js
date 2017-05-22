@@ -11,9 +11,11 @@
         const vm = this;
         const confirmDeleteModal = '#ConfirmDelete';
 
-        vm.ranksNames = Ranks;
         vm.currentUser = currentUser;
-        vm.changeGroup = changeGroup;
+
+        vm.changeCountry = changeCountry;
+        vm.changeRegion = changeRegion;
+        vm.changeCity = changeCity;
         vm.changePlatoon = changePlatoon;
         vm.setSections = setSections;
         vm.approveUser = approveCurrentUser;
@@ -27,9 +29,10 @@
 
         function activate() {
             $log.debug('Init modal window...')
-            setCities(vm.currentUser.country.id);
-            setGroups(vm.currentUser.city.id);
-            setPlatoons(vm.currentUser.group.id);
+            setCountries();
+            setRegions(vm.currentUser.country.id);
+            setCities(vm.currentUser.region.id);
+            setPlatoons(vm.currentUser.city.id);
             setSections(vm.currentUser.platoon.id);
             setRanks();
             $log.debug('User loaded to modal window:', vm.currentUser);
@@ -93,29 +96,38 @@
             $(confirmDeleteModal).modal();
         }
 
-        function setCities(countryId) {
-            if (countryId == null) return [];
-            UpdatesUserModalService.city({countryId: countryId}).$promise.then((res) => {
+        function setCountries() {
+            UpdatesUserModalService.countries().$promise.then((res) => {
+                if (res.success) {
+                    vm.countries = res.data;
+                    $log.debug('Set countries list: ', res.data);
+                }
+            });
+        }
+
+        function setRegions(countryId) {
+            if (countryId === null) return [];
+            UpdatesUserModalService.region({countryId: countryId}).$promise.then((res) => {
+                if (res.success) {
+                    vm.regions = res.data;
+                    $log.debug('Set regions list: ', res.data);
+                }
+            });
+        }
+
+        function setCities(regionId) {
+            if (regionId === null) return [];
+            UpdatesUserModalService.city({regionId: regionId}).$promise.then((res) => {
                 if (res.success) {
                     vm.cities = res.data;
-                    $log.debug('Set citys list: ', res.data);
+                    $log.debug('Set cities list: ', res.data);
                 }
             });
         }
 
-        function setGroups(cityId) {
-            if (cityId == null) return [];
-            UpdatesUserModalService.group({cityId: cityId}).$promise.then((res) => {
-                if (res.success) {
-                    vm.groups = res.data;
-                    $log.debug('Set groups list: ', res.data);
-                }
-            });
-        }
-
-        function setPlatoons(groupId) {
-            if (groupId == null) return [];
-            UpdatesUserModalService.platoon({groupId: groupId}).$promise.then((res) => {
+        function setPlatoons(cityId) {
+            if (cityId === null) return [];
+            UpdatesUserModalService.platoon({cityId: cityId}).$promise.then((res) => {
                 if (res.success) {
                     vm.platoons = res.data;
                     $log.debug('Set platoons list: ', res.data);
@@ -124,7 +136,7 @@
         }
 
         function setSections(platoonId) {
-            if (platoonId == null) return [];
+            if (platoonId === null) return [];
             UpdatesUserModalService.section({platoonId: platoonId}).$promise.then((res) => {
                 if (res.success) {
                     vm.sections = res.data;
@@ -136,30 +148,48 @@
         function setRanks() {
             UpdatesUserModalService.rank().$promise.then((res) => {
                 if (res.success) {
-                    vm.ranks = res.data;
-                    $log.debug('Set ranks list: ', res.data);
+                    vm.ranks = res.data.reduce((ranks, rank) => {
+                        ranks.push({
+                            value: rank,
+                            name: Ranks[rank]
+                        });
+                        return ranks;
+                    }, []);
+                    $log.debug('Set ranks list: ', vm.ranks);
                 }
             });
         }
 
-        //Special function for view to correct change group
-        function changeGroup(cityId) {
-            setGroups(cityId);
-            vm.platoons = [];
-            vm.sections = [];
+        //Special function for view to correct change country
+        function changeCountry() {
+            setRegions(vm.currentUser.country.id);
+            vm.currentUser.region = {};
+            vm.currentUser.city = {};
+            vm.currentUser.platoon = {};
+        }
+
+        //Special function for view to correct change region
+        function changeRegion() {
+            setCities(vm.currentUser.region.id);
+            vm.currentUser.city = {};
+            vm.currentUser.platoon = {};
+        }
+
+        //Same, but to correct change city
+        function changeCity() {
+            setPlatoons(vm.currentUser.city.id);
+            vm.currentUser.platoon = {};
         }
 
         //Same, but to correct change platoon
-        function changePlatoon(groupId) {
-            setPlatoons(groupId);
-            vm.sections = [];
+        function changePlatoon() {
+            setSections(vm.currentUser.platoon.id);
         }
 
         function close(data) {
             $uibModalInstance.close(data);
             $(confirmDeleteModal).modal('hide');
         }
-
     }
 })();
 

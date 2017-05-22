@@ -13,8 +13,8 @@
         this.updateUser = UpdatesUserModal.updateUser;
         /** Get data for edit fields */
         this.countries = UpdatesUserModal.countries;
+        this.region = UpdatesUserModal.region;
         this.city = UpdatesUserModal.city;
-        this.group = UpdatesUserModal.group;
         this.platoon = UpdatesUserModal.platoon;
         this.section = UpdatesUserModal.section;
         this.rank = UpdatesUserModal.rank;

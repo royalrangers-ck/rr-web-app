@@ -33,33 +33,33 @@
             });
         }
 
-        function approveUserModal(_currentUser) {
+        function approveUserModal(currentUser) {
 
             return $uibModal.open({
                 animation: true,
                 templateUrl: 'approve/registrations/approve.user.modal/approve.user.modal.html',
-                controller: 'ApproveCurrentUserModalController',
+                controller: 'ApproveUserModalController',
                 controllerAs: 'vm',
                 size: 'lg',
                 resolve: {
                     currentUser: function () {
-                        return _currentUser;
+                        return currentUser;
                     }
                 }
             });
         }
 
-        function updatesUserModal(_currentUser) {
+        function updatesUserModal(currentUser) {
 
             return $uibModal.open({
                 animation: true,
                 templateUrl: 'approve/updates/updates.user.modal/updates.user.modal.html',
-                controller: 'UpdatesCurrentUserModalController',
+                controller: 'UpdatesUserModalController',
                 controllerAs: 'vm',
                 size: 'lg',
                 resolve: {
                     currentUser: function () {
-                        return _currentUser;
+                        return currentUser;
                     }
                 }
             });
