@@ -20,22 +20,22 @@
                 url: Endpoints.COUNTRIES,
                 isArray: false
             },
-            'city': {
+            'region': {
                 method: 'GET',
-                url: Endpoints.CITY,
+                url: Endpoints.REGION,
                 params: {countryId: '@countryId'},
                 isArray: false
             },
-            'group': {
+            'city': {
                 method: 'GET',
-                url: Endpoints.GROUP,
-                params: {cityId: '@cityId'},
+                url: Endpoints.CITY,
+                params: {regionId: '@regionId'},
                 isArray: false
             },
             'platoon': {
                 method: 'GET',
                 url: Endpoints.PLATOON,
-                params: {groupId: '@groupId'},
+                params: {cityId: '@cityId'},
                 isArray: false
             },
             'section': {
