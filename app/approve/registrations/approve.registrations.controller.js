@@ -4,10 +4,10 @@
 
     angular
         .module('app')
-        .controller('ApproveUpdatesController', ApproveUpdatesController);
-    ApproveUpdatesController.$inject = ['growl', '$log', '$route', 'AppModalService', 'usersList', 'UserService'];
+        .controller('ApproveRegistrationsController', ApproveRegistrationsController);
 
-    function ApproveUpdatesController(growl, $log, $route, AppModalService, usersList, UserService) {
+    ApproveRegistrationsController.$inject = ['growl', '$log', 'AppModalService', 'usersList', 'UserService'];
+    function ApproveRegistrationsController(growl, $log, AppModalService, usersList, UserService) {
         const vm = this;
         let user = UserService.get();
 
@@ -21,7 +21,7 @@
         ////
 
         function activate() {
-            $log.debug('Init ApproveUpdatesController ...');
+            $log.debug('Init ApproveRegistrationsController ...');
             getUsers();
             //init "FooTable" plugin in all tables with 'footable' class
             $(document).ready(function () {
@@ -46,7 +46,7 @@
 
         function editCurrentUser(id) {
             let currentUser = vm.usersList.find((item) => item.id == id) || {};
-            AppModalService.approveCurrentUserModal(currentUser);
+            AppModalService.approveUserModal(currentUser);
             $log.debug('Set user to modal window:', vm.currentUser);
         }
     }

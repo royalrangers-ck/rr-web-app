@@ -11,7 +11,7 @@
 
         this.profileModal = profileModal;
         this.approveUserModal = approveUserModal;
-        this.updatesUserModal = updatesUserModal;
+        this.openModalWindowForApprovingUserUpdate = openModalWindowForApprovingUserUpdate;
         this.editUserModal = editUserModal;
         this.uploadUserLogo = uploadUserLogo;
         this.taskFormModal = taskFormModal;
@@ -49,17 +49,20 @@
             });
         }
 
-        function updatesUserModal(currentUser) {
-
+        function openModalWindowForApprovingUserUpdate(modifiedUser) {
             return $uibModal.open({
                 animation: true,
-                templateUrl: 'approve/updates/updates.user.modal/updates.user.modal.html',
-                controller: 'UpdatesUserModalController',
+                templateUrl: 'approve/updates/approve.user.updates/approve.user.updates.html',
+                controller: 'ApproveUserUpdatesModalController',
                 controllerAs: 'vm',
                 size: 'lg',
                 resolve: {
-                    currentUser: function () {
-                        return currentUser;
+                    originalUser: function (User) {
+                        // TODO: need to get user by original user id, not modified user id
+                        return User.get({userId: modifiedUser.id}).$promise;
+                    },
+                    modifiedUser: () => {
+                        return angular.copy(modifiedUser, {});
                     }
                 }
             });

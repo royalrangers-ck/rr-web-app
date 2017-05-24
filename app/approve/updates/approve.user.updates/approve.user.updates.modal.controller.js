@@ -4,14 +4,15 @@
 
     angular
         .module('app')
-        .controller('UpdatesUserModalController', UpdatesUserModalController);
+        .controller('ApproveUserUpdatesModalController', ApproveUserUpdatesModalController);
 
-    UpdatesUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'currentUser', 'UpdatesUserModalService', '$routeSegment', 'Ranks'];
-    function UpdatesUserModalController ($log, growl, $uibModalInstance, currentUser, UpdatesUserModalService, $routeSegment, Ranks) {
+    ApproveUserUpdatesModalController.$inject = ['originalUser', 'modifiedUser', 'growl', '$uibModalInstance', 'User', '$routeSegment', 'Ranks'];
+    function ApproveUserUpdatesModalController (originalUserResponse, modifiedUser, growl, $uibModalInstance, User, $routeSegment, Ranks) {
         const vm = this;
         const confirmDeleteModal = '#ConfirmDelete';
 
-        vm.currentUser = currentUser;
+        vm.originalUser = {};
+        vm.modifiedUser = modifiedUser;
 
         vm.changeCountry = changeCountry;
         vm.changeRegion = changeRegion;
@@ -28,42 +29,44 @@
         ///
 
         function activate() {
-            $log.debug('Init modal window...')
+            if (originalUserResponse && originalUserResponse.success) {
+                vm.originalUser = originalUserResponse.data;
+            }
+
             setCountries();
-            setRegions(vm.currentUser.country.id);
-            setCities(vm.currentUser.region.id);
-            setPlatoons(vm.currentUser.city.id);
-            setSections(vm.currentUser.platoon.id);
+            setRegions(vm.modifiedUser.country.id);
+            setCities(vm.modifiedUser.region.id);
+            setPlatoons(vm.modifiedUser.city.id);
+            setSections(vm.modifiedUser.platoon.id);
             setRanks();
-            $log.debug('User loaded to modal window:', vm.currentUser);
         }
 
         function approveCurrentUser() {
             close();
-            growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
-                                        vm.currentUser.lastName + ' підтверджується...');
+            growl.info('Користувач ' + vm.modifiedUser.firstName + ' ' +
+                                        vm.modifiedUser.lastName + ' підтверджується...');
             let valuesToSend = {
-                firstName: vm.currentUser.firstName,
-                lastName: vm.currentUser.lastName,
-                gender: vm.currentUser.gender,
-                userAgeGroup: vm.currentUser.userAgeGroup,
-                telephoneNumber: vm.currentUser.telephoneNumber,
-                birthDate: vm.currentUser.birthDate.getTime(),
-                countryId: vm.currentUser.country.id,
-                cityId: vm.currentUser.city.id,
-                groupId: vm.currentUser.group.id,
-                platoonId: vm.currentUser.platoon.id,
-                sectionId: vm.currentUser.section.id,
-                userRank: vm.currentUser.userRank
+                firstName: vm.modifiedUser.firstName,
+                lastName: vm.modifiedUser.lastName,
+                gender: vm.modifiedUser.gender,
+                userAgeGroup: vm.modifiedUser.userAgeGroup,
+                telephoneNumber: vm.modifiedUser.telephoneNumber,
+                birthDate: vm.modifiedUser.birthDate.getTime(),
+                countryId: vm.modifiedUser.country.id,
+                cityId: vm.modifiedUser.city.id,
+                groupId: vm.modifiedUser.group.id,
+                platoonId: vm.modifiedUser.platoon.id,
+                sectionId: vm.modifiedUser.section.id,
+                userRank: vm.modifiedUser.userRank
             };
-            UpdatesUserModalService.approveUser({"ids": [vm.currentUser.id]},
+            User.approveUser({"ids": [vm.modifiedUser.id]},
                 (res) => {
                     if (res.success) {
-                        UpdatesUserModalService.updateUser({userId: vm.currentUser.id}, valuesToSend,
+                        User.updateUser({userId: vm.modifiedUser.id}, valuesToSend,
                             (res) => {
                                 if (res.success) {
-                                    growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
-                                        vm.currentUser.lastName + ' підтверджений');
+                                    growl.info('Користувач ' + vm.modifiedUser.firstName + ' ' +
+                                        vm.modifiedUser.lastName + ' підтверджений');
                                     $routeSegment.chain[0].reload();
                                 } else {
                                     growl.error('Помилка:' + res.data.message);
@@ -77,13 +80,13 @@
 
         function declineCurrentUser() {
             close();
-            growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
-                                        vm.currentUser.lastName + ' видаляється...');
-            UpdatesUserModalService.declineUser({"ids": [vm.currentUser.id]},
+            growl.info('Користувач ' + vm.modifiedUser.firstName + ' ' +
+                                        vm.modifiedUser.lastName + ' видаляється...');
+            User.declineUser({"ids": [vm.modifiedUser.id]},
                 (res) => {
                     if (res.success) {
-                        growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
-                            vm.currentUser.lastName + ' видалений');
+                        growl.info('Користувач ' + vm.modifiedUser.firstName + ' ' +
+                            vm.modifiedUser.lastName + ' видалений');
                         $routeSegment.chain[0].reload();
                     } else {
                         growl.error('Помилка:' + res.data.message);
@@ -97,56 +100,51 @@
         }
 
         function setCountries() {
-            UpdatesUserModalService.countries().$promise.then((res) => {
+            User.countries().$promise.then((res) => {
                 if (res.success) {
                     vm.countries = res.data;
-                    $log.debug('Set countries list: ', res.data);
                 }
             });
         }
 
         function setRegions(countryId) {
             if (countryId === null) return [];
-            UpdatesUserModalService.region({countryId: countryId}).$promise.then((res) => {
+            User.region({countryId: countryId}).$promise.then((res) => {
                 if (res.success) {
                     vm.regions = res.data;
-                    $log.debug('Set regions list: ', res.data);
                 }
             });
         }
 
         function setCities(regionId) {
             if (regionId === null) return [];
-            UpdatesUserModalService.city({regionId: regionId}).$promise.then((res) => {
+            User.city({regionId: regionId}).$promise.then((res) => {
                 if (res.success) {
                     vm.cities = res.data;
-                    $log.debug('Set cities list: ', res.data);
                 }
             });
         }
 
         function setPlatoons(cityId) {
             if (cityId === null) return [];
-            UpdatesUserModalService.platoon({cityId: cityId}).$promise.then((res) => {
+            User.platoon({cityId: cityId}).$promise.then((res) => {
                 if (res.success) {
                     vm.platoons = res.data;
-                    $log.debug('Set platoons list: ', res.data);
                 }
             });
         }
 
         function setSections(platoonId) {
             if (platoonId === null) return [];
-            UpdatesUserModalService.section({platoonId: platoonId}).$promise.then((res) => {
+            User.section({platoonId: platoonId}).$promise.then((res) => {
                 if (res.success) {
                     vm.sections = res.data;
-                    $log.debug('Set sections list: ', res.data);
                 }
             });
         }
 
         function setRanks() {
-            UpdatesUserModalService.rank().$promise.then((res) => {
+            User.rank().$promise.then((res) => {
                 if (res.success) {
                     vm.ranks = res.data.reduce((ranks, rank) => {
                         ranks.push({
@@ -155,35 +153,34 @@
                         });
                         return ranks;
                     }, []);
-                    $log.debug('Set ranks list: ', vm.ranks);
                 }
             });
         }
 
         //Special function for view to correct change country
         function changeCountry() {
-            setRegions(vm.currentUser.country.id);
-            vm.currentUser.region = {};
-            vm.currentUser.city = {};
-            vm.currentUser.platoon = {};
+            setRegions(vm.modifiedUser.country.id);
+            vm.modifiedUser.region = {};
+            vm.modifiedUser.city = {};
+            vm.modifiedUser.platoon = {};
         }
 
         //Special function for view to correct change region
         function changeRegion() {
-            setCities(vm.currentUser.region.id);
-            vm.currentUser.city = {};
-            vm.currentUser.platoon = {};
+            setCities(vm.modifiedUser.region.id);
+            vm.modifiedUser.city = {};
+            vm.modifiedUser.platoon = {};
         }
 
         //Same, but to correct change city
         function changeCity() {
-            setPlatoons(vm.currentUser.city.id);
-            vm.currentUser.platoon = {};
+            setPlatoons(vm.modifiedUser.city.id);
+            vm.modifiedUser.platoon = {};
         }
 
         //Same, but to correct change platoon
         function changePlatoon() {
-            setSections(vm.currentUser.platoon.id);
+            setSections(vm.modifiedUser.platoon.id);
         }
 
         function close(data) {

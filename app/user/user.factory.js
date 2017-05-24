@@ -4,11 +4,26 @@
 
     angular
         .module('app')
-        .factory('UpdatesUserModal', UpdatesUserModal);
+        .factory('User', User);
 
-    UpdatesUserModal.$inject = ['$resource', 'Endpoints'];
-    function UpdatesUserModal($resource, Endpoints) {
-        return $resource(Endpoints.USER , null, {
+    User.$inject = ['$resource', 'Endpoints'];
+    function User($resource, Endpoints) {
+
+        return $resource(Endpoints.USER, {userId: '@userId'}, {
+            'getApproveRegistrationUsersByPlatoonId': {
+                method: 'GET',
+                url: `${Endpoints.USER}/approve/registration/:platoonId`,
+                params: {
+                    platoonId: '@platoonId'
+                }
+            },
+            'getApproveUpdateUsersByPlatoonId': {
+                method: 'GET',
+                url: `${Endpoints.USER}/approve/update/:platoonId`,
+                params: {
+                    platoonId: '@platoonId'
+                }
+            },
             'approveUser': {
                 method: 'POST',
                 url: `${Endpoints.USER}/approve`
@@ -51,6 +66,7 @@
                 url: `${Endpoints.PUBLIC}/ranks`,
                 isArray: false
             }
+
         });
     }
 })();

@@ -1,49 +1,77 @@
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" ng-click="vm.close()">&times;</button>
-        <h4 class="modal-title" id="EditUserLabel">Підтвердити Користувача</h4>
+        <h4 class="modal-title" id="EditUserLabel">
+            Підтвердити зміни для користувача {{vm.originalUser.firstName}} {{vm.originalUser.lastName}} ({{vm.originalUser.email}})
+        </h4>
     </div>
+
     <div class="modal-body">
         <form class="form-horizontal" ng-submit="vm.approveUser()">
-            <input type="hidden" ng-readonly="true" ng-model="vm.currentUser.id">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="email" class="col-sm-3 control-label">Email</label>
-                        <div class="col-sm-9">
-                            <input type="email" ng-readonly="true" ng-model="vm.currentUser.email"
-                                   id="email" class="form-control" placeholder="Email">
-                        </div>
+            <input type="hidden" ng-readonly="true" ng-model="vm.originalUser.id">
+
+            <!-- Email -->
+            <div ng-if="vm.originalUser.email !== vm.modifiedUser.email" class="row">
+                <div class="form-group">
+                    <label for="originalEmail" class="col-sm-2 control-label">Email</label>
+                    <div class="col-xs-5">
+                        <input type="email" id="originalEmail" class="form-control" placeholder="Original Email"
+                               ng-readonly="true"
+                               ng-model="vm.originalUser.email">
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="phone" class="col-sm-3 control-label">Телефон</label>
-                        <div class="col-sm-9">
-                            <input type="tel" id="phone"
-                                   ng-model="vm.currentUser.telephoneNumber"
-                                   class="form-control" ui-mask="(999) 999-9999" ui-mask-placeholder ui-mask-placeholder-char="_" placeholder="Телефон" required>
-                        </div>
+                    <div class="col-xs-5">
+                        <input type="email" id="email" class="form-control" placeholder="Modified Email"
+                               ng-model="vm.modifiedUser.email">
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="firstName" class="col-sm-3 control-label">Ім'я</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="firstName" class="form-control"
-                                   ng-model="vm.currentUser.firstName"
-                                   placeholder="Ім'я" required>
-                        </div>
+
+            <!-- Telephone Number -->
+            <div ng-if="vm.originalUser.telephoneNumber !== vm.modifiedUser.telephoneNumber" class="row">
+                <div class="form-group">
+                    <label for="originalPhone" class="col-sm-2 control-label">Телефон</label>
+                    <div class="col-sm-5">
+                        <input type="tel" id="originalPhone" class="form-control" placeholder="Телефон"
+                               ng-readonly="true"
+                               ng-model="vm.originalUser.telephoneNumber"
+                               ui-mask="(999) 999-9999"
+                               ui-mask-placeholder
+                               ui-mask-placeholder-char="_">
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="tel" id="modifiedPhone" class="form-control" placeholder="Телефон"
+                               ng-model="vm.modifiedUser.telephoneNumber"
+                               ui-mask="(999) 999-9999"
+                               ui-mask-placeholder
+                               ui-mask-placeholder-char="_">
                     </div>
                 </div>
+            </div>
+
+            <!-- First Name -->
+            <div ng-if="vm.originalUser.firstName !== vm.modifiedUser.firstName" class="row">
+                <div class="form-group">
+                    <label for="originalFirstName" class="col-sm-2 control-label">Ім'я</label>
+                    <div class="col-sm-5">
+                        <input type="text" id="originalFirstName" class="form-control" placeholder="Ім'я"
+                               ng-readonly="true"
+                               ng-model="vm.originalUser.firstName">
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" id="modifiedFirstName" class="form-control" placeholder="Ім'я"
+                               ng-model="vm.modifiedUser.firstName">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- TODO: do the same for other user fields -->
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="subName" class="col-sm-3 control-label">Прізвище</label>
                         <div class="col-sm-9">
                             <input type="text" id="subName" class="form-control"
-                                   ng-model="vm.currentUser.lastName"
+                                   ng-model="vm.originalUser.lastName"
                                    placeholder="Прізвище" required>
                         </div>
                     </div>
@@ -55,8 +83,9 @@
                         <label for="birth" class="col-sm-3 control-label">Народився</label>
                         <div class="col-sm-9">
                             <input type="date" id="birth" class="form-control"
-                                   ng-model="vm.currentUser.birthDate"
+                                   ng-model="vm.originalUser.birthDate"
                                    placeholder="Дата народження" required>
+                            <!--<div uib-datepicker ng-model="vm.originalUser.birthDate" class="well well-sm" datepicker-options="options"></div>-->
                         </div>
                     </div>
                 </div>
@@ -65,7 +94,7 @@
                         <label for="sex" class="col-sm-3 control-label">Стать</label>
                         <div class="col-sm-9">
                             <select id="sex" class="form-control"
-                                    ng-model="vm.currentUser.gender"
+                                    ng-model="vm.originalUser.gender"
                                     title="СТАТЬ" required>
                                 <option value="" disabled hidden>Виберіть стать</option>
                                 <option value="M">Чоловіча</option>
@@ -82,7 +111,7 @@
                         <div class="col-sm-9">
                             <select id="country"
                                     ng-disabled="vm.countries.length == 0"
-                                    ng-model="vm.currentUser.country.id"
+                                    ng-model="vm.originalUser.country.id"
                                     ng-options="record.id as record.name for record in vm.countries"
                                     ng-change="vm.changeCountry()" class="form-control" required>
                                 <option value="" disabled hidden>Виберіть країну</option>
@@ -96,7 +125,7 @@
                         <div class="col-sm-9">
                             <select id="region"
                                     ng-disabled="vm.regions.length == 0"
-                                    ng-model="vm.currentUser.region.id"
+                                    ng-model="vm.originalUser.region.id"
                                     ng-options="record.id as record.name for record in vm.regions"
                                     ng-change="vm.changeRegion()" class="form-control" required>
                                 <option value="" disabled hidden>Виберіть регіон</option>
@@ -112,7 +141,7 @@
                         <div class="col-sm-9">
                             <select id="city"
                                     ng-disabled="vm.cities.length == 0"
-                                    ng-model="vm.currentUser.city.id"
+                                    ng-model="vm.originalUser.city.id"
                                     ng-options="record.id as record.name for record in vm.cities"
                                     ng-change="vm.changeCity()" class="form-control" required>
                                 <option value="" disabled hidden>Виберіть місто</option>
@@ -126,7 +155,7 @@
                         <div class="col-sm-9">
                             <select id="platoon"
                                     ng-disabled="vm.platoons.length == 0"
-                                    ng-model="vm.currentUser.platoon.id"
+                                    ng-model="vm.originalUser.platoon.id"
                                     ng-options="record.id as record.name for record in vm.platoons"
                                     ng-change="vm.changePlatoon()" class="form-control" required>
                                 <option value="" disabled hidden>Виберіть загін</option>
@@ -141,7 +170,7 @@
                         <label for="sectionId" class="col-sm-3 control-label">Ланка</label>
                         <div class="col-sm-9">
                             <select id="sectionId" ng-disabled="vm.sections.length == 0"
-                                    ng-model="vm.currentUser.section.id"
+                                    ng-model="vm.originalUser.section.id"
                                     ng-options="record.id as record.name for record in vm.sections"
                                     class="form-control" required>
                                 <option value="" disabled hidden>Виберіть ланку</option>
@@ -154,7 +183,7 @@
                         <label for="rank" class="col-sm-3 control-label">Звання</label>
                         <div class="col-sm-9">
                             <select id="rank" ng-disabled="vm.ranks.length == 0"
-                                    ng-model="vm.currentUser.userRank"
+                                    ng-model="vm.originalUser.userRank"
                                     ng-options="record.value as record.name for record in vm.ranks"
                                     class="form-control" required>
                                 <option value="" disabled hidden>Виберіть звання</option>
@@ -170,6 +199,15 @@
                     Відмовити
                 </button>
                 <button type="submit" class="btn btn-primary">Прийняти</button>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <pre>{{vm.originalUser | json}}</pre>
+                </div>
+                <div class="col-xs-6">
+                    <pre>{{vm.modifiedUser | json}}</pre>
+                </div>
             </div>
         </form>
     </div>
