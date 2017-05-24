@@ -10,7 +10,7 @@
     function ApproveUpdatesSegment($routeSegmentProvider) {
 
         $routeSegmentProvider.when('/approve/updates', 'ApproveUpdates').segment('ApproveUpdates', {
-            templateUrl: 'approve/updates/updates.html',
+            templateUrl: 'approve/updates/approve.updates.html',
             controller: 'ApproveUpdatesController',
             controllerAs: 'vm',
             resolve: {

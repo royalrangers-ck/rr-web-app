@@ -4,19 +4,12 @@
 
     angular
         .module('app')
-        .factory('ApproveUserModal', ApproveUserModal);
+        .factory('PublicInfo', PublicInfo);
 
-    ApproveUserModal.$inject = ['$resource', 'Endpoints'];
-    function ApproveUserModal($resource, Endpoints) {
-        return $resource(Endpoints.USER , null, {
-            'approveUser': {
-                method: 'POST',
-                url: `${Endpoints.USER}/approve`
-            },
-            'declineUser': {
-                method: 'POST',
-                url: `${Endpoints.USER}/reject`
-            },
+    PublicInfo.$inject = ['$resource', 'Endpoints'];
+    function PublicInfo($resource, Endpoints) {
+
+        return $resource(Endpoints.PUBLIC, null, {
             'countries': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/countries`,

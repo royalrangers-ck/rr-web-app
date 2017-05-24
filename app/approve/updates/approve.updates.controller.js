@@ -35,7 +35,7 @@
         }
 
         function approveUserUpdate(modifiedUser) {
-            AppModalService.openModalWindowForApprovingUserUpdate(modifiedUser);
+            AppModalService.approveUserUpdatesModal(modifiedUser);
         }
     }
 })();
