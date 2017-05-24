@@ -13,15 +13,15 @@
         vm.data = {};
         vm.availableOptions = [];
         vm.countries = [];
+        vm.regions = [];
         vm.cities = [];
-        vm.groups = [];
         vm.platoons = [];
         vm.sections = [];
         vm.ranks = [];
 
         vm.submit = submit;
+        vm.getRegions = getRegions;
         vm.getCities = getCities;
-        vm.getGroups = getGroups;
         vm.getPlatoons = getPlatoons;
         vm.getSections = getSections;
         vm.getRanks = getRanks;
@@ -70,10 +70,10 @@
                 gender: vm.data.gender,
                 telephoneNumber: vm.data.telephoneNumber,
                 birthDate: vm.data.birthDate,
-                status: vm.data.status,
+                authorityName: vm.data.authorityName,
                 countryId: vm.data.country.id,
+                regionId: vm.data.region.id,
                 cityId: vm.data.city.id,
-                groupId: vm.data.group.id,
                 platoonId: vm.data.platoon.id,
                 sectionId: vm.data.section.id,
                 userRank: vm.data.rank
@@ -82,9 +82,19 @@
             RegistrationService.register(req, afterSave)
         }
 
+        function getRegions(id) {
+            if (id) {
+                RegistrationService.region({countryId: id}).$promise.then((res) => {
+                    if (res.success) {
+                        vm.regions = res.data;
+                    }
+                })
+            }
+        }
+
         function getCities(id) {
             if (id) {
-                RegistrationService.city({countryId: id}).$promise.then((res) => {
+                RegistrationService.city({regionId: id}).$promise.then((res) => {
                     if (res.success) {
                         vm.cities = res.data;
                     }
@@ -92,19 +102,9 @@
             }
         }
 
-        function getGroups(id) {
-            if (id) {
-                RegistrationService.group({cityId: id}).$promise.then((res) => {
-                    if (res.success) {
-                        vm.groups = res.data;
-                    }
-                })
-            }
-        }
-
         function getPlatoons(id) {
             if (id) {
-                RegistrationService.platoon({groupId: id}).$promise.then((res) => {
+                RegistrationService.platoon({cityId: id}).$promise.then((res) => {
                     if (res.success) {
                         vm.platoons = res.data;
                     }
