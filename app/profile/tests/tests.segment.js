@@ -18,8 +18,11 @@
                 controller: 'ProfileTestsController',
                 controllerAs: 'vm',
                 resolve: {
-                    testsResolve: function (ProfileTestsService) {
-                        return ProfileTestsService.getTests();
+                    userTestsResolve: function (ProfileTestsService) {
+                        return ProfileTestsService.getUserTests();
+                    },
+                    allTestsResolve: function (ProfileTestsService) {
+                        return ProfileTestsService.getAllTests();
                     }
                 }
             });

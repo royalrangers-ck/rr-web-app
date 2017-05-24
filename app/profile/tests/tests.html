@@ -9,18 +9,12 @@
         <div class="ibox-title profile__title">
             <h2>{{color}} тести</h2>
         </div>
-
         <div class="ibox-content">
             <section class="row achievements">
-
-                <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item"
-                        ng-repeat="test in vm.colorSortedTest[color]">
+                <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-repeat="test in vm.colorSortedTest[color]">
                     Test id: {{test.id}}
-                    <br>
-                    Test name: {{test.name}}
-                    <br>
-                    Test color: {{test.testType}}
-
+                    <br> Test name: {{test.name}}
+                    <br> Test color: {{test.testType}}
                 </figure>
             </section>
         </div>

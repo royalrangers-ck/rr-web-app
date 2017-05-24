@@ -8,9 +8,16 @@
 
     ProfileTestsFactory.$inject = ['$resource', 'Endpoints'];
     function ProfileTestsFactory($resource, Endpoints) {
-        return $resource(Endpoints.ACHIEVEMENTS_USER_TEST, null,
+        return $resource(Endpoints.ACHIEVEMENTS_TEST, null,
         {
-            'get': {method: 'GET'},
+            'getUserTests': {
+                method: 'GET',
+                url: Endpoints.ACHIEVEMENTS_USER_TEST
+            },
+            'getAllTests': {
+                method: 'GET',
+                url: Endpoints.ACHIEVEMENTS_TEST
+            }
         }
     );
 }

@@ -6,11 +6,11 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    ProfileTestsController.$inject = ['$log', 'AppModalService', 'testsResolve', '$http', 'Endpoints'];
-    function ProfileTestsController($log, AppModalService, testsResolve, $http, Endpoints) {
+    ProfileTestsController.$inject = ['$log', 'AppModalService', 'userTestsResolve', 'allTestsResolve', '$http', 'Endpoints'];
+    function ProfileTestsController($log, AppModalService, userTestsResolve, allTestsResolve, $http, Endpoints) {
         const vm = this;
-        vm.curentAgeGroupTests = null;
-        vm.allTests = null;
+        vm.curentAgeGroupTests = [];
+        vm.allTests = [];
         vm.colorSortedTest = [];
         vm.testsColors = [];
 
@@ -24,8 +24,13 @@
         function activate() {
             $log.debug('Init ProfileTests Controller ...');
 
-            if (testsResolve.$promise) {
-                testsResolve.$promise.then(function (res) {
+            getUserTests();
+            getAllTests();
+        }
+
+        function getUserTests() {
+            if (userTestsResolve.$promise) {
+                userTestsResolve.$promise.then((res) => {
                     if (res.success) {
                         vm.curentAgeGroupTests = (res.data);
                         $log.debug('curentAgeGroupTests', vm.curentAgeGroupTests);
@@ -33,24 +38,18 @@
                     }
                 });
             }
-
-            getAllTests()
         }
 
         function getAllTests() {
-            $http({
-                method: 'GET',
-                url: Endpoints.ACHIEVEMENTS_TEST
-            }).then(function successCallback(response) {
-                vm.allTests = response.data.data;
+            allTestsResolve.$promise.then((response) => {
+                vm.allTests = response.data;
                 $log.debug('all tests ', vm.allTests);
-
 
                 /**
                  * @discription There we are sorted our test to color in  vm.colorSortedTest
                  * And get colors type in vm.testsColors
                  */
-                vm.allTests.forEach(function (test) {
+                vm.allTests.forEach((test) => {
                     if (!vm.colorSortedTest[test.testType]) {
                         vm.colorSortedTest[test.testType] = [];
                         vm.testsColors.push(test.testType);
@@ -63,12 +62,8 @@
                 $log.debug('testsColors ', vm.testsColors)
 
             });
-
         }
-
-
     }
-
 })();
 
 
