@@ -6,6 +6,12 @@ var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var babel = require('gulp-babel');
+var autoprefixer = require('gulp-autoprefixer');
+var cssnano = require('gulp-cssnano');
+
+var autoprefixerOptions = {
+    browsers: ['last 2 versions'],
+};
 
 
 function updateSrcLinks(cb) {
@@ -249,6 +255,8 @@ gulp.task('sass:app:prod', function() {
         .pipe(rename({dirname: ''}))
         .pipe(concat('app.scss'))
         .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer(autoprefixerOptions))
+        .pipe(cssnano())
         .pipe(gulp.dest(dest))
 });
 
@@ -279,6 +287,8 @@ gulp.task('sass:landing:prod', function() {
         .pipe(rename({dirname: ''}))
         .pipe(concat('app.scss'))
         .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer(autoprefixerOptions))
+        .pipe(cssnano())
         .pipe(gulp.dest(dest))
 });
 
@@ -291,8 +301,7 @@ gulp.task('copyImages:app', function() {
 
     return gulp
         .src(src)
-        // ToDo.zpawn: uncommented after load real content
-        //.pipe(rename({dirname: ''}))
+        .pipe(rename({dirname: ''}))
         .pipe(gulp.dest(dest))
 });
 
