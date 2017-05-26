@@ -7,7 +7,7 @@
         .controller('ApproveRegistrationsController', ApproveRegistrationsController);
 
     ApproveRegistrationsController.$inject = ['users', '$log', 'AppModalService', 'UserService'];
-    function ApproveRegistrationsController(usersResponse, $log, AppModalService, UserService) {
+    function ApproveRegistrationsController(users, $log, AppModalService, UserService) {
 
         const vm = this;
 
@@ -29,8 +29,8 @@
             $(document).ready(function () {
                 $('.footable').footable();
             });
-            if (usersResponse && usersResponse.success) {
-                vm.users = usersResponse.data;
+            if (users && users.success) {
+                vm.users = users.data;
                 console.log(vm.users)
             }
         }

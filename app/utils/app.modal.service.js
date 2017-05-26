@@ -6,12 +6,12 @@
         .module('app')
         .service('AppModalService', AppModalService);
 
-    AppModalService.$inject = ['$uibModal'];
-    function AppModalService($uibModal) {
+    AppModalService.$inject = ['$uibModal','UserService'];
+    function AppModalService($uibModal, UserService) {
 
         this.profileModal = profileModal;
         this.approveUserRegistrationModal = approveUserRegistrationModal;
-        this.approveUserUpdatesModal = approveUserUpdatesModal;
+        this.approveUserUpdateModal = approveUserUpdateModal;
         this.editUserModal = editUserModal;
         this.uploadUserLogo = uploadUserLogo;
         this.taskFormModal = taskFormModal;
@@ -42,24 +42,24 @@
                 controllerAs: 'vm',
                 size: 'lg',
                 resolve: {
-                    currentUser: function () {
-                        return currentUser;
+                    currentUser: () => {
+                        return angular.copy(currentUser);
                     }
                 }
             });
         }
 
-        function approveUserUpdatesModal(modifiedUser) {
+        function approveUserUpdateModal(modifiedUser) {
             return $uibModal.open({
                 animation: true,
-                templateUrl: 'approve/updates/approve.user.updates/approve.user.updates.modal.html',
-                controller: 'ApproveUserUpdatesModalController',
+                templateUrl: 'approve/updates/approve.user.update/approve.user.update.modal.html',
+                controller: 'ApproveUserUpdateModalController',
                 controllerAs: 'vm',
                 size: 'lg',
                 resolve: {
-                    originalUser: function (User) {
+                    originalUser: function (UserFactory) {
                         // TODO: need to get user by original user id, not modified user id
-                        return User.get({userId: modifiedUser.id}).$promise;
+                        return UserFactory.get({userId: modifiedUser.id}).$promise;
                     },
                     modifiedUser: () => {
                         return angular.copy(modifiedUser, {});
@@ -68,14 +68,19 @@
             });
         }
 
-        function editUserModal() {
+        function editUserModal(currentUser) {
             
             return $uibModal.open({
                 animation: true,
                 templateUrl: 'edit.user.modal/edit.user.modal.html',
                 controller: 'EditUserModalController',
                 controllerAs: 'vm',
-                size: 'lg'
+                size: 'lg',
+                resolve: {
+                    currentUser: () => {
+                        return UserService.get();
+                    }
+                }
             });
         }
 

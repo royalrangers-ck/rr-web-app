@@ -4,14 +4,15 @@
 
     angular
         .module('app')
-        .controller('ApproveUserUpdatesModalController', ApproveUserUpdatesModalController);
+        .controller('ApproveUserUpdateModalController', ApproveUserUpdateModalController);
 
-    ApproveUserUpdatesModalController.$inject = ['originalUser', 'modifiedUser', 'growl', '$uibModalInstance', 'User','PublicInfo', '$routeSegment', 'Ranks'];
-    function ApproveUserUpdatesModalController (originalUserResponse, modifiedUser, growl, $uibModalInstance, User, PublicInfo, $routeSegment, Ranks) {
+    ApproveUserUpdateModalController.$inject = ['originalUser', 'modifiedUser', 'growl', '$uibModalInstance', 'UserFactory','PublicInfoFactory', '$routeSegment', 'Ranks'];
+    function ApproveUserUpdateModalController (originalUser, modifiedUser, growl, $uibModalInstance, UserFactory, PublicInfoFactory, $routeSegment, Ranks) {
         const vm = this;
 
         vm.originalUser = {};
         vm.modifiedUser = modifiedUser;
+        vm.tempUser = angular.copy(modifiedUser);
 
         vm.changeCountry = changeCountry;
         vm.changeRegion = changeRegion;
@@ -26,8 +27,8 @@
         ///
 
         function activate() {
-            if (originalUserResponse && originalUserResponse.success) {
-                vm.originalUser = originalUserResponse.data;
+            if (originalUser && originalUser.success) {
+                vm.originalUser = originalUser.data;
             }
 
             setCountries();
@@ -48,7 +49,7 @@
                 gender: vm.modifiedUser.gender,
                 userAgeGroup: vm.modifiedUser.userAgeGroup,
                 telephoneNumber: vm.modifiedUser.telephoneNumber,
-                birthDate: vm.modifiedUser.birthDate,
+                birthDate: +moment(vm.modifiedUser.birthDate),
                 countryId: vm.modifiedUser.country.id,
                 regionId: vm.modifiedUser.region.id,
                 cityId: vm.modifiedUser.city.id,
@@ -56,7 +57,7 @@
                 sectionId: vm.modifiedUser.section.id,
                 userRank: vm.modifiedUser.userRank
             };
-            User.updateTempUser({temp_userId: vm.modifiedUser.id}, valuesToSend, (res) => {
+            UserFactory.approveUpdateUser({temp_userId: vm.modifiedUser.id}, valuesToSend, (res) => {
                 if (res.success) {
                     growl.info('Користувач '+vm.modifiedUser.firstName+' '+vm.modifiedUser.lastName+' підтверджений');
                     $routeSegment.chain[0].reload();
@@ -65,9 +66,8 @@
                 }
             });
         }
-
         function setCountries() {
-            PublicInfo.countries().$promise.then((res) => {
+            PublicInfoFactory.countries().$promise.then((res) => {
                 if (res.success) {
                     vm.countries = res.data;
                 }
@@ -76,7 +76,7 @@
 
         function setRegions(countryId) {
             if (countryId === null) return [];
-            PublicInfo.region({countryId: countryId}).$promise.then((res) => {
+            PublicInfoFactory.region({countryId: countryId}).$promise.then((res) => {
                 if (res.success) {
                     vm.regions = res.data;
                 }
@@ -85,7 +85,7 @@
 
         function setCities(regionId) {
             if (regionId === null) return [];
-            PublicInfo.city({regionId: regionId}).$promise.then((res) => {
+            PublicInfoFactory.city({regionId: regionId}).$promise.then((res) => {
                 if (res.success) {
                     vm.cities = res.data;
                 }
@@ -94,7 +94,7 @@
 
         function setPlatoons(cityId) {
             if (cityId === null) return [];
-            PublicInfo.platoon({cityId: cityId}).$promise.then((res) => {
+            PublicInfoFactory.platoon({cityId: cityId}).$promise.then((res) => {
                 if (res.success) {
                     vm.platoons = res.data;
                 }
@@ -103,7 +103,7 @@
 
         function setSections(platoonId) {
             if (platoonId === null) return [];
-            PublicInfo.section({platoonId: platoonId}).$promise.then((res) => {
+            PublicInfoFactory.section({platoonId: platoonId}).$promise.then((res) => {
                 if (res.success) {
                     vm.sections = res.data;
                 }
@@ -111,7 +111,7 @@
         }
 
         function setRanks() {
-            PublicInfo.rank().$promise.then((res) => {
+            PublicInfoFactory.rank().$promise.then((res) => {
                 if (res.success) {
                     vm.ranks = res.data.reduce((ranks, rank) => {
                         ranks.push({

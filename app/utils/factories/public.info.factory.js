@@ -4,10 +4,10 @@
 
     angular
         .module('app')
-        .factory('PublicInfo', PublicInfo);
+        .factory('PublicInfoFactory', PublicInfoFactory);
 
-    PublicInfo.$inject = ['$resource', 'Endpoints'];
-    function PublicInfo($resource, Endpoints) {
+    PublicInfoFactory.$inject = ['$resource', 'Endpoints'];
+    function PublicInfoFactory($resource, Endpoints) {
 
         return $resource(Endpoints.PUBLIC, null, {
             'countries': {

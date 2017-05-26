@@ -4,12 +4,16 @@
 
     angular
         .module('app')
-        .factory('User', User);
+        .factory('UserFactory', UserFactory);
 
-    User.$inject = ['$resource', 'Endpoints'];
-    function User($resource, Endpoints) {
+    UserFactory.$inject = ['$resource', 'Endpoints'];
+    function UserFactory($resource, Endpoints) {
 
         return $resource(Endpoints.USER, {userId: '@userId'}, {
+            'updateUser': {
+                url: `${Endpoints.USER}/update/temp`,
+                method: 'PUT'
+            },
             'getApproveRegistrationUsersByPlatoonId': {
                 method: 'GET',
                 url: `${Endpoints.USER}/approve/registration/:platoonId`,
@@ -24,8 +28,12 @@
                     platoonId: '@platoonId'
                 }
             },
-            'updateUser': {
-                method: 'PUT'
+            'approveUpdateUser': {
+                method: 'PUT',
+                url: `${Endpoints.USER}/update/:temp_userId`,
+                params: {
+                    temp_userId: '@temp_userId'
+                }
             },
             'approveRegistrationUser': {
                 method: 'POST',

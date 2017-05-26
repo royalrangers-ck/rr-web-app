@@ -7,7 +7,7 @@
         .controller('ApproveUpdatesController', ApproveUpdatesController);
 
     ApproveUpdatesController.$inject = ['users', 'AppModalService', 'UserService'];
-    function ApproveUpdatesController(usersResponse, AppModalService, UserService) {
+    function ApproveUpdatesController(users, AppModalService, UserService) {
 
         const vm = this;
 
@@ -28,14 +28,14 @@
                 $('.footable').footable();
             });
 
-            if (usersResponse && usersResponse.success) {
-                vm.users = usersResponse.data;
-                console.log(vm.users)
+            if (users && users.success) {
+                vm.users = users.data;
+                console.log(vm.users);
             }
         }
 
         function approveUserUpdate(modifiedUser) {
-            AppModalService.approveUserUpdatesModal(modifiedUser);
+            AppModalService.approveUserUpdateModal(modifiedUser);
         }
     }
 })();

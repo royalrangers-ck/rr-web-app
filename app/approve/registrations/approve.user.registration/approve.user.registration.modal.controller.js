@@ -6,8 +6,8 @@
         .module('app')
         .controller('ApproveUserRegistrationModalController', ApproveUserRegistrationModalController);
 
-    ApproveUserRegistrationModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'currentUser', 'User', 'PublicInfo', '$routeSegment', 'Ranks'];
-    function ApproveUserRegistrationModalController ($log, growl, $uibModalInstance, currentUser, User, PublicInfo, $routeSegment, Ranks) {
+    ApproveUserRegistrationModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'currentUser', 'UserFactory', 'PublicInfoFactory', '$routeSegment', 'Ranks'];
+    function ApproveUserRegistrationModalController ($log, growl, $uibModalInstance, currentUser, UserFactory, PublicInfoFactory, $routeSegment, Ranks) {
         const vm = this;
         const confirmDeleteModal = '#ConfirmDelete';
 
@@ -28,14 +28,12 @@
         ///
 
         function activate() {
-            $log.debug('Init modal window...');
             setCountries();
             setRegions(vm.currentUser.country.id);
             setCities(vm.currentUser.region.id);
             setPlatoons(vm.currentUser.city.id);
             setSections(vm.currentUser.platoon.id);
             setRanks();
-            $log.debug('User loaded to modal window:', vm.currentUser);
         }
 
         function approveCurrentUser() {
@@ -57,11 +55,11 @@
                 userRank: vm.currentUser.userRank
             };
 
-            User.approveRegistrationUser({userId: vm.currentUser.id}, valuesToSend, (res) => {
+            UserFactory.approveRegistrationUser({userId: vm.currentUser.id}, valuesToSend, (res) => {
                 if (res.success) {
-                    $routeSegment.chain[0].reload();
                     growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
                         vm.currentUser.lastName + ' підтверджений');
+                    $routeSegment.chain[0].reload()
                 } else {
                     growl.error('Помилка:' + res.data.message);
                 }
@@ -72,7 +70,7 @@
             close();
             growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
                                         vm.currentUser.lastName + ' видаляється...');
-            User.rejectRegistrationUser({userId: vm.currentUser.id}, null ,(res) => {
+            UserFactory.rejectRegistrationUser({userId: vm.currentUser.id}, null ,(res) => {
                 if (res.success) {
                     growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
                         vm.currentUser.lastName + ' видалений');
@@ -90,56 +88,51 @@
 
 
         function setCountries() {
-            PublicInfo.countries().$promise.then((res) => {
+            PublicInfoFactory.countries().$promise.then((res) => {
                 if (res.success) {
                     vm.countries = res.data;
-                    $log.debug('Set countries list: ', res.data);
                 }
             });
         }
 
         function setRegions(countryId) {
             if (countryId == null) return [];
-            PublicInfo.region({countryId: countryId}).$promise.then((res) => {
+            PublicInfoFactory.region({countryId: countryId}).$promise.then((res) => {
                 if (res.success) {
                     vm.regions = res.data;
-                    $log.debug('Set regions list: ', res.data);
                 }
             });
         }
 
         function setCities(regionId) {
             if (regionId == null) return [];
-            PublicInfo.city({regionId: regionId}).$promise.then((res) => {
+            PublicInfoFactory.city({regionId: regionId}).$promise.then((res) => {
                 if (res.success) {
                     vm.cities = res.data;
-                    $log.debug('Set cities list: ', res.data);
                 }
             });
         }
 
         function setPlatoons(cityId) {
             if (cityId == null) return [];
-            PublicInfo.platoon({cityId: cityId}).$promise.then((res) => {
+            PublicInfoFactory.platoon({cityId: cityId}).$promise.then((res) => {
                 if (res.success) {
                     vm.platoons = res.data;
-                    $log.debug('Set platoons list: ', res.data);
                 }
             });
         }
 
         function setSections(platoonId) {
             if (platoonId === null) return [];
-            PublicInfo.section({platoonId: platoonId}).$promise.then((res) => {
+            PublicInfoFactory.section({platoonId: platoonId}).$promise.then((res) => {
                 if (res.success) {
                     vm.sections = res.data;
-                    $log.debug('Set sections list: ', res.data);
                 }
             });
         }
 
         function setRanks() {
-            PublicInfo.rank().$promise.then((res) => {
+            PublicInfoFactory.rank().$promise.then((res) => {
                 if (res.success) {
                     vm.ranks = res.data.reduce((ranks, rank) => {
                         ranks.push({
@@ -148,7 +141,6 @@
                         });
                         return ranks;
                     }, []);
-                    $log.debug('Set ranks list: ', vm.ranks);
                 }
             });
         }
@@ -159,6 +151,7 @@
             vm.currentUser.region = {};
             vm.currentUser.city = {};
             vm.currentUser.platoon = {};
+            vm.currentUser.section = {};
         }
 
         //Special function for view to correct change region
@@ -166,17 +159,20 @@
             setCities(vm.currentUser.region.id);
             vm.currentUser.city = {};
             vm.currentUser.platoon = {};
+            vm.currentUser.section = {};
         }
 
         //Same, but to correct change city
         function changeCity() {
             setPlatoons(vm.currentUser.city.id);
             vm.currentUser.platoon = {};
+            vm.currentUser.section = {};
         }
 
         //Same, but to correct change platoon
         function changePlatoon() {
             setSections(vm.currentUser.platoon.id);
+            vm.currentUser.section = {};
         }
 
         function close(data) {

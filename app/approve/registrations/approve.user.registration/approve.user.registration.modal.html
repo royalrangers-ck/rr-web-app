@@ -54,9 +54,18 @@
                     <div class="form-group">
                         <label for="birth" class="col-sm-3 control-label">Народився</label>
                         <div class="col-sm-9">
-                            <input type="date" id="birth" class="form-control"
-                                   ng-model="vm.currentUser.birthDate"
-                                   placeholder="Дата народження" required>
+                            <div class="input-group" id="birth">
+                                <input type="text" class="form-control"
+                                       uib-datepicker-popup="dd-MMM-yyyy"
+                                       ng-model="vm.currentUser.birthDate"
+                                       is-open="opened"
+                                       ng-required="true"
+                                       close-text="Close" required>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="opened = !opened">
+                                    <i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -66,7 +75,7 @@
                         <div class="col-sm-9">
                             <select id="sex" class="form-control"
                                     ng-model="vm.currentUser.gender"
-                                    title="СТАТЬ" required>
+                                    title="Стать" required>
                                 <option value="" disabled hidden>Виберіть стать</option>
                                 <option value="M">Чоловіча</option>
                                 <option value="F">Жіноча</option>
@@ -95,7 +104,7 @@
                         <label for="region" class="col-sm-3 control-label">Регіон</label>
                         <div class="col-sm-9">
                             <select id="region"
-                                    ng-disabled="vm.regions.length == 0"
+                                    ng-disabled="vm.regions.length == 0 || !vm.currentUser.country.id"
                                     ng-model="vm.currentUser.region.id"
                                     ng-options="record.id as record.name for record in vm.regions"
                                     ng-change="vm.changeRegion()" class="form-control" required>
@@ -111,7 +120,7 @@
                         <label for="city" class="col-sm-3 control-label">Місто</label>
                         <div class="col-sm-9">
                             <select id="city"
-                                    ng-disabled="vm.cities.length == 0"
+                                    ng-disabled="vm.cities.length == 0 || !vm.currentUser.region.id"
                                     ng-model="vm.currentUser.city.id"
                                     ng-options="record.id as record.name for record in vm.cities"
                                     ng-change="vm.changeCity()" class="form-control" required>
@@ -125,7 +134,7 @@
                         <label for="platoon" class="col-sm-3 control-label">Загін</label>
                         <div class="col-sm-9">
                             <select id="platoon"
-                                    ng-disabled="vm.platoons.length == 0"
+                                    ng-disabled="vm.platoons.length == 0 || !vm.currentUser.city.id"
                                     ng-model="vm.currentUser.platoon.id"
                                     ng-options="record.id as record.name for record in vm.platoons"
                                     ng-change="vm.changePlatoon()" class="form-control" required>
@@ -140,7 +149,7 @@
                     <div class="form-group">
                         <label for="sectionId" class="col-sm-3 control-label">Ланка</label>
                         <div class="col-sm-9">
-                            <select id="sectionId" ng-disabled="vm.sections.length == 0"
+                            <select id="sectionId" ng-disabled="vm.sections.length == 0 || !vm.currentUser.platoon.id"
                                     ng-model="vm.currentUser.section.id"
                                     ng-options="record.id as record.name for record in vm.sections"
                                     class="form-control" required>
