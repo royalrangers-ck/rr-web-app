@@ -6,7 +6,6 @@
         .module('app')
         .factory('Registration', Registration);
 
-    Registration.$inject = ['$resource', 'Endpoints'];
     function Registration($resource, Endpoints) {
         return $resource(Endpoints.REGISTRATION + '/:id', null, {
             'register': {method: 'POST'},

@@ -6,7 +6,6 @@
         .module('app')
         .service('RegistrationService', RegistrationService);
 
-    RegistrationService.$inject = ['Registration'];
     function RegistrationService(Registration) {
 
         this.register = Registration.register;
