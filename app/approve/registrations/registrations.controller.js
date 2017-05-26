@@ -5,7 +5,6 @@
     angular
         .module('app')
         .controller('ApproveRegistrationsController', ApproveRegistrationsController);
-    ApproveRegistrationsController.$inject = ['growl', '$log', 'AppModalService', 'usersList', 'UserService'];
 
     function ApproveRegistrationsController(growl, $log, AppModalService, usersList, UserService) {
         const vm = this;

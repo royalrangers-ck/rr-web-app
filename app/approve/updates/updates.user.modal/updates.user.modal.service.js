@@ -6,7 +6,6 @@
         .module('app')
         .service('UpdatesUserModalService', UpdatesUserModalService);
 
-    UpdatesUserModalService.$inject = ['UpdatesUserModal'];
     function UpdatesUserModalService(UpdatesUserModal) {
         this.approveUser = UpdatesUserModal.approveUser;
         this.declineUser = UpdatesUserModal.declineUser;

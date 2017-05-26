@@ -6,7 +6,6 @@
         .module('app')
         .factory('UpdatesUserModal', UpdatesUserModal);
 
-    UpdatesUserModal.$inject = ['$resource', 'Endpoints'];
     function UpdatesUserModal($resource, Endpoints) {
         return $resource(Endpoints.USER , null, {
             'approveUser': {

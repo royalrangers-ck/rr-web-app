@@ -6,7 +6,6 @@
         .module('app')
         .config(ApproveUpdatesSegment);
 
-    ApproveUpdatesSegment.$inject = ['$routeSegmentProvider'];
     function ApproveUpdatesSegment($routeSegmentProvider) {
 
         $routeSegmentProvider.when('/approve/updates', 'ApproveUpdates').segment('ApproveUpdates', {

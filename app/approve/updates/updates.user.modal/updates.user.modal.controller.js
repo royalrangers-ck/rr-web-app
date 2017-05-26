@@ -6,7 +6,6 @@
         .module('app')
         .controller('UpdatesUserModalController', UpdatesUserModalController);
 
-    UpdatesUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'currentUser', 'UpdatesUserModalService', '$routeSegment', 'Ranks'];
     function UpdatesUserModalController ($log, growl, $uibModalInstance, currentUser, UpdatesUserModalService, $routeSegment, Ranks) {
         const vm = this;
         const confirmDeleteModal = '#ConfirmDelete';

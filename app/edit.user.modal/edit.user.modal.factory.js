@@ -6,7 +6,6 @@
         .module('app')
         .factory('EditUserModal', EditUserModal);
 
-    EditUserModal.$inject = ['$resource', 'Endpoints'];
     function EditUserModal($resource, Endpoints) {
         return $resource(Endpoints.USER , null, {
             'updateUser': {

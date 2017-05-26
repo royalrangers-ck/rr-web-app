@@ -6,7 +6,6 @@
         .module('app')
         .service('AppModalService', AppModalService);
 
-    AppModalService.$inject = ['$uibModal'];
     function AppModalService($uibModal) {
 
         this.profileModal = profileModal;

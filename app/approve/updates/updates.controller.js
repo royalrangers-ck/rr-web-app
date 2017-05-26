@@ -5,7 +5,6 @@
     angular
         .module('app')
         .controller('ApproveUpdatesController', ApproveUpdatesController);
-    ApproveUpdatesController.$inject = ['growl', '$log', '$route', 'AppModalService', 'usersList', 'UserService'];
 
     function ApproveUpdatesController(growl, $log, $route, AppModalService, usersList, UserService) {
         const vm = this;

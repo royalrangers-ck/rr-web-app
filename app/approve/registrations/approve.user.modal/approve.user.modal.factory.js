@@ -6,7 +6,6 @@
         .module('app')
         .factory('ApproveUserModal', ApproveUserModal);
 
-    ApproveUserModal.$inject = ['$resource', 'Endpoints'];
     function ApproveUserModal($resource, Endpoints) {
         return $resource(Endpoints.USER , null, {
             'approveUser': {

@@ -6,7 +6,6 @@
         .module('app')
         .service('TokenScheduler', TokenScheduler);
 
-    TokenScheduler.$inject = ['$interval', '$http', 'TokenService'];
     function TokenScheduler($interval, $http, TokenService) {
 
         this.refresh = refresh;

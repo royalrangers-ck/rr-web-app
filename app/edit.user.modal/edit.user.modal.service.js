@@ -6,7 +6,6 @@
         .module('app')
         .service('EditUserModalService', EditUserModalService);
 
-    EditUserModalService.$inject = ['EditUserModal'];
     function EditUserModalService(EditUserModal) {
         this.updateUser = EditUserModal.updateUser;
         /** Get data for edit fields */

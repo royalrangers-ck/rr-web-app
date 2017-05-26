@@ -6,7 +6,6 @@
         .module('app')
         .service('ApproveUserModalService', ApproveUserModalService);
 
-    ApproveUserModalService.$inject = ['ApproveUserModal'];
     function ApproveUserModalService(ApproveUserModal) {
         this.approveUser = ApproveUserModal.approveUser;
         this.declineUser = ApproveUserModal.declineUser;

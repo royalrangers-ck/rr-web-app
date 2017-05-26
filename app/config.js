@@ -6,7 +6,6 @@
         .module('app')
         .config(config);
 
-    config.$inject = ['$httpProvider', '$logProvider', '$locationProvider', 'growlProvider'];
     function config($httpProvider, $logProvider, $locationProvider, growlProvider ) {
         $httpProvider.interceptors.push('AuthInterceptor');
         $httpProvider.interceptors.push('ErrorInterceptor');

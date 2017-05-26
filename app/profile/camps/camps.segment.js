@@ -6,7 +6,6 @@
         .module('app')
         .config(ProfileCampsSegment);
 
-    ProfileCampsSegment.$inject = ['$routeSegmentProvider'];
     function ProfileCampsSegment($routeSegmentProvider) {
 
         $routeSegmentProvider

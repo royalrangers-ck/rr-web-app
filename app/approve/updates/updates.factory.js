@@ -6,7 +6,6 @@
         .module('app')
         .factory('ApproveUpdates', ApproveUpdates);
 
-    ApproveUpdates.$inject = ['$resource', 'Endpoints'];
     function ApproveUpdates($resource, Endpoints) {
         return $resource(Endpoints.USER , null, {
             'getUsers': {
