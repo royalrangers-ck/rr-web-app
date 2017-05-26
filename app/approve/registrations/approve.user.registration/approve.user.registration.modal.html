@@ -22,7 +22,7 @@
                         <div class="col-sm-9">
                             <input type="tel" id="phone"
                                    ng-model="vm.currentUser.telephoneNumber"
-                                   class="form-control" ui-mask="(999) 999-9999" ui-mask-placeholder ui-mask-placeholder-char="_" placeholder="Телефон" required>
+                                   class="form-control" ui-mask="(999) 999-9999" ui-mask-placeholder ui-mask-placeholder-char="_" placeholder="Телефон">
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,8 @@
                         <div class="col-sm-9">
                             <input type="text" id="firstName" class="form-control"
                                    ng-model="vm.currentUser.firstName"
-                                   placeholder="Ім'я" required>
+                                   placeholder="Ім'я"
+                                   ng-required="true">
                         </div>
                     </div>
                 </div>
@@ -44,7 +45,8 @@
                         <div class="col-sm-9">
                             <input type="text" id="subName" class="form-control"
                                    ng-model="vm.currentUser.lastName"
-                                   placeholder="Прізвище" required>
+                                   placeholder="Прізвище"
+                                   ng-required="true">
                         </div>
                     </div>
                 </div>
@@ -59,8 +61,8 @@
                                        uib-datepicker-popup="dd-MMM-yyyy"
                                        ng-model="vm.currentUser.birthDate"
                                        is-open="opened"
-                                       ng-required="true"
-                                       close-text="Close" required>
+                                       close-text="Close"
+                                       ng-required="true">
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="opened = !opened">
                                     <i class="glyphicon glyphicon-calendar"></i></button>
@@ -75,7 +77,8 @@
                         <div class="col-sm-9">
                             <select id="sex" class="form-control"
                                     ng-model="vm.currentUser.gender"
-                                    title="Стать" required>
+                                    title="Стать"
+                                    ng-required="true">
                                 <option value="" disabled hidden>Виберіть стать</option>
                                 <option value="M">Чоловіча</option>
                                 <option value="F">Жіноча</option>
@@ -89,11 +92,12 @@
                     <div class="form-group">
                         <label for="country" class="col-sm-3 control-label">Країна</label>
                         <div class="col-sm-9">
-                            <select id="country"
+                            <select id="country" class="form-control"
                                     ng-disabled="vm.countries.length == 0"
                                     ng-model="vm.currentUser.country.id"
                                     ng-options="record.id as record.name for record in vm.countries"
-                                    ng-change="vm.changeCountry()" class="form-control" required>
+                                    ng-change="vm.changeCountry()"
+                                    ng-required="true">
                                 <option value="" disabled hidden>Виберіть країну</option>
                             </select>
                         </div>
@@ -103,11 +107,12 @@
                     <div class="form-group">
                         <label for="region" class="col-sm-3 control-label">Регіон</label>
                         <div class="col-sm-9">
-                            <select id="region"
+                            <select id="region" class="form-control"
                                     ng-disabled="vm.regions.length == 0 || !vm.currentUser.country.id"
                                     ng-model="vm.currentUser.region.id"
                                     ng-options="record.id as record.name for record in vm.regions"
-                                    ng-change="vm.changeRegion()" class="form-control" required>
+                                    ng-change="vm.changeRegion()"
+                                    ng-required="true">
                                 <option value="" disabled hidden>Виберіть регіон</option>
                             </select>
                         </div>
@@ -119,11 +124,12 @@
                     <div class="form-group">
                         <label for="city" class="col-sm-3 control-label">Місто</label>
                         <div class="col-sm-9">
-                            <select id="city"
+                            <select id="city" class="form-control"
                                     ng-disabled="vm.cities.length == 0 || !vm.currentUser.region.id"
                                     ng-model="vm.currentUser.city.id"
                                     ng-options="record.id as record.name for record in vm.cities"
-                                    ng-change="vm.changeCity()" class="form-control" required>
+                                    ng-change="vm.changeCity()"
+                                    ng-required="true">
                                 <option value="" disabled hidden>Виберіть місто</option>
                             </select>
                         </div>
@@ -133,11 +139,12 @@
                     <div class="form-group">
                         <label for="platoon" class="col-sm-3 control-label">Загін</label>
                         <div class="col-sm-9">
-                            <select id="platoon"
+                            <select id="platoon" class="form-control"
                                     ng-disabled="vm.platoons.length == 0 || !vm.currentUser.city.id"
                                     ng-model="vm.currentUser.platoon.id"
                                     ng-options="record.id as record.name for record in vm.platoons"
-                                    ng-change="vm.changePlatoon()" class="form-control" required>
+                                    ng-change="vm.changePlatoon()"
+                                    ng-required="true">
                                 <option value="" disabled hidden>Виберіть загін</option>
                             </select>
                         </div>
@@ -149,10 +156,11 @@
                     <div class="form-group">
                         <label for="sectionId" class="col-sm-3 control-label">Ланка</label>
                         <div class="col-sm-9">
-                            <select id="sectionId" ng-disabled="vm.sections.length == 0 || !vm.currentUser.platoon.id"
+                            <select id="sectionId" class="form-control"
+                                    ng-disabled="vm.sections.length == 0 || !vm.currentUser.platoon.id"
                                     ng-model="vm.currentUser.section.id"
                                     ng-options="record.id as record.name for record in vm.sections"
-                                    class="form-control" required>
+                                    ng-required="true">
                                 <option value="" disabled hidden>Виберіть ланку</option>
                             </select>
                         </div>
@@ -162,10 +170,11 @@
                     <div class="form-group">
                         <label for="rank" class="col-sm-3 control-label">Звання</label>
                         <div class="col-sm-9">
-                            <select id="rank" ng-disabled="vm.ranks.length == 0"
+                            <select id="rank" class="form-control"
+                                    ng-disabled="vm.ranks.length == 0"
                                     ng-model="vm.currentUser.userRank"
                                     ng-options="record.value as record.name for record in vm.ranks"
-                                    class="form-control" required>
+                                    ng-required="true">
                                 <option value="" disabled hidden>Виберіть звання</option>
                             </select>
                         </div>

@@ -6,8 +6,8 @@
         .module('app')
         .controller('ApproveRegistrationsController', ApproveRegistrationsController);
 
-    ApproveRegistrationsController.$inject = ['users', '$log', 'AppModalService', 'UserService'];
-    function ApproveRegistrationsController(users, $log, AppModalService, UserService) {
+    ApproveRegistrationsController.$inject = ['users', 'AppModalService', 'UserService'];
+    function ApproveRegistrationsController(users, AppModalService, UserService) {
 
         const vm = this;
 
@@ -24,11 +24,11 @@
         ////
 
         function activate() {
-            $log.debug('Init ApproveRegistrationsController ...');
             //init "FooTable" plugin in all tables with 'footable' class
             $(document).ready(function () {
                 $('.footable').footable();
             });
+
             if (users && users.success) {
                 vm.users = users.data;
                 console.log(vm.users)

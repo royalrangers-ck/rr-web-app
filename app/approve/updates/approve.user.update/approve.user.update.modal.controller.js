@@ -40,7 +40,6 @@
         }
 
         function approveUser() {
-            close();
             growl.info('Користувач ' + vm.modifiedUser.firstName + ' ' +
                                         vm.modifiedUser.lastName + ' підтверджується...');
             let valuesToSend = {
@@ -59,6 +58,7 @@
             };
             UserFactory.approveUpdateUser({temp_userId: vm.modifiedUser.id}, valuesToSend, (res) => {
                 if (res.success) {
+                    close();
                     growl.info('Користувач '+vm.modifiedUser.firstName+' '+vm.modifiedUser.lastName+' підтверджений');
                     $routeSegment.chain[0].reload();
                 } else {

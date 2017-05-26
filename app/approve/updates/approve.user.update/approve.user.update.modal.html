@@ -61,7 +61,8 @@
                     </div>
                     <div class="col-sm-5">
                         <input type="text" id="modifiedFirstName" class="form-control" placeholder="Ім'я"
-                               ng-model="vm.modifiedUser.firstName" required>
+                               ng-model="vm.modifiedUser.firstName"
+                               ng-required="true">
                     </div>
                 </div>
             </div>
@@ -77,7 +78,8 @@
                     </div>
                     <div class="col-sm-5">
                         <input type="text" id="modifiedLastName" class="form-control" placeholder="Прізвище"
-                               ng-model="vm.modifiedUser.lastName" required>
+                               ng-model="vm.modifiedUser.lastName"
+                               ng-required="true">
                     </div>
                 </div>
             </div>
@@ -99,7 +101,7 @@
                                    ng-model="vm.modifiedUser.birthDate"
                                    is-open="opened"
                                    ng-required="true"
-                                   close-text="Close" required>
+                                   close-text="Close">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="opened = !opened">
                                 <i class="glyphicon glyphicon-calendar"></i></button>
@@ -124,7 +126,8 @@
                     </div>
                     <div class="col-sm-5">
                         <select id="miodifiedGender" class="form-control" title="СТАТЬ"
-                                ng-model="vm.modifiedUser.gender">
+                                ng-model="vm.modifiedUser.gender"
+                                ng-required="true">
                             <option value="" disabled hidden>Виберіть стать</option>
                             <option value="M">Чоловіча</option>
                             <option value="F">Жіноча</option>
@@ -151,7 +154,8 @@
                                 ng-disabled="vm.countries.length == 0"
                                 ng-model="vm.modifiedUser.country.id"
                                 ng-options="record.id as record.name for record in vm.countries"
-                                ng-change="vm.changeCountry()" required>
+                                ng-change="vm.changeCountry()"
+                                ng-required="true">
                             <option value="" disabled hidden>Виберіть країну</option>
                         </select>
                     </div>
@@ -176,7 +180,8 @@
                                 ng-disabled="vm.regions.length == 0 || !vm.modifiedUser.country.id"
                                 ng-model="vm.modifiedUser.region.id"
                                 ng-options="record.id as record.name for record in vm.regions"
-                                ng-change="vm.changeRegion()" required>
+                                ng-change="vm.changeRegion()"
+                                ng-required="true">
                             <option value="" disabled hidden>Виберіть регіон</option>
                         </select>
                     </div>
@@ -201,7 +206,8 @@
                                 ng-disabled="vm.cities.length == 0 || !vm.modifiedUser.region.id"
                                 ng-model="vm.modifiedUser.city.id"
                                 ng-options="record.id as record.name for record in vm.cities"
-                                ng-change="vm.changeCity()" required>
+                                ng-change="vm.changeCity()"
+                                ng-required="true">
                             <option value="" disabled hidden>Виберіть місто</option>
                         </select>
                     </div>
@@ -226,7 +232,8 @@
                                 ng-disabled="vm.platoons.length == 0 || !vm.modifiedUser.city.id"
                                 ng-model="vm.modifiedUser.platoon.id"
                                 ng-options="record.id as record.name for record in vm.platoons"
-                                ng-change="vm.changePlatoon()" required>
+                                ng-change="vm.changePlatoon()"
+                                ng-required="true">
                             <option value="" disabled hidden>Виберіть загін</option>
                         </select>
                     </div>
@@ -249,7 +256,8 @@
                         <select id="modifiedSection" class="form-control"
                                 ng-disabled="vm.sections.length == 0 || !vm.modifiedUser.platoon.id"
                                 ng-model="vm.modifiedUser.section.id"
-                                ng-options="record.id as record.name for record in vm.sections" required>
+                                ng-options="record.id as record.name for record in vm.sections"
+                                ng-required="true">
                             <option value="" disabled hidden>Виберіть ланку</option>
                         </select>
                     </div>
@@ -272,7 +280,8 @@
                         <select id="modifiedRank" class="form-control"
                                 ng-disabled="vm.ranks.length == 0"
                                 ng-model="vm.modifiedUser.userRank"
-                                ng-options="record.value as record.name for record in vm.ranks" required>
+                                ng-options="record.value as record.name for record in vm.ranks"
+                                ng-required="true">
                             <option value="" disabled hidden>Виберіть звання</option>
                         </select>
                     </div>

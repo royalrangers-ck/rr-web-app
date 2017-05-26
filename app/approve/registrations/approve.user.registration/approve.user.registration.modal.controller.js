@@ -37,7 +37,6 @@
         }
 
         function approveCurrentUser() {
-            close();
             growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
                                         vm.currentUser.lastName + ' підтверджується...');
             let valuesToSend = {
@@ -57,6 +56,7 @@
 
             UserFactory.approveRegistrationUser({userId: vm.currentUser.id}, valuesToSend, (res) => {
                 if (res.success) {
+                    close();
                     growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
                         vm.currentUser.lastName + ' підтверджений');
                     $routeSegment.chain[0].reload()
@@ -67,11 +67,11 @@
         }
 
         function declineCurrentUser() {
-            close();
             growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
                                         vm.currentUser.lastName + ' видаляється...');
             UserFactory.rejectRegistrationUser({userId: vm.currentUser.id}, null ,(res) => {
                 if (res.success) {
+                    close();
                     growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
                         vm.currentUser.lastName + ' видалений');
                     $routeSegment.chain[0].reload();
@@ -181,8 +181,3 @@
         }
     }
 })();
-
-
-
-
-
