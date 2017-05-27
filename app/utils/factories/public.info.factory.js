@@ -4,44 +4,33 @@
 
     angular
         .module('app')
-        .factory('UpdatesUserModal', UpdatesUserModal);
+        .factory('PublicInfoFactory', PublicInfoFactory);
 
-    UpdatesUserModal.$inject = ['$resource', 'Endpoints'];
-    function UpdatesUserModal($resource, Endpoints) {
-        return $resource(Endpoints.USER , null, {
-            'approveUser': {
-                method: 'POST',
-                url: `${Endpoints.USER}/approve`
-            },
-            'declineUser': {
-                method: 'POST',
-                url: `${Endpoints.USER}/reject`
-            },
-            'updateUser': {
-                method: 'PUT',
-                url: `${Endpoints.USER}/:userId`
-            },
+    PublicInfoFactory.$inject = ['$resource', 'Endpoints'];
+    function PublicInfoFactory($resource, Endpoints) {
+
+        return $resource(Endpoints.PUBLIC, null, {
             'countries': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/countries`,
                 isArray: false
             },
+            'region': {
+                method: 'GET',
+                url: `${Endpoints.PUBLIC}/region`,
+                params: {cityId: '@countryId'},
+                isArray: false
+            },
             'city': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/city`,
-                params: {countryId: '@countryId'},
-                isArray: false
-            },
-            'group': {
-                method: 'GET',
-                url: `${Endpoints.PUBLIC}/group`,
-                params: {cityId: '@cityId'},
+                params: {countryId: '@regionId'},
                 isArray: false
             },
             'platoon': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/platoon`,
-                params: {groupId: '@groupId'},
+                params: {groupId: '@cityId'},
                 isArray: false
             },
             'section': {

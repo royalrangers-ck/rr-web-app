@@ -4,9 +4,9 @@
 
     angular
         .module('app')
-        .constant("Constants", Constants())
-        .constant("Endpoints", Endpoints())
-        .constant("Menu", Menu())
+        .constant('Constants', Constants())
+        .constant('Endpoints', Endpoints())
+        .constant('Menu', Menu())
         .constant('Ranks', Ranks());
 
     function Constants() {
@@ -161,5 +161,4 @@
 
         return ranks;
     }
-
 })();

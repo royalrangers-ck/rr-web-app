@@ -10,13 +10,13 @@
     function ApproveRegistrationsSegment($routeSegmentProvider) {
 
         $routeSegmentProvider.when('/approve/registrations', 'ApproveRegistrations').segment('ApproveRegistrations', {
-            templateUrl: 'approve/registrations/registrations.html',
+            templateUrl: 'approve/registrations/approve.registrations.html',
             controller: 'ApproveRegistrationsController',
             controllerAs: 'vm',
             resolve: {
-                usersList: function (ApproveRegistrationsService, UserService) {
+                users: function (UserFactory, UserService) {
                     let user = UserService.get();
-                    return ApproveRegistrationsService.getUsers({platoonId: user.platoon.id});
+                    return UserFactory.getApproveRegistrationUsersByPlatoonId({platoonId: user.platoon.id}).$promise;
                 }
             }
         });
