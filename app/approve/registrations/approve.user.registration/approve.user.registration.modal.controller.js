@@ -46,11 +46,11 @@
                 userAgeGroup: vm.currentUser.userAgeGroup,
                 telephoneNumber: vm.currentUser.telephoneNumber,
                 birthDate: vm.currentUser.birthDate,
-                countryId: vm.currentUser.country.id,
-                regionId: vm.currentUser.region.id,
-                cityId: vm.currentUser.city.id,
-                platoonId: vm.currentUser.platoon.id,
-                sectionId: vm.currentUser.section.id,
+                countryId: vm.currentUser && vm.currentUser.country.id,
+                regionId: vm.currentUser && vm.currentUser.region.id,
+                cityId: vm.currentUser && vm.currentUser.city.id,
+                platoonId: vm.currentUser && vm.currentUser.platoon.id,
+                sectionId: vm.currentUser && vm.currentUser.section.id,
                 userRank: vm.currentUser.userRank
             };
 
