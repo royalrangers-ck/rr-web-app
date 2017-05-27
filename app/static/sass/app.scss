@@ -13,6 +13,8 @@
 /** Inspinia */
 @import "inspinia/style";
 
+@import "../../../bower_components/angular-bootstrap/ui-bootstrap-csp";
+
 /** App */
 @import "components/home";
 @import "components/styles";

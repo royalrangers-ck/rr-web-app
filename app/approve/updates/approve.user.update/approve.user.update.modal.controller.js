@@ -4,29 +4,33 @@
 
     angular
         .module('app')
-        .controller('EditUserModalController', EditUserModalController);
+        .controller('ApproveUserUpdateModalController', ApproveUserUpdateModalController);
 
-    function EditUserModalController($log, growl, $uibModalInstance, currentUser, UserFactory, PublicInfoFactory, Constants, Ranks, AppModalService) {
+    ApproveUserUpdateModalController.$inject = ['originalUser', 'modifiedUser', 'growl', '$uibModalInstance', 'UserFactory','PublicInfoFactory', '$routeSegment', 'Ranks'];
+    function ApproveUserUpdateModalController (originalUser, modifiedUser, growl, $uibModalInstance, UserFactory, PublicInfoFactory, $routeSegment, Ranks) {
         const vm = this;
 
-        vm.modifiedUser = angular.copy(currentUser);
-        vm.defaultImage = Constants.DEFAULT_IMG_SRC;
+        vm.originalUser = {};
+        vm.modifiedUser = modifiedUser;
+        vm.tempUser = angular.copy(modifiedUser);
 
         vm.changeCountry = changeCountry;
         vm.changeRegion = changeRegion;
         vm.changeCity = changeCity;
         vm.changePlatoon = changePlatoon;
         vm.setSections = setSections;
-        vm.updateUser = updateUser;
-        vm.uploadUserLogo = uploadUserLogo;
+        vm.approveUser = approveUser;
         vm.close = close;
 
         activate();
 
         ///
 
-
         function activate() {
+            if (originalUser && originalUser.success) {
+                vm.originalUser = originalUser.data;
+            }
+
             setCountries();
             setRegions(vm.modifiedUser.country.id);
             setCities(vm.modifiedUser.region.id);
@@ -35,10 +39,10 @@
             setRanks();
         }
 
-        function updateUser() {
-            close();
-
-            let request = {
+        function approveUser() {
+            growl.info('Користувач ' + vm.modifiedUser.firstName + ' ' +
+                                        vm.modifiedUser.lastName + ' підтверджується...');
+            let valuesToSend = {
                 firstName: vm.modifiedUser.firstName,
                 lastName: vm.modifiedUser.lastName,
                 gender: vm.modifiedUser.gender,
@@ -50,18 +54,18 @@
                 cityId: vm.modifiedUser.city.id,
                 platoonId: vm.modifiedUser.platoon.id,
                 sectionId: vm.modifiedUser.section.id,
-                userRank: vm.modifiedUser.userRank,
+                userRank: vm.modifiedUser.userRank
             };
-
-            UserFactory.updateUser(request, (res) => {
+            UserFactory.approveUpdateUser({temp_userId: vm.modifiedUser.id}, valuesToSend, (res) => {
                 if (res.success) {
-                    growl.info('Дані відправлено на перевірку. Очікуйте підтвердження.');
+                    close();
+                    growl.info('Користувач '+vm.modifiedUser.firstName+' '+vm.modifiedUser.lastName+' підтверджений');
+                    $routeSegment.chain[0].reload();
                 } else {
                     growl.error('Помилка:' + res.data.message);
                 }
             });
         }
-
         function setCountries() {
             PublicInfoFactory.countries().$promise.then((res) => {
                 if (res.success) {
@@ -71,7 +75,7 @@
         }
 
         function setRegions(countryId) {
-            if (countryId == null) return [];
+            if (countryId === null) return [];
             PublicInfoFactory.region({countryId: countryId}).$promise.then((res) => {
                 if (res.success) {
                     vm.regions = res.data;
@@ -80,7 +84,7 @@
         }
 
         function setCities(regionId) {
-            if (regionId == null) return [];
+            if (regionId === null) return [];
             PublicInfoFactory.city({regionId: regionId}).$promise.then((res) => {
                 if (res.success) {
                     vm.cities = res.data;
@@ -89,7 +93,7 @@
         }
 
         function setPlatoons(cityId) {
-            if (cityId == null) return [];
+            if (cityId === null) return [];
             PublicInfoFactory.platoon({cityId: cityId}).$promise.then((res) => {
                 if (res.success) {
                     vm.platoons = res.data;
@@ -98,7 +102,7 @@
         }
 
         function setSections(platoonId) {
-            if (platoonId == null) return [];
+            if (platoonId === null) return [];
             PublicInfoFactory.section({platoonId: platoonId}).$promise.then((res) => {
                 if (res.success) {
                     vm.sections = res.data;
@@ -126,7 +130,6 @@
             vm.modifiedUser.region = {};
             vm.modifiedUser.city = {};
             vm.modifiedUser.platoon = {};
-            vm.modifiedUser.section = {};
         }
 
         //Special function for view to correct change region
@@ -134,31 +137,26 @@
             setCities(vm.modifiedUser.region.id);
             vm.modifiedUser.city = {};
             vm.modifiedUser.platoon = {};
-            vm.modifiedUser.section = {};
         }
 
         //Same, but to correct change city
         function changeCity() {
             setPlatoons(vm.modifiedUser.city.id);
             vm.modifiedUser.platoon = {};
-            vm.modifiedUser.section = {};
         }
 
         //Same, but to correct change platoon
         function changePlatoon() {
             setSections(vm.modifiedUser.platoon.id);
-            vm.modifiedUser.section = {};
         }
 
         function close(data) {
             $uibModalInstance.close(data);
         }
-
-        function uploadUserLogo() {
-            $uibModalInstance.close();
-            AppModalService.uploadUserLogo({
-                callback: AppModalService.editUserModal
-            });
-        }
     }
 })();
+
+
+
+
+

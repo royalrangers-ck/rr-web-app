@@ -1,10 +1,9 @@
 <div class="ibox">
-    <div growl></div> <!-- this div needed to activate growl popups -->
     <div class="ibox-title a-cu-page-header">
         <h1 class="a-cu-page-header__text">Не підтверджені користувачі в групі: <span class="a-cu-page-header__platoon-name">{{vm.adminPlatoonName}}</span></h1>
     </div>
     <div class="ibox-content">
-        <table ng-hide="vm.usersList.length == 0" class="a-cu-table footable" data-page-size="8">
+        <table ng-hide="vm.users.length == 0" class="a-cu-table footable" data-page-size="8">
             <thead class="a-cu-table__header">
             <tr>
                 <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big">ПІБ</th>
@@ -17,7 +16,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="a-cu-table__row" ng-repeat="user in vm.usersList">
+            <tr class="a-cu-table__row" ng-repeat="user in vm.users">
                 <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">{{user.firstName + " " +
                     user.lastName}}
                 </td>
@@ -25,7 +24,7 @@
                 <td class="a-cu-table__item a-cu-cell-text">{{user.email}}</td>
                 <td class="a-cu-table__item a-cu-cell-text">{{user.birthDate | date: "dd MMMM yyyy"}}</td>
                 <td class="a-cu-table__item a-cu-cell-text">
-                    <button class="btn btn-white" ng-click="vm.editUser(user.id)"><i class="fa fa-pencil"></i>
+                    <button class="btn btn-white" ng-click="vm.approveUserRegistration(user)"><i class="fa fa-pencil"></i>
                         Підтвердити
                     </button>
                 </td>
@@ -39,7 +38,7 @@
             </tr>
             </tfoot>
         </table>
-        <div ng-show="vm.usersList.length == 0" class="a-message-box">
+        <div ng-show="vm.users.length == 0" class="a-message-box">
             <p>Немає нових користувачів</p>
         </div>
     </div>

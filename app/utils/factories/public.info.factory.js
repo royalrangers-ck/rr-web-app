@@ -4,14 +4,11 @@
 
     angular
         .module('app')
-        .factory('EditUserModal', EditUserModal);
+        .factory('PublicInfoFactory', PublicInfoFactory);
+    
+    function PublicInfoFactory($resource, Endpoints) {
 
-    function EditUserModal($resource, Endpoints) {
-        return $resource(Endpoints.USER , null, {
-            'updateUser': {
-                url: `${Endpoints.USER}/update/temp`,
-                method: 'PUT'
-            },
+        return $resource(Endpoints.PUBLIC, null, {
             'countries': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/countries`,
