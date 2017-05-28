@@ -110,7 +110,7 @@ gulp.task('copyDep:app', () => {
         .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(concat('dep.js'))
-        .pipe(sourcemaps.write('./'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -140,7 +140,7 @@ gulp.task('copyDep:landing', function() {
         .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(concat('dep.js'))
-        .pipe(sourcemaps.write('./'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -185,7 +185,7 @@ gulp.task('copyApp:app', function() {
         })
         .pipe(ngAnnotate())
         .pipe(concat('app.js'))
-        .pipe(sourcemaps.write('./'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -209,7 +209,7 @@ gulp.task('copyApp:landing', function() {
         })
         .pipe(ngAnnotate())
         .pipe(concat('app.js'))
-        .pipe(sourcemaps.write('./'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -226,7 +226,7 @@ gulp.task('copyJs:app', function() {
         .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(concat('app.min.js'))
-        .pipe(sourcemaps.write('./'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -242,7 +242,7 @@ gulp.task('copyJs:landing', function() {
         .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(concat('app.min.js'))
-        .pipe(sourcemaps.write('./'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
