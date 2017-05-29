@@ -11,7 +11,6 @@
         $routeSegmentProvider
             .when('/profile', 'profile')
             .segment('profile', {
-                'default': true,
                 templateUrl: 'profile/profile.html',
                 controller: 'ProfileController'
             });

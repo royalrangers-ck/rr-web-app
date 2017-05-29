@@ -12,7 +12,6 @@
             .when('/profile/trips', 'profile.trips')
             .within('profile')
             .segment('trips', {
-                'default': true,
                 templateUrl: 'profile/trips/trips.html',
                 controller: 'ProfileTripsController',
                 controllerAs: 'vm'
