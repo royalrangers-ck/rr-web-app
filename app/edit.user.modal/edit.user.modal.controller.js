@@ -6,7 +6,6 @@
         .module('app')
         .controller('EditUserModalController', EditUserModalController);
 
-    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'currentUser', 'UserFactory', 'PublicInfoFactory', 'Constants', 'Ranks', 'AppModalService'];
     function EditUserModalController($log, growl, $uibModalInstance, currentUser, UserFactory, PublicInfoFactory, Constants, Ranks, AppModalService) {
         const vm = this;
 
@@ -37,8 +36,6 @@
         }
 
         function updateUser() {
-            close();
-
             let request = {
                 firstName: vm.modifiedUser.firstName,
                 lastName: vm.modifiedUser.lastName,
@@ -46,21 +43,41 @@
                 userAgeGroup: vm.modifiedUser.userAgeGroup,
                 telephoneNumber: vm.modifiedUser.telephoneNumber,
                 birthDate: +moment(vm.modifiedUser.birthDate),
-                countryId: vm.modifiedUser.country.id,
-                regionId: vm.modifiedUser.region.id,
-                cityId: vm.modifiedUser.city.id,
-                platoonId: vm.modifiedUser.platoon.id,
-                sectionId: vm.modifiedUser.section.id,
+                countryId: vm.modifiedUser.country && vm.modifiedUser.country.id,
+                regionId: vm.modifiedUser.region && vm.modifiedUser.country.id,
+                cityId: vm.modifiedUser.city && vm.modifiedUser.country.id,
+                platoonId: vm.modifiedUser.platoon && vm.modifiedUser.country.id,
+                sectionId: vm.modifiedUser.section && vm.modifiedUser.section.id,
                 userRank: vm.modifiedUser.userRank,
             };
 
-            UserFactory.updateUser(request, (res) => {
-                if (res.success) {
-                    growl.info('Дані відправлено на перевірку. Очікуйте підтвердження.');
-                } else {
-                    growl.error('Помилка:' + res.data.message);
-                }
-            });
+            let originalData = {
+                firstName: currentUser.firstName,
+                lastName: currentUser.lastName,
+                gender: currentUser.gender,
+                userAgeGroup: currentUser.userAgeGroup,
+                telephoneNumber: currentUser.telephoneNumber,
+                birthDate: currentUser.birthDate,
+                countryId: currentUser.country && currentUser.country.id,
+                regionId: currentUser.region && currentUser.country.id,
+                cityId: currentUser.city && currentUser.country.id,
+                platoonId: currentUser.platoon && currentUser.country.id,
+                sectionId: currentUser.section && currentUser.section.id,
+                userRank: currentUser && currentUser.userRank,
+            };
+
+            if (!angular.equals(request,originalData)) {
+                UserFactory.updateUser(request, (res) => {
+                    if (res.success) {
+                        close();
+                        growl.info('Дані відправлено на перевірку. Очікуйте підтвердження.');
+                    } else {
+                        growl.error('Помилка:' + res.data.message);
+                    }
+                });
+            } else {
+                close();
+            }
         }
 
         function setCountries() {

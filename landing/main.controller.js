@@ -6,7 +6,6 @@
         .module('app')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$log', '$http', 'growl', 'Endpoints'];
     function MainController($log, $http, growl, Endpoints) {
         const vm = this;
 

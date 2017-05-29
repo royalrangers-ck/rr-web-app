@@ -27,7 +27,6 @@
         .directive("admin", Admin)
         .directive("superAdmin", SuperAdmin);
 
-    User.$inject = ['Constants', 'UserService'];
     function User(Constants, UserService) {
         return {
             restrict: 'E',
@@ -41,7 +40,6 @@
         }
     }
 
-    Admin.$inject = ['Constants', 'UserService'];
     function Admin(Constants, UserService) {
         return {
             restrict: 'E',
@@ -55,7 +53,6 @@
         }
     }
 
-    SuperAdmin.$inject = ['Constants', 'UserService'];
     function SuperAdmin(Constants, UserService) {
         return {
             restrict: 'E',

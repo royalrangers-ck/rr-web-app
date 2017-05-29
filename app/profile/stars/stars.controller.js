@@ -6,7 +6,6 @@
         .module('app')
         .controller('ProfileStarsController', ProfileStarsController);
 
-    ProfileStarsController.$inject = ['$log', 'AppModalService'];
     function ProfileStarsController ($log, AppModalService) {
         const vm = this;
         vm.stars = {

@@ -5,7 +5,6 @@
         .module('app')
         .controller('UploadUserLogoController', UploadUserLogoController);
 
-    UploadUserLogoController.$inject = ['options', '$uibModalInstance', 'UploadUserLogoService', 'growl', 'UserService', 'AppModalService'];
     function UploadUserLogoController(options, $uibModalInstance, UploadUserLogoService, growl, UserService, AppModalService) {
         const vm = this;
 

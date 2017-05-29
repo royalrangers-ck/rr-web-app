@@ -6,7 +6,6 @@
         .module('app')
         .controller('ProfileTripsController', ProfileTripsController);
 
-    ProfileTripsController.$inject = ['$log', 'AppModalService'];
     function ProfileTripsController ($log, AppModalService) {
         const vm = this;
         vm.distanceTrips = 10254;

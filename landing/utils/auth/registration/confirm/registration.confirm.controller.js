@@ -6,7 +6,6 @@
         .module('app')
         .controller('RegistrationConfirmController', RegistrationConfirmController);
 
-    RegistrationConfirmController.$inject = ['confirmation', 'growl', '$location'];
     function RegistrationConfirmController(confirmation, growl, $location) {
         const vm = this;
 

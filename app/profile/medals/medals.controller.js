@@ -6,7 +6,6 @@
         .module('app')
         .controller('ProfileMedalsController', ProfileMedalsController);
 
-    ProfileMedalsController.$inject = ['$log', 'AppModalService'];
     function ProfileMedalsController ($log, AppModalService) {
         const vm = this;
         vm.medals = [

@@ -10,7 +10,6 @@
         .module('app')
         .service('UserService', UserService);
 
-    UserService.$inject = ['Constants'];
     function UserService(Constants) {
         let it = this;
 

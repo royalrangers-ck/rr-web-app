@@ -6,7 +6,6 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    ProfileTestsController.$inject = ['$log', '$http', 'AppModalService', 'Endpoints'];
     function ProfileTestsController($log, $http, AppModalService, Endpoints) {
         const vm = this;
 

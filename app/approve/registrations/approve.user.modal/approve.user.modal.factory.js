@@ -4,32 +4,43 @@
 
     angular
         .module('app')
-        .factory('PublicInfoFactory', PublicInfoFactory);
-    
-    function PublicInfoFactory($resource, Endpoints) {
+        .factory('ApproveUserModal', ApproveUserModal);
 
-        return $resource(Endpoints.PUBLIC, null, {
+    function ApproveUserModal($resource, Endpoints) {
+        return $resource(Endpoints.USER , null, {
+            'approveUser': {
+                method: 'POST',
+                url: `${Endpoints.USER}/approve`
+            },
+            'declineUser': {
+                method: 'POST',
+                url: `${Endpoints.USER}/reject`
+            },
+            'updateUser': {
+                method: 'PUT',
+                url: `${Endpoints.USER}/:userId`
+            },
             'countries': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/countries`,
                 isArray: false
             },
-            'region': {
-                method: 'GET',
-                url: `${Endpoints.PUBLIC}/region`,
-                params: {cityId: '@countryId'},
-                isArray: false
-            },
             'city': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/city`,
-                params: {countryId: '@regionId'},
+                params: {countryId: '@countryId'},
+                isArray: false
+            },
+            'group': {
+                method: 'GET',
+                url: `${Endpoints.PUBLIC}/group`,
+                params: {cityId: '@cityId'},
                 isArray: false
             },
             'platoon': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/platoon`,
-                params: {groupId: '@cityId'},
+                params: {groupId: '@groupId'},
                 isArray: false
             },
             'section': {

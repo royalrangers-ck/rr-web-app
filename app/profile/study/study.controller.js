@@ -6,7 +6,6 @@
         .module('app')
         .controller('ProfileStudyController', ProfileStudyController);
 
-    ProfileStudyController.$inject = ['$log', 'AppModalService'];
     function ProfileStudyController ($log, AppModalService) {
         const vm = this;
         vm.seminars = [
