@@ -49,11 +49,11 @@
                 userAgeGroup: vm.modifiedUser.userAgeGroup,
                 telephoneNumber: vm.modifiedUser.telephoneNumber,
                 birthDate: +moment(vm.modifiedUser.birthDate),
-                countryId: vm.modifiedUser.country.id,
-                regionId: vm.modifiedUser.region.id,
-                cityId: vm.modifiedUser.city.id,
-                platoonId: vm.modifiedUser.platoon.id,
-                sectionId: vm.modifiedUser.section.id,
+                countryId: vm.modifiedUser && vm.modifiedUser.country.id,
+                regionId: vm.modifiedUser && vm.modifiedUser.region.id,
+                cityId: vm.modifiedUser && vm.modifiedUser.city.id,
+                platoonId: vm.modifiedUser && vm.modifiedUser.platoon.id,
+                sectionId: vm.modifiedUser && vm.modifiedUser.section.id,
                 userRank: vm.modifiedUser.userRank
             };
             UserFactory.approveUpdateUser({temp_userId: vm.modifiedUser.id}, valuesToSend, (res) => {
