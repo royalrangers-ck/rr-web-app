@@ -6,7 +6,6 @@
         .module('app')
         .controller('ProfileTermsYearsController', ProfileTermsYearsController);
 
-    ProfileTermsYearsController.$inject = ['$log'];
     function ProfileTermsYearsController ($log) {
 
         activate();

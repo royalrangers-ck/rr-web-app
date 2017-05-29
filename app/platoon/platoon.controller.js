@@ -6,7 +6,6 @@
         .module('app')
         .controller('PlatoonController', PlatoonController);
 
-    PlatoonController.$inject = ['$log'];
     function PlatoonController ($log) {
         const vm = this;
 

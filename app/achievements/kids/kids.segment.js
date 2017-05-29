@@ -6,7 +6,6 @@
         .module('app')
         .config(AchievementsKidsSegment);
 
-    AchievementsKidsSegment.$inject = ['$routeSegmentProvider'];
     function AchievementsKidsSegment($routeSegmentProvider) {
 
         $routeSegmentProvider

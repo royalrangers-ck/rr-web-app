@@ -12,7 +12,6 @@
             .when('/profile/camps', 'profile.camps')
             .within('profile')
             .segment('camps', {
-                'default': true,
                 templateUrl: 'profile/camps/camps.html',
                 controller: 'ProfileCampsController',
                 controllerAs: 'vm'

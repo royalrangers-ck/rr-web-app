@@ -6,7 +6,6 @@
         .module('app')
         .controller('AchievementsLeaderController', AchievementsLeaderController);
 
-    AchievementsLeaderController.$inject = ['$log'];
     function AchievementsLeaderController ($log) {
 
         activate();

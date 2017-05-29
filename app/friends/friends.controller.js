@@ -6,7 +6,6 @@
         .module('app')
         .controller('FriendsController', FriendsController);
 
-    FriendsController.$inject = ['$log'];
     function FriendsController ($log) {
         const vm = this;
 

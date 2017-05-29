@@ -6,7 +6,6 @@
         .module('app')
         .controller('AchievementsDiscoveryController', AchievementsDiscoveryController);
 
-    AchievementsDiscoveryController.$inject = ['$log'];
     function AchievementsDiscoveryController ($log) {
         const vm = this;
 

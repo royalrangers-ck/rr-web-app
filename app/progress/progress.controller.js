@@ -6,7 +6,6 @@
         .module('app')
         .controller('ProgressController', ProgressController);
 
-    ProgressController.$inject = ['$log'];
     function ProgressController ($log) {
         const vm = this;
 
