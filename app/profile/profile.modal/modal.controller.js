@@ -6,7 +6,6 @@
         .module('app')
         .controller('ProfileModalController', ProfileModalController);
 
-    ProfileModalController.$inject = ['$uibModalInstance', 'achievement'];
     function ProfileModalController ($uibModalInstance, achievement) {
         const vm = this;
 

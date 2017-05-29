@@ -6,7 +6,6 @@
         .module('app')
         .factory('AuthInterceptor', AuthInterceptor);
 
-    AuthInterceptor.$inject = ['$q', '$injector', 'TokenService'];
     function AuthInterceptor($q, $injector, TokenService) {
         return {
             request: function (config) {

@@ -5,7 +5,6 @@
         .module('app')
         .directive('uploadUserLogo', uploadUserLogo);
 
-    uploadUserLogo.$inject = ['growl'];
     function uploadUserLogo(growl) {
         return {
             strict: 'A', /* Binding using attribut */

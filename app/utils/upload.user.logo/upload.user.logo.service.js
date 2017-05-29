@@ -6,7 +6,6 @@
         .module('app')
         .service('UploadUserLogoService', UploadUserLogoService);
 
-    UploadUserLogoService.$inject = ['$http', '$log', 'TokenService', 'UserService', '$rootScope'];
     function UploadUserLogoService($http, $log, TokenService, UserService, $rootScope) {
 
         this.uploadImage = uploadImage;

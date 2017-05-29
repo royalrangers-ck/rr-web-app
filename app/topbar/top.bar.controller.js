@@ -6,7 +6,6 @@
         .module('app')
         .controller('TopBarController', TopBarController);
 
-    TopBarController.$inject = ['$log', '$window', 'TokenService', 'AppModalService'];
     function TopBarController($log, $window, TokenService, AppModalService) {
         const vm = this;
 

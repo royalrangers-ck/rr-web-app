@@ -6,7 +6,6 @@
         .module('app')
         .controller('ProfileStripsController', ProfileStripsController);
 
-    ProfileStripsController.$inject = ['$log', 'AppModalService'];
     function ProfileStripsController ($log, AppModalService) {
         const vm = this;
         vm.strips = [

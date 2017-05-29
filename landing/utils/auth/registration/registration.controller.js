@@ -6,7 +6,6 @@
         .module('app')
         .controller('RegistrationController', RegistrationController);
 
-    RegistrationController.$inject = ['countriesResponse', 'ranksResponse', 'Ranks', 'growl', '$routeSegment', '$location', 'RegistrationService'];
     function RegistrationController(countriesResponse, ranksResponse, Ranks, growl, $routeSegment, $location, RegistrationService) {
         const vm = this;
 
