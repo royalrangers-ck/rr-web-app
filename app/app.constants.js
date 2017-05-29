@@ -87,11 +87,11 @@
                 name: 'Система досягнень',
                 route: '',
                 submenu: [
-                    {name: 'Початківці',    route: '#/kids'},
-                    {name: 'Відкривачі',    route: '#/discovery'},
-                    {name: 'Слідопити',     route: '#/adventure'},
-                    {name: 'Рейнджери',     route: '#/expedition'},
-                    {name: 'Командири',     route: '#/leader'}
+                    {name: 'Початківці',    route: '#/achievements/kids'},
+                    {name: 'Відкривачі',    route: '#/achievements/discovery'},
+                    {name: 'Слідопити',     route: '#/achievements/adventure'},
+                    {name: 'Рейнджери',     route: '#/achievements/expedition'},
+                    {name: 'Командири',     route: '#/achievements/leader'}
                 ]
             },
             {
