@@ -11,16 +11,10 @@
 
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
-                        <h2>Назва завдання {{ vm.test.id }}</h2>
+                        <h2>{{ vm.test.name }}</h2>
                     </div>
 
-                    <div class="col-xs-12">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque beatae dolore dolores doloribus earum eos ex exercitationem facilis, hic inventore mollitia nobis perspiciatis provident quasi soluta, ullam, ut voluptatum.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque beatae dolore dolores doloribus earum eos ex exercitationem facilis, hic inventore mollitia nobis perspiciatis provident quasi soluta, ullam, ut voluptatum.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque beatae dolore dolores doloribus earum eos ex exercitationem facilis, hic inventore mollitia nobis perspiciatis provident quasi soluta, ullam, ut voluptatum.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque beatae dolore dolores doloribus earum eos ex exercitationem facilis, hic inventore mollitia nobis perspiciatis provident quasi soluta, ullam, ut voluptatum.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque beatae dolore dolores doloribus earum eos ex exercitationem facilis, hic inventore mollitia nobis perspiciatis provident quasi soluta, ullam, ut voluptatum.
-                    </div>
+                    <div class="col-xs-12">{{ vm.test.description }}</div>
 
                     <div class="col-xs-12 m-t">
                         <a href="/" class="btn btn-primary btn-block btn-lg">Виконати</a>
@@ -45,49 +39,24 @@
 
                 <table class="table table-striped">
                     <thead>
-                    <tr>
-                        <th>№</th>
-                        <th>Завдання</th>
-                        <th></th>
-                    </tr>
+                        <tr>
+                            <th>№</th>
+                            <th>Завдання</th>
+                            <th></th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>01</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem delectus doloribus eius eveniet illum in incidunt ipsa iure maxime nulla, omnis porro praesentium quisquam quod repudiandae similique soluta temporibus tenetur!</td>
-                        <td>
-                            <a class="text-info" href="/" ng-click="">
+                        <tr ng-repeat="item in vm.test.taskList">
+                            <td>{{item.id}}</td>
+                            <td><strong>{{item.name}}</strong>
+                                <p ng-show="item.description">{{item.description}}</p>
+                            </td>
+                            <td>
+                                <a class="text-info" href="/" ng-click="">
                                 <i class="fa fa-check fa-3x"></i>
                             </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>02</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem delectus doloribus eius eveniet illum in incidunt ipsa iure maxime nulla, omnis porro praesentium quisquam quod repudiandae similique soluta temporibus tenetur!</td>
-                        <td>
-                            <a class="text-info" href="/" ng-click="">
-                                <i class="fa fa-check fa-3x"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>03</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem delectus doloribus eius eveniet illum in incidunt ipsa iure maxime nulla, omnis porro praesentium quisquam quod repudiandae similique soluta temporibus tenetur!</td>
-                        <td>
-                            <a class="text-danger" href="/" ng-click="">
-                                <i class="fa fa-times fa-3x"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>04</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem delectus doloribus eius eveniet illum in incidunt ipsa iure maxime nulla, omnis porro praesentium quisquam quod repudiandae similique soluta temporibus tenetur!</td>
-                        <td>
-                            <a class="text-info" href="/" ng-click="">
-                                <i class="fa fa-check fa-3x"></i>
-                            </a>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
