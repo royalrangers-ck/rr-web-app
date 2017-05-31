@@ -11,7 +11,6 @@
         .module('app')
         .directive('lazyValidationOn', LazyValidation);
 
-    LazyValidation.$inject = [];
     function LazyValidation() {
         return {
             restrict: 'A',

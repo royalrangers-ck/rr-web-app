@@ -8,7 +8,6 @@
 
     //  viewValue => ngModel
 
-    DateParser.$inject = [];
     function DateParser() {
         return {
             restrict: 'A',

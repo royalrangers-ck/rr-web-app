@@ -34,6 +34,9 @@
                     </div>-->
 
                     <img class="img-responsive" src="static/vendor/images/demo/profile.7.jpg" alt="{{ test.name }}">
+                    <figcaption class="achievements__item-caption">
+                    <span class="achievements__items-title">{{test.name}}</span>
+                </figcaption>
                 </a>
             </figure>
         </section>
@@ -69,21 +72,6 @@
     <div class="ibox-title profile__title">
         <h2>Жовті тести</h2>
     </div>
-
-    <section class="row achievements">
-        <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-class="vm.isNotGet(test.id, 'yellow')" ng-repeat="test in vm.tests.yellow">
-
-            <a ng-click="vm.profileModal(test.id, 'yellow')">
-                <div class="ribbon-in-progress__box" ng-if="vm.isInProgress(test.id, 'yellow')">
-                    <div class="ribbon-in-progress">
-                        <span>in progress</span>
-                    </div>
-                </div>
-
-                <img class="img-responsive" src="static/vendor/images/demo/profile.7.jpg" alt="{{ test.name }}">
-            </a>
-        </figure>
-    </section>
 </div>
 
 <div class="ibox profile">
