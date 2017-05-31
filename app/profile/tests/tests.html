@@ -4,83 +4,117 @@
     </div>
 </div>
 
-<div>
-    <div class="ibox profile" ng-repeat="color in vm.testsColors">
-        <div class="ibox-title profile__title">
-            <h2>{{color}} тести</h2>
-        </div>
-        <div class="ibox-content">
-            <section class="row achievements">
-                <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-repeat="test in vm.colorSortedTest[color]">
-                    Test id: {{test.id}}
-                    <br> Test name: {{test.name}}
-                    <br> Test color: {{test.testType}}
-                </figure>
-            </section>
+<div class="ibox" ng-show="vm.infoMessage.length != 0" >
+    <div class="ibox-content">
+        <div class="a-message-box">
+            <p>{{vm.infoMessage}}</p>
         </div>
     </div>
 </div>
 
-<!--<div class="ibox profile">-->
-<!--<div class="ibox-title profile__title">-->
-<!--<h2>Жовті тести</h2>-->
-<!--</div>-->
+<div class="ibox profile" ng-repeat="testsGroup in vm.tests">
+    <div class="ibox-title profile__title">
+        <h2>{{ testsGroup.name }}</h2>
+        <div class="ibox-tools">
+            <a class="btn btn-white" ng-click="vm.newTestModal()">Додати новий тест</a>
+        </div>
+    </div>
 
-<!--<section class="row achievements">-->
-<!--<figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-class="vm.isNotGet(test.id, 'yellow')" ng-repeat="test in vm.tests.yellow">-->
+    <div class="ibox-content">
+        <section class="row achievements">
 
-<!--<a ng-click="vm.profileModal(test.id, 'yellow')">-->
-<!--<div class="ribbon-in-progress__box" ng-if="vm.isInProgress(test.id, 'yellow')">-->
-<!--<div class="ribbon-in-progress">-->
-<!--<span>in progress</span>-->
-<!--</div>-->
-<!--</div>-->
+            <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-repeat="test in testsGroup.list">
 
-<!--<img class="img-responsive" src="static/vendor/images/demo/profile.7.jpg" alt="{{ test.name }}">-->
-<!--</a>-->
-<!--</figure>-->
-<!--</section>-->
-<!--</div>-->
+                <a ng-click="vm.profileModal(test.id, test.testType)">
+                    <!-- Status label -->
+                    <!--<div class="ribbon-in-progress__box">
+                        <div class="ribbon-in-progress">
+                            <span>in progress</span>
+                        </div>
+                    </div>-->
 
-<!--<div class="ibox profile">-->
-<!--<div class="ibox-title profile__title">-->
-<!--<h2>Зелені тести</h2>-->
-<!--</div>-->
+                    <img class="img-responsive" src="static/vendor/images/demo/profile.7.jpg" alt="{{ test.name }}">
+                    <figcaption class="achievements__item-caption">
+                    <a href="#/profile/strips">
+                        <span class="achievements__items-title">{{test.name}}</span>
+                    </a>
+                </figcaption>
+                </a>
+            </figure>
+        </section>
+    </div>
+</div>
 
-<!--<section class="row achievements">-->
-<!--<figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-class="vm.isNotGet(test.id, 'green')" ng-repeat="test in vm.tests.green">-->
+<!--
+<div class="ibox profile">
+    <div class="ibox-title profile__title">
+        <h2>Сині тести</h2>
+    </div>
 
-<!--<a ng-click="vm.profileModal(test.id, 'green')">-->
-<!--<div class="ribbon-in-progress__box" ng-if="vm.isInProgress(test.id, 'green')">-->
-<!--<div class="ribbon-in-progress">-->
-<!--<span>in progress</span>-->
-<!--</div>-->
-<!--</div>-->
+    <div class="ibox-content">
+        <section class="row achievements">
 
-<!--<img class="img-responsive" src="static/vendor/images/demo/profile.7.jpg" alt="{{ test.name }}">-->
-<!--</a>-->
-<!--</figure>-->
-<!--</section>-->
-<!--</div>-->
+            <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-class="vm.isNotGet(test.id, 'blue')" ng-repeat="test in vm.tests.blue">
 
+                <a ng-click="vm.profileModal(test.id, 'blue')">
+                    <div class="ribbon-in-progress__box" ng-if="vm.isInProgress(test.id, 'blue')">
+                        <div class="ribbon-in-progress">
+                            <span>in progress</span>
+                        </div>
+                    </div>
 
-<!--<div class="ibox profile">-->
-<!--<div class="ibox-title profile__title">-->
-<!--<h2>Голубі тести</h2>-->
-<!--</div>-->
+                    <img class="img-responsive" src="static/vendor/images/demo/profile.7.jpg" alt="{{ test.name }}">
+                </a>
+            </figure>
+        </section>
+    </div>
+</div>
 
-<!--<section class="row achievements">-->
-<!--<figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-class="vm.isNotGet(test.id, 'cyan')" ng-repeat="test in vm.tests.cyan">-->
+<div class="ibox profile">
+    <div class="ibox-title profile__title">
+        <h2>Жовті тести</h2>
+    </div>
+</div>
 
-<!--<a ng-click="vm.profileModal(test.id, 'cyan')">-->
-<!--<div class="ribbon-in-progress__box" ng-if="vm.isInProgress(test.id, 'cyan')">-->
-<!--<div class="ribbon-in-progress">-->
-<!--<span>in progress</span>-->
-<!--</div>-->
-<!--</div>-->
+<div class="ibox profile">
+    <div class="ibox-title profile__title">
+        <h2>Зелені тести</h2>
+    </div>
 
-<!--<img class="img-responsive" src="static/vendor/images/demo/profile.7.jpg" alt="{{ test.name }}">-->
-<!--</a>-->
-<!--</figure>-->
-<!--</section>-->
-<!--</div>-->
+    <section class="row achievements">
+        <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-class="vm.isNotGet(test.id, 'green')" ng-repeat="test in vm.tests.green">
+
+            <a ng-click="vm.profileModal(test.id, 'green')">
+                <div class="ribbon-in-progress__box" ng-if="vm.isInProgress(test.id, 'green')">
+                    <div class="ribbon-in-progress">
+                        <span>in progress</span>
+                    </div>
+                </div>
+
+                <img class="img-responsive" src="static/vendor/images/demo/profile.7.jpg" alt="{{ test.name }}">
+            </a>
+        </figure>
+    </section>
+</div>
+
+<div class="ibox profile">
+    <div class="ibox-title profile__title">
+        <h2>Голубі тести</h2>
+    </div>
+
+    <section class="row achievements">
+        <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-class="vm.isNotGet(test.id, 'cyan')" ng-repeat="test in vm.tests.cyan">
+
+            <a ng-click="vm.profileModal(test.id, 'cyan')">
+                <div class="ribbon-in-progress__box" ng-if="vm.isInProgress(test.id, 'cyan')">
+                    <div class="ribbon-in-progress">
+                        <span>in progress</span>
+                    </div>
+                </div>
+
+                <img class="img-responsive" src="static/vendor/images/demo/profile.7.jpg" alt="{{ test.name }}">
+            </a>
+        </figure>
+    </section>
+</div>
+-->

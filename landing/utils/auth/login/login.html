@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="form-group" ng-class="{ 'has-error' : vm.form.password.$dirty && vm.form.password.$error.minlength || vm.form.password.$error.maxlength}">
-                    <input type="password" name="password" class="form-control" placeholder="Пароль" ng-model="vm.data.password" ng-minlength="5" ng-maxlength="25" >
+                    <input type="password" name="password" class="form-control" placeholder="Пароль" ng-model="vm.data.password" ng-minlength="3" ng-maxlength="25" >
                     <span ng-show="vm.form.password.$dirty && vm.form.password.$error.required">This field is required.</span>
                     <span ng-show="vm.form.password.$dirty && vm.form.password.$error.minlength">Password is too short.</span>
                     <span ng-show="vm.form.password.$dirty && vm.form.password.$error.maxlength">Password is too long.</span>

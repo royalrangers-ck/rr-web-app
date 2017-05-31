@@ -48,6 +48,26 @@ server {
         listen 80 default_server;
         listen [::]:80 default_server ipv6only=on;
 
+        ##
+        # Basic Settings
+        ##
+
+        add_header Cache-Control no-cache;
+
+        ##
+        # Gzip Settings
+        ##
+
+        gzip on;
+        gzip_disable "msie6";
+
+        gzip_vary on;
+        gzip_proxied any;
+        gzip_comp_level 6;
+        gzip_buffers 16 8k;
+        gzip_http_version 1.1;
+        gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
         location / {
             root /project/landing;
             index index.html index.html;
@@ -60,14 +80,56 @@ server {
             sendfile off;
         }
 
-        location ~* .*\/app\/.*(js|jpg|png|gif|ico|css|otf|eot|svg|ttf|woff|woff2)$ {
-            expires   -1;
+        ##
+        # User application Settings
+        ##
+
+        location ~* .*\/app\/.*\.(css)$ {
+            root /project;
+            add_header Cache-Control "max-age=31536000";
+            sendfile off;
+        }
+
+        location ~* .*\/app\/.*\.(js)$ {
+            root /project;
+            add_header Cache-Control "private, max-age=31536000";
+            sendfile off;
+        }
+
+        location ~* .*\/app\/.*\.(jpg|png|gif|svg)$ {
+            root /project;
+            add_header Cache-Control "max-age=86400";
+            sendfile off;
+        }
+
+        location ~* .*\/app\/.*\.(otf|eot|ttf|woff|woff2)$ {
             root /project;
             sendfile off;
         }
 
-        location ~* \.(js|jpg|png|gif|ico|css|otf|eot|svg|ttf|woff|woff2)$ {
-            expires   -1;
+        ##
+        # Landing & User application settings
+        ##
+
+        location ~* \.(css)$ {
+            root /project/landing;
+            add_header Cache-Control "max-age=31536000";
+            sendfile off;
+        }
+
+        location ~* \.(js)$ {
+            root /project/landing;
+            add_header Cache-Control "private, max-age=31536000";
+            sendfile off;
+        }
+
+        location ~* \.(jpg|png|gif|ico|svg)$ {
+            root /project/landing;
+            add_header Cache-Control "max-age=86400";
+            sendfile off;
+        }
+
+        location ~* \.(otf|eot|ttf|woff|woff2)$ {
             root /project/landing;
             sendfile off;
         }

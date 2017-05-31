@@ -6,7 +6,6 @@
         .module('app')
         .factory('ConfirmRegistrationFactory', ConfirmRegistrationFactory);
 
-    ConfirmRegistrationFactory.$inject = ['$resource'];
     function ConfirmRegistrationFactory($resource) {
         return {
             checkEmail: function (token) {

@@ -6,7 +6,6 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['ModalWindowService'];
     function HomeController(ModalWindowService) {
         const vm = this;
 

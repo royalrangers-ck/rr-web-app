@@ -15,8 +15,10 @@ template-sources/
 # Main Application
 app/static/vendor/*
 app/slider/bootstrap/
+app/index.html
 
 # Landing Application
 landing/static/vendor/*
+landing/index.html
 
 /nginx

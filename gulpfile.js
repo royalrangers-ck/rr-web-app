@@ -6,7 +6,37 @@ var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var babel = require('gulp-babel');
+var autoprefixer = require('gulp-autoprefixer');
+var cssnano = require('gulp-cssnano');
+var ngAnnotate = require('gulp-ng-annotate');
+var sourcemaps =require('gulp-sourcemaps');
 
+var autoprefixerOptions = {
+    browsers: ['last 2 versions'],
+};
+
+
+function updateSrcLinks(cb) {
+    var fs = require('fs'),
+        files = ['app/index.html', 'landing/index.html'];
+
+    files.forEach(function(path) {
+        var file = fs.readFileSync(path, 'utf8');
+        file = file.replace(/(\?t=[0-9]+)/g, '?t=' + Date.now());
+        fs.writeFileSync(path, file);
+    });
+
+    cb();
+}
+
+gulp.task('copy-index-html', function () {
+    var src = ['app/index.tmpl.html', 'landing/index.tmpl.html'];
+
+    return gulp
+        .src(src, {base: './'})
+        .pipe(rename({basename: 'index'}))
+        .pipe(gulp.dest('./'))
+})
 
 gulp.task('clear:app', function() {
     var src = [
@@ -77,8 +107,10 @@ gulp.task('copyDep:app', () => {
 
     return gulp
         .src(src)
+        .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(concat('dep.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -105,8 +137,10 @@ gulp.task('copyDep:landing', function() {
 
     return gulp
         .src(src)
+        .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(concat('dep.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -142,13 +176,16 @@ gulp.task('copyApp:app', function() {
 
     return gulp
         .src(src)
+        .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(babel({presets: ['es2015']}))
         .on('error', function(e) {
             console.log('>>> ERROR', e.message);
             this.emit('end');
         })
+        .pipe(ngAnnotate())
         .pipe(concat('app.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -163,13 +200,16 @@ gulp.task('copyApp:landing', function() {
 
     return gulp
         .src(src)
+        .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(babel({presets: ['es2015']}))
         .on('error', function(e) {
             console.log('>>> ERROR', e.message);
             this.emit('end');
         })
+        .pipe(ngAnnotate())
         .pipe(concat('app.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -183,8 +223,10 @@ gulp.task('copyJs:app', function() {
 
     return gulp
         .src(src)
+        .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(concat('app.min.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -197,8 +239,10 @@ gulp.task('copyJs:landing', function() {
 
     return gulp
         .src(src)
+        .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(concat('app.min.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -227,6 +271,8 @@ gulp.task('sass:app:prod', function() {
         .pipe(rename({dirname: ''}))
         .pipe(concat('app.scss'))
         .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer(autoprefixerOptions))
+        .pipe(cssnano())
         .pipe(gulp.dest(dest))
 });
 
@@ -257,6 +303,8 @@ gulp.task('sass:landing:prod', function() {
         .pipe(rename({dirname: ''}))
         .pipe(concat('app.scss'))
         .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer(autoprefixerOptions))
+        .pipe(cssnano())
         .pipe(gulp.dest(dest))
 });
 
@@ -270,7 +318,7 @@ gulp.task('copyImages:app', function() {
     return gulp
         .src(src)
         // ToDo.zpawn: uncommented after load real content
-        //.pipe(rename({dirname: ''}))
+        // .pipe(rename({dirname: ''}))
         .pipe(gulp.dest(dest))
 });
 
@@ -300,7 +348,7 @@ gulp.task('copyFonts:app', function() {
     
     // Same, but to boostsrap
     // if need, please refactor this
-    gulp.src('bower_components/bootstrap/fonts/*.*')
+    gulp.src('bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*')
         .pipe(gulp.dest('app/static/vendor/fonts/bootstrap/.'));
 
     return gulp
@@ -343,6 +391,13 @@ gulp.task('build:dev', gulp.parallel(
         'copyImages:landing',
         'sass:landing',
         'copyFonts:landing'
+    ),
+
+    gulp.series(
+        'copy-index-html',
+        function (cb) {
+            return updateSrcLinks(cb)
+        }
     )
 ));
 

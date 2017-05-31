@@ -6,7 +6,6 @@
         .module('app')
         .service('RegistrationService', RegistrationService);
 
-    RegistrationService.$inject = ['Registration'];
     function RegistrationService(Registration) {
 
         this.register = Registration.register;
@@ -15,7 +14,7 @@
         /** Get data for registration */
         this.countries = Registration.countries;
         this.city = Registration.city;
-        this.group = Registration.group;
+        this.region = Registration.region;
         this.platoon = Registration.platoon;
         this.section = Registration.section;
         this.ranks = Registration.ranks;

@@ -6,7 +6,6 @@
         .module('app')
         .controller('ConfirmRegistrationController', ConfirmRegistrationController);
 
-    ConfirmRegistrationController.$inject = ['$log', 'emailResponse'];
     function ConfirmRegistrationController($log, emailResponse) {
         const vm = this;
 

@@ -6,13 +6,13 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    ProfileTestsController.$inject = ['$log', 'AppModalService', 'userTestsResolve', 'allTestsResolve', '$http', 'Endpoints'];
-    function ProfileTestsController($log, AppModalService, userTestsResolve, allTestsResolve, $http, Endpoints) {
+    function ProfileTestsController($log, $http, AppModalService, Endpoints, allTestsResolve) {
         const vm = this;
-        vm.curentAgeGroupTests = [];
-        vm.allTests = [];
-        vm.colorSortedTest = [];
-        vm.testsColors = [];
+
+        vm.tests = [];
+        vm.infoMessage = '';
+        vm.profileModal = profileModal;
+        vm.newTestModal = newTestModal;
 
         activate();
 
@@ -22,46 +22,71 @@
          * @discription There we are grub test for current user age group, used resolve in test.segment
          */
         function activate() {
-            $log.debug('Init ProfileTests Controller ...');
-
-            getUserTests();
-            getAllTests();
+            getTests();
         }
 
-        function getUserTests() {
-            if (userTestsResolve.$promise) {
-                userTestsResolve.$promise.then((res) => {
+        function getTests() {
+            vm.infoMessage = 'Пошук тестів...';
+            allTestsResolve.$promise.then(
+                (res) => {
+                    $log.debug(res);
                     if (res.success) {
-                        vm.curentAgeGroupTests = (res.data);
-                        $log.debug('curentAgeGroupTests', vm.curentAgeGroupTests);
-
+                        vm.tests = normalizeStructureTests(res.data);
+                        if (vm.tests.length != 0) {
+                            vm.infoMessage = '';
+                        }
+                        else {
+                            vm.infoMessage = 'Нажаль, доступних тестів не знайдено.';
+                        }
                     }
+                },
+                (err) => {
+                    vm.infoMessage = '';
                 });
-            }
         }
 
-        function getAllTests() {
-            allTestsResolve.$promise.then((response) => {
-                vm.allTests = response.data;
-                $log.debug('all tests ', vm.allTests);
+        /**
+         * Structure:
+         * {
+         *      testType: {
+         *          name: 'testTypeName',
+         *          list: [ ... ]
+         *      },
+         *      testType: {
+         *          name: 'testTypeName',
+         *          list: [ ... ]
+         *      },
+         *      ...
+         * }
+         */
+        function normalizeStructureTests(denormalizeTests) {
+            return denormalizeTests.reduce((tests, test) => {
 
-                /**
-                 * @discription There we are sorted our test to color in  vm.colorSortedTest
-                 * And get colors type in vm.testsColors
-                 */
-                vm.allTests.forEach((test) => {
-                    if (!vm.colorSortedTest[test.testType]) {
-                        vm.colorSortedTest[test.testType] = [];
-                        vm.testsColors.push(test.testType);
-                    }
+                if (typeof tests[test.testType] === 'undefined') {
+                    tests[test.testType] = {
+                        name: test.testType,
+                        list: []
+                    };
+                }
 
-                    vm.colorSortedTest[test.testType].push(test)
-                });
+                tests[test.testType].list.push(test);
 
-                $log.debug('colorSortedTest ', vm.colorSortedTest);
-                $log.debug('testsColors ', vm.testsColors)
+                return tests;
+            }, {});
+        }
 
+        function profileModal(testId, testType) {
+            AppModalService.profileModal(findTest(testId, testType), 'test');
+        }
+
+        function findTest(id, type) {
+            return vm.tests[type].list.find((test) => {
+                return test.id === id;
             });
+        }
+
+        function newTestModal() {
+            AppModalService.testFormModal();
         }
     }
 })();

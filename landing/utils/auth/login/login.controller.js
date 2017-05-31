@@ -6,7 +6,6 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['growl', '$window', '$http', '$routeSegment', 'TokenService', 'Endpoints', '$log'];
     function LoginController(growl, $window, $http, $routeSegment, TokenService, Endpoints, $log) {
         const vm = this;
 
@@ -35,7 +34,7 @@
             };
 
             let response = (res) => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                     if (res.data.success) {
                         TokenService.save(res.data.data.token);
                         window.localStorage.setItem('token', res.data.data.token);
@@ -44,13 +43,13 @@
                         growl.info(res.data.data.message);
                     }
                 }
-
-                vm.form.$setUntouched();
-                vm.form.$setPristine();
-                vm.form.$setDirty();
             };
 
             $http.post(Endpoints.AUTH, req, config).then(response);
+
+            vm.form.$setUntouched();
+            vm.form.$setPristine();
+            vm.form.$setDirty();
         }
 
         /**

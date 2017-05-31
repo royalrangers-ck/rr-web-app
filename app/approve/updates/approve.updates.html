@@ -1,0 +1,45 @@
+<div class="ibox">
+    <div class="ibox-title a-cu-page-header">
+        <h1 class="a-cu-page-header__text">Не підтверджені користувачі в групі: <span class="a-cu-page-header__platoon-name">{{vm.adminPlatoonName}}</span></h1>
+    </div>
+    <div class="ibox-content">
+        <table ng-hide="vm.users.length == 0" class="a-cu-table footable" data-page-size="8">
+            <thead class="a-cu-table__header">
+            <tr>
+                <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big">ПІБ</th>
+                <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-hide="phone">Телефон</th>
+                <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-hide="phone">Email</th>
+                <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-hide="phone,tablet">Дата
+                    народження
+                </th>
+                <th class="a-cu-table__col-name a-cu-cell-text a-cu-cell-text_size_big" data-sort-ignore="true"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="a-cu-table__row" ng-repeat="user in vm.users">
+                <td class="a-cu-table__item a-cu-cell-text a-cu-cell-text_bold">{{user.firstName + " " +
+                    user.lastName}}
+                </td>
+                <td class="a-cu-table__item a-cu-cell-text">{{user.telephoneNumber}}</td>
+                <td class="a-cu-table__item a-cu-cell-text">{{user.email}}</td>
+                <td class="a-cu-table__item a-cu-cell-text">{{user.birthDate | date: "dd MMMM yyyy"}}</td>
+                <td class="a-cu-table__item a-cu-cell-text">
+                    <button class="btn btn-white" ng-click="vm.approveUserUpdate(user)"><i class="fa fa-pencil"></i>
+                        Підтвердити
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="5">
+                    <ul class="pagination pull-right"></ul>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        <div ng-show="vm.users.length == 0" class="a-message-box">
+            <p>Немає нових користувачів</p>
+        </div>
+    </div>
+</div>

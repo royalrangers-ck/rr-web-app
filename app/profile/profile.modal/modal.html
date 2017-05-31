@@ -1,23 +1,23 @@
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" ng-click="vm.close()">&times;</button>
-        <h4 class="modal-title">{{ vm.currentAchieve.name}}</h4>
+        <h4 class="modal-title">{{ vm.achievement.name}}</h4>
     </div>
 
     <div class="modal-body">
         <div class="row">
             <div class="col-xs-12 col-sm-4">
-                <p><img class="media-object img-responsive" src="static/vendor/images/demo/profile.1.jpg" alt="{{ vm.currentAchieve.name }}"></p>
+                <p><img class="media-object img-responsive" src="static/vendor/images/demo/profile.1.jpg" alt="{{ vm.achievement.name }}"></p>
             </div>
             <div class="col-xs-12 col-sm-8">
-                <h3 class="media-heading">{{ vm.currentAchieve.name}}</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto assumenda delectus, deserunt dolorem ea facilis incidunt ipsa labore libero magni odit placeat quasi quibusdam quos reiciendis rerum temporibus vitae.</p>
+                <h3 class="media-heading">{{ vm.achievement.name}}</h3>
+                <p>{{ vm.achievement.shortDescription }}</p>
             </div>
         </div>
     </div>
     
     <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="vm.close()">Close</button>
-        <a href="#/profile/{{ vm.currentAchieve.type }}/{{vm.currentAchieve.id}}" class="btn btn-primary" ng-click="vm.close()">Детально</a>
+        <button type="button" class="btn btn-default" ng-click="vm.close()">Закрити</button>
+        <a href="#/profile/{{ vm.achievement.achievementType }}/{{vm.achievement.id}}" class="btn btn-primary" ng-click="vm.close()">Детально</a>
     </div>
 </div>

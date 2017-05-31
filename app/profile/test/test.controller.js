@@ -6,27 +6,27 @@
         .module('app')
         .controller('ProfileTestController', ProfileTestController);
 
-    ProfileTestController.$inject = ['$routeSegment', '$http', 'Endpoints', 'UserService'];
-    function ProfileTestController($routeSegment, $http, Endpoints, UserService) {
+    function ProfileTestController($routeSegment, $http, Endpoints, UserService, Constants, AppModalService, testResolve) {
         const vm = this;
 
         vm.test = {};
         vm.users = getUserMocks();
         vm.currentUser = UserService.get();
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
+        vm.taskFormModal = AppModalService.taskFormModal;
 
         activate();
 
         ///
 
         function activate() {
-            getTest($routeSegment.$routeParams.id);
+            getTest();
         }
 
-        function getTest(id) {
-            $http.get(`${Endpoints.TEST}/${id}`).then((res) => {
-                if (res.data.success) {
-                    vm.test = res.data.data;
+        function getTest() {
+            testResolve.$promise.then((res) => {
+                if (res.success) {
+                    vm.test = res.data;
                 }
             });
         }

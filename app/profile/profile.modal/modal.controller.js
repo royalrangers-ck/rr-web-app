@@ -6,12 +6,11 @@
         .module('app')
         .controller('ProfileModalController', ProfileModalController);
 
-    ProfileModalController.$inject = ['$uibModalInstance', 'currentAchieve'];
-    function ProfileModalController ($uibModalInstance, currentAchieve) {
+    function ProfileModalController ($uibModalInstance, achievement) {
         const vm = this;
 
         vm.close = close;
-        vm.currentAchieve = currentAchieve;
+        vm.achievement = achievement;
 
         function close(data) {
             $uibModalInstance.close(data);

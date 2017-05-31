@@ -6,7 +6,6 @@
         .module('app')
         .config(LibrarySegment);
 
-    LibrarySegment.$inject = ['$routeSegmentProvider'];
     function LibrarySegment($routeSegmentProvider) {
 
         $routeSegmentProvider.when('/library', 'library').segment('library', {
