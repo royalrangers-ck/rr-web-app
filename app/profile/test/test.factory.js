@@ -7,7 +7,7 @@
         .factory('ProfileTestFactory', ProfileTestFactory);
 
     function ProfileTestFactory($resource, Endpoints) {
-        return $resource(`${Endpoints.ACHIEVEMENTS_TEST}/:id`, null);
-}
+        return $resource(`${Endpoints.ACHIEVEMENTS_TEST}/:id`, {id: '@id'});
+    }
 
 })();

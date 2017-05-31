@@ -11,7 +11,6 @@
         .module('app')
         .directive('uicGroup', UicGroup);
 
-    UicGroup.$inject = [];
     function UicGroup() {
         return {
             restrict: 'A',

@@ -6,7 +6,7 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    function ProfileTestsController($log, $http, AppModalService, Endpoints, allTestsResolve) {
+    function ProfileTestsController($log, AppModalService, allTestsResolve) {
         const vm = this;
 
         vm.tests = [];
@@ -18,9 +18,6 @@
 
         ///
 
-        /**
-         * @discription There we are grub test for current user age group, used resolve in test.segment
-         */
         function activate() {
             getTests();
         }
@@ -32,7 +29,7 @@
                     $log.debug(res);
                     if (res.success) {
                         vm.tests = normalizeStructureTests(res.data);
-                        if (vm.tests.length != 0) {
+                        if (vm.tests.length !== 0) {
                             vm.infoMessage = '';
                         }
                         else {
@@ -90,39 +87,3 @@
         }
     }
 })();
-
-
-// vm.tests = getTests();
-
-// vm.profileModal = function (testId, color) {
-//     AppModalService.profileModal(findTest(testId, color), 'test');
-// };
-//
-// vm.isInProgress = function (testId, color) {
-//     let currentTest = findTest(testId, color);
-//     return currentTest.action == 'inProgress';
-// };
-//
-// vm.isNotGet = function (testId, color) {
-//     let currentTest = findTest(testId, color);
-//     return currentTest.action == 'notGet' ? 'not-get' : '';
-// };
-//
-//
-
-// function getTests() {
-//     $http.get(Endpoints.TEST).then((res) => {
-//         if (res.data.success) {
-//             // ToDo.zpawn: refactor that
-//             vm.tests = res.data.data.length !== 0 ? res.data.data.length : getDemoTests();
-//         }
-//         $log.debug('==> testResponse:', res);
-//     });
-// }
-//
-// function findTest(testId, color) {
-//     return vm.tests[color].find((test) => {
-//         return test.id === testId;
-//     });
-// }
-

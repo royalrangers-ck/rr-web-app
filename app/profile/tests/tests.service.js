@@ -6,8 +6,7 @@
         .module('app')
         .service('ProfileTestsService', ProfileTestsService);
 
-    ProfileTestsService.$inject = ['$http', 'ProfileTestsFactory'];
-    function ProfileTestsService($http, ProfileTestsFactory) {
+    function ProfileTestsService(ProfileTestsFactory) {
 
         this.getUserTests = ProfileTestsFactory.getUserTests;
         this.getAllTests = ProfileTestsFactory.getAllTests;

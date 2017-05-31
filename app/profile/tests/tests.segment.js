@@ -18,6 +18,7 @@
                 controllerAs: 'vm',
                 resolve: {
                     userTestsResolve: function (ProfileTestsService) {
+                        // TODO: waite while api will be ready
                         return ProfileTestsService.getUserTests();
                     },
                     allTestsResolve: function (ProfileTestsService) {

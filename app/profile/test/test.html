@@ -17,7 +17,7 @@
                     <div class="col-xs-12">{{ vm.test.description }}</div>
 
                     <div class="col-xs-12 m-t">
-                        <a href="/" class="btn btn-primary btn-block btn-lg">Виконати</a>
+                        <a href="" ng-disabled="true" class="btn btn-primary btn-block btn-lg">Виконати</a>
                     </div>
                 </div>
             </div>
@@ -48,11 +48,12 @@
                     <tbody>
                         <tr ng-repeat="item in vm.test.taskList">
                             <td>{{item.id}}</td>
-                            <td><strong>{{item.name}}</strong>
+                            <td>
+                                <strong>{{item.name}}</strong>
                                 <p ng-show="item.description">{{item.description}}</p>
                             </td>
                             <td>
-                                <a class="text-info" href="/" ng-click="">
+                                <a class="text-info" href="" ng-disabled="true" ng-click="">
                                 <i class="fa fa-check fa-3x"></i>
                             </a>
                             </td>

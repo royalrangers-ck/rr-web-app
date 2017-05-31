@@ -6,7 +6,6 @@
         .module('app')
         .service('TokenService', TokenService);
 
-    TokenService.$inject = ['$log', '$localStorage'];
     function TokenService($log, $localStorage) {
 
         this.get = get;
