@@ -6,13 +6,15 @@
         .module('app')
         .controller('ApproveUserUpdateModalController', ApproveUserUpdateModalController);
 
-    ApproveUserUpdateModalController.$inject = ['originalUser', 'modifiedUser', 'growl', '$uibModalInstance', 'UserFactory','PublicInfoFactory', '$routeSegment', 'Ranks'];
     function ApproveUserUpdateModalController (originalUser, modifiedUser, growl, $uibModalInstance, UserFactory, PublicInfoFactory, $routeSegment, Ranks) {
         const vm = this;
 
+        console.log(modifiedUser);
+
+
         vm.originalUser = {};
-        vm.modifiedUser = modifiedUser;
         vm.tempUser = angular.copy(modifiedUser);
+        vm.modifiedUser = angular.copy(modifiedUser);
 
         vm.changeCountry = changeCountry;
         vm.changeRegion = changeRegion;
@@ -29,6 +31,7 @@
         function activate() {
             if (originalUser && originalUser.success) {
                 vm.originalUser = originalUser.data;
+                console.log(vm.originalUser);
             }
 
             setCountries();

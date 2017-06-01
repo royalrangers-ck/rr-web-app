@@ -11,10 +11,7 @@
         const vm = this;
 
         let user = UserService.get();
-
-        vm.usersList = [];
-        vm.currentUser = {};
-        vm.adminPlatoonName = user.platoon.name;
+        let userAuthority = UserService.getTopAuthority().id;
 
         vm.approveUserRegistration = approveUserRegistration;
 
@@ -27,6 +24,10 @@
             $(document).ready(function () {
                 $('.footable').footable();
             });
+
+            if (userAuthority === 2) {
+                vm.adminPlatoonName = user.platoon.name;
+            }
 
             if (users && users.success) {
                 vm.users = users.data;
