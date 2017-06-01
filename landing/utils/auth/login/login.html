@@ -7,13 +7,13 @@
 
 
                 <div class="form-group" ng-class="{ 'has-error' : vm.form.email.$invalid && !vm.form.email.$pristine }">
-                    <input type="email" name="email" class="form-control" placeholder="E-mail" ng-model="vm.data.email" required>
+                    <input type="email" name="email" class="form-control" placeholder="E-mail" ng-model="vm.data.email" lazy-validation-on="vm.form.$submitted" ng-required="true">
                     <span ng-show="vm.form.email.$dirty && vm.form.email.$error.required">This field is required.</span>
                     <span ng-show="vm.form.email.$dirty && vm.form.email.$invalid">Enter a valid email.</span>
                 </div>
 
-                <div class="form-group" ng-class="{ 'has-error' : vm.form.password.$dirty && vm.form.password.$error.minlength || vm.form.password.$error.maxlength}">
-                    <input type="password" name="password" class="form-control" placeholder="Пароль" ng-model="vm.data.password" ng-minlength="3" ng-maxlength="25" >
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.password.$dirty && (vm.form.password.$invalid || vm.form.password.$error.minlength || vm.form.password.$error.maxlength)}">
+                    <input type="password" name="password" class="form-control" placeholder="Пароль" ng-model="vm.data.password" ng-minlength="3" ng-maxlength="25" lazy-validation-on="vm.form.$submitted" ng-required="true">
                     <span ng-show="vm.form.password.$dirty && vm.form.password.$error.required">This field is required.</span>
                     <span ng-show="vm.form.password.$dirty && vm.form.password.$error.minlength">Password is too short.</span>
                     <span ng-show="vm.form.password.$dirty && vm.form.password.$error.maxlength">Password is too long.</span>
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="form-group text-center">
-                    <button ng-disabled="vm.form.$pristine || vm.form.$invalid || vm.form.$submitted" class="btn btn-primary btn__arrow btn__shaft">
+                    <button ng-disabled="vm.form.$submitted" class="btn btn-primary btn__arrow btn__shaft">
                          <span ng-if="vm.form.$submitted" class="spinner-wrapper"><i class="fa fa-refresh fa-spin"></i></span> Вхід
                     </button>
                 </div>
