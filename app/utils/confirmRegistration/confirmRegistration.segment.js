@@ -5,7 +5,6 @@
         .module('app')
         .config(ConfirmRegistrationSegment);
 
-    ConfirmRegistrationSegment.$inject = ['$routeSegmentProvider'];
     function ConfirmRegistrationSegment($routeSegmentProvider) {
 
         $routeSegmentProvider.when('/app/confirmRegistration', 'app.confirmRegistration').within('app').segment('confirmRegistration', {

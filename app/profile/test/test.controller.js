@@ -6,8 +6,7 @@
         .module('app')
         .controller('ProfileTestController', ProfileTestController);
 
-    ProfileTestController.$inject = ['$routeSegment', '$http', 'Endpoints', 'UserService', 'Constants', 'AppModalService'];
-    function ProfileTestController($routeSegment, $http, Endpoints, UserService, Constants, AppModalService) {
+    function ProfileTestController($routeSegment, $http, Endpoints, UserService, Constants, AppModalService, testResolve, $log) {
         const vm = this;
 
         vm.test = {};
@@ -21,13 +20,14 @@
         ///
 
         function activate() {
-            getTest($routeSegment.$routeParams.id);
+            getTest();
         }
 
-        function getTest(id) {
-            $http.get(`${Endpoints.TEST}/${id}`).then((res) => {
-                if (res.data.success) {
-                    vm.test = res.data.data;
+        function getTest() {
+            testResolve.$promise.then((res) => {
+                if (res.success) {
+                    vm.test = res.data;
+                    $log.debug('Test loaded:', vm.test);
                 }
             });
         }

@@ -5,7 +5,6 @@
         .module('app')
         .controller('AppController', AppController);
 
-    AppController.$inject = ['Menu', 'Ranks', 'Constants', 'Endpoints', 'TokenScheduler', 'UserService', '$timeout'];
     function AppController(Menu, Ranks, Constants, Endpoints, TokenScheduler, UserService, $timeout) {
         const vm = this;
 

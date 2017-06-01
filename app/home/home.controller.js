@@ -6,7 +6,6 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$log', 'Ranks', 'Constants', 'UserService', 'AppModalService'];
     function HomeController($log, Ranks, Constants, UserService, AppModalService) {
         const vm = this;
 

@@ -6,7 +6,6 @@
         .module('app')
         .service('ModalWindowService', ModalWindowService);
 
-    ModalWindowService.$inject = ['$uibModal'];
     function ModalWindowService($uibModal) {
 
         this.homeModalVideo = homeModalVideo;

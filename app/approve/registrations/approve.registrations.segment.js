@@ -6,7 +6,6 @@
         .module('app')
         .config(ApproveRegistrationsSegment);
 
-    ApproveRegistrationsSegment.$inject = ['$routeSegmentProvider'];
     function ApproveRegistrationsSegment($routeSegmentProvider) {
 
         $routeSegmentProvider.when('/approve/registrations', 'ApproveRegistrations').segment('ApproveRegistrations', {

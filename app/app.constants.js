@@ -67,9 +67,8 @@
 
         // ACHIEVEMENTS
         endpoints.ACHIEVEMENTS = endpoints.API + '/achievements';
-
-        // PROFILE
-        endpoints.TEST = endpoints.ACHIEVEMENTS + '/test';
+        endpoints.ACHIEVEMENTS_USER_TEST = endpoints.ACHIEVEMENTS + '/userTest';
+        endpoints.ACHIEVEMENTS_TEST = endpoints.ACHIEVEMENTS + '/test';
 
         //ROLES
         endpoints.ROLES = {
@@ -87,11 +86,11 @@
                 name: 'Система досягнень',
                 route: '',
                 submenu: [
-                    {name: 'Початківці', route: ''},
-                    {name: 'Відкривачі', route: ''},
-                    {name: 'Слідопити', route: ''},
-                    {name: 'Рейнджери', route: ''},
-                    {name: 'Командири', route: ''}
+                    {name: 'Початківці',    route: '#/achievements/kids'},
+                    {name: 'Відкривачі',    route: '#/achievements/discovery'},
+                    {name: 'Слідопити',     route: '#/achievements/adventure'},
+                    {name: 'Рейнджери',     route: '#/achievements/expedition'},
+                    {name: 'Командири',     route: '#/achievements/leader'}
                 ]
             },
             {
@@ -108,21 +107,21 @@
                     {name: 'Начання', route: '#/profile/study'}
                 ]
             },
-            {name: 'Виконую', route: ''},
-            {name: 'Адмініструю', route: ''},
-            {name: 'Мій загін', route: ''},
-            {name: 'Мої друзі', route: ''},
-            {name: 'Бібліотека', route: '#/library'},
+            {name: 'Виконую',       route: '#/progress'},
+            {name: 'Адмініструю',   route: '#/admin'},
+            {name: 'Мій загін',     route: '#/platoon'},
+            {name: 'Мої друзі',     route: '#/friends'},
+            {name: 'Бібліотека',    route: '#/library'},
             {
                 name: 'Підтвердити',
                 adminsOnly: true,
                 submenu: [
-                    {name: 'Реєстрації', route: '#approve/registrations'},
-                    {name: 'Оновлення даних', route: '#approve/updates'}
+                    {name: 'Реєстрації',        route: '#approve/registrations'},
+                    {name: 'Оновлення даних',   route: '#approve/updates'}
                 ]
             },
-            {name: 'Тех.підтримка', route: ''},
-            {name: 'Створити', route: ''}
+            {name: 'Тех.підтримка', route: '#/support'},
+            {name: 'Створити',      route: '#/created'}
         ];
     }
 

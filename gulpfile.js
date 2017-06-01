@@ -8,6 +8,8 @@ var concat = require('gulp-concat');
 var babel = require('gulp-babel');
 var autoprefixer = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
+var ngAnnotate = require('gulp-ng-annotate');
+var sourcemaps =require('gulp-sourcemaps');
 
 var autoprefixerOptions = {
     browsers: ['last 2 versions'],
@@ -105,8 +107,10 @@ gulp.task('copyDep:app', () => {
 
     return gulp
         .src(src)
+        .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(concat('dep.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -133,8 +137,10 @@ gulp.task('copyDep:landing', function() {
 
     return gulp
         .src(src)
+        .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(concat('dep.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -170,13 +176,16 @@ gulp.task('copyApp:app', function() {
 
     return gulp
         .src(src)
+        .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(babel({presets: ['es2015']}))
         .on('error', function(e) {
             console.log('>>> ERROR', e.message);
             this.emit('end');
         })
+        .pipe(ngAnnotate())
         .pipe(concat('app.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -191,13 +200,16 @@ gulp.task('copyApp:landing', function() {
 
     return gulp
         .src(src)
+        .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(babel({presets: ['es2015']}))
         .on('error', function(e) {
             console.log('>>> ERROR', e.message);
             this.emit('end');
         })
+        .pipe(ngAnnotate())
         .pipe(concat('app.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -211,8 +223,10 @@ gulp.task('copyJs:app', function() {
 
     return gulp
         .src(src)
+        .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(concat('app.min.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -225,8 +239,10 @@ gulp.task('copyJs:landing', function() {
 
     return gulp
         .src(src)
+        .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(concat('app.min.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 

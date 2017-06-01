@@ -6,7 +6,6 @@
         .module('app')
         .controller('ApproveRegistrationsController', ApproveRegistrationsController);
 
-    ApproveRegistrationsController.$inject = ['users', 'AppModalService', 'UserService'];
     function ApproveRegistrationsController(users, AppModalService, UserService) {
 
         const vm = this;

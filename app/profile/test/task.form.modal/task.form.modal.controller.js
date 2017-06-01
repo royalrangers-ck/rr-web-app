@@ -6,7 +6,6 @@
         .module('app')
         .controller('TaskFormModalController', TaskFormModalController);
 
-    TaskFormModalController.$inject = ['$uibModalInstance'];
     function TaskFormModalController ($uibModalInstance) {
         const vm = this;
 

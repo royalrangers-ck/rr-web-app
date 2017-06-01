@@ -6,7 +6,6 @@
         .module('app')
         .factory('UserFactory', UserFactory);
 
-    UserFactory.$inject = ['$resource', 'Endpoints'];
     function UserFactory($resource, Endpoints) {
 
         return $resource(Endpoints.USER, {userId: '@userId'}, {

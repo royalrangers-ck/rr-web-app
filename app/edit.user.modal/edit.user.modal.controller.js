@@ -6,7 +6,6 @@
         .module('app')
         .controller('EditUserModalController', EditUserModalController);
 
-    EditUserModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'currentUser', 'UserFactory', 'PublicInfoFactory', 'Constants', 'Ranks', 'AppModalService'];
     function EditUserModalController($log, growl, $uibModalInstance, currentUser, UserFactory, PublicInfoFactory, Constants, Ranks, AppModalService) {
         const vm = this;
 

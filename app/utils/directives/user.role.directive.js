@@ -27,7 +27,6 @@
         .directive("admin", Admin)
         .directive("superAdmin", SuperAdmin);
 
-    User.$inject = ['Constants', 'UserService'];
     function User(Constants, UserService) {
         return {
             restrict: 'E',
@@ -36,12 +35,11 @@
             template: '<div ng-if="role.toUpperCase() === userRole.toUpperCase()"><ng-transclude></ng-transclude></div>',
             controller: ['$scope', function (scope) {
                 scope.role = Constants.AUTHORITIES.ROLE_USER.name;
-                scope.userRole = UserService.getTopAuthority().toUpperCase();
+                scope.userRole = UserService.getTopAuthority().name.toUpperCase();
             }]
         }
     }
 
-    Admin.$inject = ['Constants', 'UserService'];
     function Admin(Constants, UserService) {
         return {
             restrict: 'E',
@@ -50,12 +48,11 @@
             template: '<div ng-if="role.toUpperCase() === userRole.toUpperCase()"><ng-transclude></ng-transclude></div>',
             controller: ['$scope', function (scope) {
                 scope.role = Constants.AUTHORITIES.ROLE_ADMIN.name;
-                scope.userRole = UserService.getTopAuthority().toUpperCase();
+                scope.userRole = UserService.getTopAuthority().name.toUpperCase();
             }]
         }
     }
 
-    SuperAdmin.$inject = ['Constants', 'UserService'];
     function SuperAdmin(Constants, UserService) {
         return {
             restrict: 'E',
@@ -64,7 +61,7 @@
             template: '<div ng-if="role.toUpperCase() === userRole.toUpperCase()"><ng-transclude></ng-transclude></div>',
             controller: ['$scope', function (scope) {
                 scope.role = Constants.AUTHORITIES.ROLE_ADMIN.name;
-                scope.userRole = UserService.getTopAuthority().toUpperCase();
+                scope.userRole = UserService.getTopAuthority().name.toUpperCase();
             }]
         }
     }

@@ -5,8 +5,7 @@
     angular
         .module('app')
         .factory('PublicInfoFactory', PublicInfoFactory);
-
-    PublicInfoFactory.$inject = ['$resource', 'Endpoints'];
+    
     function PublicInfoFactory($resource, Endpoints) {
 
         return $resource(Endpoints.PUBLIC, null, {

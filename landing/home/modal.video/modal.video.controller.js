@@ -6,7 +6,6 @@
         .module('app')
         .controller('VideoModalController', VideoModalController);
 
-    VideoModalController.$inject = ['$uibModalInstance'];
     function VideoModalController($uibModalInstance) {
         const vm = this;
 

@@ -6,7 +6,6 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['growl', '$window', '$http', '$routeSegment', 'TokenService', 'Endpoints', '$log'];
     function LoginController(growl, $window, $http, $routeSegment, TokenService, Endpoints, $log) {
         const vm = this;
 

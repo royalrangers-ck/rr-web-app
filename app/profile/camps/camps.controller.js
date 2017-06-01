@@ -6,7 +6,6 @@
         .module('app')
         .controller('ProfileCampsController', ProfileCampsController);
 
-    ProfileCampsController.$inject = ['$log', 'AppModalService'];
     function ProfileCampsController ($log, AppModalService) {
         const vm = this;
         vm.inCampsDay = 459;
