@@ -34,6 +34,8 @@
         // Endpoind /auth  handle POST authentication request
         constants.AUTH = constants.API + '/auth';
 
+        constants.FORGOT_PASSWORD = constants.PUBLIC + '/forgotPassword';
+
         // OTHER
 
         // Unsecured API maybe placed in /open/** path
