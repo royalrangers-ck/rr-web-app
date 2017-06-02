@@ -10,7 +10,8 @@
 
         $routeSegmentProvider.when('/forgotPassword', 'forgotPassword').segment('forgotPassword', {
             templateUrl: 'utils/auth/forgot.password/forgot.password.html',
-            controller: 'ForgotPasswordController'
+            controller: 'ForgotPasswordController',
+            controllerAs: 'vm'
         });
     }
 })();
