@@ -29,6 +29,11 @@
             }
         };
 
+        constants.GENDER = {
+            M: 'Чоловіча',
+            F: 'Жіноча'
+        };
+
         return constants;
     }
 

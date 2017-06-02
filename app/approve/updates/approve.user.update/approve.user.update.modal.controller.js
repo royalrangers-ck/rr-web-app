@@ -6,7 +6,7 @@
         .module('app')
         .controller('ApproveUserUpdateModalController', ApproveUserUpdateModalController);
 
-    function ApproveUserUpdateModalController (originalUser, modifiedUser, growl, $uibModalInstance, UserFactory, PublicInfoFactory, $routeSegment, Ranks) {
+    function ApproveUserUpdateModalController (originalUser, modifiedUser, growl, $uibModalInstance, UserFactory, PublicInfoFactory, $routeSegment, Ranks, Constants) {
         const vm = this;
 
         vm.originalUser = {};
@@ -29,13 +29,7 @@
             if (originalUser && originalUser.success) {
                 vm.originalUser = originalUser.data;
 
-                if (originalUser.data.gender === "M"){
-                    vm.originalUser.stringGender = "Чоловіча";
-                }
-                if (originalUser.data.gender === "F"){
-                    vm.originalUser.stringGender = "Жіноча";
-                }
-
+                vm.originalUser.stringGender = Constants.GENDER[originalUser.data.gender];
                 vm.originalUser.stringRank = Ranks[originalUser.data.userRank];
             }
 

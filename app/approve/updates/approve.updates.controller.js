@@ -11,7 +11,7 @@
         const vm = this;
 
         let user = UserService.get();
-        let userAuthority = UserService.getTopAuthority().id;
+        let userAuthority = UserService.getTopAuthority();
 
         vm.approveUserUpdate = approveUserUpdate;
 
@@ -25,7 +25,7 @@
                 $('.footable').footable();
             });
 
-            if (userAuthority === 2) {
+            if (userAuthority.id === 2) {
                 vm.adminPlatoonName = user.platoon.name;
             }
 
