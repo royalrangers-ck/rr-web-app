@@ -13,8 +13,8 @@
             controller: 'ApproveRegistrationsController',
             controllerAs: 'vm',
             resolve: {
-                users: function (ApproveRegistrationsService) {
-                    return ApproveRegistrationsService.getApproveRegistrationUsers();
+                users: function (ApproveService) {
+                    return ApproveService.getApproveRegistrationUsers();
                 }
             }
         });

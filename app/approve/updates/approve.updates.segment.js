@@ -13,8 +13,8 @@
             controller: 'ApproveUpdatesController',
             controllerAs: 'vm',
             resolve: {
-                users: function (ApproveUpdatesService) {
-                    return ApproveUpdatesService.getApproveUpdateUsers();
+                users: function (ApproveService) {
+                    return ApproveService.getApproveUpdateUsers();
                 }
             }
         });
