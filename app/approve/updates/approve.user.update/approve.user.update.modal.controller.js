@@ -9,9 +9,6 @@
     function ApproveUserUpdateModalController (originalUser, modifiedUser, growl, $uibModalInstance, UserFactory, PublicInfoFactory, $routeSegment, Ranks) {
         const vm = this;
 
-        console.log(modifiedUser);
-
-
         vm.originalUser = {};
         vm.tempUser = angular.copy(modifiedUser);
         vm.modifiedUser = angular.copy(modifiedUser);
@@ -31,7 +28,15 @@
         function activate() {
             if (originalUser && originalUser.success) {
                 vm.originalUser = originalUser.data;
-                console.log(vm.originalUser);
+
+                if (originalUser.data.gender === "M"){
+                    vm.originalUser.stringGender = "Чоловіча";
+                }
+                if (originalUser.data.gender === "F"){
+                    vm.originalUser.stringGender = "Жіноча";
+                }
+
+                vm.originalUser.stringRank = Ranks[originalUser.data.userRank];
             }
 
             setCountries();
@@ -158,8 +163,3 @@
         }
     }
 })();
-
-
-
-
-
