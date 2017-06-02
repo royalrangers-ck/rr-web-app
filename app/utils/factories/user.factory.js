@@ -13,6 +13,7 @@
                 url: `${Endpoints.USER}/update/temp`,
                 method: 'PUT'
             },
+
             'getApproveRegistrationUsersByPlatoonId': {
                 method: 'GET',
                 url: `${Endpoints.USER}/approve/registration/:platoonId`,
@@ -27,6 +28,16 @@
                     platoonId: '@platoonId'
                 }
             },
+
+            'getApproveRegistrationUsersForSuperAdmin': {
+                method: 'GET',
+                url: `${Endpoints.USER}/approve/registration/super`
+            },
+            'getApproveUpdateUsersForSuperAdmin': {
+                method: 'GET',
+                url: `${Endpoints.USER}/approve/update`
+            },
+
             'approveUpdateUser': {
                 method: 'PUT',
                 url: `${Endpoints.USER}/update/:temp_userId`,
@@ -34,6 +45,7 @@
                     temp_userId: '@temp_userId'
                 }
             },
+
             'approveRegistrationUser': {
                 method: 'POST',
                 url: `${Endpoints.USER}/approve/registration/:userId`,

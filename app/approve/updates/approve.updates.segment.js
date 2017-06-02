@@ -13,9 +13,8 @@
             controller: 'ApproveUpdatesController',
             controllerAs: 'vm',
             resolve: {
-                users: function (UserFactory, UserService) {
-                    let user = UserService.get();
-                    return UserFactory.getApproveUpdateUsersByPlatoonId({platoonId: user.platoon.id}).$promise;
+                users: function (ApproveService) {
+                    return ApproveService.getApproveUpdateUsers();
                 }
             }
         });
