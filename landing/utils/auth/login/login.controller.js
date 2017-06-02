@@ -6,8 +6,8 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    function LoginController(growl, $window, $http, $routeSegment, TokenService, Endpoints, $log) {
-        const vm = this;
+    function LoginController($scope, growl, $window, $http, $controller, TokenService, Endpoints, $log) {
+        const vm = angular.extend(this, $controller('BaseController', {$scope: $scope}));
 
         vm.data = {};
         vm.login = login;
@@ -23,6 +23,11 @@
         }
 
         function login() {
+            let form = vm.getForm(vm.form);
+            if (form.isNotExist() || form.$invalid) {
+                form.unSubmit(); return;
+            }
+
             let req = {
                 email: vm.data.email,
                 password: vm.data.password
@@ -46,10 +51,7 @@
             };
 
             $http.post(Endpoints.AUTH, req, config).then(response);
-
-            vm.form.$setUntouched();
-            vm.form.$setPristine();
-            vm.form.$setDirty();
+            form.reload();
         }
 
         /**

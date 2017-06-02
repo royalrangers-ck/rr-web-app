@@ -6,16 +6,12 @@
         .module('app')
         .controller('ApproveRegistrationsController', ApproveRegistrationsController);
 
-    ApproveRegistrationsController.$inject = ['users', 'AppModalService', 'UserService'];
     function ApproveRegistrationsController(users, AppModalService, UserService) {
 
         const vm = this;
 
         let user = UserService.get();
-
-        vm.usersList = [];
-        vm.currentUser = {};
-        vm.adminPlatoonName = user.platoon.name;
+        let userAuthority = UserService.getTopAuthority();
 
         vm.approveUserRegistration = approveUserRegistration;
 
@@ -28,6 +24,10 @@
             $(document).ready(function () {
                 $('.footable').footable();
             });
+
+            if (userAuthority.id === 2) {
+                vm.adminPlatoonName = user.platoon.name;
+            }
 
             if (users && users.success) {
                 vm.users = users.data;

@@ -6,7 +6,6 @@
         .module('app')
         .factory('UserFactory', UserFactory);
 
-    UserFactory.$inject = ['$resource', 'Endpoints'];
     function UserFactory($resource, Endpoints) {
 
         return $resource(Endpoints.USER, {userId: '@userId'}, {
@@ -14,6 +13,7 @@
                 url: `${Endpoints.USER}/update/temp`,
                 method: 'PUT'
             },
+
             'getApproveRegistrationUsersByPlatoonId': {
                 method: 'GET',
                 url: `${Endpoints.USER}/approve/registration/:platoonId`,
@@ -28,6 +28,16 @@
                     platoonId: '@platoonId'
                 }
             },
+
+            'getApproveRegistrationUsersForSuperAdmin': {
+                method: 'GET',
+                url: `${Endpoints.USER}/approve/registration/super`
+            },
+            'getApproveUpdateUsersForSuperAdmin': {
+                method: 'GET',
+                url: `${Endpoints.USER}/approve/update`
+            },
+
             'approveUpdateUser': {
                 method: 'PUT',
                 url: `${Endpoints.USER}/update/:temp_userId`,
@@ -35,6 +45,7 @@
                     temp_userId: '@temp_userId'
                 }
             },
+
             'approveRegistrationUser': {
                 method: 'POST',
                 url: `${Endpoints.USER}/approve/registration/:userId`,

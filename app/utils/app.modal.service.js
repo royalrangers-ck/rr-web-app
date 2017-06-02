@@ -61,13 +61,13 @@
                         return UserFactory.get({userId: modifiedUser.id}).$promise;
                     },
                     modifiedUser: () => {
-                        return angular.copy(modifiedUser, {});
+                        return modifiedUser;
                     }
                 }
             });
         }
 
-        function editUserModal(currentUser) {
+        function editUserModal() {
             
             return $uibModal.open({
                 animation: true,

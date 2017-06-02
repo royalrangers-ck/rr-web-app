@@ -54,19 +54,19 @@
 
             it.currentUser.authorities.forEach((userAuthority) => {
                 if (userAuthority.name.toUpperCase() === Constants.AUTHORITIES.ROLE_USER.name.toUpperCase()) {
-                    topAuthority = Constants.AUTHORITIES.ROLE_USER.name.toUpperCase();
+                    topAuthority = Constants.AUTHORITIES.ROLE_USER;
                 }
             });
 
             it.currentUser.authorities.forEach((userAuthority) => {
                 if (userAuthority.name.toUpperCase() === Constants.AUTHORITIES.ROLE_ADMIN.name.toUpperCase()) {
-                    topAuthority = Constants.AUTHORITIES.ROLE_ADMIN.name.toUpperCase();
+                    topAuthority = Constants.AUTHORITIES.ROLE_ADMIN;
                 }
             });
 
             it.currentUser.authorities.forEach((userAuthority) => {
                 if (userAuthority.name.toUpperCase() === Constants.AUTHORITIES.ROLE_SUPER_ADMIN.name.toUpperCase()) {
-                    topAuthority = Constants.AUTHORITIES.ROLE_SUPER_ADMIN.name.toUpperCase();
+                    topAuthority = Constants.AUTHORITIES.ROLE_SUPER_ADMIN;
                 }
             });
 

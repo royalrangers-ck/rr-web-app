@@ -5,7 +5,6 @@
         .module('app')
         .directive('maintenanceWork', MaintenanceWork);
 
-    MaintenanceWork.$inject = [];
     function MaintenanceWork () {
         return {
             restrict: 'E',

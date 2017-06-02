@@ -6,7 +6,7 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    function ProfileTestsController($log, $http, AppModalService, Endpoints) {
+    function ProfileTestsController($log, AppModalService, allTestsResolve) {
         const vm = this;
 
         vm.tests = [];
@@ -24,11 +24,12 @@
 
         function getTests() {
             vm.infoMessage = 'Пошук тестів...';
-            $http.get(Endpoints.TEST).then(
+            allTestsResolve.$promise.then(
                 (res) => {
-                    if (res.data.success) {
-                        vm.tests = normalizeStructureTests(res.data.data);
-                        if (vm.tests.length != 0) {
+                    $log.debug(res);
+                    if (res.success) {
+                        vm.tests = normalizeStructureTests(res.data);
+                        if (vm.tests.length !== 0) {
                             vm.infoMessage = '';
                         }
                         else {

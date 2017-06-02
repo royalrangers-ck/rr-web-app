@@ -6,16 +6,13 @@
         .module('app')
         .controller('ApproveUpdatesController', ApproveUpdatesController);
 
-    ApproveUpdatesController.$inject = ['users', 'AppModalService', 'UserService'];
     function ApproveUpdatesController(users, AppModalService, UserService) {
 
         const vm = this;
 
         let user = UserService.get();
+        let userAuthority = UserService.getTopAuthority();
 
-        vm.users = [];
-        vm.currentUser = {};
-        vm.adminPlatoonName = user.platoon.name;
         vm.approveUserUpdate = approveUserUpdate;
 
         activate();
@@ -27,6 +24,10 @@
             $(document).ready(function () {
                 $('.footable').footable();
             });
+
+            if (userAuthority.id === 2) {
+                vm.adminPlatoonName = user.platoon.name;
+            }
 
             if (users && users.success) {
                 vm.users = users.data;

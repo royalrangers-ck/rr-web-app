@@ -6,7 +6,7 @@
         .module('app')
         .controller('EditUserModalController', EditUserModalController);
 
-    function EditUserModalController($log, growl, $uibModalInstance, currentUser, UserFactory, PublicInfoFactory, Constants, Ranks, AppModalService) {
+    function EditUserModalController(growl, $uibModalInstance, currentUser, UserFactory, PublicInfoFactory, Constants, Ranks, AppModalService) {
         const vm = this;
 
         vm.modifiedUser = angular.copy(currentUser);
@@ -44,9 +44,9 @@
                 telephoneNumber: vm.modifiedUser.telephoneNumber,
                 birthDate: +moment(vm.modifiedUser.birthDate),
                 countryId: vm.modifiedUser.country && vm.modifiedUser.country.id,
-                regionId: vm.modifiedUser.region && vm.modifiedUser.country.id,
-                cityId: vm.modifiedUser.city && vm.modifiedUser.country.id,
-                platoonId: vm.modifiedUser.platoon && vm.modifiedUser.country.id,
+                regionId: vm.modifiedUser.region && vm.modifiedUser.region.id,
+                cityId: vm.modifiedUser.city && vm.modifiedUser.city.id,
+                platoonId: vm.modifiedUser.platoon && vm.modifiedUser.platoon.id,
                 sectionId: vm.modifiedUser.section && vm.modifiedUser.section.id,
                 userRank: vm.modifiedUser.userRank,
             };
@@ -59,9 +59,9 @@
                 telephoneNumber: currentUser.telephoneNumber,
                 birthDate: currentUser.birthDate,
                 countryId: currentUser.country && currentUser.country.id,
-                regionId: currentUser.region && currentUser.country.id,
-                cityId: currentUser.city && currentUser.country.id,
-                platoonId: currentUser.platoon && currentUser.country.id,
+                regionId: currentUser.region && currentUser.region.id,
+                cityId: currentUser.city && currentUser.city.id,
+                platoonId: currentUser.platoon && currentUser.platoon.id,
                 sectionId: currentUser.section && currentUser.section.id,
                 userRank: currentUser && currentUser.userRank,
             };

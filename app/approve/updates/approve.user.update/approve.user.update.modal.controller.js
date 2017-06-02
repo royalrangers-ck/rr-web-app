@@ -6,13 +6,12 @@
         .module('app')
         .controller('ApproveUserUpdateModalController', ApproveUserUpdateModalController);
 
-    ApproveUserUpdateModalController.$inject = ['originalUser', 'modifiedUser', 'growl', '$uibModalInstance', 'UserFactory','PublicInfoFactory', '$routeSegment', 'Ranks'];
-    function ApproveUserUpdateModalController (originalUser, modifiedUser, growl, $uibModalInstance, UserFactory, PublicInfoFactory, $routeSegment, Ranks) {
+    function ApproveUserUpdateModalController (originalUser, modifiedUser, growl, $uibModalInstance, UserFactory, PublicInfoFactory, $routeSegment, Ranks, Constants) {
         const vm = this;
 
         vm.originalUser = {};
-        vm.modifiedUser = modifiedUser;
         vm.tempUser = angular.copy(modifiedUser);
+        vm.modifiedUser = angular.copy(modifiedUser);
 
         vm.changeCountry = changeCountry;
         vm.changeRegion = changeRegion;
@@ -29,6 +28,9 @@
         function activate() {
             if (originalUser && originalUser.success) {
                 vm.originalUser = originalUser.data;
+
+                vm.originalUser.stringGender = Constants.GENDER[originalUser.data.gender];
+                vm.originalUser.stringRank = Ranks[originalUser.data.userRank];
             }
 
             setCountries();
@@ -155,8 +157,3 @@
         }
     }
 })();
-
-
-
-
-

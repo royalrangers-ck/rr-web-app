@@ -15,7 +15,12 @@
                 templateUrl: 'profile/test/test.html',
                 controller: 'ProfileTestController',
                 controllerAs: 'vm',
-                dependencies: ['id']
+                dependencies: ['id'],
+                resolve: {
+                    testResolve: function (ProfileTestService, $routeParams) {
+                        return ProfileTestService.getTest({id: $routeParams.id});
+                    }
+                }
             });
     }
 })();

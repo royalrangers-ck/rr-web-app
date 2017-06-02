@@ -6,7 +6,6 @@
         .module('app')
         .config(NotificationSegment);
 
-    NotificationSegment.$inject = ['$routeSegmentProvider'];
     function NotificationSegment($routeSegmentProvider) {
 
         $routeSegmentProvider.when('/notification/:message', 'notification').segment('notification', {

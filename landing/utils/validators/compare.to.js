@@ -11,7 +11,6 @@
         .module('app')
         .directive('compareTo', CompareTo);
 
-    CompareTo.$inject = [];
     function CompareTo() {
         return {
             restrict: 'A',

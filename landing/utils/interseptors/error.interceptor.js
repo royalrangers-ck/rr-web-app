@@ -6,7 +6,6 @@
         .module('app')
         .factory('ErrorInterceptor', ErrorInterceptor);
 
-    ErrorInterceptor.$inject = ['$q', 'growl', '$location'];
     function ErrorInterceptor($q, growl, $location) {
         let checkError = function (response) {
 

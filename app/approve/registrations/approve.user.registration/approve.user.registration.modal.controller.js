@@ -6,8 +6,7 @@
         .module('app')
         .controller('ApproveUserRegistrationModalController', ApproveUserRegistrationModalController);
 
-    ApproveUserRegistrationModalController.$inject = ['$log', 'growl', '$uibModalInstance', 'currentUser', 'UserFactory', 'PublicInfoFactory', '$routeSegment', 'Ranks'];
-    function ApproveUserRegistrationModalController ($log, growl, $uibModalInstance, currentUser, UserFactory, PublicInfoFactory, $routeSegment, Ranks) {
+    function ApproveUserRegistrationModalController (growl, $uibModalInstance, currentUser, UserFactory, PublicInfoFactory, $routeSegment, Ranks) {
         const vm = this;
         const confirmDeleteModal = '#ConfirmDelete';
 
