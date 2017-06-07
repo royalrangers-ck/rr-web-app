@@ -1,6 +1,7 @@
 # Files
 *.iml
 *.css
+*.lock
 
 # Foulders
 .idea/
