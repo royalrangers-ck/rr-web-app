@@ -12,7 +12,7 @@
             .when('/achievements/expedition', 'achievements.expedition')
             .within('achievements')
             .segment('expedition', {
-                templateUrl: 'achievements/expedition/expedition.html',
+                templateUrl: 'achievements/expedition/adventure.html',
                 controller: 'AchievementsExpeditionController',
                 controllerAs: 'vm'
             });
