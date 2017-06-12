@@ -43,7 +43,7 @@ $ npm install gulpjs/gulp-cli -g
 
 To start VM:
 
-    $ cd ./royal-rangers-frontend/vagrant
+    $ cd ./royal-rangers-frontend/scripts/vagrant/x64
     $ vagrant up
 
 To update npm dependencies:
@@ -57,17 +57,17 @@ To open app in browser:
 
 To stop VM:
 
-    $ cd ./royal-rangers-frontend/vagrant
+    $ cd ./royal-rangers-frontend/scripts/vagrant/x64
     $ vagrant halt -f
 
 To reload VM:
 
-    $ cd ./royal-rangers-frontend/vagrant
+    $ cd ./royal-rangers-frontend/scripts/vagrant/x64
     $ vagrant reload
 
 To recreate VM:
 
-    $ cd ./royal-rangers-frontend/vagrant
+    $ cd ./royal-rangers-frontend/scripts/vagrant/x64
     $ vagrant destroy -f
     $ vagrant up
 
@@ -84,9 +84,9 @@ To run test:
 
 For folders use camelCase. Examples of folder names:
 
-    ./contactUs
-    ./aboutUs
-    ./forgotPasword
+    ./contact.us
+    ./about.us
+    ./forgot.pasword
 
 For files use dot. Examples of file names:
 
@@ -104,7 +104,7 @@ For files use dot. Examples of file names:
 
 ## Authors
 
-* **Oleg Polishchuk** - *Frontend team lead*
+* **Oleg Polishchuk** - *Frontend Lead Dev*
 * **Daria Dementieva** - *Project Manager*
 * **Alina** - *Frontend Dev*
 * **Ilia Makarov** - *Frontend Dev*
@@ -112,4 +112,3 @@ For files use dot. Examples of file names:
 * **Dima Smoliar** - *JS Dev*
 * **Andrey Kondakov** - *JS Dev*
 * **Myroslav Telychko** - *JS Dev*
-
