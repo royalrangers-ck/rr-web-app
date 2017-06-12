@@ -17,7 +17,7 @@
         function getSlider () {
 
             return {
-                interval: 2000,
+                interval: 7000,
                 noWrapSlides: false,
                 active: 0,
                 slides: [{
