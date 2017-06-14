@@ -108,12 +108,17 @@
             });
         }
 
-        function taskFormModal () {
+        function taskFormModal (test) {
             return $uibModal.open({
                 animation: true,
                 templateUrl: 'profile/test/task.form.modal/task.form.modal.html',
                 controller: 'TaskFormModalController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    currentTest: () => {
+                        return test;
+                    }
+                }
             });
         }
     }
