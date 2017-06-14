@@ -6,7 +6,7 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    function ProfileTestsController($log, AppModalService, allTestsResolve) {
+    function ProfileTestsController($log, AppModalService, allTestsResolve, userTestsResolve) {
         const vm = this;
 
         vm.tests = [];
@@ -28,8 +28,10 @@
                 (res) => {
                     $log.debug(res);
                     if (res.success) {
+                        addTestsStates(res.data);
                         vm.tests = normalizeStructureTests(res.data);
                         if (vm.tests.length !== 0) {
+                            $log.debug('Tests loaded:', vm.tests);
                             vm.infoMessage = '';
                         }
                         else {
@@ -40,6 +42,16 @@
                 (err) => {
                     vm.infoMessage = '';
                 });
+        }
+
+        function addTestsStates(tests) {
+            userTestsResolve.$promise.then((res) => {
+                $log.debug('Load user tests:', res.data);
+                res.data.forEach((userTest) => {
+                    tests.find((test) => test.id == userTest.test.id)
+                    .achievementState = userTest.achievementState;
+                });
+            });
         }
 
         /**

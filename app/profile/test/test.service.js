@@ -6,9 +6,10 @@
         .module('app')
         .service('ProfileTestService', ProfileTestService);
 
-    function ProfileTestService($http, ProfileTestFactory) {
+    function ProfileTestService(UserTestsFactory, ProfileTestFactory) {
 
         this.getTest = ProfileTestFactory.get;
+        this.startTest = UserTestsFactory.save;
 
     }
 
