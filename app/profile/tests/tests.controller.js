@@ -6,13 +6,17 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    function ProfileTestsController($log, AppModalService, allTestsResolve) {
+    function ProfileTestsController($log, AppModalService, allTestsResolve, UserService) {
         const vm = this;
 
         vm.tests = [];
         vm.infoMessage = '';
         vm.profileModal = profileModal;
         vm.newTestModal = newTestModal;
+        vm.currentUser = getUser();
+        vm.isCreateNewTestPermission = isCreateNewTestPermission;
+
+        $log.debug('user:', vm.currentUser);
 
         activate();
 
@@ -84,6 +88,15 @@
 
         function newTestModal() {
             AppModalService.testFormModal();
+        }
+
+        function getUser () {
+            return UserService.get();
+        }
+
+        function isCreateNewTestPermission () {
+            let topAuthority = UserService.getTopAuthority();
+            return topAuthority.name === 'ROLE_SUPER_ADMIN';
         }
     }
 })();

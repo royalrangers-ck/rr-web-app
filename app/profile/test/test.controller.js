@@ -14,6 +14,7 @@
         vm.currentUser = UserService.get();
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
         vm.taskFormModal = AppModalService.taskFormModal;
+        vm.isCreateNewTaskPermission = isCreateNewTaskPermission;
 
         activate();
 
@@ -51,6 +52,11 @@
                     {id: 12, name: 'Isaiah Cabrera', platoon: 'Platoon 12', date: '10.02.2018'}
                 ]
             }
+        }
+
+        function isCreateNewTaskPermission () {
+            let topAuthority = UserService.getTopAuthority();
+            return topAuthority.name === 'ROLE_SUPER_ADMIN';
         }
     }
 })();
