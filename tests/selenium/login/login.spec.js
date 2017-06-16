@@ -20,6 +20,7 @@ describe('Velocitum Inventory App', function () {
 
         // When
         element(by.css(LOGIN_PAGE.SUBMIT_BTN)).submit();
+        browser.sleep(5000);
 
         // Then
         expect(element(by.binding(LOGIN_PAGE.USER_NAME)).getText()).toBe(GENERAL.USER_NAME);

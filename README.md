@@ -39,6 +39,12 @@ https://nodejs.org/dist/v6.10.0/node-v6.10.0-x64.msi
 $ npm install gulpjs/gulp-cli -g
 ```
 
+4. Install Protractor
+
+```
+$ npm install protractor -g
+```
+
 ### Running
 
 To start VM:
@@ -104,11 +110,16 @@ For files use dot. Examples of file names:
 
 ## Testing
 
-To run end-to-end tests:
+To run Selenium end-to-end tests:
 
-    .\node_modules\.bin\webdriver-manager update
-    .\node_modules\.bin\webdriver-manager start
-    .\node_modules\.bin\protractor .\tests\selenium\conf.js
+    $ cd ./tests/selenium
+    $ webdriver-manager update && webdriver-manager start
+    $ protractor conf.js
+    
+To run Karma unit tests:
+
+    $ cd ./tests/karma
+    $ karma start
     
     
 ## Authors

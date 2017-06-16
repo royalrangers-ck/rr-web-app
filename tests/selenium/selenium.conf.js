@@ -1,4 +1,5 @@
-// conf.js
+// Selenium configuration
+// Updated on Fri Jun 16 2017 22:11:34 GMT+0300 (FLE Daylight Time)
 
 exports.config = {
     framework: 'jasmine',

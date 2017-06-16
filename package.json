@@ -4,8 +4,15 @@
   "private": true,
   "description": "Royal-Rangers Frontend",
   "scripts": {
-    "postinstall": "bower install",
-    "prestart": "npm install"
+    "preinstall": "npm install gulpjs/gulp-cli protractor ntl -g",
+    "postinstall": "bower install && gulp build:dev",
+    "prestart": "npm install",
+    "vagrant-start": "cd scripts/vagrant/x64/ && vagrant up",
+    "vagrant-stop": "cd scripts/vagrant/x64/ && vagrant halt -f",
+    "vagrant-reload": "cd scripts/vagrant/x64/ && vagrant reload",
+    "karma": "karma start tests/karma/karma.conf.js",
+    "selenium-server": "webdriver-manager update && webdriver-manager start",
+    "selenium": "protractor tests/selenium/selenium.conf.js"
   },
   "devDependencies": {
     "babel-plugin-transform-runtime": "6.23.0",
@@ -28,6 +35,7 @@
     "karma": "1.5.0",
     "karma-chrome-launcher": "2.0.0",
     "karma-jasmine": "1.1.0",
+    "karma-spec-reporter": "0.0.31",
     "protractor": "5.1.2"
   },
   "dependencies": {},
