@@ -27,7 +27,8 @@
     "jasmine-core": "2.5.2",
     "karma": "1.5.0",
     "karma-chrome-launcher": "2.0.0",
-    "karma-jasmine": "1.1.0"
+    "karma-jasmine": "1.1.0",
+    "protractor": "5.1.2"
   },
   "dependencies": {},
   "optionalDependencies": {}

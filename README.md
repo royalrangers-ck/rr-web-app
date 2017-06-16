@@ -102,6 +102,15 @@ For files use dot. Examples of file names:
 * [NPM](https://nodejs.org/dist/v6.10.0/node-v6.10.0-x64.msi) - Dependency Management
 * [Gulp](https://gulp.readme.io/docs/getting-started) - Used to compile and minify js and css
 
+## Testing
+
+To run end-to-end tests:
+
+    .\node_modules\.bin\webdriver-manager update
+    .\node_modules\.bin\webdriver-manager start
+    .\node_modules\.bin\protractor .\tests\selenium\conf.js
+    
+    
 ## Authors
 
 * **Oleg Polishchuk** - *Frontend Lead Dev*
