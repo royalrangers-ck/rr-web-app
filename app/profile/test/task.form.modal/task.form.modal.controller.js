@@ -6,7 +6,7 @@
         .module('app')
         .controller('TaskFormModalController', TaskFormModalController);
 
-    function TaskFormModalController (currentTest, $uibModalInstance, $http, Endpoints, growl, $log) {
+    function TaskFormModalController (currentTest, $uibModalInstance, growl, ProfileTestFactory) {
         const vm = this;
 
         vm.submit = submit;
@@ -20,19 +20,21 @@
                 return vm.form.$submitted = false;
             }
 
-            let data = {
+            let req = {
                 name: vm.task.name,
                 description: vm.task.description,
                 testId: currentTest.id
             };
 
-            $http.post(Endpoints.ACHIEVEMENTS_TASK, data).then((res) => {
-                if (res.data.success) {
-                    growl.success(res.data.data.message);
-                    currentTest.taskList.push(data);
+            ProfileTestFactory.createTask(req, (res) => {
+                if (res.success) {
+                    growl.success(res.data.message);
                     $uibModalInstance.close();
+
+                    // ToDo.zpawn: push response task in taskList
+                    currentTest.taskList.push(req);
                 } else {
-                    growl.error(res.data.data.message);
+                    growl.error(res.data.message);
                 }
             });
         }

@@ -27,15 +27,16 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <!--<div class="table-responsive">-->
 
         <div class="ibox">
             <div class="ibox-title">
-                <div class="ibox-tools" ng-if="vm.isCreateNewTaskPermission()">
-                    <a class="btn btn-white" ng-click="vm.taskFormModal(vm.test)">Додати ще</a>
-                </div>
+                <super-admin>
+                    <div class="ibox-tools">
+                        <a class="btn btn-white" ng-click="vm.taskFormModal(vm.test)">Додати ще</a>
+                    </div>
+                </super-admin>
             </div>
-            <div class="ibox-content" style="display: block;">
+            <div class="ibox-content">
 
                 <table class="table table-striped">
                     <thead>
@@ -62,7 +63,5 @@
                 </table>
             </div>
         </div>
-
-        <!--</div>-->
     </div>
 </div>

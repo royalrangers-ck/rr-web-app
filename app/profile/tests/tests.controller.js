@@ -6,7 +6,7 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    function ProfileTestsController($log, AppModalService, allTestsResolve, UserService) {
+    function ProfileTestsController(AppModalService, allTestsResolve, UserService) {
         const vm = this;
 
         vm.tests = [];
@@ -14,9 +14,6 @@
         vm.profileModal = profileModal;
         vm.newTestModal = newTestModal;
         vm.currentUser = getUser();
-        vm.isCreateNewTestPermission = isCreateNewTestPermission;
-
-        $log.debug('user:', vm.currentUser);
 
         activate();
 
@@ -30,7 +27,6 @@
             vm.infoMessage = 'Пошук тестів...';
             allTestsResolve.$promise.then(
                 (res) => {
-                    $log.debug(res);
                     if (res.success) {
                         vm.tests = normalizeStructureTests(res.data);
                         if (vm.tests.length !== 0) {
@@ -92,11 +88,6 @@
 
         function getUser () {
             return UserService.get();
-        }
-
-        function isCreateNewTestPermission () {
-            let topAuthority = UserService.getTopAuthority();
-            return topAuthority.name === 'ROLE_SUPER_ADMIN';
         }
     }
 })();

@@ -27,16 +27,9 @@
                             name="testType"
                             ng-model="vm.test.testType"
                             ng-required="true"
-                            lazy-validation-on="vm.form.$submitted">
+                            lazy-validation-on="vm.form.$submitted"
+                            ng-options="type as type for type in vm.testTypes">
                         <option class="hidden" value="" disabled>Оберіть тип</option>
-                        <option value="GREEN">GREEN</option>
-                        <option value="ORANGE">ORANGE</option>
-                        <option value="BROWN">BROWN</option>
-                        <option value="PLATINUM">PLATINUM</option>
-                        <option value="RED">RED</option>
-                        <option value="YELLOW">YELLOW</option>
-                        <option value="LIGHTBLUE">LIGHTBLUE</option>
-                        <option value="BLUE">BLUE</option>
                     </select>
                     <p class="help-block" ng-show="vm.form.testType.$dirty && vm.form.testType.$error.required">This field is required.</p>
                 </div>

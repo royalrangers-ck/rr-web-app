@@ -2,9 +2,11 @@
     <div class="ibox-title profile__title">
         <h1>Тести</h1>
 
-        <div ng-if="vm.isCreateNewTestPermission()" class="ibox-tools">
-            <a class="btn btn-white" ng-click="vm.newTestModal()">Додати новий тест</a>
-        </div>
+        <super-admin>
+            <div class="ibox-tools">
+                <a class="btn btn-white" ng-click="vm.newTestModal()">Додати новий тест</a>
+            </div>
+        </super-admin>
     </div>
 </div>
 

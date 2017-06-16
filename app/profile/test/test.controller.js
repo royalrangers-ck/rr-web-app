@@ -6,7 +6,7 @@
         .module('app')
         .controller('ProfileTestController', ProfileTestController);
 
-    function ProfileTestController($routeSegment, $http, Endpoints, UserService, Constants, AppModalService, testResolve, $log) {
+    function ProfileTestController(UserService, Constants, AppModalService, testResolve) {
         const vm = this;
 
         vm.test = {};
@@ -14,7 +14,6 @@
         vm.currentUser = UserService.get();
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
         vm.taskFormModal = AppModalService.taskFormModal;
-        vm.isCreateNewTaskPermission = isCreateNewTaskPermission;
 
         activate();
 
@@ -28,7 +27,6 @@
             testResolve.$promise.then((res) => {
                 if (res.success) {
                     vm.test = res.data;
-                    $log.debug('Test loaded:', vm.test);
                 }
             });
         }
@@ -52,11 +50,6 @@
                     {id: 12, name: 'Isaiah Cabrera', platoon: 'Platoon 12', date: '10.02.2018'}
                 ]
             }
-        }
-
-        function isCreateNewTaskPermission () {
-            let topAuthority = UserService.getTopAuthority();
-            return topAuthority.name === 'ROLE_SUPER_ADMIN';
         }
     }
 })();

@@ -6,11 +6,12 @@
         .module('app')
         .controller('TestFormModalController', TestFormModalController);
 
-    function TestFormModalController ($uibModalInstance, $http, Endpoints, growl, $location, $log) {
+    function TestFormModalController ($uibModalInstance, growl, ProfileTestsFactory, $location) {
         const vm = this;
 
         vm.close = close;
         vm.submit = submit;
+        vm.testTypes = ['DEFAULT', 'BLUE', 'GREEN', 'YELLOW', 'LIGHTBLUE', 'RED', 'ORANGE', 'BROWN', 'PLATINUM'];
 
         ////
 
@@ -24,17 +25,18 @@
                 return vm.form.$submitted = false;
             }
 
-            let data = {
+            let req = {
                 name: vm.test.name,
                 shortDescription: vm.test.shortDescription,
                 description: vm.test.description,
                 testType: vm.test.testType
             };
 
-            $http.post(Endpoints.ACHIEVEMENTS_TEST, data).then((res) => {
+            ProfileTestsFactory.createTest(req, () => (res) => {
                 if (res.data.success) {
                     growl.success(res.data.data.message);
                     $uibModalInstance.close();
+                    // ToDo.zpawn: redirect to test page
                 } else {
                     growl.error(res.data.data.message);
                 }
