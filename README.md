@@ -39,6 +39,12 @@ https://nodejs.org/dist/v6.10.0/node-v6.10.0-x64.msi
 $ npm install gulpjs/gulp-cli -g
 ```
 
+4. Install Protractor
+
+```
+$ npm install protractor -g
+```
+
 ### Running
 
 To start VM:
@@ -102,6 +108,20 @@ For files use dot. Examples of file names:
 * [NPM](https://nodejs.org/dist/v6.10.0/node-v6.10.0-x64.msi) - Dependency Management
 * [Gulp](https://gulp.readme.io/docs/getting-started) - Used to compile and minify js and css
 
+## Testing
+
+To run Selenium end-to-end tests:
+
+    $ cd ./tests/selenium
+    $ webdriver-manager update && webdriver-manager start
+    $ protractor conf.js
+    
+To run Karma unit tests:
+
+    $ cd ./tests/karma
+    $ karma start
+    
+    
 ## Authors
 
 * **Oleg Polishchuk** - *Frontend Lead Dev*
