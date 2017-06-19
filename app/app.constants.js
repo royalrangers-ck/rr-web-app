@@ -34,6 +34,14 @@
             F: 'Жіноча'
         };
 
+        constants.ACHIEVEMENTS_STATES = {
+            NOT_STARTED: 'Не розпочатий',
+            IN_PROGRESS: 'Виконується',
+            SUBMITTED: 'Перевірка',
+            APPROVED: 'Виконаний',
+            REJECTED: 'Провалений'
+        };
+
         return constants;
     }
 
