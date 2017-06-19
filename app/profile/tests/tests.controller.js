@@ -6,13 +6,14 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    function ProfileTestsController($log, AppModalService, allTestsResolve, userTestsResolve) {
+    function ProfileTestsController($log, AppModalService, allTestsResolve, userTestsResolve, Constants) {
         const vm = this;
 
         vm.tests = [];
         vm.infoMessage = '';
         vm.profileModal = profileModal;
         vm.newTestModal = newTestModal;
+        vm.states = Constants.ACHIEVEMENTS_STATES;
 
         activate();
 
@@ -46,12 +47,19 @@
 
         function addTestsStates(tests) {
             userTestsResolve.$promise.then((res) => {
-                $log.debug('Load user tests:', res.data);
                 res.data.forEach((userTest) => {
-                    tests.find((test) => test.id == userTest.test.id)
-                    .achievementState = userTest.achievementState;
+                    addState(tests.find((test) => test.id == userTest.test.id), userTest.achievementState);
                 });
             });
+
+            function addState(test, testState) {
+                let cons = Constants.ACHIEVEMENTS_STATES;
+                if (!test && !testState) return;
+                test.rejected = cons[testState] == cons.REJECTED;
+                if (!test.rejected) {
+                    test.status = cons[testState] ? cons[testState] : testState;
+                }
+            }
         }
 
         /**
