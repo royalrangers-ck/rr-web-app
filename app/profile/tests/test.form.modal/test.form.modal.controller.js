@@ -34,11 +34,11 @@
 
             ProfileTestsFactory.createTest(req, (res) => {
                 if (res.data.success) {
-                    growl.success(res.data.data.message);
+                    growl.success(res.data.message);
                     $uibModalInstance.close();
                     // ToDo.zpawn: redirect to test page
                 } else {
-                    growl.error(res.data.data.message);
+                    growl.error(res.data.message);
                 }
             });
         }
