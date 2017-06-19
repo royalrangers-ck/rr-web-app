@@ -6,7 +6,7 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    function ProfileTestsController(AppModalService, allTestsResolve, UserService) {
+    function ProfileTestsController(userTestsResolve, allTestsResolve, Constants, AppModalService, UserService) {
         const vm = this;
 
         vm.tests = [];
