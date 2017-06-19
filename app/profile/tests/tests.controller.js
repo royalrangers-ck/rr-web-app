@@ -6,7 +6,7 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    function ProfileTestsController($log, AppModalService, allTestsResolve, userTestsResolve, Constants) {
+    function ProfileTestsController(AppModalService, allTestsResolve, UserService) {
         const vm = this;
 
         vm.tests = [];
@@ -14,6 +14,7 @@
         vm.profileModal = profileModal;
         vm.newTestModal = newTestModal;
         vm.states = Constants.ACHIEVEMENTS_STATES;
+        vm.currentUser = getUser();
 
         activate();
 
@@ -27,12 +28,10 @@
             vm.infoMessage = 'Пошук тестів...';
             allTestsResolve.$promise.then(
                 (res) => {
-                    $log.debug(res);
                     if (res.success) {
                         addTestsStates(res.data);
                         vm.tests = normalizeStructureTests(res.data);
                         if (vm.tests.length !== 0) {
-                            $log.debug('Tests loaded:', vm.tests);
                             vm.infoMessage = '';
                         }
                         else {
@@ -104,6 +103,10 @@
 
         function newTestModal() {
             AppModalService.testFormModal();
+        }
+
+        function getUser () {
+            return UserService.get();
         }
     }
 })();

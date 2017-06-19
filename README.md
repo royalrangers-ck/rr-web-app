@@ -86,20 +86,36 @@ To run test:
     $ karma start
 
 
-### Coding style
+### Project style guide
 
-For folders use camelCase. Examples of folder names:
+Folder naming. For example:
 
     ./contact.us
     ./about.us
-    ./forgot.pasword
+    ./forgot.password
 
-For files use dot. Examples of file names:
+File naming. For example:
 
     app.js
     app.constant.js
     user.controller.js
     user.edit.controller.js
+
+Success response object:
+
+    var successResponse = {
+        success: true,
+        data: {}
+    }
+
+Error response object:
+
+    var errorResponse = {
+        success: false,
+        data: {
+            message: "Internal server error"
+        }
+    }
 
 
 ## Built With

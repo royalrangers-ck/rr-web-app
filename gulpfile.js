@@ -248,17 +248,15 @@ gulp.task('copyJs:landing', function() {
 
 
 gulp.task('sass:app:dev', function() {
-    var src = [
-        'app/*.scss',
-        'app/**/*.scss',
-        '!app/static/sass/*.scss',
-        '!app/static/sass/**/*.scss'
-    ];
-    var dest = './';
+    var src = ['app/static/sass/app.scss'];
+    var dest = 'app/static/vendor/css/.';
 
     return gulp
-        .src(src, {base: './'})
+        .src(src)
+        .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer(autoprefixerOptions))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -280,17 +278,15 @@ gulp.task('sass:app', gulp.parallel('sass:app:dev', 'sass:app:prod'));
 
 
 gulp.task('sass:landing:dev', function() {
-    var src = [
-        'landing/*.scss',
-        'landing/**/*.scss',
-        '!landing/static/sass/*.scss',
-        '!landing/static/sass/**/*.scss'
-    ];
-    var dest = './';
+    var src = ['landing/static/sass/app.scss'];
+    var dest = 'landing/static/vendor/css/.';
 
     return gulp
-        .src(src, {base: './'})
+        .src(src)
+        .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer(autoprefixerOptions))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
 });
 
@@ -429,14 +425,14 @@ gulp.task('build:app:prod', gulp.series(
  * Application: Watch & Compile styles
  */
 gulp.task('sass:app:watch', function() {
-    gulp.watch('app/static/sass/**/*.scss', gulp.series('sass:app:prod'));
+    gulp.watch('app/static/sass/**/*.scss', gulp.series('sass:app:dev'));
 });
 
 /**
  * Landing: Watch & Compile styles
  */
 gulp.task('sass:landing:watch', function() {
-    gulp.watch('landing/static/sass/**/*.scss', gulp.series('sass:landing:prod'));
+    gulp.watch('landing/static/sass/**/*.scss', gulp.series('sass:landing:dev'));
 });
 
 /**

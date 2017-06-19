@@ -6,7 +6,7 @@
         .module('app')
         .controller('ProfileTestController', ProfileTestController);
 
-    function ProfileTestController($routeSegment, $http, Endpoints, UserService, Constants, AppModalService, testResolve, $log, ProfileTestService, $location) {
+    function ProfileTestController(UserService, Constants, AppModalService, testResolve) {
         const vm = this;
 
         vm.test = {};
@@ -28,7 +28,6 @@
             testResolve.$promise.then((res) => {
                 if (res.success) {
                     vm.test = res.data;
-                    $log.debug('Test loaded:', vm.test);
                 }
             });
         }
