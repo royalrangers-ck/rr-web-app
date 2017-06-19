@@ -32,7 +32,7 @@
                 testType: vm.test.testType
             };
 
-            ProfileTestsFactory.createTest(req, () => (res) => {
+            ProfileTestsFactory.createTest(req, (res) => {
                 if (res.data.success) {
                     growl.success(res.data.data.message);
                     $uibModalInstance.close();
