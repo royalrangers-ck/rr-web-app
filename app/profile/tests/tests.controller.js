@@ -6,13 +6,14 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    function ProfileTestsController($log, AppModalService, allTestsResolve) {
+    function ProfileTestsController(AppModalService, allTestsResolve, UserService) {
         const vm = this;
 
         vm.tests = [];
         vm.infoMessage = '';
         vm.profileModal = profileModal;
         vm.newTestModal = newTestModal;
+        vm.currentUser = getUser();
 
         activate();
 
@@ -26,7 +27,6 @@
             vm.infoMessage = 'Пошук тестів...';
             allTestsResolve.$promise.then(
                 (res) => {
-                    $log.debug(res);
                     if (res.success) {
                         vm.tests = normalizeStructureTests(res.data);
                         if (vm.tests.length !== 0) {
@@ -84,6 +84,10 @@
 
         function newTestModal() {
             AppModalService.testFormModal();
+        }
+
+        function getUser () {
+            return UserService.get();
         }
     }
 })();

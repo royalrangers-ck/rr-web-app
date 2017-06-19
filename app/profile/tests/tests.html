@@ -1,6 +1,12 @@
 <div class="ibox profile">
     <div class="ibox-title profile__title">
         <h1>Тести</h1>
+
+        <super-admin>
+            <div class="ibox-tools">
+                <a class="btn btn-white" ng-click="vm.newTestModal()">Додати новий тест</a>
+            </div>
+        </super-admin>
     </div>
 </div>
 
@@ -15,9 +21,6 @@
 <div class="ibox profile" ng-repeat="testsGroup in vm.tests">
     <div class="ibox-title profile__title">
         <h2>{{ testsGroup.name }}</h2>
-        <div class="ibox-tools">
-            <a class="btn btn-white" ng-click="vm.newTestModal()">Додати новий тест</a>
-        </div>
     </div>
 
     <div class="ibox-content">
