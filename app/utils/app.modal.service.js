@@ -29,7 +29,9 @@
                         return achievement;
                     }
                 }
-            });
+            }).result.then(function () {
+                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+            }, function (res) {});
         }
 
         function approveUserRegistrationModal(currentUser) {
@@ -45,7 +47,9 @@
                         return angular.copy(currentUser);
                     }
                 }
-            });
+            }).result.then(function () {
+                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+            }, function (res) {});
         }
 
         function approveUserUpdateModal(modifiedUser) {
@@ -64,11 +68,13 @@
                         return modifiedUser;
                     }
                 }
-            });
+            }).result.then(function () {
+                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+            }, function (res) {});
         }
 
         function editUserModal() {
-            
+
             return $uibModal.open({
                 animation: true,
                 templateUrl: 'edit.user.modal/edit.user.modal.html',
@@ -80,7 +86,9 @@
                         return UserService.get();
                     }
                 }
-            });
+            }).result.then(function () {
+                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+            }, function (res) {});
         }
 
         function uploadUserLogo(options) {
@@ -96,7 +104,9 @@
                         return options;
                     }
                 }
-            })
+            }).result.then(function () {
+                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+            }, function (res) {})
         }
 
         function testFormModal () {
@@ -105,7 +115,9 @@
                 templateUrl: 'profile/tests/test.form.modal/test.form.modal.html',
                 controller: 'TestFormModalController',
                 controllerAs: 'vm'
-            });
+            }).result.then(function () {
+                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+            }, function (res) {});
         }
 
         function taskFormModal (test) {
@@ -119,7 +131,9 @@
                         return test;
                     }
                 }
-            });
+            }).result.then(function () {
+                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+            }, function (res) {});
         }
     }
 })();
