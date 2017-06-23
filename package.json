@@ -10,6 +10,10 @@
     "vagrant-start": "cd scripts/vagrant/x64/ && vagrant up",
     "vagrant-stop": "cd scripts/vagrant/x64/ && vagrant halt -f",
     "vagrant-reload": "cd scripts/vagrant/x64/ && vagrant reload",
+    "vagrant_x32-start": "cd scripts/vagrant/x32/ && vagrant up",
+    "vagrant_x32-stop": "cd scripts/vagrant/x32/ && vagrant halt -f",
+    "vagrant_x32-reload": "cd scripts/vagrant/x32/ && vagrant reload",
+    "backend-start": "cd ../rr-api/ && gradlew.bat bootRun",
     "karma": "karma start tests/karma/karma.conf.js",
     "selenium-server": "webdriver-manager update && webdriver-manager start",
     "selenium": "protractor tests/selenium/selenium.conf.js"

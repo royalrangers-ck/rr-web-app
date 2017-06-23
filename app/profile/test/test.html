@@ -13,11 +13,18 @@
                     <div class="col-xs-12 col-sm-6">
                         <h2>{{ vm.test.name }}</h2>
                     </div>
-
                     <div class="col-xs-12">{{ vm.test.description }}</div>
 
-                    <div class="col-xs-12 m-t">
-                        <a href="" ng-click="vm.startTest()" class="btn btn-primary btn-block btn-lg">Виконати</a>
+                    <div ng-if="!vm.showStopBtn" class="col-xs-12 m-t">
+                        <a href="" ng-disabled="vm.startBtnDisabled" ng-click="vm.startBtnDisabled || vm.startTest()" class="btn btn-primary btn-block btn-lg">
+                        Виконати
+                        </a>
+                    </div>
+
+                    <div ng-if="vm.showStopBtn" class="col-xs-12 m-t">
+                        <a href="" ng-click="vm.stopTest()" class="btn btn-danger btn-block btn-lg">
+                        Відмовитися
+                        </a>
                     </div>
                 </div>
             </div>
@@ -27,7 +34,6 @@
 
 <div class="row">
     <div class="col-xs-12">
-
         <div class="ibox">
             <div class="ibox-title">
                 <super-admin>
@@ -37,7 +43,6 @@
                 </super-admin>
             </div>
             <div class="ibox-content">
-
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -54,9 +59,22 @@
                                 <p ng-show="item.description">{{item.description}}</p>
                             </td>
                             <td>
-                                <a class="text-info" href="" ng-disabled="true" ng-click="">
-                                <i class="fa fa-check fa-3x"></i>
-                            </a>
+                                <div class="btn-group btn-group-nowrap" uib-dropdown>
+                                    <button id="split-button" type="button" 
+                                    class="btn btn-default"
+                                    ng-class="{'active': item.completed}"
+                                    ng-click="item.completed = item.completed ? false : true">
+                                    Виконано
+                                    </button>
+                                    <button type="button" class="btn btn-default" uib-dropdown-toggle>
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Split button!</span>
+                                    </button>
+                                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                                        <li role="menuitem"><a href="#">Відмінити</a></li>
+                                        <li role="menuitem"><a href="#">Завершити</a></li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
