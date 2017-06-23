@@ -194,6 +194,7 @@ gulp.task('copyScripts:landing', function () {
 
 gulp.task('copyApp:app', function () {
     var src = [
+        'bootstrap/bootstrap.js',
         'app/app.js',
         'app/config.js',
         'app/**/*.js',

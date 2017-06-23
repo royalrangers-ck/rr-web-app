@@ -1,3 +1,7 @@
+/**
+ * Token Scheduler
+ * @namespace Services
+ */
 (() => {
 
     'use strict';

@@ -44,6 +44,7 @@ exports.dependencies = function () {
 
 exports.application = function () {
     var src = [
+        'bootstrap/bootstrap.js',
         'admin/admin.app.js',
         'admin/admin.constants.js',
         'admin/admin.config.js',

@@ -40,14 +40,11 @@
             API: '/api'
         };
 
-        //PUBLIC INFO ENDPOINT
-        endpoints.PUBLIC = endpoints.API + '/public';
-
         //ROLES
         endpoints.ROLES = {
-            user: 'ROLE_USER',
-            admin: 'ROLE_ADMIN',
-            superAdmin: 'ROLE_SUPER_ADMIN'
+            USER: 'ROLE_USER',
+            ADMIN: 'ROLE_ADMIN',
+            SUPER_ADMIN: 'ROLE_SUPER_ADMIN'
         };
 
         return endpoints;
@@ -55,7 +52,15 @@
 
     function Menu() {
         return [
-            {name: 'Створити', route: '#/created'}
+            {
+                name: 'Створити',
+                route: '',
+                submenu: [
+                    {name: 'Країну',    route: '#/create/country'},
+                    {name: 'Місто',    route: '#/create/city'},
+                    {name: 'Регіон',     route: '#/create/region'},
+                ]
+            }
         ];
     }
 

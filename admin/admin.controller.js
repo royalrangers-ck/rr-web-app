@@ -6,7 +6,7 @@
         .module('admin')
         .controller('AppController', AppController);
 
-    function AppController(Menu, Ranks, Constants, Endpoints, TokenScheduler, UserService, $timeout) {
+    function AppController(Menu, Constants, TokenScheduler, UserService, $timeout) {
         const vm = this;
 
         let currentUser = UserService.fetchFromStorage();
@@ -15,8 +15,6 @@
         vm.sidebarMenu = Menu;
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
         vm.currentUser = UserService.get();
-        vm.getUserRank = getUserRank;
-        vm.isShow = isShow;
 
         activate();
 
@@ -26,10 +24,6 @@
             TokenScheduler.refresh(Constants.TOKEN_REFRESH_INTERVAL);
             initMenu();
             hideLoadingModal();
-        }
-
-        function getUserRank(currentUser) {
-            return vm.ranksNames[currentUser.userRank];
         }
 
         function initMenu() {
@@ -42,21 +36,6 @@
             $timeout(() => {
                 $('#loading-modal').modal('hide');
             }, 1000);
-        }
-
-        function isShow(item) {
-            if (!item.adminsOnly) {
-                return true;
-            }
-
-            let allow = false;
-            vm.currentUser.authorities.forEach(function (role) {
-                if (role.name == Endpoints.ROLES.admin || role.name == Endpoints.ROLES.superAdmin) {
-                    allow = true;
-                }
-            });
-
-            return allow;
         }
     }
 

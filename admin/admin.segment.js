@@ -6,16 +6,13 @@
         .module('admin')
         .config(AppSegment);
 
-    function AppSegment($routeSegmentProvider, $routeProvider) {
-        $routeSegmentProvider.options.autoLoadTemplates = true;
+    function AppSegment($routeSegmentProvider) {
 
-        $routeSegmentProvider.when('/', 'app').segment('app', {
+        $routeSegmentProvider.when('/', 'home').segment('home', {
             'default': true,
             templateUrl: 'home/home.html',
             controller: 'HomeController',
             controllerAs: 'vm'
         });
-
-        $routeProvider.otherwise({redirectTo: '/'});
     }
 })();

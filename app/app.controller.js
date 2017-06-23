@@ -7,7 +7,6 @@
 
     function AppController(Menu, Ranks, Constants, Endpoints, TokenScheduler, UserService, $timeout) {
         const vm = this;
-        debugger
 
         let currentUser = UserService.fetchFromStorage();
         UserService.save(currentUser);
@@ -19,21 +18,18 @@
         vm.getUserRank = getUserRank;
         vm.isShow = isShow;
 
-        debugger
         activate();
 
         ////
 
         function activate() {
-            // TokenScheduler.refresh(Endpoints.TOKEN_REFRESH_INTERVAL);
-            // initMenu();
-            // hideLoadingModal();
+            TokenScheduler.refresh(Endpoints.TOKEN_REFRESH_INTERVAL);
+            initMenu();
+            hideLoadingModal();
         }
         
         function getUserRank(currentUser) {
-            debugger
-
-            // return vm.ranksNames[currentUser.userRank];
+            return vm.ranksNames[currentUser.userRank];
         }
 
         function initMenu() {

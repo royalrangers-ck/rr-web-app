@@ -14,9 +14,12 @@
                 </div>
 
                 <ul class="list-unstyled visible-xs">
-                    <li class="m-b"><img class="img-responsive center-block" src="static/images/demo/platoon.png"
-                                         alt="platoon"></li>
-                    <li><img class="img-responsive center-block" src="static/images/demo/rank.png" alt="rank"></li>
+                    <li class="m-b">
+                        <img class="img-responsive center-block" src="static/vendor/images/demo/platoon.png"
+                             alt="platoon">
+                    </li>
+                    <li><img class="img-responsive center-block" src="static/vendor/images/demo/rank.png" alt="rank">
+                    </li>
                 </ul>
             </div>
 
@@ -29,20 +32,26 @@
                     </ul>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                    <p class="h4">{{vm.getUserRank(vm.currentUser)}}</p>
+                    <p class="h4">{{ vm.currentUser.userRankLabel }}</p>
                     <ul class="list-unstyled">
                         <li><span class="text-uppercase">{{ currentUser.group.name }}</span></li>
-                        <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet architecto cumque dolor
-                            expedita illo ipsa magnam, magni, nulla numquam quis quisquam sunt ullam ut vitae. Ab ea nam
-                            nihil.</p></li>
+                        <li>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet architecto cumque dolor
+                                expedita illo ipsa magnam, magni, nulla numquam quis quisquam sunt ullam ut vitae. Ab ea
+                                nam nihil.
+                            </p>
+                        </li>
                     </ul>
                 </div>
             </div>
 
             <div class="col-sm-2 hidden-xs">
                 <ul class="list-unstyled">
-                    <li class="m-b"><img class="img-responsive" src="static/images/demo/platoon.png" alt="platoon"></li>
-                    <li><img class="img-responsive" src="static/images/demo/rank.png" alt="rank"></li>
+                    <li class="m-b">
+                        <img class="img-responsive" src="static/vendor/images/demo/platoon.png" alt="platoon">
+                    </li>
+                    <li><img class="img-responsive" src="static/vendor/images/demo/rank.png" alt="rank"></li>
                 </ul>
             </div>
         </div>

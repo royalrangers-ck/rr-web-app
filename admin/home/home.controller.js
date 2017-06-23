@@ -1,3 +1,7 @@
+/**
+ * Home Controller
+ * @namespace Controllers
+ */
 (() => {
 
     'use strict';
@@ -6,27 +10,20 @@
         .module('admin')
         .controller('HomeController', HomeController);
 
-    function HomeController($log, Ranks, Constants, UserService, AppModalService) {
+    function HomeController(Constants, UserService, ModalDialogService) {
         const vm = this;
 
-        vm.ranksNames = Ranks;
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
         vm.currentUser = UserService.get();
         vm.uploadUserLogo = uploadUserLogo;
-        vm.getUserRank = getUserRank;
 
         activate();
 
-        function uploadUserLogo(data) {
-            AppModalService.uploadUserLogo(data);
-        }
-
         function activate() {
-            $log.debug('Init HomeController ...');
         }
 
-        function getUserRank(currentUser) {
-            return vm.ranksNames[currentUser.userRank];
+        function uploadUserLogo(data) {
+            ModalDialogService.uploadUserLogo(data);
         }
     }
 })();

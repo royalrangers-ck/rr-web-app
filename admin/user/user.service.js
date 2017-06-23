@@ -10,7 +10,7 @@
         .module('admin')
         .service('UserService', UserService);
 
-    function UserService(Constants) {
+    function UserService(Constants, Ranks) {
         let it = this;
 
         it.currentUser = {};
@@ -34,6 +34,10 @@
                 if (user.hasOwnProperty(key)) {
                     it.currentUser[key] = user[key];
                 }
+            }
+
+            if (!it.currentUser.userRankLabel) {
+                it.currentUser.userRankLabel = Ranks[it.currentUser.userRank];
             }
         }
 

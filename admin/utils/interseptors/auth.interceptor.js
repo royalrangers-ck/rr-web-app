@@ -1,3 +1,7 @@
+/**
+ * Auth Interceptor
+ * @namespace Factories
+ */
 (function () {
 
     'use strict';
@@ -6,7 +10,7 @@
         .module('admin')
         .factory('AuthInterceptor', AuthInterceptor);
 
-    function AuthInterceptor($q, $injector, TokenService) {
+    function AuthInterceptor($q, TokenService) {
         return {
             request: function (config) {
                 addToken(config);

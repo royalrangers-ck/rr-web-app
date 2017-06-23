@@ -1,3 +1,7 @@
+/**
+ * Error Interceptor
+ * @namespace Factories
+ */
 (function () {
 
     'use strict';

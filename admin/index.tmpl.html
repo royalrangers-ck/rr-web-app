@@ -53,7 +53,7 @@
                                     </strong>
                                 </span>
                                 <span class="block m-t-xs">
-                                    <strong class="font-bold"><!--{{vm.getUserRank(vm.currentUser)}}--></strong>
+                                    <strong class="font-bold">{{ vm.currentUser.userRankLabel }}</strong>
                                 </span>
                             </span>
                         </a>
@@ -61,7 +61,7 @@
                 </li>
 
                 <li ng-repeat="item in vm.sidebarMenu">
-                    <a ng-show="vm.isShow(item)" href="{{ item.route }}">
+                    <a href="{{ item.route }}">
                         <span class="nav-label">{{ item.name }}</span>
                         <span class="fa arrow" ng-if="item.submenu"></span>
                     </a>

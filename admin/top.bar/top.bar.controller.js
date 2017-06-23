@@ -1,3 +1,7 @@
+/**
+ * Top Bar Controller
+ * @namespace Controllers
+ */
 (() => {
 
     'use strict';
@@ -6,7 +10,7 @@
         .module('admin')
         .controller('TopBarController', TopBarController);
 
-    function TopBarController($log, $window, TokenService, AppModalService) {
+    function TopBarController($window, TokenService, ModalDialogService) {
         const vm = this;
 
         vm.logout = logout;
@@ -14,8 +18,10 @@
 
         activate();
 
-
         ////
+
+        function activate() {
+        }
 
         function logout() {
             TokenService.clean();
@@ -23,11 +29,7 @@
         }
 
         function editUser() {
-            AppModalService.editUserModal();
-        }
-
-        function activate() {
-            $log.debug('Init TopBarController...');
+            ModalDialogService.editUserModal();
         }
     }
 })();
