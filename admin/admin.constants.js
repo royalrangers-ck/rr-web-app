@@ -3,13 +3,19 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('admin')
         .constant('Constants', Constants())
         .constant('Endpoints', Endpoints())
+        .constant('Menu', Menu())
         .constant('Ranks', Ranks());
 
     function Constants() {
         let constants = {};
+
+        constants.DEFAULT_IMG_SRC = 'static/vendor/images/user.png';
+
+        // Token refresh interval
+        constants.TOKEN_REFRESH_INTERVAL = 1000 * 60 * 30; // 30min
 
         constants.AUTHORITIES = {
             ROLE_USER: {
@@ -30,46 +36,27 @@
     }
 
     function Endpoints() {
-        let constants = {
+        let endpoints = {
             API: '/api'
         };
 
-        // REGISTRATION
-        constants.REGISTRATION = constants.API + '/registration';
+        //PUBLIC INFO ENDPOINT
+        endpoints.PUBLIC = endpoints.API + '/public';
 
-        // PUBLIC DATA API
-        constants.PUBLIC = constants.API + '/public';
+        //ROLES
+        endpoints.ROLES = {
+            user: 'ROLE_USER',
+            admin: 'ROLE_ADMIN',
+            superAdmin: 'ROLE_SUPER_ADMIN'
+        };
 
-        constants.COUNTRIES = constants.PUBLIC + '/countries';
-        constants.REGIONS = constants.PUBLIC + '/regions';
-        constants.REGION = constants.PUBLIC + '/region';
-        constants.CITIES = constants.PUBLIC + '/cities';
-        constants.CITY = constants.PUBLIC + '/city';
-        constants.PLATOONS = constants.PUBLIC + '/platoons';
-        constants.PLATOON = constants.PUBLIC + '/platoon';
-        constants.SECTIONS = constants.PUBLIC + '/sections';
-        constants.SECTION = constants.PUBLIC + '/section';
-        constants.RANKS = constants.PUBLIC + '/ranks';
+        return endpoints;
+    }
 
-        // LOGIN
-
-        // Endpoind /auth  handle POST authentication request
-        constants.AUTH = constants.API + '/auth';
-
-        constants.FORGOT_PASSWORD = constants.PUBLIC + '/forgotPassword';
-
-        // OTHER
-
-        // Unsecured API maybe placed in /open/** path
-        constants.OPEN = constants.API + '/open';
-
-        // Demo /user  returns autorized user info
-        constants.USER = constants.API + '/user';
-
-        // Subscribe
-        constants.SUBSCRIBE = constants.API + '/subscribe';
-
-        return constants;
+    function Menu() {
+        return [
+            {name: 'Створити', route: '#/created'}
+        ];
     }
 
     function Ranks() {
@@ -107,5 +94,4 @@
 
         return ranks;
     }
-
 })();

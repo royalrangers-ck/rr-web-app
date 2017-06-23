@@ -6,7 +6,7 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    function LoginController($scope, growl, $window, $http, $controller, TokenService, Endpoints, $log) {
+    function LoginController($scope, growl, $window, $http, $controller, UserService, TokenService, Endpoints, $log) {
         const vm = angular.extend(this, $controller('BaseController', {$scope: $scope}));
 
         vm.data = {};
@@ -25,10 +25,11 @@
         function login() {
             let form = vm.getForm(vm.form);
             if (form.isNotExist() || form.$invalid) {
-                form.unSubmit(); return;
+                form.unSubmit();
+                return;
             }
 
-            let req = {
+            let data = {
                 email: vm.data.email,
                 password: vm.data.password
             };
@@ -43,14 +44,14 @@
                     if (res.data.success) {
                         TokenService.save(res.data.data.token);
                         window.localStorage.setItem('token', res.data.data.token);
-                        $window.location.pathname = '/app/';
+                        redirectUserToThePageAccordingToHisRole();
                     } else {
                         growl.info(res.data.data.message);
                     }
                 }
             };
 
-            $http.post(Endpoints.AUTH, req, config).then(response);
+            $http.post(Endpoints.AUTH, data, config).then(response);
             form.reload();
         }
 
@@ -85,14 +86,40 @@
                     }
                 };
 
-                $http(req).then(function successCallback(response) {
-                    $log.debug('YEAH! It`s good token', response);
-                    $window.location.pathname = '/app/'
-                }, function errorCallback(response) {
-                    $log.debug('No! It`s bad token', response);
-                    TokenService.clean();
-                });
+                $http(req)
+                    .then((res) => {
+                        redirectUserToThePageAccordingToHisRole();
+                    }, (err) => {
+                        TokenService.clean();
+                    });
             }
+        }
+
+        /**
+         * Redirect user to the page according to his or her role
+         *
+         * @description For now user can be redirected to:
+         *
+         * - /admin/#/ (route for admin application)
+         * - /app/#/ (route for users application)
+         */
+        function redirectUserToThePageAccordingToHisRole() {
+            UserService.requestUser((res) => {
+                if (!res.data.success) {
+                    return growl.info(res.data.data.data.message);
+                }
+
+                UserService.save(res.data.data);
+
+                let isSuperAdmin = UserService.isSuperAdmin;
+                if (isSuperAdmin()) {
+                    $window.location.hash = '#/';
+                    $window.location.pathname = '/admin/';
+                } else {
+                    $window.location.hash = '#/';
+                    $window.location.pathname = '/app/';
+                }
+            });
         }
     }
 })();

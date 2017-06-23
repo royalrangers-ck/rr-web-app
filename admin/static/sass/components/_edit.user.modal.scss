@@ -1,0 +1,84 @@
+//Styles for "Edit user modal" page
+//Author - Vasiliy Dikun
+//aliases: "a-eum" - "application - edit user modal"
+
+.a-eum-modal {
+    &__section-header {
+        margin: 0 15px 15px;
+    }
+    &__avatar-wrapper {
+        margin-bottom: 15px;
+    }
+
+    &__avatar-img {
+        height: 100%;
+    }
+}
+
+.a-eum-label {
+    border-bottom: 1px solid #e5e6e7;
+    color: #18a689;
+    font-weight: bold;
+}
+    
+.a-eum-avatar {
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+    &>img {
+        height: auto;
+        width: 45%;
+    }
+}
+
+.a-eum-title {
+    text-align: center;
+    font-size: 20px;
+}
+
+
+@media (min-width: $screen-md-min) {
+    .a-eum-modal {
+        &__section {
+            position: relative;
+        }
+        &__avatar-wrapper {
+            position: absolute;
+            top: 0;
+            bottom: 15px;
+            height: 80%;
+            margin: auto;
+            padding-left: 80px;
+        }
+    }
+    .a-eum-avatar {
+        &>img {
+            height: 100%;
+            width: auto;
+        }
+    }
+}
+
+// Styles for ng-img-crop
+img-crop {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  overflow: hidden
+}
+
+img-crop canvas {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent
+}
+
+.cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  height: 350px;
+}

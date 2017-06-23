@@ -2,6 +2,7 @@
 *.iml
 *.css
 *.lock
+package-lock.json
 
 # Foulders
 .idea/
@@ -12,6 +13,10 @@ ssh/
 project/
 .sass-cache/
 template-sources/
+
+# Admin Application
+admin/static/vendor/*
+admin/index.html
 
 # Main Application
 app/static/vendor/*

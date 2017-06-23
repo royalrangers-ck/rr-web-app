@@ -1,0 +1,69 @@
+.home {
+  .home__subtitle-list {
+
+    li {
+      @media (max-width: $screen-sm-max) {
+        display: inline-block;
+        padding-right: 10px;
+      }
+    }
+  }
+
+  .update-logo-btn {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+//Modal window for upload user logo
+#upload-user-logo-modal {
+  .modal-header {
+    h3 {
+      font-size: 1.5em;
+      text-align: center;
+    }
+  }
+  .modal-body {
+    .input-file {
+      /*First off, we need to hide the ugly input.
+       CSS properties such as display: none or visibility: hidden will not work out.*/
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+    .input-file + label {
+      font-size: 1.25em;
+      font-weight: 700;
+      color: white;
+      display: block;
+      margin: auto auto 10px;
+      cursor: pointer; /* "hand" cursor */
+      span {
+        text-align: center;
+      }
+    }
+    .input-file:focus + label {
+      outline: 1px dotted #000;
+      outline: -webkit-focus-ring-color auto 5px;
+    }
+    img {
+      display: block;
+      margin: auto;
+      max-height: 400px;
+    }
+    .modal-upload-confirm-btn {
+      font-size: 1.25em;
+      font-weight: 700;
+      color: white;
+      display: block;
+      margin: 10px 0 0 0;
+      cursor: pointer; /* "hand" cursor */
+    }
+  }
+}
+
+

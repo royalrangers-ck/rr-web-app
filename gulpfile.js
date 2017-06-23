@@ -9,18 +9,46 @@ var babel = require('gulp-babel');
 var autoprefixer = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
 var ngAnnotate = require('gulp-ng-annotate');
-var sourcemaps =require('gulp-sourcemaps');
+var sourcemaps = require('gulp-sourcemaps');
 
 var autoprefixerOptions = {
     browsers: ['last 2 versions'],
 };
 
 
+/* ------------------- */
+/*        Admin        */
+/* ------------------- */
+
+gulp.task('admin:clean', require('./gulp-tasks/admin/clean'));
+gulp.task('admin:copy:fonts', require('./gulp-tasks/admin/copy/fonts'));
+gulp.task('admin:copy:html', require('./gulp-tasks/admin/copy/html'));
+gulp.task('admin:copy:images', require('./gulp-tasks/admin/copy/images'));
+gulp.task('admin:copy:scripts:dependencies', require('./gulp-tasks/admin/copy/scripts').dependencies);
+gulp.task('admin:copy:scripts:application', require('./gulp-tasks/admin/copy/scripts').application);
+gulp.task('admin:copy:scripts', gulp.parallel('admin:copy:scripts:dependencies', 'admin:copy:scripts:application'));
+gulp.task('admin:copy:styles', require('./gulp-tasks/admin/copy/styles'));
+gulp.task('admin:update-src-links', require('./gulp-tasks/admin/update.src.links'));
+
+/* ------------------- */
+/*    General tasks    */
+gulp.task('default', gulp.series(
+    'admin:clean',
+    'admin:copy:fonts',
+    'admin:copy:html',
+    'admin:copy:images',
+    'admin:copy:scripts',
+    'admin:copy:styles',
+    'admin:update-src-links'
+));
+
+
+/* ------------------- */
 function updateSrcLinks(cb) {
     var fs = require('fs'),
         files = ['app/index.html', 'landing/index.html'];
 
-    files.forEach(function(path) {
+    files.forEach(function (path) {
         var file = fs.readFileSync(path, 'utf8');
         file = file.replace(/(\?t=[0-9]+)/g, '?t=' + Date.now());
         fs.writeFileSync(path, file);
@@ -38,7 +66,7 @@ gulp.task('copy-index-html', function () {
         .pipe(gulp.dest('./'))
 })
 
-gulp.task('clear:app', function() {
+gulp.task('clear:app', function () {
     var src = [
         'app/*.css',
         'app/**/*.css',
@@ -50,7 +78,7 @@ gulp.task('clear:app', function() {
         .pipe(clean())
 });
 
-gulp.task('clear:landing', function() {
+gulp.task('clear:landing', function () {
     var src = [
         'landing/*.css',
         'landing/**/*.css',
@@ -62,7 +90,7 @@ gulp.task('clear:landing', function() {
         .pipe(clean())
 });
 
-gulp.task('clear:app:js', function() {
+gulp.task('clear:app:js', function () {
     var src = ['app/static/vendor/js/*'];
 
     return gulp
@@ -100,7 +128,6 @@ gulp.task('copyDep:app', () => {
         'bower_components/angular-ui-mask/dist/mask.min.js',
 
 
-
         'app/static/js/*.js'
     ];
     var dest = 'app/static/vendor/js/.';
@@ -114,7 +141,7 @@ gulp.task('copyDep:app', () => {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyDep:landing', function() {
+gulp.task('copyDep:landing', function () {
     var src = [
         'bower_components/jquery/dist/jquery.min.js',
         'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
@@ -145,7 +172,7 @@ gulp.task('copyDep:landing', function() {
 });
 
 
-gulp.task('copyScripts:app', function() {
+gulp.task('copyScripts:app', function () {
     var src = ['app/static/js/*.js'];
     var dest = 'app/static/vendor/js/.';
 
@@ -155,7 +182,7 @@ gulp.task('copyScripts:app', function() {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyScripts:landing', function() {
+gulp.task('copyScripts:landing', function () {
     var src = ['landing/static/js/*.js'];
     var dest = 'landing/static/vendor/js/.';
 
@@ -165,7 +192,7 @@ gulp.task('copyScripts:landing', function() {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyApp:app', function() {
+gulp.task('copyApp:app', function () {
     var src = [
         'app/app.js',
         'app/config.js',
@@ -179,7 +206,7 @@ gulp.task('copyApp:app', function() {
         .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(babel({presets: ['es2015']}))
-        .on('error', function(e) {
+        .on('error', function (e) {
             console.log('>>> ERROR', e.message);
             this.emit('end');
         })
@@ -189,7 +216,7 @@ gulp.task('copyApp:app', function() {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyApp:landing', function() {
+gulp.task('copyApp:landing', function () {
     var src = [
         'landing/app.js',
         'landing/config.js',
@@ -203,7 +230,7 @@ gulp.task('copyApp:landing', function() {
         .pipe(sourcemaps.init())
         .pipe(rename({dirname: ''}))
         .pipe(babel({presets: ['es2015']}))
-        .on('error', function(e) {
+        .on('error', function (e) {
             console.log('>>> ERROR', e.message);
             this.emit('end');
         })
@@ -214,7 +241,7 @@ gulp.task('copyApp:landing', function() {
 });
 
 
-gulp.task('copyJs:app', function() {
+gulp.task('copyJs:app', function () {
     var src = [
         'app/static/vendor/js/dep.js',
         'app/static/vendor/js/app.js'
@@ -230,7 +257,7 @@ gulp.task('copyJs:app', function() {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyJs:landing', function() {
+gulp.task('copyJs:landing', function () {
     var src = [
         'landing/static/vendor/js/dep.js',
         'landing/static/vendor/js/app.js'
@@ -247,7 +274,7 @@ gulp.task('copyJs:landing', function() {
 });
 
 
-gulp.task('sass:app:dev', function() {
+gulp.task('sass:app:dev', function () {
     var src = ['app/static/sass/app.scss'];
     var dest = 'app/static/vendor/css/.';
 
@@ -260,7 +287,7 @@ gulp.task('sass:app:dev', function() {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('sass:app:prod', function() {
+gulp.task('sass:app:prod', function () {
     var src = ['app/static/sass/app.scss'];
     var dest = 'app/static/vendor/css/.';
 
@@ -277,7 +304,7 @@ gulp.task('sass:app:prod', function() {
 gulp.task('sass:app', gulp.parallel('sass:app:dev', 'sass:app:prod'));
 
 
-gulp.task('sass:landing:dev', function() {
+gulp.task('sass:landing:dev', function () {
     var src = ['landing/static/sass/app.scss'];
     var dest = 'landing/static/vendor/css/.';
 
@@ -290,7 +317,7 @@ gulp.task('sass:landing:dev', function() {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('sass:landing:prod', function() {
+gulp.task('sass:landing:prod', function () {
     var src = ['landing/static/sass/app.scss'];
     var dest = 'landing/static/vendor/css/.';
 
@@ -307,7 +334,7 @@ gulp.task('sass:landing:prod', function() {
 gulp.task('sass:landing', gulp.parallel('sass:landing:dev', 'sass:landing:prod'));
 
 
-gulp.task('copyImages:app', function() {
+gulp.task('copyImages:app', function () {
     var src = ['app/static/images/**/*.*'];
     var dest = 'app/static/vendor/images/.';
 
@@ -318,7 +345,7 @@ gulp.task('copyImages:app', function() {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyImages:landing', function() {
+gulp.task('copyImages:landing', function () {
     var src = ['landing/static/images/**/*.*'];
     var dest = 'landing/static/vendor/images/.';
 
@@ -329,7 +356,7 @@ gulp.task('copyImages:landing', function() {
 });
 
 
-gulp.task('copyFonts:app', function() {
+gulp.task('copyFonts:app', function () {
     var src = [
         'bower_components/font-awesome/fonts/*.*',
         'bower_components/footable/css/fonts/*.*',
@@ -341,7 +368,7 @@ gulp.task('copyFonts:app', function() {
     /** if need, please refactor this*/
     gulp.src('bower_components/footable/css/fonts/*.*')
         .pipe(gulp.dest('app/static/vendor/css/fonts/.'));
-    
+
     // Same, but to boostsrap
     // if need, please refactor this
     gulp.src('bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*')
@@ -353,7 +380,7 @@ gulp.task('copyFonts:app', function() {
         .pipe(gulp.dest(dest))
 });
 
-gulp.task('copyFonts:landing', function() {
+gulp.task('copyFonts:landing', function () {
     var src = [
         'bower_components/font-awesome/fonts/*.*',
         'bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*',
@@ -424,21 +451,21 @@ gulp.task('build:app:prod', gulp.series(
 /**
  * Application: Watch & Compile styles
  */
-gulp.task('sass:app:watch', function() {
+gulp.task('sass:app:watch', function () {
     gulp.watch('app/static/sass/**/*.scss', gulp.series('sass:app:dev'));
 });
 
 /**
  * Landing: Watch & Compile styles
  */
-gulp.task('sass:landing:watch', function() {
+gulp.task('sass:landing:watch', function () {
     gulp.watch('landing/static/sass/**/*.scss', gulp.series('sass:landing:dev'));
 });
 
 /**
  * Application: Watch & compile scripts
  */
-gulp.task('js:app:watch', function() {
+gulp.task('js:app:watch', function () {
     var src = [
         'app/**/*.js',
         '!app/static/vendor/**/*.*'
@@ -454,7 +481,7 @@ gulp.task('js:app:watch', function() {
 /**
  * Landing: Watch & compile scripts
  */
-gulp.task('js:landing:watch', function() {
+gulp.task('js:landing:watch', function () {
     var src = [
         'landing/**/*.js',
         '!landing/static/vendor/**/*.*'

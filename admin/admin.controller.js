@@ -1,39 +1,35 @@
 (() => {
+
     'use strict';
 
     angular
-        .module('app')
+        .module('admin')
         .controller('AppController', AppController);
 
     function AppController(Menu, Ranks, Constants, Endpoints, TokenScheduler, UserService, $timeout) {
         const vm = this;
-        debugger
 
         let currentUser = UserService.fetchFromStorage();
         UserService.save(currentUser);
 
-        vm.ranksNames = Ranks;
         vm.sidebarMenu = Menu;
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
         vm.currentUser = UserService.get();
         vm.getUserRank = getUserRank;
         vm.isShow = isShow;
 
-        debugger
         activate();
 
         ////
 
         function activate() {
-            // TokenScheduler.refresh(Endpoints.TOKEN_REFRESH_INTERVAL);
-            // initMenu();
-            // hideLoadingModal();
+            TokenScheduler.refresh(Constants.TOKEN_REFRESH_INTERVAL);
+            initMenu();
+            hideLoadingModal();
         }
-        
-        function getUserRank(currentUser) {
-            debugger
 
-            // return vm.ranksNames[currentUser.userRank];
+        function getUserRank(currentUser) {
+            return vm.ranksNames[currentUser.userRank];
         }
 
         function initMenu() {

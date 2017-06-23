@@ -1,0 +1,59 @@
+//Styles for "Confirm users" page
+//Author - Vasiliy Dikun
+//aliases: "a-cu" - "application - confirm users"
+
+//variables
+$a-cu-table-row-height: 70px; //height to row in table
+$a-cu-table-border-style: 1px solid #e7eaec; //styles to top and bottom borders in row
+
+//styles to table with users list
+.a-cu-table {
+  &__col-name {
+    padding-left: 10px;
+    padding-bottom: 10px;
+  }
+  &__row {
+    height: $a-cu-table-row-height;
+    border-bottom: $a-cu-table-border-style;
+    border-top: $a-cu-table-border-style;
+    &:first-child {
+      border-top: 0;
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+    &:hover{
+      background-color: #f5f5f5;
+    }
+  }
+  &__item {
+    padding-left: 10px;
+    width: 20%;
+    &:last-child {
+      padding-right: 10px;
+      text-align: right;
+    }
+  }
+}
+
+//styles to text in cells
+.a-cu-cell-text {
+  font-size: 1.2em;
+  &_bold {
+    font-weight: bold;
+  }
+  &_size_big {
+    font-size: 1.3em;
+  }
+}
+
+//styles to header
+.a-cu-page-header {
+  text-align: center;
+  &__platoon-name {
+    font-weight: bold;
+    color: #18a689;
+  }
+}
+
+

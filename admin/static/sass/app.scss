@@ -1,0 +1,24 @@
+/** Bootstrap */
+@import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+/** Font Awesome*/
+@import "../../../bower_components/font-awesome/scss/font-awesome.scss";
+
+/** FooTable*/
+@import "../../../bower_components/footable/css/footable.core.min";
+
+/** Angular Growl Notification v.2 */
+@import "../../../bower_components/angular-growl-v2/build/angular-growl.min";
+
+/** Inspinia */
+@import "inspinia/style";
+
+@import "../../../bower_components/angular-bootstrap/ui-bootstrap-csp";
+
+/** App */
+@import "components/home";
+@import "components/styles";
+@import "components/profile";
+@import "components/confirm.users";
+@import "components/edit.user.modal";
+@import "components/form";
