@@ -38,7 +38,7 @@
 
         function setStartButton() {
             if (vm.test.taskList.length != 0) {
-                vm.startBtnEnabled = false;
+                vm.startBtnDisabled = false;
             }
             userTestsResolve.$promise.then((res) => {
                 let userTest = res.data.find(val => val.test.id == vm.test.id);
@@ -58,9 +58,17 @@
         }
 
         function stopTest() {
-            $log.debug('pressed \'StopTest\' button');
+            userTestsResolve.$promise.then((res) => {
+                let userTest = res.data.find(val => val.test.id == vm.test.id);
+                if (userTest) {
+                    ProfileTestService.stopTest({ 'id': userTest.id }).$promise.then(() => {
+                        $location.path('/profile/tests');
+                    });
+                }
+            });
+
         }
-        
+
         function getUserMocks() {
             return {
                 inProgress: [

@@ -11,6 +11,7 @@
         this.getTest = ProfileTestFactory.get;
         this.startTest = UserTestsFactory.save;
         this.getUserTests = UserTestsFactory.get;
+        this.stopTest = UserTestsFactory.delete;
 
     }
 
