@@ -1,10 +1,16 @@
 <div class="ibox profile">
     <div class="ibox-title profile__title">
         <h1>Тести</h1>
+
+        <super-admin>
+            <div class="ibox-tools">
+                <a class="btn btn-white" ng-click="vm.newTestModal()">Додати новий тест</a>
+            </div>
+        </super-admin>
     </div>
 </div>
 
-<div class="ibox" ng-show="vm.infoMessage.length != 0" >
+<div class="ibox" ng-show="vm.infoMessage.length != 0">
     <div class="ibox-content">
         <div class="a-message-box">
             <p>{{vm.infoMessage}}</p>
@@ -15,28 +21,24 @@
 <div class="ibox profile" ng-repeat="testsGroup in vm.tests">
     <div class="ibox-title profile__title">
         <h2>{{ testsGroup.name }}</h2>
-        <div class="ibox-tools">
-            <a class="btn btn-white" ng-click="vm.newTestModal()">Додати новий тест</a>
-        </div>
     </div>
 
     <div class="ibox-content">
         <section class="row achievements">
 
-            <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-repeat="test in testsGroup.list">
+            <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-class="{'not-get': test.rejected}" ng-repeat="test in testsGroup.list">
 
                 <a ng-click="vm.profileModal(test.id, test.testType)">
-                    <!-- Status label -->
-                    <!--<div class="ribbon-in-progress__box">
+                    <div ng-if="test.status" class="ribbon-in-progress__box">
                         <div class="ribbon-in-progress">
-                            <span>in progress</span>
+                            <span>{{test.status}}</span>
                         </div>
-                    </div>-->
+                    </div>
 
                     <img class="img-responsive" src="static/vendor/images/demo/profile.7.jpg" alt="{{ test.name }}">
                     <figcaption class="achievements__item-caption">
-                    <span class="achievements__items-title">{{test.name}}</span>
-                </figcaption>
+                        <span class="achievements__items-title">{{test.name}}</span>
+                    </figcaption>
                 </a>
             </figure>
         </section>

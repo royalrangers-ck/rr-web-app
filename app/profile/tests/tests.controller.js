@@ -6,13 +6,15 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    function ProfileTestsController($log, AppModalService, allTestsResolve) {
+    function ProfileTestsController(userTestsResolve, allTestsResolve, Constants, AppModalService, UserService) {
         const vm = this;
 
         vm.tests = [];
         vm.infoMessage = '';
         vm.profileModal = profileModal;
         vm.newTestModal = newTestModal;
+        vm.states = Constants.ACHIEVEMENTS_STATES;
+        vm.currentUser = getUser();
 
         activate();
 
@@ -26,8 +28,8 @@
             vm.infoMessage = 'Пошук тестів...';
             allTestsResolve.$promise.then(
                 (res) => {
-                    $log.debug(res);
                     if (res.success) {
+                        addTestsStates(res.data);
                         vm.tests = normalizeStructureTests(res.data);
                         if (vm.tests.length !== 0) {
                             vm.infoMessage = '';
@@ -40,6 +42,23 @@
                 (err) => {
                     vm.infoMessage = '';
                 });
+        }
+
+        function addTestsStates(tests) {
+            userTestsResolve.$promise.then((res) => {
+                res.data.forEach((userTest) => {
+                    addState(tests.find((test) => test.id == userTest.test.id), userTest.achievementState);
+                });
+            });
+
+            function addState(test, testState) {
+                let cons = Constants.ACHIEVEMENTS_STATES;
+                if (!test && !testState) return;
+                test.rejected = cons[testState] == cons.REJECTED;
+                if (!test.rejected) {
+                    test.status = cons[testState] ? cons[testState] : testState;
+                }
+            }
         }
 
         /**
@@ -84,6 +103,10 @@
 
         function newTestModal() {
             AppModalService.testFormModal();
+        }
+
+        function getUser () {
+            return UserService.get();
         }
     }
 })();

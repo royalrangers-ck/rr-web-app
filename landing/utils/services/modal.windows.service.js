@@ -17,7 +17,9 @@
                 controller: 'VideoModalController',
                 controllerAs: 'vm',
                 size: 'lg'
-            });
+            }).result.then(function () {
+                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+            }, function (res) {});
         }
     }
 })();

@@ -6,7 +6,7 @@
         .module('app')
         .controller('ProfileTestController', ProfileTestController);
 
-    function ProfileTestController($routeSegment, $http, Endpoints, UserService, Constants, AppModalService, testResolve, $log) {
+    function ProfileTestController(UserService, Constants, AppModalService, testResolve, $location, ProfileTestService) {
         const vm = this;
 
         vm.test = {};
@@ -14,6 +14,7 @@
         vm.currentUser = UserService.get();
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
         vm.taskFormModal = AppModalService.taskFormModal;
+        vm.startTest = startTest;
 
         activate();
 
@@ -27,8 +28,13 @@
             testResolve.$promise.then((res) => {
                 if (res.success) {
                     vm.test = res.data;
-                    $log.debug('Test loaded:', vm.test);
                 }
+            });
+        }
+
+        function startTest() {
+            ProfileTestService.startTest({"testId": vm.test.id}).$promise.then(() => {
+                $location.path('/profile/tests');
             });
         }
 

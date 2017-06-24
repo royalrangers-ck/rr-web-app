@@ -6,9 +6,9 @@
         .module('app')
         .service('ProfileTestsService', ProfileTestsService);
 
-    function ProfileTestsService(ProfileTestsFactory) {
+    function ProfileTestsService(ProfileTestsFactory, UserTestsFactory) {
 
-        this.getUserTests = ProfileTestsFactory.getUserTests;
+        this.getUserTests = UserTestsFactory.get;
         this.getAllTests = ProfileTestsFactory.getAllTests;
 
     }

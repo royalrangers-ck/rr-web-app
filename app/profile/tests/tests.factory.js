@@ -13,8 +13,14 @@
                     method: 'GET',
                     url: Endpoints.ACHIEVEMENTS_USER_TEST
                 },
+
                 'getAllTests': {
                     method: 'GET',
+                    url: Endpoints.ACHIEVEMENTS_TEST
+                },
+
+                'createTest': {
+                    method: 'POST',
                     url: Endpoints.ACHIEVEMENTS_TEST
                 }
             }

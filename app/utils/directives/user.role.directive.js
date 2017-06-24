@@ -60,7 +60,7 @@
             scope: {},
             template: '<div ng-if="role.toUpperCase() === userRole.toUpperCase()"><ng-transclude></ng-transclude></div>',
             controller: ['$scope', function (scope) {
-                scope.role = Constants.AUTHORITIES.ROLE_ADMIN.name;
+                scope.role = Constants.AUTHORITIES.ROLE_SUPER_ADMIN.name;
                 scope.userRole = UserService.getTopAuthority().name.toUpperCase();
             }]
         }

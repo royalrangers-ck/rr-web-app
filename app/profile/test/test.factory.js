@@ -7,7 +7,14 @@
         .factory('ProfileTestFactory', ProfileTestFactory);
 
     function ProfileTestFactory($resource, Endpoints) {
-        return $resource(`${Endpoints.ACHIEVEMENTS_TEST}/:id`, {id: '@id'});
+        return $resource(`${Endpoints.ACHIEVEMENTS_TEST}/:id`, {id: '@id'},
+            {
+                'createTask': {
+                    method: 'POST',
+                    url: Endpoints.ACHIEVEMENTS_TASK
+                }
+            }
+        );
     }
 
 })();
