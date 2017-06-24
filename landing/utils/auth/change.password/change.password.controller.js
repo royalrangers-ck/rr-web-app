@@ -6,7 +6,7 @@
         .module('app')
         .controller('ChangePasswordController', ChangePasswordController);
 
-    function ChangePasswordController ($http, Endpoints, growl, $location, $routeParams, $log) {
+    function ChangePasswordController (tokenResponse, $http, Endpoints, growl, $location) {
         const vm = this;
 
         vm.submit = submit;
@@ -18,7 +18,7 @@
             let req = {
                 method: 'POST',
                 url: Endpoints.CHANGE_PASSWORD,
-                params: { token: $routeParams.token },
+                params: { token: tokenResponse },
                 data: vm.data.password
             };
 

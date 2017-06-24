@@ -8,11 +8,16 @@
 
     function ChangePasswordSegment($routeSegmentProvider) {
 
-        $routeSegmentProvider.when('/changePassword/:token', 'changePassword').segment('changePassword', {
+        $routeSegmentProvider.when('/changePassword', 'changePassword').segment('changePassword', {
             templateUrl: 'utils/auth/change.password/change.password.html',
             controller: 'ChangePasswordController',
             controllerAs: 'vm',
-            dependencies: ['token']
+            dependencies: ['token'],
+            resolve: {
+                tokenResponse: function ($routeParams) {
+                    return $routeParams.token
+                }
+            }
         });
     }
 })();
