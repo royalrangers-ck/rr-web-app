@@ -9,9 +9,13 @@
     function UserFactory($resource, Endpoints) {
 
         return $resource(Endpoints.USER, {userId: '@userId'}, {
+            'getTempUser': {
+                url: `${Endpoints.USER}/temp`,
+                method: 'GET'
+            },
             'updateUser': {
+                method: 'POST',
                 url: `${Endpoints.USER}/update/temp`,
-                method: 'PUT'
             },
 
             'getApproveRegistrationUsersByPlatoonId': {
@@ -39,13 +43,12 @@
             },
 
             'approveUpdateUser': {
-                method: 'PUT',
+                method: 'POST',
                 url: `${Endpoints.USER}/update/:temp_userId`,
                 params: {
                     temp_userId: '@temp_userId'
                 }
             },
-
             'approveRegistrationUser': {
                 method: 'POST',
                 url: `${Endpoints.USER}/approve/registration/:userId`,
