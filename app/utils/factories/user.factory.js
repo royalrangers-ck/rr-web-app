@@ -18,13 +18,6 @@
                 url: `${Endpoints.USER}/update/temp`,
             },
 
-            'getApproveRegistrationUsersByPlatoonId': {
-                method: 'GET',
-                url: `${Endpoints.USER}/approve/registration/:platoonId`,
-                params: {
-                    platoonId: '@platoonId'
-                }
-            },
             'getApproveUpdateUsersByPlatoonId': {
                 method: 'GET',
                 url: `${Endpoints.USER}/approve/update/:platoonId`,
@@ -33,10 +26,11 @@
                 }
             },
 
-            'getApproveRegistrationUsersForSuperAdmin': {
+            'getApproveRegistrationUsers': {
                 method: 'GET',
-                url: `${Endpoints.USER}/approve/registration/super`
+                url: `${Endpoints.USER}/approve/registration`
             },
+
             'getApproveUpdateUsersForSuperAdmin': {
                 method: 'GET',
                 url: `${Endpoints.USER}/approve/update`
