@@ -81,7 +81,7 @@
                 UserFactory.updateUser(request, (res) => {
                     if (res.success) {
                         close();
-                        growl.info('Дані відправлено на перевірку. Очікуйте підтвердження.');
+                        growl.info(res.data.message);
                     } else {
                         growl.error('Помилка:' + res.data.message);
                     }
