@@ -1,0 +1,46 @@
+
+
+
+
+
+<div class="ibox">
+    <div class="ibox-title">
+        <h2>Cities</h2>
+    </div>
+
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <form action="" class="form-horizontal">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="vm.newCity">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" ng-click="vm.createNewCity()">Додати</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Мiсто</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="city in vm.cities">
+                            <td>{{$index+1}}</td>
+                            <td>{{city.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -77,6 +77,7 @@
 
         //PUBLIC INFO ENDPOINT
         endpoints.PUBLIC = endpoints.API + '/public';
+        endpoints.CITIES = endpoints.PUBLIC + '/cities';
 
         // ACHIEVEMENTS
         endpoints.ACHIEVEMENTS = endpoints.API + '/achievements';
@@ -135,7 +136,7 @@
                 ]
             },
             {name: 'Тех.підтримка', route: '#/support'},
-            {name: 'Створити',      route: '#/created'}
+            {name: "Створити", route: "#/create"}
         ];
     }
 
