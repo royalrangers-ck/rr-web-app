@@ -7,10 +7,7 @@
         .service('ProfileTestsService', ProfileTestsService);
 
     function ProfileTestsService(ProfileTestsFactory, UserTestsFactory) {
-
         this.getUserTests = UserTestsFactory.get;
-        this.getAllTests = ProfileTestsFactory.getAllTests;
-
+        this.getTests = ProfileTestsFactory.getTests;
     }
-
 })();

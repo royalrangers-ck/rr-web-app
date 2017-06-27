@@ -3,6 +3,51 @@
     position: relative;
 
     a { color: $text-color; }
+
+    .label {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      color: #fff;
+    }
+
+    &--not-started {
+      .label {
+        display: none;
+      }
+
+      img {
+        -webkit-filter: grayscale(1);
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        filter: url(#greyscale);
+        filter: gray;
+      }
+    }
+
+    &--in-progress {
+      .label {
+        @include label-variant($label-warning-bg);
+      }
+    }
+
+    &--submitted {
+      .label {
+        @include label-variant($label-info-bg);
+      }
+    }
+
+    &--approved {
+      .label {
+        display: none;
+      }
+    }
+
+    &--rejected {
+      .label {
+        @include label-variant($label-danger-bg);
+      }
+    }
   }
 
   .achievements__item-caption {
@@ -22,52 +67,6 @@
     .achievements__item-amount {
       font-weight: bold;
       float: right;
-    }
-  }
-
-}
-.not-get {
-  img {
-    -webkit-filter: grayscale(1);
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
-    filter: url(#greyscale);
-    filter: gray;
-  }
-}
-
-.ribbon-in-progress__box {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: 0 15px;
-
-  .ribbon-in-progress {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    z-index: 1;
-    overflow: hidden;
-
-    span {
-      display: block;
-      position: relative;
-      color: #fff;
-      text-align: center;
-      font-weight: bold;
-      background-color: $navy;
-      padding: 5px 0;
-      left: -(100% * 0.35);
-      top: (100% * 0.15);
-
-      transform: rotate(-45deg);
-      -webkit-transform: rotate(-45deg);
-
-      box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
     }
   }
 }
