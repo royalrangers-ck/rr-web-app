@@ -6,6 +6,7 @@ const gulp = require('gulp'),
     clean = {
         all: all,
         js: js,
+        styles: styles
     };
 
 module.exports = clean;
@@ -26,6 +27,16 @@ function all() {
 
 function js() {
     const src = ['app/static/vendor/js/*'];
+
+    return gulp
+        .src(src, {
+            read: false
+        })
+        .pipe(gulpClean());
+};
+
+function styles() {
+    const src = ['app/static/vendor/css/app.css'];
 
     return gulp
         .src(src, {

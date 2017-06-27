@@ -33,7 +33,18 @@ gulp.task('build:landing', gulp.series(
 ));
 
 // Additional tasks
-gulp.task('clear:landing:js', require('./gulp.tasks/landing/clean').js);
+gulp.task('clear:js:landing', require('./gulp.tasks/landing/clean').js);
+gulp.task('clear:styles:landing', require('./gulp.tasks/landing/clean').styles);
+
+// Watch tasks
+gulp.task('sass:watch:landing', function () {
+    const src = ['landing/static/sass/**/*.scss'];
+    gulp.watch(src, gulp.series('clear:styles:landing', 'sass:landing'));
+});
+gulp.task('js:watch:landing', function () {
+    const src = ['landing/**/*.js', '!landing/static/**/*.*'];
+    gulp.watch(src, gulp.series('clear:js:landing', 'scripts:landing'));
+});
 
 /* ------------------------------------------ */
 /*                 Application                */
@@ -64,7 +75,19 @@ gulp.task('build:application', gulp.series(
 ));
 
 // Additional tasks
-gulp.task('clear:application:js', require('./gulp.tasks/application/clean').js);
+gulp.task('clear:js:application', require('./gulp.tasks/application/clean').js);
+gulp.task('clear:styles:application', require('./gulp.tasks/application/clean').styles);
+
+// Watch tasks
+gulp.task('js:watch:application', function () {
+    const src = ['app/**/*.js', '!app/static/**/*.*'];
+    gulp.watch(src, gulp.series('clear:js:application', 'scripts:application'));
+});
+gulp.task('sass:watch:application', function () {
+    const src = ['app/static/sass/**/*.scss'];
+    gulp.watch(src, gulp.series('clear:styles:application', 'sass:application'));
+});
+
 
 /* ------------------------------------------ */
 /*                 Admin                      */
@@ -80,53 +103,3 @@ gulp.task('default', gulp.parallel(
     'build:landing',
     'build:application'
 ));
-
-//
-// Need add cool watchers
-//
-//
-// /**
-//  * Application: Watch & Compile styles
-//  */
-// gulp.task('sass:app:watch', function () {
-//     gulp.watch('app/static/sass/**/*.scss', gulp.series('sass:app:dev'));
-// });
-//
-// /**
-//  * Landing: Watch & Compile styles
-//  */
-// gulp.task('sass:landing:watch', function () {
-//     gulp.watch('landing/static/sass/**/*.scss', gulp.series('sass:landing:dev'));
-// });
-//
-// /**
-//  * Application: Watch & compile scripts
-//  */
-// gulp.task('js:app:watch', function () {
-//     var src = [
-//         'app/**/*.js',
-//         '!app/static/vendor/**/*.*'
-//     ];
-//
-//     gulp.watch(src, gulp.series(
-//         'clear:app:js',
-//         gulp.parallel('copyScripts:app', 'copyDep:app', 'copyApp:app'),
-//         'copyJs:app'
-//     ));
-// });
-//
-// /**
-//  * Landing: Watch & compile scripts
-//  */
-// gulp.task('js:landing:watch', function () {
-//     var src = [
-//         'landing/**/*.js',
-//         '!landing/static/vendor/**/*.*'
-//     ];
-//
-//     gulp.watch(src, gulp.series(
-//         'clear:landing:js',
-//         gulp.parallel('copyScripts:landing', 'copyDep:landing', 'copyApp:landing'),
-//         'copyJs:landing'
-//     ));
-// });
