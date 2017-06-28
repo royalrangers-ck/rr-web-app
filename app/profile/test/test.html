@@ -11,18 +11,18 @@
 
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
-                        <h2>{{ vm.test.name }}</h2>
+                        <h2>{{ vm.test.content.name }}</h2>
                     </div>
-                    <div class="col-xs-12">{{ vm.test.description }}</div>
+                    <div class="col-xs-12">{{ vm.test.content.description }}</div>
 
-                    <div ng-if="!vm.showStopBtn" class="col-xs-12 m-t">
-                        <a href="" ng-disabled="vm.startBtnDisabled" ng-click="vm.startBtnDisabled || vm.startTest()" class="btn btn-primary btn-block btn-lg">
+                    <div ng-if="!vm.test.started" class="col-xs-12 m-t">
+                        <a href="" ng-disabled="!vm.test.containTasks" ng-click="!vm.test.containTasks || vm.test.start()" class="btn btn-primary btn-block btn-lg">
                         Виконати
                         </a>
                     </div>
 
-                    <div ng-if="vm.showStopBtn" class="col-xs-12 m-t">
-                        <a href="" ng-click="vm.stopTest()" class="btn btn-danger btn-block btn-lg">
+                    <div ng-if="vm.test.started" class="col-xs-12 m-t">
+                        <a href="" ng-click="vm.test.stop()" class="btn btn-danger btn-block btn-lg">
                         Відмовитися
                         </a>
                     </div>
@@ -38,7 +38,7 @@
             <div class="ibox-title">
                 <super-admin>
                     <div class="ibox-tools">
-                        <a class="btn btn-white" ng-click="vm.taskFormModal(vm.test)">Додати ще</a>
+                        <a class="btn btn-white" ng-click="vm.taskFormModal(vm.test.content)">Додати ще</a>
                     </div>
                 </super-admin>
             </div>
@@ -52,7 +52,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="item in vm.test.taskList">
+                        <tr ng-repeat="item in vm.test.content.taskList">
                             <td>{{item.id}}</td>
                             <td>
                                 <strong>{{item.name}}</strong>
