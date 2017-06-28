@@ -2,6 +2,7 @@
     <div class="modal-header">
         <button type="button" class="close" ng-click="vm.close()">&times;</button>
         <h4 class="modal-title" id="EditUserLabel">Змінити дані</h4>
+        <p ng-if="vm.tempUser" style="color: red">* Дані оновляться після підтвердження адміністратором</p>
     </div>
     <div class="modal-body">
         <form name="vm.form" class="form-horizontal" ng-submit="vm.updateUser()" novalidate>
