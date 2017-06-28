@@ -57,6 +57,7 @@
         constants.AUTH = constants.API + '/auth';
 
         constants.FORGOT_PASSWORD = constants.PUBLIC + '/forgotPassword';
+        constants.CHANGE_PASSWORD = constants.PUBLIC + '/changePassword';
 
         // OTHER
 

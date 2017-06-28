@@ -19,6 +19,9 @@
                 resolve: {
                     testResolve: function (ProfileTestService, $routeParams) {
                         return ProfileTestService.getTest({id: $routeParams.id});
+                    },
+                    userTestsResolve: function (ProfileTestService) {
+                        return ProfileTestService.getUserTests();
                     }
                 }
             });

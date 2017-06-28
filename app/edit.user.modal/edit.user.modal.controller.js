@@ -6,10 +6,21 @@
         .module('app')
         .controller('EditUserModalController', EditUserModalController);
 
-    function EditUserModalController(growl, $uibModalInstance, currentUser, UserFactory, PublicInfoFactory, Constants, Ranks, AppModalService) {
+    function EditUserModalController(growl, $uibModalInstance, currentUser, tempUser, UserFactory, PublicInfoFactory, Constants, Ranks, AppModalService) {
         const vm = this;
 
-        vm.modifiedUser = angular.copy(currentUser);
+        let user = {};
+
+        if (tempUser && tempUser.success) {
+            user =  angular.copy(tempUser.data);
+            vm.modifiedUser = angular.copy(tempUser.data);
+            vm.modifiedUser.email = currentUser.email;
+            vm.tempUser = true;
+        } else {
+            vm.modifiedUser = angular.copy(currentUser);
+            user = angular.copy(currentUser);
+        }
+
         vm.defaultImage = Constants.DEFAULT_IMG_SRC;
 
         vm.changeCountry = changeCountry;
@@ -52,25 +63,25 @@
             };
 
             let originalData = {
-                firstName: currentUser.firstName,
-                lastName: currentUser.lastName,
-                gender: currentUser.gender,
-                userAgeGroup: currentUser.userAgeGroup,
-                telephoneNumber: currentUser.telephoneNumber,
-                birthDate: currentUser.birthDate,
-                countryId: currentUser.country && currentUser.country.id,
-                regionId: currentUser.region && currentUser.region.id,
-                cityId: currentUser.city && currentUser.city.id,
-                platoonId: currentUser.platoon && currentUser.platoon.id,
-                sectionId: currentUser.section && currentUser.section.id,
-                userRank: currentUser && currentUser.userRank,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                gender: user.gender,
+                userAgeGroup: user.userAgeGroup,
+                telephoneNumber: user.telephoneNumber,
+                birthDate: user.birthDate,
+                countryId: user.country && user.country.id,
+                regionId: user.region && user.region.id,
+                cityId: user.city && user.city.id,
+                platoonId: user.platoon && user.platoon.id,
+                sectionId: user.section && user.section.id,
+                userRank: user && user.userRank,
             };
 
             if (!angular.equals(request,originalData)) {
                 UserFactory.updateUser(request, (res) => {
                     if (res.success) {
                         close();
-                        growl.info('Дані відправлено на перевірку. Очікуйте підтвердження.');
+                        growl.info(res.data.message);
                     } else {
                         growl.error('Помилка:' + res.data.message);
                     }
