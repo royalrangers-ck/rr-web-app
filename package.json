@@ -5,7 +5,7 @@
   "description": "Royal-Rangers Frontend",
   "scripts": {
     "preinstall": "npm install gulpjs/gulp-cli protractor ntl -g",
-    "postinstall": "bower install && gulp build:dev",
+    "postinstall": "bower install",
     "prestart": "npm install",
     "vagrant-start": "cd scripts/vagrant/x64/ && vagrant up",
     "vagrant-stop": "cd scripts/vagrant/x64/ && vagrant halt -f",
