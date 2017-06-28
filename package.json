@@ -10,6 +10,8 @@
     "vagrant-start": "cd scripts/vagrant/x64/ && vagrant up",
     "vagrant-stop": "cd scripts/vagrant/x64/ && vagrant halt -f",
     "vagrant-reload": "cd scripts/vagrant/x64/ && vagrant reload",
+    "vagrant-destroy": "cd scripts/vagrant/x64/ && vagrant destroy -f",
+    "vagrant-recreate": "cd scripts/vagrant/x64/ && vagrant destroy -f && vagrant up",
     "vagrant_x32-start": "cd scripts/vagrant/x32/ && vagrant up",
     "vagrant_x32-stop": "cd scripts/vagrant/x32/ && vagrant halt -f",
     "vagrant_x32-reload": "cd scripts/vagrant/x32/ && vagrant reload",

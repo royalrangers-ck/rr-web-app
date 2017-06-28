@@ -93,7 +93,28 @@ gulp.task('sass:watch:application', function () {
 /*                 Admin                      */
 /* ------------------------------------------ */
 
-// In development....
+// Main stream
+gulp.task('admin:clean', require('./gulp.tasks/admin/clean'));
+gulp.task('admin:copy:fonts', require('./gulp.tasks/admin/copy/fonts'));
+gulp.task('admin:copy:html', require('./gulp.tasks/admin/copy/html'));
+gulp.task('admin:copy:images', require('./gulp.tasks/admin/copy/images'));
+gulp.task('admin:copy:scripts:dependencies', require('./gulp.tasks/admin/copy/scripts').dependencies);
+gulp.task('admin:copy:scripts:application', require('./gulp.tasks/admin/copy/scripts').application);
+gulp.task('admin:copy:scripts', gulp.parallel('admin:copy:scripts:dependencies', 'admin:copy:scripts:application'));
+gulp.task('admin:copy:styles', require('./gulp.tasks/admin/copy/styles'));
+gulp.task('admin:update-src-links', require('./gulp.tasks/admin/update.src.links'));
+
+// Main task
+gulp.task('build:admin', gulp.series(
+    'admin:clean',
+    'admin:copy:fonts',
+    'admin:copy:html',
+    'admin:copy:images',
+    'admin:copy:scripts',
+    'admin:copy:styles',
+    'admin:update-src-links'
+));
+
 
 /* ------------------------------------------ */
 /*                 General                    */
@@ -101,5 +122,6 @@ gulp.task('sass:watch:application', function () {
 
 gulp.task('default', gulp.parallel(
     'build:landing',
-    'build:application'
+    'build:application',
+    'build:admin'
 ));

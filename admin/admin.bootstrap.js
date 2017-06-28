@@ -25,14 +25,14 @@
             $window.localStorage.setItem('currentUser', JSON.stringify(res.data.data));
 
             let isSuperAdmin = UserService.isSuperAdmin;
-            if (isSuperAdmin(res.data.data.authorities)) {
+            if (!isSuperAdmin(res.data.data.authorities)) {
                 $window.location.hash = '#/';
-                $window.location.pathname = '/admin/';
+                $window.location.pathname = '/app/';
                 return;
             }
 
             angular.element(document).ready(function () {
-                angular.bootstrap(document, ['app']);
+                angular.bootstrap(document, ['admin']);
             });
         }
     };

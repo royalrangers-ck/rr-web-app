@@ -1,0 +1,20 @@
+.form-group {
+  &.has-error {
+
+    .form-control {
+      &:focus { border-color: $red }
+    }
+  }
+}
+
+.required-field {
+  &:after {
+    display: inline-block;
+    position: relative;
+    font-family: 'FontAwesome';
+    content: $fa-var-asterisk;
+    font-size: .5em;
+    top: -1em;
+    color: $red;
+  }
+}
