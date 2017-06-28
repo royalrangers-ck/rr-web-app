@@ -17,12 +17,11 @@
                 controller: 'ProfileTestsController',
                 controllerAs: 'vm',
                 resolve: {
-                    userTestsResolve: function (ProfileTestsService) {
-                        // TODO: waite while api will be ready
-                        return ProfileTestsService.getUserTests();
+                    userTestsResponse: function (ProfileTestsService) {
+                        return ProfileTestsService.getUserTests().$promise;
                     },
-                    allTestsResolve: function (ProfileTestsService) {
-                        return ProfileTestsService.getAllTests();
+                    testsResponse: function (ProfileTestsService) {
+                        return ProfileTestsService.getTests().$promise;
                     }
                 }
             });
