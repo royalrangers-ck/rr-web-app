@@ -1,0 +1,41 @@
+<div class="ibox">
+    <div class="ibox-title">
+        <h2>Regions</h2>
+    </div>
+
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <form action="" class="form-horizontal">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="vm.newRegion">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" ng-click="vm.createNewRegion($event)">Додати</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Регiон</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="region in vm.regions">
+                            <td>{{$index+1}}</td>
+                            <td>{{region.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,10 +3,10 @@
     'use strict';
 
     angular
-        .module('app')
-        .controller('CreateController', CreateController);
+        .module('admin')
+        .controller('CreateCityController', CreateCityController);
 
-    function CreateController ($log, $http, growl, Endpoints) {
+    function CreateCityController ($log, $http, growl, Endpoints) {
         const vm = this;
 
         vm.cities = [];
@@ -15,11 +15,11 @@
         vm.createNewCity = createNewCity;
 
         activate();
-        $log.debug("ctrl", vm.cities);
+        
         ////
 
         function activate () {
-            $log.debug('Init CreateController ...');
+            $log.debug('Init CreateCityController ...');
             getCities();
         }
 
@@ -35,7 +35,8 @@
             });
         }
 
-        function createNewCity() {
+        function createNewCity(e) {
+            e.preventDefault();
             $log.debug('createCity', vm.newCity);
         }
     }

@@ -39,6 +39,13 @@
         let endpoints = {
             API: '/api'
         };
+        
+        //PUBLIC INFO ENDPOINT
+        endpoints.PUBLIC = endpoints.API + '/public';
+
+        endpoints.CITIES =    endpoints.PUBLIC + '/cities';
+        endpoints.COUNTRIES = endpoints.PUBLIC + '/countries';
+        endpoints.REGIONS =   endpoints.PUBLIC + '/regions';
 
         //ROLES
         endpoints.ROLES = {
@@ -56,8 +63,8 @@
                 name: 'Створити',
                 route: '',
                 submenu: [
-                    {name: 'Країну',    route: '#/create/country'},
-                    {name: 'Місто',    route: '#/create/city'},
+                    {name: 'Країну',     route: '#/create/country'},
+                    {name: 'Місто',      route: '#/create/city'},
                     {name: 'Регіон',     route: '#/create/region'},
                 ]
             }

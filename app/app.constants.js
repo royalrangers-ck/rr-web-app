@@ -138,7 +138,7 @@
                 ]
             },
             {name: 'Тех.підтримка', route: '#/support'},
-            {name: "Створити", route: "#/create"}
+            {name: "Створити",      route: "#/create"}
         ];
     }
 
