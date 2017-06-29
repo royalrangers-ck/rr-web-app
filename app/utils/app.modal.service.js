@@ -61,8 +61,7 @@
                 size: 'lg',
                 resolve: {
                     originalUser: function (UserFactory) {
-                        // TODO: need to get user by original user id, not modified user id
-                        return UserFactory.get({userId: modifiedUser.id}).$promise;
+                        return UserFactory.get({userId: modifiedUser.userId}).$promise;
                     },
                     modifiedUser: () => {
                         return modifiedUser;
@@ -84,6 +83,9 @@
                 resolve: {
                     currentUser: () => {
                         return UserService.get();
+                    },
+                    tempUser: () => {
+                        return UserService.getTempUser();
                     }
                 }
             }).result.then(function () {

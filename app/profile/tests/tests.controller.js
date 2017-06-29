@@ -6,7 +6,7 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    function ProfileTestsController(userTestsResolve, allTestsResolve, Constants, AppModalService, UserService) {
+    function ProfileTestsController(userTestsResponse, testsResponse, Constants, AppModalService, growl, $log) {
         const vm = this;
 
         vm.tests = [];
@@ -14,50 +14,30 @@
         vm.profileModal = profileModal;
         vm.newTestModal = newTestModal;
         vm.states = Constants.ACHIEVEMENTS_STATES;
-        vm.currentUser = getUser();
 
         activate();
 
         ///
 
         function activate() {
-            getTests();
+
+            if (userTestsResponse.success && testsResponse.success) {
+                getTests();
+                $log.debug(vm.tests);
+            } else {
+                growl.error('Error');
+            }
+
         }
 
         function getTests() {
             vm.infoMessage = 'Пошук тестів...';
-            allTestsResolve.$promise.then(
-                (res) => {
-                    if (res.success) {
-                        addTestsStates(res.data);
-                        vm.tests = normalizeStructureTests(res.data);
-                        if (vm.tests.length !== 0) {
-                            vm.infoMessage = '';
-                        }
-                        else {
-                            vm.infoMessage = 'Нажаль, доступних тестів не знайдено.';
-                        }
-                    }
-                },
-                (err) => {
-                    vm.infoMessage = '';
-                });
-        }
 
-        function addTestsStates(tests) {
-            userTestsResolve.$promise.then((res) => {
-                res.data.forEach((userTest) => {
-                    addState(tests.find((test) => test.id == userTest.test.id), userTest.achievementState);
-                });
-            });
-
-            function addState(test, testState) {
-                let cons = Constants.ACHIEVEMENTS_STATES;
-                if (!test && !testState) return;
-                test.rejected = cons[testState] == cons.REJECTED;
-                if (!test.rejected) {
-                    test.status = cons[testState] ? cons[testState] : testState;
-                }
+            if (testsResponse.success) {
+                vm.tests = normalizeStructureTests(testsResponse.data);
+                vm.infoMessage = (vm.tests.length !== 0) ? '' : 'Нажаль, доступних тестів не знайдено.';
+            } else {
+                growl.error(testsResponse.data.message);
             }
         }
 
@@ -75,8 +55,8 @@
          *      ...
          * }
          */
-        function normalizeStructureTests(denormalizeTests) {
-            return denormalizeTests.reduce((tests, test) => {
+        function normalizeStructureTests(denormalizeTestsData) {
+            return denormalizeTestsData.reduce((tests, test) => {
 
                 if (typeof tests[test.testType] === 'undefined') {
                     tests[test.testType] = {
@@ -85,10 +65,33 @@
                     };
                 }
 
+                test['state'] = getState(test.id);
                 tests[test.testType].list.push(test);
 
                 return tests;
             }, {});
+        }
+
+        function getState (testId) {
+
+            let userTest = userTestsResponse.data.find((userTest) => userTest.test.id === testId);
+
+            if (userTest) {
+                return {
+                    name: userTest.achievementState ? Constants.ACHIEVEMENTS_STATES[userTest.achievementState] : Constants.ACHIEVEMENTS_STATES['NOT_STARTED'],
+                    className: getStateClassName(userTest.achievementState)
+                };
+            } else {
+                return {
+                    name: Constants.ACHIEVEMENTS_STATES['NOT_STARTED'],
+                    className: getStateClassName('NOT_STARTED')
+                };
+            }
+
+        }
+
+        function getStateClassName (achievementState = 'NOT_STARTED') {
+            return 'achievements__item--' + achievementState.toLowerCase().replace('_', '-');
         }
 
         function profileModal(testId, testType) {
@@ -103,10 +106,6 @@
 
         function newTestModal() {
             AppModalService.testFormModal();
-        }
-
-        function getUser () {
-            return UserService.get();
         }
     }
 })();

@@ -10,7 +10,7 @@
         .module('app')
         .service('UserService', UserService);
 
-    function UserService(Constants) {
+    function UserService(Constants, UserFactory) {
         let it = this;
 
         it.currentUser = {};
@@ -20,6 +20,7 @@
         it.clean = clean;
         it.fetchFromStorage = fetchFromStorage;
         it.getTopAuthority = getTopAuthority;
+        it.getTempUser = getTempUser;
 
         ////
 
@@ -47,6 +48,10 @@
                 currentUser = JSON.parse(currentUser);
             }
             return currentUser;
+        }
+
+        function getTempUser() {
+            return UserFactory.getTempUser().$promise;
         }
 
         function getTopAuthority() {

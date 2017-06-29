@@ -4,8 +4,30 @@
 
     angular
         .module('app')
+        .constant('Constants', Constants())
         .constant('Endpoints', Endpoints())
         .constant('Ranks', Ranks());
+
+    function Constants() {
+        let constants = {};
+
+        constants.AUTHORITIES = {
+            ROLE_USER: {
+                id: 1,
+                name: 'ROLE_USER'
+            },
+            ROLE_ADMIN: {
+                id: 2,
+                name: 'ROLE_ADMIN'
+            },
+            ROLE_SUPER_ADMIN: {
+                id: 3,
+                name: 'ROLE_SUPER_ADMIN'
+            }
+        };
+
+        return constants;
+    }
 
     function Endpoints() {
         let constants = {
@@ -35,6 +57,7 @@
         constants.AUTH = constants.API + '/auth';
 
         constants.FORGOT_PASSWORD = constants.PUBLIC + '/forgotPassword';
+        constants.CHANGE_PASSWORD = constants.PUBLIC + '/changePassword';
 
         // OTHER
 

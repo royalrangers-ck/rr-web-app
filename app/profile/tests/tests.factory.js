@@ -14,7 +14,7 @@
                     url: Endpoints.ACHIEVEMENTS_USER_TEST
                 },
 
-                'getAllTests': {
+                'getTests': {
                     method: 'GET',
                     url: Endpoints.ACHIEVEMENTS_TEST
                 },

@@ -1,468 +1,127 @@
 "use strict";
 
-var gulp = require('gulp');
-var clean = require('gulp-clean');
-var rename = require('gulp-rename');
-var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var babel = require('gulp-babel');
-var autoprefixer = require('gulp-autoprefixer');
-var cssnano = require('gulp-cssnano');
-var ngAnnotate = require('gulp-ng-annotate');
-var sourcemaps =require('gulp-sourcemaps');
-
-var autoprefixerOptions = {
-    browsers: ['last 2 versions'],
-};
-
-
-function updateSrcLinks(cb) {
-    var fs = require('fs'),
-        files = ['app/index.html', 'landing/index.html'];
-
-    files.forEach(function(path) {
-        var file = fs.readFileSync(path, 'utf8');
-        file = file.replace(/(\?t=[0-9]+)/g, '?t=' + Date.now());
-        fs.writeFileSync(path, file);
-    });
-
-    cb();
-}
-
-gulp.task('copy-index-html', function () {
-    var src = ['app/index.tmpl.html', 'landing/index.tmpl.html'];
-
-    return gulp
-        .src(src, {base: './'})
-        .pipe(rename({basename: 'index'}))
-        .pipe(gulp.dest('./'))
-})
-
-gulp.task('clear:app', function() {
-    var src = [
-        'app/*.css',
-        'app/**/*.css',
-        'app/static/vendor/*'
-    ];
-
-    return gulp
-        .src(src, {read: false})
-        .pipe(clean())
-});
-
-gulp.task('clear:landing', function() {
-    var src = [
-        'landing/*.css',
-        'landing/**/*.css',
-        'landing/static/vendor/*'
-    ];
-
-    return gulp
-        .src(src, {read: false})
-        .pipe(clean())
-});
-
-gulp.task('clear:app:js', function() {
-    var src = ['app/static/vendor/js/*'];
-
-    return gulp
-        .src(src, {read: false})
-        .pipe(clean());
-});
-
-gulp.task('clear:landing:js', function () {
-    var src = ['landing/static/vendor/js/*'];
-
-    return gulp
-        .src(src, {read: false})
-        .pipe(clean());
-});
-
-gulp.task('copyDep:app', () => {
-    let src = [
-        'bower_components/jquery/dist/jquery.min.js',
-        'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
-        'bower_components/angular/angular.min.js',
-        'bower_components/angular-route/angular-route.min.js',
-        'bower_components/angular-resource/angular-resource.min.js',
-        'bower_components/angular-animate/angular-animate.js',
-        'bower_components/angular-route-segment/build/angular-route-segment.js',
-        'bower_components/angular-growl-v2/build/angular-growl.min.js',
-        'bower_components/ngstorage/ngStorage.min.js',
-        'bower_components/moment/min/moment.min.js',
-        'bower_components/footable/dist/footable.all.min.js',
-        'bower_components/jquery-slimscroll/jquery.slimscroll.min.js',
-        'bower_components/metisMenu/dist/metisMenu.min.js',
-        'bower_components/angular-bootstrap/ui-bootstrap.min.js',
-        'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-        'bower_components/ng-idle/angular-idle.min.js',
-        'bower_components/ng-img-crop/compile/minified/ng-img-crop.js',
-        'bower_components/angular-ui-mask/dist/mask.min.js',
-
-
-
-        'app/static/js/*.js'
-    ];
-    var dest = 'app/static/vendor/js/.';
-
-    return gulp
-        .src(src)
-        .pipe(sourcemaps.init())
-        .pipe(rename({dirname: ''}))
-        .pipe(concat('dep.js'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(dest))
-});
-
-gulp.task('copyDep:landing', function() {
-    var src = [
-        'bower_components/jquery/dist/jquery.min.js',
-        'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
-        'bower_components/angular/angular.min.js',
-        'bower_components/angular-route/angular-route.min.js',
-        'bower_components/angular-resource/angular-resource.min.js',
-        'bower_components/angular-animate/angular-animate.js',
-        'bower_components/angular-route-segment/build/angular-route-segment.js',
-        'bower_components/angular-growl-v2/build/angular-growl.min.js',
-        'bower_components/ngstorage/ngStorage.min.js',
-        'bower_components/moment/min/moment.min.js',
-        'bower_components/angular-bootstrap/ui-bootstrap.min.js',
-        'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-        'bower_components/angular-ui-mask/dist/mask.min.js',
-
-        'landing/static/js/*.js',
-        '!landing/static/js/google-maps.js'
-    ];
-    var dest = 'landing/static/vendor/js/.';
-
-    return gulp
-        .src(src)
-        .pipe(sourcemaps.init())
-        .pipe(rename({dirname: ''}))
-        .pipe(concat('dep.js'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(dest))
-});
-
-
-gulp.task('copyScripts:app', function() {
-    var src = ['app/static/js/*.js'];
-    var dest = 'app/static/vendor/js/.';
-
-    return gulp
-        .src(src)
-        .pipe(rename({dirname: ''}))
-        .pipe(gulp.dest(dest))
-});
-
-gulp.task('copyScripts:landing', function() {
-    var src = ['landing/static/js/*.js'];
-    var dest = 'landing/static/vendor/js/.';
-
-    return gulp
-        .src(src)
-        .pipe(rename({dirname: ''}))
-        .pipe(gulp.dest(dest))
-});
-
-gulp.task('copyApp:app', function() {
-    var src = [
-        'app/app.js',
-        'app/config.js',
-        'app/**/*.js',
-        '!app/static/js/*.js'
-    ];
-    var dest = 'app/static/vendor/js/.';
-
-    return gulp
-        .src(src)
-        .pipe(sourcemaps.init())
-        .pipe(rename({dirname: ''}))
-        .pipe(babel({presets: ['es2015']}))
-        .on('error', function(e) {
-            console.log('>>> ERROR', e.message);
-            this.emit('end');
-        })
-        .pipe(ngAnnotate())
-        .pipe(concat('app.js'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(dest))
-});
-
-gulp.task('copyApp:landing', function() {
-    var src = [
-        'landing/app.js',
-        'landing/config.js',
-        'landing/**/*.js',
-        '!landing/static/js/*.js'
-    ];
-    var dest = 'landing/static/vendor/js/.';
-
-    return gulp
-        .src(src)
-        .pipe(sourcemaps.init())
-        .pipe(rename({dirname: ''}))
-        .pipe(babel({presets: ['es2015']}))
-        .on('error', function(e) {
-            console.log('>>> ERROR', e.message);
-            this.emit('end');
-        })
-        .pipe(ngAnnotate())
-        .pipe(concat('app.js'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(dest))
-});
-
-
-gulp.task('copyJs:app', function() {
-    var src = [
-        'app/static/vendor/js/dep.js',
-        'app/static/vendor/js/app.js'
-    ];
-    var dest = 'app/static/vendor/js/.';
-
-    return gulp
-        .src(src)
-        .pipe(sourcemaps.init())
-        .pipe(rename({dirname: ''}))
-        .pipe(concat('app.min.js'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(dest))
-});
-
-gulp.task('copyJs:landing', function() {
-    var src = [
-        'landing/static/vendor/js/dep.js',
-        'landing/static/vendor/js/app.js'
-    ];
-    var dest = 'landing/static/vendor/js/.';
-
-    return gulp
-        .src(src)
-        .pipe(sourcemaps.init())
-        .pipe(rename({dirname: ''}))
-        .pipe(concat('app.min.js'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(dest))
-});
-
-
-gulp.task('sass:app:dev', function() {
-    var src = ['app/static/sass/app.scss'];
-    var dest = 'app/static/vendor/css/.';
-
-    return gulp
-        .src(src)
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer(autoprefixerOptions))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(dest))
-});
-
-gulp.task('sass:app:prod', function() {
-    var src = ['app/static/sass/app.scss'];
-    var dest = 'app/static/vendor/css/.';
-
-    return gulp
-        .src(src)
-        .pipe(rename({dirname: ''}))
-        .pipe(concat('app.scss'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer(autoprefixerOptions))
-        .pipe(cssnano())
-        .pipe(gulp.dest(dest))
-});
-
-gulp.task('sass:app', gulp.parallel('sass:app:dev', 'sass:app:prod'));
-
-
-gulp.task('sass:landing:dev', function() {
-    var src = ['landing/static/sass/app.scss'];
-    var dest = 'landing/static/vendor/css/.';
-
-    return gulp
-        .src(src)
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer(autoprefixerOptions))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(dest))
-});
-
-gulp.task('sass:landing:prod', function() {
-    var src = ['landing/static/sass/app.scss'];
-    var dest = 'landing/static/vendor/css/.';
-
-    return gulp
-        .src(src)
-        .pipe(rename({dirname: ''}))
-        .pipe(concat('app.scss'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer(autoprefixerOptions))
-        .pipe(cssnano())
-        .pipe(gulp.dest(dest))
-});
-
-gulp.task('sass:landing', gulp.parallel('sass:landing:dev', 'sass:landing:prod'));
-
-
-gulp.task('copyImages:app', function() {
-    var src = ['app/static/images/**/*.*'];
-    var dest = 'app/static/vendor/images/.';
-
-    return gulp
-        .src(src)
-        // ToDo.zpawn: uncommented after load real content
-        // .pipe(rename({dirname: ''}))
-        .pipe(gulp.dest(dest))
-});
-
-gulp.task('copyImages:landing', function() {
-    var src = ['landing/static/images/**/*.*'];
-    var dest = 'landing/static/vendor/images/.';
-
-    return gulp
-        .src(src)
-        .pipe(rename({dirname: ''}))
-        .pipe(gulp.dest(dest))
-});
-
-
-gulp.task('copyFonts:app', function() {
-    var src = [
-        'bower_components/font-awesome/fonts/*.*',
-        'bower_components/footable/css/fonts/*.*',
-        'app/static/fonts/*.*'
-    ];
-    var dest = 'app/static/vendor/fonts/.';
-
-    /** FooTable need special folder for his fonts*/
-    /** if need, please refactor this*/
-    gulp.src('bower_components/footable/css/fonts/*.*')
-        .pipe(gulp.dest('app/static/vendor/css/fonts/.'));
-    
-    // Same, but to boostsrap
-    // if need, please refactor this
-    gulp.src('bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*')
-        .pipe(gulp.dest('app/static/vendor/fonts/bootstrap/.'));
-
-    return gulp
-        .src(src)
-        .pipe(rename({dirname: ''}))
-        .pipe(gulp.dest(dest))
-});
-
-gulp.task('copyFonts:landing', function() {
-    var src = [
-        'bower_components/font-awesome/fonts/*.*',
-        'bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*',
-        'landing/static/fonts/*.*'
-    ];
-    var dest = 'landing/static/vendor/fonts/.';
-
-    return gulp
-        .src(src)
-        .pipe(rename({dirname: ''}))
-        .pipe(gulp.dest(dest))
-});
-
-
-gulp.task('build:dev', gulp.parallel(
-    /** Build Main Application */
-    gulp.series(
-        'clear:app',
-        gulp.parallel('copyScripts:app', 'copyDep:app', 'copyApp:app'),
-        'copyJs:app',
-        'copyImages:app',
-        'sass:app',
-        'copyFonts:app'
-    ),
-
-    /** Build Landing Application */
-    gulp.series(
-        'clear:landing',
-        gulp.parallel('copyScripts:landing', 'copyDep:landing', 'copyApp:landing'),
-        'copyJs:landing',
-        'copyImages:landing',
-        'sass:landing',
-        'copyFonts:landing'
-    ),
-
-    gulp.series(
-        'copy-index-html',
-        function (cb) {
-            return updateSrcLinks(cb)
-        }
-    )
-));
-
-/**
- * Build Landing
- */
-gulp.task('build:landing:prod', gulp.series(
+const gulp = require('gulp');
+
+/* ------------------------------------------ */
+/*                 Landing                    */
+/* ------------------------------------------ */
+
+// Main stream
+gulp.task('clear:landing', require('./gulp.tasks/landing/clean').all);
+gulp.task('copy:dependencies:landing', require('./gulp.tasks/landing/copy/dependencies').landing);
+gulp.task('copy:googleMaps:landing', require('./gulp.tasks/landing/copy/dependencies').googleMaps);
+gulp.task('copy:images:landing', require('./gulp.tasks/landing/copy/images').landing);
+gulp.task('copy:fonts:landing', require('./gulp.tasks/landing/copy/fonts').landing);
+gulp.task('copy:templates:landing', require('./gulp.tasks/landing/copy/templates').landing);
+gulp.task('scripts:landing', require('./gulp.tasks/landing/scripts.js').landing);
+gulp.task('sass:landing', require('./gulp.tasks/landing/sass').landing);
+
+// Main task
+gulp.task('build:landing', gulp.series(
     'clear:landing',
-    gulp.parallel('copyScripts:landing', 'copyDep:landing', 'copyApp:landing'),
-    'copyJs:landing',
-    'copyImages:landing',
-    'sass:landing:prod',
-    'copyFonts:landing'
+    gulp.parallel(
+        'copy:dependencies:landing',
+        'copy:googleMaps:landing',
+        'copy:images:landing',
+        'copy:fonts:landing',
+        'copy:templates:landing',
+        'scripts:landing',
+        'sass:landing',
+        function updateSrcLinks(cb) {
+            return require('./gulp.tasks/landing/updateSrcLinks').landing(cb)
+        })
 ));
 
-/**
- * Build Application
- */
-gulp.task('build:app:prod', gulp.series(
-    'clear:app',
-    gulp.parallel('copyScripts:app', 'copyDep:app', 'copyApp:app'),
-    'copyJs:app',
-    'copyImages:app',
-    'sass:app:prod',
-    'copyFonts:app'
+// Additional tasks
+gulp.task('clear:js:landing', require('./gulp.tasks/landing/clean').js);
+gulp.task('clear:styles:landing', require('./gulp.tasks/landing/clean').styles);
+
+// Watch tasks
+gulp.task('sass:watch:landing', function () {
+    const src = ['landing/static/sass/**/*.scss'];
+    gulp.watch(src, gulp.series('clear:styles:landing', 'sass:landing'));
+});
+gulp.task('js:watch:landing', function () {
+    const src = ['landing/**/*.js', '!landing/static/**/*.*'];
+    gulp.watch(src, gulp.series('clear:js:landing', 'scripts:landing'));
+});
+
+/* ------------------------------------------ */
+/*                 Application                */
+/* -------------------------------------------*/
+
+// Main stream
+gulp.task('clear:application', require('./gulp.tasks/application/clean').all);
+gulp.task('copy:dependencies:application', require('./gulp.tasks/application/copy/dependencies').application);
+gulp.task('copy:images:application', require('./gulp.tasks/application/copy/images').application);
+gulp.task('copy:fonts:application', require('./gulp.tasks/application/copy/fonts').application);
+gulp.task('copy:templates:application', require('./gulp.tasks/application/copy/templates').application);
+gulp.task('scripts:application', require('./gulp.tasks/application/scripts.js').application);
+gulp.task('sass:application', require('./gulp.tasks/application/sass').application);
+
+// Main task
+gulp.task('build:application', gulp.series(
+    'clear:application',
+    gulp.parallel(
+        'copy:dependencies:application',
+        'copy:images:application',
+        'copy:fonts:application',
+        'copy:templates:application',
+        'scripts:application',
+        'sass:application',
+        function updateSrcLinks(cb) {
+            return require('./gulp.tasks/application/updateSrcLinks').application(cb)
+        })
 ));
 
-/**
- * Application: Watch & Compile styles
- */
-gulp.task('sass:app:watch', function() {
-    gulp.watch('app/static/sass/**/*.scss', gulp.series('sass:app:dev'));
+// Additional tasks
+gulp.task('clear:js:application', require('./gulp.tasks/application/clean').js);
+gulp.task('clear:styles:application', require('./gulp.tasks/application/clean').styles);
+
+// Watch tasks
+gulp.task('js:watch:application', function () {
+    const src = ['app/**/*.js', '!app/static/**/*.*'];
+    gulp.watch(src, gulp.series('clear:js:application', 'scripts:application'));
+});
+gulp.task('sass:watch:application', function () {
+    const src = ['app/static/sass/**/*.scss'];
+    gulp.watch(src, gulp.series('clear:styles:application', 'sass:application'));
 });
 
-/**
- * Landing: Watch & Compile styles
- */
-gulp.task('sass:landing:watch', function() {
-    gulp.watch('landing/static/sass/**/*.scss', gulp.series('sass:landing:dev'));
-});
 
-/**
- * Application: Watch & compile scripts
- */
-gulp.task('js:app:watch', function() {
-    var src = [
-        'app/**/*.js',
-        '!app/static/vendor/**/*.*'
-    ];
+/* ------------------------------------------ */
+/*                 Admin                      */
+/* ------------------------------------------ */
 
-    gulp.watch(src, gulp.series(
-        'clear:app:js',
-        gulp.parallel('copyScripts:app', 'copyDep:app', 'copyApp:app'),
-        'copyJs:app'
-    ));
-});
+// Main stream
+gulp.task('admin:clean', require('./gulp.tasks/admin/clean'));
+gulp.task('admin:copy:fonts', require('./gulp.tasks/admin/copy/fonts'));
+gulp.task('admin:copy:html', require('./gulp.tasks/admin/copy/html'));
+gulp.task('admin:copy:images', require('./gulp.tasks/admin/copy/images'));
+gulp.task('admin:copy:scripts:dependencies', require('./gulp.tasks/admin/copy/scripts').dependencies);
+gulp.task('admin:copy:scripts:application', require('./gulp.tasks/admin/copy/scripts').application);
+gulp.task('admin:copy:scripts', gulp.parallel('admin:copy:scripts:dependencies', 'admin:copy:scripts:application'));
+gulp.task('admin:copy:styles', require('./gulp.tasks/admin/copy/styles'));
+gulp.task('admin:update-src-links', require('./gulp.tasks/admin/update.src.links'));
 
-/**
- * Landing: Watch & compile scripts
- */
-gulp.task('js:landing:watch', function() {
-    var src = [
-        'landing/**/*.js',
-        '!landing/static/vendor/**/*.*'
-    ];
+// Main task
+gulp.task('build:admin', gulp.series(
+    'admin:clean',
+    'admin:copy:fonts',
+    'admin:copy:html',
+    'admin:copy:images',
+    'admin:copy:scripts',
+    'admin:copy:styles',
+    'admin:update-src-links'
+));
 
-    gulp.watch(src, gulp.series(
-        'clear:landing:js',
-        gulp.parallel('copyScripts:landing', 'copyDep:landing', 'copyApp:landing'),
-        'copyJs:landing'
-    ));
-});
+
+/* ------------------------------------------ */
+/*                 General                    */
+/* ------------------------------------------ */
+
+gulp.task('default', gulp.parallel(
+    'build:landing',
+    'build:application',
+    'build:admin'
+));

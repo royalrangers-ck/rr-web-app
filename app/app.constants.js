@@ -37,10 +37,12 @@
         constants.ACHIEVEMENTS_STATES = {
             NOT_STARTED: 'Не розпочатий',
             IN_PROGRESS: 'Виконується',
-            SUBMITTED: 'Перевірка',
+            SUBMITTED: 'Очікує підтвердження',
             APPROVED: 'Виконаний',
-            REJECTED: 'Провалений'
+            REJECTED: 'Скасовано'
         };
+
+        constants.TEST_TYPES = ['DEFAULT', 'BLUE', 'GREEN', 'YELLOW', 'LIGHTBLUE', 'RED', 'ORANGE', 'BROWN', 'PLATINUM'];
 
         return constants;
     }

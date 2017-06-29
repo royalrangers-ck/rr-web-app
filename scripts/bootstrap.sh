@@ -80,6 +80,12 @@ server {
             sendfile off;
         }
 
+        location /admin {
+            root /project;
+            index index.html index.html;
+            sendfile off;
+        }
+
         ##
         # User application Settings
         ##
@@ -103,6 +109,33 @@ server {
         }
 
         location ~* .*\/app\/.*\.(otf|eot|ttf|woff|woff2)$ {
+            root /project;
+            sendfile off;
+        }
+
+        ##
+        # Admin application Settings
+        ##
+
+        location ~* .*\/admin\/.*\.(css)$ {
+            root /project;
+            add_header Cache-Control "max-age=31536000";
+            sendfile off;
+        }
+
+        location ~* .*\/admin\/.*\.(js)$ {
+            root /project;
+            add_header Cache-Control "private, max-age=31536000";
+            sendfile off;
+        }
+
+        location ~* .*\/admin\/.*\.(jpg|png|gif|svg)$ {
+            root /project;
+            add_header Cache-Control "max-age=86400";
+            sendfile off;
+        }
+
+        location ~* .*\/admin\/.*\.(otf|eot|ttf|woff|woff2)$ {
             root /project;
             sendfile off;
         }
