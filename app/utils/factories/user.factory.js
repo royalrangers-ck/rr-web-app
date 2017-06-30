@@ -10,12 +10,19 @@
 
         return $resource(Endpoints.USER, {userId: '@userId'}, {
             'getTempUser': {
-                url: `${Endpoints.USER}/temp`,
-                method: 'GET'
+                method: 'GET',
+                url: `${Endpoints.USER}/temp`
             },
             'updateUser': {
                 method: 'POST',
-                url: `${Endpoints.USER}/update/temp`,
+                url: `${Endpoints.USER}/update/temp`
+            },
+            'changePassword': {
+                method: 'POST',
+                url: `${Endpoints.PUBLIC}/forgotPassword`,
+                params: {
+                    email: '@email'
+                }
             },
 
             'getApproveUpdateUsersByPlatoonId': {
@@ -41,6 +48,13 @@
                 url: `${Endpoints.USER}/update/:temp_userId`,
                 params: {
                     temp_userId: '@temp_userId'
+                }
+            },
+            'rejectUpdateUser': {
+                method: 'POST',
+                url: `${Endpoints.USER}/reject/temp/:tempUserId`,
+                params: {
+                    tempUserId: '@tempUserId'
                 }
             },
             'approveRegistrationUser': {

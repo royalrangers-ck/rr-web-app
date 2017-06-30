@@ -8,6 +8,7 @@
 
     function ApproveUserUpdateModalController (originalUser, modifiedUser, growl, $uibModalInstance, UserFactory, PublicInfoFactory, $routeSegment, Ranks, Constants) {
         const vm = this;
+        const confirmDeleteModal = '#ConfirmDelete';
 
         vm.originalUser = {};
         vm.tempUser = angular.copy(modifiedUser);
@@ -19,6 +20,8 @@
         vm.changePlatoon = changePlatoon;
         vm.setSections = setSections;
         vm.approveUser = approveUser;
+        vm.declineUser = declineUser;
+        vm.showConfirmDecline = showConfirmDecline;
         vm.close = close;
 
         activate();
@@ -68,6 +71,27 @@
                 }
             });
         }
+
+        function declineUser() {
+            growl.info('Користувач ' + vm.originalUser.firstName + ' ' +
+                vm.originalUser.lastName + ' видаляється...');
+            UserFactory.rejectUpdateUser({tempUserId: vm.modifiedUser.id}, null ,(res) => {
+                if (res.success) {
+                    close();
+                    growl.info('Користувач ' + vm.originalUser.firstName + ' ' +
+                        vm.originalUser.lastName + ' видалений зі списку');
+                    $routeSegment.chain[0].reload();
+                } else {
+                    growl.error('Помилка:' + res.data.message);
+                }
+            });
+        }
+
+        //This additional function needed just to create another modal with 'confirm decline user'
+        function showConfirmDecline() {
+            $(confirmDeleteModal).modal();
+        }
+
         function setCountries() {
             PublicInfoFactory.countries().$promise.then((res) => {
                 if (res.success) {
@@ -154,6 +178,7 @@
 
         function close(data) {
             $uibModalInstance.close(data);
+            $(confirmDeleteModal).modal('hide');
         }
     }
 })();

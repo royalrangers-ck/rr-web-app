@@ -30,6 +30,7 @@
         vm.setSections = setSections;
         vm.updateUser = updateUser;
         vm.uploadUserLogo = uploadUserLogo;
+        vm.changePassword = changePassword;
         vm.close = close;
 
         activate();
@@ -89,6 +90,18 @@
             } else {
                 close();
             }
+        }
+        
+        function changePassword() {
+            growl.info('Зачекайте...Відбувається надсилання листа підтвердження на ваш Email: '+currentUser.email);
+            UserFactory.changePassword({email: currentUser.email}).$promise.then((res) => {
+                if (res.success) {
+                    growl.success('Лист успішно надісланий!');
+                } else {
+                    growl.error(res.data.message);
+                }
+            });
+            vm.changePasswordDasabled = true;
         }
 
         function setCountries() {
