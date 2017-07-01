@@ -28,7 +28,7 @@ gulp.task('build:landing', gulp.series(
         'scripts:landing',
         'sass:landing',
         function updateSrcLinks(cb) {
-            return require('./gulp.tasks/landing/updateSrcLinks').landing(cb)
+            return require('./gulp.tasks/landing/update.src.links').landing(cb)
         })
 ));
 
@@ -70,7 +70,7 @@ gulp.task('build:application', gulp.series(
         'scripts:application',
         'sass:application',
         function updateSrcLinks(cb) {
-            return require('./gulp.tasks/application/updateSrcLinks').application(cb)
+            return require('./gulp.tasks/application/update.src.links').application(cb)
         })
 ));
 
