@@ -13,14 +13,14 @@ module.exports = clean;
 
 function all() {
     const src = [
-        'app/*.css',
+        'app/index.html',
+        'app/static/vendor/*',
         'app/**/*.css',
-        'app/static/vendor/*'
     ];
 
     return gulp
         .src(src, {
-            read: false
+            read: false, allowEmpty: true
         })
         .pipe(gulpClean())
 };

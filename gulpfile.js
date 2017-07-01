@@ -26,10 +26,10 @@ gulp.task('build:landing', gulp.series(
         'copy:fonts:landing',
         'copy:templates:landing',
         'scripts:landing',
-        'sass:landing',
-        function updateSrcLinks(cb) {
-            return require('./gulp.tasks/landing/update.src.links').landing(cb)
-        })
+        'sass:landing'),
+    function updateSrcLinks(cb) {
+        return require('./gulp.tasks/landing/update.src.links').landing(cb)
+    }
 ));
 
 // Additional tasks
@@ -68,10 +68,10 @@ gulp.task('build:application', gulp.series(
         'copy:fonts:application',
         'copy:templates:application',
         'scripts:application',
-        'sass:application',
-        function updateSrcLinks(cb) {
-            return require('./gulp.tasks/application/update.src.links').application(cb)
-        })
+        'sass:application'),
+    function updateSrcLinks(cb) {
+        return require('./gulp.tasks/application/update.src.links').application(cb)
+    }
 ));
 
 // Additional tasks
@@ -94,27 +94,42 @@ gulp.task('sass:watch:application', function () {
 /* ------------------------------------------ */
 
 // Main stream
-gulp.task('admin:clean', require('./gulp.tasks/admin/clean'));
-gulp.task('admin:copy:fonts', require('./gulp.tasks/admin/copy/fonts'));
-gulp.task('admin:copy:html', require('./gulp.tasks/admin/copy/html'));
-gulp.task('admin:copy:images', require('./gulp.tasks/admin/copy/images'));
-gulp.task('admin:copy:scripts:dependencies', require('./gulp.tasks/admin/copy/scripts').dependencies);
-gulp.task('admin:copy:scripts:application', require('./gulp.tasks/admin/copy/scripts').application);
-gulp.task('admin:copy:scripts', gulp.parallel('admin:copy:scripts:dependencies', 'admin:copy:scripts:application'));
-gulp.task('admin:copy:styles', require('./gulp.tasks/admin/copy/styles'));
-gulp.task('admin:update-src-links', require('./gulp.tasks/admin/update.src.links'));
+gulp.task('clear:admin', require('./gulp.tasks/admin/clean').all);
+gulp.task('copy:dependencies:admin', require('./gulp.tasks/admin/copy/dependencies').admin);
+gulp.task('copy:images:admin', require('./gulp.tasks/admin/copy/images').admin);
+gulp.task('copy:fonts:admin', require('./gulp.tasks/admin/copy/fonts').admin);
+gulp.task('copy:templates:admin', require('./gulp.tasks/admin/copy/templates').admin);
+gulp.task('scripts:admin', require('./gulp.tasks/admin/scripts.js').admin);
+gulp.task('sass:admin', require('./gulp.tasks/admin/sass').admin);
 
 // Main task
 gulp.task('build:admin', gulp.series(
-    'admin:clean',
-    'admin:copy:fonts',
-    'admin:copy:html',
-    'admin:copy:images',
-    'admin:copy:scripts',
-    'admin:copy:styles',
-    'admin:update-src-links'
+    'clear:admin',
+    gulp.parallel(
+        'copy:dependencies:admin',
+        'copy:images:admin',
+        'copy:fonts:admin',
+        'copy:templates:admin',
+        'scripts:admin',
+        'sass:admin'),
+    function updateSrcLinks(cb) {
+        return require('./gulp.tasks/admin/update.src.links').admin(cb)
+    }
 ));
 
+// Additional tasks
+gulp.task('clear:js:admin', require('./gulp.tasks/admin/clean').js);
+gulp.task('clear:styles:admin', require('./gulp.tasks/admin/clean').styles);
+
+// Watch tasks
+gulp.task('js:watch:admin', function () {
+    const src = ['admin/**/*.js', '!admin/static/**/*.*'];
+    gulp.watch(src, gulp.series('clear:js:admin', 'scripts:admin'));
+});
+gulp.task('sass:watch:admin', function () {
+    const src = ['admin/static/sass/**/*.scss'];
+    gulp.watch(src, gulp.series('clear:styles:admin', 'sass:admin'));
+});
 
 /* ------------------------------------------ */
 /*                 General                    */

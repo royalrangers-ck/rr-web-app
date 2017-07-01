@@ -1,15 +1,19 @@
 "use strict";
 
-var gulp = require('gulp');
-var rename = require('gulp-rename');
-var concat = require('gulp-concat');
-var ngAnnotate = require('gulp-ng-annotate');
-var sourcemaps = require('gulp-sourcemaps');
-var babel = require('gulp-babel');
+const gulp = require('gulp'),
+    rename = require('gulp-rename'),
+    concat = require('gulp-concat'),
+    sourcemaps = require('gulp-sourcemaps'),
 
 
-exports.dependencies = function () {
-    var src = [
+    dependencies = {
+        admin: admin,
+    };
+
+module.exports = dependencies;
+
+function admin() {
+    const src = [
         'bower_components/jquery/dist/jquery.min.js',
         'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
         'bower_components/angular/angular.min.js',
@@ -31,39 +35,19 @@ exports.dependencies = function () {
 
         'admin/static/js/*.js'
     ];
-    var destination = 'admin/static/vendor/js/.';
+    const dest = 'admin/static/vendor/js/.';
+
 
     return gulp
         .src(src)
-        .pipe(sourcemaps.init())
-        .pipe(rename({dirname: ''}))
+        .pipe(sourcemaps.init({
+            loadMaps: true,
+            largeFile: true
+        }))
+        .pipe(rename({
+            dirname: ''
+        }))
         .pipe(concat('dep.js'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest(destination))
-};
-
-exports.application = function () {
-    var src = [
-        'bootstrap/bootstrap.js',
-        'admin/admin.app.js',
-        'admin/admin.constants.js',
-        'admin/admin.config.js',
-        'admin/**/*.js',
-        '!admin/static/vendor/js/*.js'
-    ];
-    var destination = 'admin/static/vendor/js/.';
-
-    return gulp
-        .src(src)
-        .pipe(sourcemaps.init())
-        .pipe(rename({dirname: ''}))
-        .pipe(babel({presets: ['es2015']}))
-        .on('error', function (e) {
-            console.log('>>> ERROR', e.message);
-            this.emit('end');
-        })
-        .pipe(ngAnnotate({single_quotes: true}))
-        .pipe(concat('app.js'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(destination))
+        .pipe(gulp.dest(dest))
 };
