@@ -27,7 +27,7 @@
         }
 
         function clean() {
-            $localStorage.token = null;
+            delete $localStorage.token;
         }
     }
 })();

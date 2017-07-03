@@ -31,7 +31,6 @@
 
             if (users && users.success) {
                 vm.users = users.data;
-                console.log(vm.users)
             }
         }
 
