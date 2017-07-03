@@ -1,17 +1,46 @@
 "use strict";
 
-var gulp = require('gulp');
-var clean = require('gulp-clean');
+const gulp = require('gulp'),
+    gulpClean = require('gulp-clean'),
 
+    clean = {
+        all: all,
+        js: js,
+        styles: styles
+    };
 
-module.exports = function() {
-    var src = [
+module.exports = clean;
+
+function all() {
+    const src = [
         'admin/index.html',
-        'admin/auth/index.html',
-        'admin/static/vendor/*'
+        'admin/static/vendor/*',
+        'admin/**/*.css',
     ];
 
     return gulp
-        .src(src, {read: false, allowEmpty: true})
-        .pipe(clean())
+        .src(src, {
+            read: false, allowEmpty: true
+        })
+        .pipe(gulpClean())
+};
+
+function js() {
+    const src = ['admin/static/vendor/js/*'];
+
+    return gulp
+        .src(src, {
+            read: false
+        })
+        .pipe(gulpClean());
+};
+
+function styles() {
+    const src = ['admin/static/vendor/css/app.css'];
+
+    return gulp
+        .src(src, {
+            read: false
+        })
+        .pipe(gulpClean());
 };

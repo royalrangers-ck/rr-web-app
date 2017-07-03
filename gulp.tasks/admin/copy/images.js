@@ -1,16 +1,22 @@
 "use strict";
 
-var gulp = require('gulp');
+const gulp = require('gulp'),
+	rename = require('gulp-rename'),
+
+	images = {
+		admin: admin,
+	};
+
+module.exports = images;
 
 
-module.exports = function () {
-    var src = [
-        'admin/static/images/*',
-        'admin/static/images/**/*'
-    ];
-    var destination = 'admin/static/vendor/images/.';
+function admin() {
+	const src = ['admin/static/images/**/*.*'];
+	const dest = 'admin/static/vendor/images/.';
 
-    return gulp
-        .src(src)
-        .pipe(gulp.dest(destination))
+	return gulp
+		.src(src)
+		// ToDo.zpawn: uncommented after load real content
+		// .pipe(rename({dirname: ''}))
+		.pipe(gulp.dest(dest))
 };
