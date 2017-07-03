@@ -1,0 +1,41 @@
+<div class="ibox">
+    <div class="ibox-title">
+        <h2>Countries</h2>
+    </div>
+
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <form action="" class="form-horizontal">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="vm.newCountry">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" ng-click="vm.createNewCountry($event)">Додати</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Країна</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="country in vm.countries">
+                            <td>{{$index+1}}</td>
+                            <td>{{country.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
