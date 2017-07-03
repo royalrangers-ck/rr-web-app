@@ -2,12 +2,13 @@
 
     'use strict';
 
-    let initInjector = angular.injector(['ng', 'bootstrap']);
+    let initInjector = angular.injector(['ng', 'bootstrap', 'ngStorage']);
     let $http = initInjector.get('$http');
     let $window = initInjector.get('$window');
+    let $localStorage = initInjector.get('$localStorage');
     let UserService = initInjector.get('UserService');
 
-    let authorizationToken = $window.localStorage.getItem('token');
+    let authorizationToken = $localStorage.token;
     if (!authorizationToken) {
         return $window.location.href = '/';
     }

@@ -25,20 +25,12 @@
                 }
             },
 
-            'getApproveUpdateUsersByPlatoonId': {
-                method: 'GET',
-                url: `${Endpoints.USER}/approve/update/:platoonId`,
-                params: {
-                    platoonId: '@platoonId'
-                }
-            },
-
             'getApproveRegistrationUsers': {
                 method: 'GET',
                 url: `${Endpoints.USER}/approve/registration`
             },
 
-            'getApproveUpdateUsersForSuperAdmin': {
+            'getApproveUpdateUsers': {
                 method: 'GET',
                 url: `${Endpoints.USER}/approve/update`
             },
