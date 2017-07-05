@@ -6,7 +6,7 @@
         .module('admin')
         .controller('ApproveUpdatesController', ApproveUpdatesController);
 
-    function ApproveUpdatesController(users, AppModalService, UserService) {
+    function ApproveUpdatesController(users, ModalDialogService, UserService) {
 
         const vm = this;
 
@@ -35,7 +35,7 @@
         }
 
         function approveUserUpdate(modifiedUser) {
-            AppModalService.approveUserUpdateModal(modifiedUser);
+            ModalDialogService.approveUserUpdateModal(modifiedUser);
         }
     }
 })();

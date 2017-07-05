@@ -6,7 +6,7 @@
         .module('admin')
         .controller('ApproveRegistrationsController', ApproveRegistrationsController);
 
-    function ApproveRegistrationsController(users, AppModalService, UserService) {
+    function ApproveRegistrationsController(users, ModalDialogService, UserService) {
 
         const vm = this;
 
@@ -35,7 +35,7 @@
         }
 
         function approveUserRegistration(currentUser) {
-            AppModalService.approveUserRegistrationModal(currentUser);
+            ModalDialogService.approveUserRegistrationModal(currentUser);
         }
     }
 })();
