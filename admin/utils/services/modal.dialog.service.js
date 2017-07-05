@@ -15,7 +15,8 @@
         this.profileModal = profileModal;
         this.editUserModal = editUserModal;
         this.uploadUserLogo = uploadUserLogo;
-
+        this.approveUserRegistrationModal = approveUserRegistrationModal;
+        this.approveUserUpdateModal = approveUserUpdateModal;
         ///
 
         function profileModal(achievement, type) {
@@ -73,6 +74,44 @@
                 // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
             }, function (res) {
             })
+        }
+
+        function approveUserRegistrationModal(currentUser) {
+
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'approve/registrations/approve.user.registration/approve.user.registration.modal.html',
+                controller: 'ApproveUserRegistrationModalController',
+                controllerAs: 'vm',
+                size: 'lg',
+                resolve: {
+                    currentUser: () => {
+                        return angular.copy(currentUser);
+                    }
+                }
+            }).result.then(function () {
+                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+            }, function (res) {});
+        }
+
+        function approveUserUpdateModal(modifiedUser) {
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'approve/updates/approve.user.update/approve.user.update.modal.html',
+                controller: 'ApproveUserUpdateModalController',
+                controllerAs: 'vm',
+                size: 'lg',
+                resolve: {
+                    originalUser: function (UserFactory) {
+                        return UserFactory.get({userId: modifiedUser.userId}).$promise;
+                    },
+                    modifiedUser: () => {
+                        return modifiedUser;
+                    }
+                }
+            }).result.then(function () {
+                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+            }, function (res) {});
         }
 
     }
