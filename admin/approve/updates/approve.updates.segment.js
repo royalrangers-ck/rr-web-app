@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('admin')
         .config(ApproveUpdatesSegment);
 
     function ApproveUpdatesSegment($routeSegmentProvider) {

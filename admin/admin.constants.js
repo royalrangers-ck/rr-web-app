@@ -47,6 +47,9 @@
         endpoints.COUNTRIES = endpoints.PUBLIC + '/countries';
         endpoints.REGIONS =   endpoints.PUBLIC + '/regions';
 
+        // User  returns authorized user info
+        endpoints.USER = endpoints.API + '/user';
+
         //ROLES
         endpoints.ROLES = {
             USER: 'ROLE_USER',
@@ -66,6 +69,14 @@
                     {name: 'Країну',     route: '#/create/country'},
                     {name: 'Місто',      route: '#/create/city'},
                     {name: 'Регіон',     route: '#/create/region'},
+                ]
+            },
+            {
+                name: 'Підтвердити',
+                adminsOnly: true,
+                submenu: [
+                    {name: 'Реєстрації',        route: '#approve/registrations'},
+                    {name: 'Оновлення даних',   route: '#approve/updates'}
                 ]
             }
         ];

@@ -19,12 +19,11 @@
         }
 
         function save(token) {
-            window.localStorage.setItem('token', token);
-            return $localStorage.token = token;
+            $localStorage.token = token;
         }
 
         function clean() {
-            $localStorage.token = null;
+            delete $localStorage.token;
         }
     }
 })();

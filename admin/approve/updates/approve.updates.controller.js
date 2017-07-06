@@ -3,17 +3,17 @@
     'use strict';
 
     angular
-        .module('app')
-        .controller('ApproveRegistrationsController', ApproveRegistrationsController);
+        .module('admin')
+        .controller('ApproveUpdatesController', ApproveUpdatesController);
 
-    function ApproveRegistrationsController(users, AppModalService, UserService) {
+    function ApproveUpdatesController(users, ModalDialogService, UserService) {
 
         const vm = this;
 
         let user = UserService.get();
         let userAuthority = UserService.getTopAuthority();
 
-        vm.approveUserRegistration = approveUserRegistration;
+        vm.approveUserUpdate = approveUserUpdate;
 
         activate();
 
@@ -34,8 +34,8 @@
             }
         }
 
-        function approveUserRegistration(currentUser) {
-            AppModalService.approveUserRegistrationModal(currentUser);
+        function approveUserUpdate(modifiedUser) {
+            ModalDialogService.approveUserUpdateModal(modifiedUser);
         }
     }
 })();

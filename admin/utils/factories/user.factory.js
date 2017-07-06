@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('admin')
         .factory('UserFactory', UserFactory);
 
     function UserFactory($resource, Endpoints) {

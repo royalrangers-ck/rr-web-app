@@ -43,7 +43,6 @@
                 if (res.status === 200) {
                     if (res.data.success) {
                         TokenService.save(res.data.data.token);
-                        window.localStorage.setItem('token', res.data.data.token);
                         redirectUserToThePageAccordingToHisRole();
                     } else {
                         growl.info(res.data.data.message);
@@ -64,19 +63,6 @@
             let authorizationToken = TokenService.get();
 
             if (authorizationToken) {
-                let localToken = localStorage.token;
-
-                $log.debug('Angular $localStorage token: ', authorizationToken);
-                $log.debug('Native localStorage token: ', localToken);
-
-                if (authorizationToken !== localToken) {
-                    $log.debug('Angular $localStorage token != Native localStorage token');
-                    $log.debug('Angular $localStorage token will cleaned');
-
-                    localStorage.token = null;
-                    TokenService.clean();
-                    return
-                }
 
                 let req = {
                     method: 'GET',
