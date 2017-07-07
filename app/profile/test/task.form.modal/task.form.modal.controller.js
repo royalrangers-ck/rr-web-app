@@ -6,7 +6,7 @@
         .module('app')
         .controller('TaskFormModalController', TaskFormModalController);
 
-    function TaskFormModalController (currentTest, $uibModalInstance, growl, ProfileTestFactory) {
+    function TaskFormModalController (currentTest, $uibModalInstance, NotificationService, ProfileTestFactory) {
         const vm = this;
 
         vm.submit = submit;
@@ -28,13 +28,13 @@
 
             ProfileTestFactory.createTask(req, (res) => {
                 if (res.success) {
-                    growl.success(res.data.message);
+                    NotificationService.success(res.data.message);
                     $uibModalInstance.close();
 
                     // ToDo.zpawn: push response task in taskList
                     currentTest.taskList.push(req);
                 } else {
-                    growl.error(res.data.message);
+                    NotificationService.error(res.data.message);
                 }
             });
         }

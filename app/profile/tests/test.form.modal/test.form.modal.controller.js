@@ -6,7 +6,7 @@
         .module('app')
         .controller('TestFormModalController', TestFormModalController);
 
-    function TestFormModalController ($uibModalInstance, Constants, growl, ProfileTestsFactory, $location, $log) {
+    function TestFormModalController ($uibModalInstance, Constants, NotificationService, ProfileTestsFactory, $location, $log) {
         const vm = this;
 
         vm.close = close;
@@ -37,7 +37,7 @@
                     $uibModalInstance.close();
                     $location.path('/profile/test/' + res.data.id);
                 } else {
-                    growl.error(res.data.message);
+                    NotificationService.error(res.data.message);
                 }
             });
         }

@@ -6,7 +6,7 @@
         .module('app')
         .controller('ProfileTestsController', ProfileTestsController);
 
-    function ProfileTestsController(userTestsResponse, testsResponse, Constants, AppModalService, growl, $log) {
+    function ProfileTestsController(userTestsResponse, testsResponse, Constants, AppModalService, NotificationService, $log) {
         const vm = this;
 
         vm.tests = [];
@@ -25,7 +25,7 @@
                 getTests();
                 $log.debug(vm.tests);
             } else {
-                growl.error('Error');
+                NotificationService.error('Error');
             }
 
         }
@@ -37,7 +37,7 @@
                 vm.tests = normalizeStructureTests(testsResponse.data);
                 vm.infoMessage = (vm.tests.length !== 0) ? '' : 'Нажаль, доступних тестів не знайдено.';
             } else {
-                growl.error(testsResponse.data.message);
+                NotificationService.error(testsResponse.data.message);
             }
         }
 

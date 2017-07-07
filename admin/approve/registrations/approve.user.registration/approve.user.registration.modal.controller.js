@@ -6,7 +6,7 @@
         .module('admin')
         .controller('ApproveUserRegistrationModalController', ApproveUserRegistrationModalController);
 
-    function ApproveUserRegistrationModalController (growl, $uibModalInstance, currentUser, UserFactory, PublicInfoFactory, $routeSegment, Ranks) {
+    function ApproveUserRegistrationModalController (NotificationService, $uibModalInstance, currentUser, UserFactory, PublicInfoFactory, $routeSegment, Ranks) {
         const vm = this;
         const confirmDeleteModal = '#ConfirmDelete';
 
@@ -36,7 +36,7 @@
         }
 
         function approveCurrentUser() {
-            growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
+            NotificationService.info('Користувач ' + vm.currentUser.firstName + ' ' +
                                         vm.currentUser.lastName + ' підтверджується...');
             let valuesToSend = {
                 firstName: vm.currentUser.firstName,
@@ -56,26 +56,26 @@
             UserFactory.approveRegistrationUser({userId: vm.currentUser.id}, valuesToSend, (res) => {
                 if (res.success) {
                     close();
-                    growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
+                    NotificationService.info('Користувач ' + vm.currentUser.firstName + ' ' +
                         vm.currentUser.lastName + ' підтверджений');
                     $routeSegment.chain[0].reload()
                 } else {
-                    growl.error('Помилка:' + res.data.message);
+                    NotificationService.error('Помилка:' + res.data.message);
                 }
             });
         }
 
         function declineCurrentUser() {
-            growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
+            NotificationService.info('Користувач ' + vm.currentUser.firstName + ' ' +
                                         vm.currentUser.lastName + ' видаляється...');
             UserFactory.rejectRegistrationUser({userId: vm.currentUser.id}, null ,(res) => {
                 if (res.success) {
                     close();
-                    growl.info('Користувач ' + vm.currentUser.firstName + ' ' +
+                    NotificationService.info('Користувач ' + vm.currentUser.firstName + ' ' +
                         vm.currentUser.lastName + ' видалений');
                     $routeSegment.chain[0].reload();
                 } else {
-                    growl.error('Помилка:' + res.data.message);
+                    NotificationService.error('Помилка:' + res.data.message);
                 }
             });
         }

@@ -6,7 +6,7 @@
         .module('admin')
         .controller('CreateRegionController', CreateRegionController);
 
-    function CreateRegionController ($log, $http, growl, Endpoints) {
+    function CreateRegionController ($log, $http, NotificationService, Endpoints) {
         const vm = this;
 
         vm.regions = [];
@@ -30,7 +30,7 @@
                     vm.regions = res.data.data;
                     $log.debug('response', vm.regions);
                 }else{
-                    growl.error(res.data.data.message);
+                    NotificationService.error(res.data.data.message);
                 }
             });
         }

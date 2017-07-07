@@ -6,7 +6,7 @@
         .module('app')
         .controller('EditUserModalController', EditUserModalController);
 
-    function EditUserModalController(growl, $uibModalInstance, currentUser, tempUser, UserFactory, PublicInfoFactory, Constants, Ranks, AppModalService) {
+    function EditUserModalController(NotificationService, $uibModalInstance, currentUser, tempUser, UserFactory, PublicInfoFactory, Constants, Ranks, AppModalService) {
         const vm = this;
 
         let user = {};
@@ -82,9 +82,9 @@
                 UserFactory.updateUser(request, (res) => {
                     if (res.success) {
                         close();
-                        growl.info(res.data.message);
+                        NotificationService.info(res.data.message);
                     } else {
-                        growl.error('Помилка:' + res.data.message);
+                        NotificationService.error('Помилка:' + res.data.message);
                     }
                 });
             } else {
@@ -93,12 +93,12 @@
         }
         
         function changePassword() {
-            growl.info('Зачекайте...Відбувається надсилання листа підтвердження на ваш Email: '+currentUser.email);
+            NotificationService.info('Зачекайте...Відбувається надсилання листа підтвердження на ваш Email: '+currentUser.email);
             UserFactory.changePassword({email: currentUser.email}).$promise.then((res) => {
                 if (res.success) {
-                    growl.success('Лист успішно надісланий!');
+                    NotificationService.success('Лист успішно надісланий!');
                 } else {
-                    growl.error(res.data.message);
+                    NotificationService.error(res.data.message);
                 }
             });
             vm.changePasswordDasabled = true;
