@@ -1,6 +1,11 @@
 .achievements {
   .achievements__item {
     position: relative;
+    border-bottom: 3px solid transparent;
+
+    &.active {
+      border-bottom-color: $brand-primary;
+    }
 
     a { color: $text-color; }
 

@@ -15,6 +15,7 @@
         this.uploadUserLogo = uploadUserLogo;
         this.taskFormModal = taskFormModal;
         this.testFormModal = testFormModal;
+        this.achievementsModal = achievementsModal;
 
         function profileModal(achievement, type) {
 
@@ -133,6 +134,18 @@
                         return test;
                     }
                 }
+            }).result.then(function () {
+                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+            }, function (res) {});
+        }
+
+        function achievementsModal () {
+            return $uibModal.open({
+                animation: true,
+                size: 'lg',
+                templateUrl: 'achievements/achievements.modal/achievements.modal.html',
+                controller: 'AchievementsModalController',
+                controllerAs: 'vm'
             }).result.then(function () {
                 // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
             }, function (res) {});

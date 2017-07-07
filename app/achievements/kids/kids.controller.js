@@ -6,14 +6,19 @@
         .module('app')
         .controller('AchievementsKidsController', AchievementsKidsController);
 
-    function AchievementsKidsController ($log) {
+    function AchievementsKidsController (AppModalService) {
+        const vm = this;
+
+        vm.achievementsModal = achievementsModal;
 
         activate();
 
         ///
 
-        function activate() {
-            $log.debug('Init AchievementsKidsController ...');
+        function activate() {}
+
+        function achievementsModal () {
+            AppModalService.achievementsModal();
         }
     }
 })();
