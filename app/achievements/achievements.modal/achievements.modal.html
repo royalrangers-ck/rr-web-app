@@ -1,0 +1,60 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="vm.close()">&times;</button>
+        <h4 class="modal-title">Learn song assigned by leader</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-4 col-sm-2">
+                <p><img class="media-object img-responsive" src="./static/vendor/images/achievements/ranger.kids.one.year.achievka.png" alt="Learn song assigned by leader"></p>
+            </div>
+            <div class="col-xs-8 col-sm-10">
+                <h3 class="media-heading">Learn song assigned by leader</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur debitis dolore eos esse expedita harum hic incidunt maiores, minima non, odio optio placeat quam quia ratione saepe tempora ut?</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="text-center">Список тестів для виконання</h4>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th width="25%">Назва</th>
+                        <th>Короткий опис</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="test in vm.tests">
+                        <td><a href="#/profile/test/{{test.id}}" ng-click="vm.close()">{{ test.name }}</a></td>
+                        <td>{{ test.shortDescription }}</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <admin>
+                    <form name="vm.form" ng-submit="vm.submit()" novalidate="novalidate">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-3 m-b-sm">
+                                <input type="text" class="form-control" placeholder="Назва" ng-model="vm.newTest.name" ng-required="true" lazy-validation-on="vm.form.$submitted">
+                                <p ng-show="vm.form.name.$dirty && vm.form.name.$error.required" class="help-block">This field is required.</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-7 m-b-sm">
+                                <input type="text" class="form-control" placeholder="Опис" ng-model="vm.newTest.description">
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-0 m-b-sm">
+                                <button class="btn btn-primary btn-block" ng-disabled="vm.form.$invalid || vm.form.$pristine">Додати</button>
+                            </div>
+                        </div>
+                    </form>
+                </admin>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="vm.close()">Закрити</button>
+    </div>
+</div>
