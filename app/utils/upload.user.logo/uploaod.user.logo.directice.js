@@ -5,7 +5,7 @@
         .module('app')
         .directive('uploadUserLogo', uploadUserLogo);
 
-    function uploadUserLogo(growl) {
+    function uploadUserLogo(NotificationService) {
         return {
             strict: 'A', /* Binding using attribut */
             scope: {
@@ -15,7 +15,7 @@
                 element.bind("change", function (changeEvent) { /* changeEvent - Jquery object, contain all information about event*/
                     const fileSize = ((changeEvent.target.files[0].size / 1024) / 1024).toFixed(4); // MB
                     if (fileSize >= 1) {
-                        growl.error('File size greater than 1 MB.');
+                        NotificationService.error('File size greater than 1 MB.');
                         return;
                     }
 

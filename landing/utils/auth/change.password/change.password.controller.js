@@ -6,7 +6,7 @@
         .module('app')
         .controller('ChangePasswordController', ChangePasswordController);
 
-    function ChangePasswordController (tokenResponse, $http, Endpoints, growl, $location, TokenService) {
+    function ChangePasswordController (tokenResponse, $http, Endpoints, NotificationService, $location, TokenService) {
         const vm = this;
 
         vm.submit = submit;
@@ -24,11 +24,11 @@
 
             $http(req).then((res) => {
                 if (res.data.success) {
-                    growl.success(res.data.data.message);
+                    NotificationService.success(res.data.data.message);
                     TokenService.clean();
                     $location.url('/login');
                 } else {
-                    growl.error(res.data.data.message);
+                    NotificationService.error(res.data.data.message);
                 }
             });
         }

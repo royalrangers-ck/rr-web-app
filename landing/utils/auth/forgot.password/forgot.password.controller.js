@@ -6,7 +6,7 @@
         .module('app')
         .controller('ForgotPasswordController', ForgotPasswordController);
 
-    function ForgotPasswordController ($http, Endpoints, growl) {
+    function ForgotPasswordController ($http, Endpoints, NotificationService) {
         const vm = this;
 
         vm.submit = submit;
@@ -24,9 +24,9 @@
 
             $http(req).then((res) => {
                 if (res.data.success) {
-                    growl.success(res.data.data.message);
+                    NotificationService.success(res.data.data.message);
                 } else {
-                    growl.error(res.data.data.message);
+                    NotificationService.error(res.data.data.message);
                 }
             });
         }

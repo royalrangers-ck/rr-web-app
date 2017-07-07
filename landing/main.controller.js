@@ -6,7 +6,7 @@
         .module('app')
         .controller('MainController', MainController);
 
-    function MainController($http, growl, Endpoints) {
+    function MainController($http, NotificationService, Endpoints) {
         const vm = this;
 
         vm.submit = submit;
@@ -27,9 +27,9 @@
 
             $http(req).then((res) => {
                 if (res.data.success) {
-                    growl.success(res.data.data.message);
+                    NotificationService.success(res.data.data.message);
                 } else {
-                    growl.error(res.data.data.message);
+                    NotificationService.error(res.data.data.message);
                 }
             });
         }
