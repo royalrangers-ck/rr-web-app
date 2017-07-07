@@ -43,7 +43,10 @@ gulp.task('sass:watch:landing', function () {
 });
 gulp.task('js:watch:landing', function () {
     const src = ['landing/**/*.js', '!landing/static/**/*.*'];
-    gulp.watch(src, gulp.series('clear:js:landing', 'js:landing'));
+    gulp.watch(src, gulp.series(
+        'clear:js:landing',
+        gulp.parallel('copy:dep:landing', 'js:landing')
+    ));
 });
 
 /* ------------------------------------------ */
@@ -81,7 +84,10 @@ gulp.task('clear:css:app', require('./gulp.tasks/application/clean').styles);
 // Watch tasks
 gulp.task('js:watch:app', function () {
     const src = ['app/**/*.js', '!app/static/**/*.*'];
-    gulp.watch(src, gulp.series('clear:js:app', 'js:app'));
+    gulp.watch(src, gulp.series(
+        'clear:js:app',
+        gulp.parallel('copy:dep:app', 'js:app')
+    ));
 });
 gulp.task('sass:watch:app', function () {
     const src = ['app/static/sass/**/*.scss'];
@@ -124,7 +130,10 @@ gulp.task('clear:css:admin', require('./gulp.tasks/admin/clean').styles);
 // Watch tasks
 gulp.task('js:watch:admin', function () {
     const src = ['admin/**/*.js', '!admin/static/**/*.*'];
-    gulp.watch(src, gulp.series('clear:js:admin', 'js:admin'));
+    gulp.watch(src, gulp.series(
+        'clear:js:admin',
+        gulp.parallel('copy:dep:admin', 'js:admin')
+    ));
 });
 gulp.task('sass:watch:admin', function () {
     const src = ['admin/static/sass/**/*.scss'];
