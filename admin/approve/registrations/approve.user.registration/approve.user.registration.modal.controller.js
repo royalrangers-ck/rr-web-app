@@ -73,7 +73,7 @@
                     close();
                     NotificationService.info('Користувач ' + vm.currentUser.firstName + ' ' +
                         vm.currentUser.lastName + ' видалений');
-                    $routeSegment.chain[0].reload();
+                    $routeSegment.reload()
                 } else {
                     NotificationService.error('Помилка:' + res.data.message);
                 }

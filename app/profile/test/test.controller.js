@@ -55,7 +55,7 @@
             ProfileTestService.startTest({ "testId": vm.test.content.id }).$promise.then(() => {
                 $log.debug('Test started successfully.');
                 NotificationService.info('Тест успішно розпочатий.');
-                $routeSegment.chain[1].reload();
+                $routeSegment.reload()
             });
         }
 
@@ -66,7 +66,7 @@
                     ProfileTestService.stopAndDeleteTest({ 'id': userTest.id }).$promise.then(() => {
                         $log.debug('Test stopped successfully.');
                         NotificationService.info('Тест припинений');
-                        $routeSegment.chain[1].reload();
+                        $routeSegment.reload()
                     });
                 }
             });

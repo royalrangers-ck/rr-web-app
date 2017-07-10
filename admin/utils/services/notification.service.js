@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('admin')
         .service('NotificationService', NotificationService);
 
     function NotificationService(growl) {
