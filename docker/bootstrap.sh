@@ -56,19 +56,19 @@ server {
         gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
 
         location / {
-            root /project/landing;
+            root /usr/src/app/landing;
             index index.html index.html;
             sendfile off;
         }
 
         location /app {
-            root /project;
+            root /usr/src/app;
             index index.html index.html;
             sendfile off;
         }
 
         location /admin {
-            root /project;
+            root /usr/src/app;
             index index.html index.html;
             sendfile off;
         }
@@ -77,82 +77,82 @@ server {
         # User application Settings
         ##
 
-        location ~* .*\/app\/.*\.(css)$ {
-            root /project;
-            add_header Cache-Control "max-age=31536000";
-            sendfile off;
-        }
+#        location ~* .*\/app\/.*\.(css)$ {
+#            root /project;
+#            add_header Cache-Control "max-age=31536000";
+#            sendfile off;
+#        }
 
-        location ~* .*\/app\/.*\.(js)$ {
-            root /project;
-            add_header Cache-Control "private, max-age=31536000";
-            sendfile off;
-        }
+#        location ~* .*\/app\/.*\.(js)$ {
+#            root /project;
+#            add_header Cache-Control "private, max-age=31536000";
+#            sendfile off;
+#        }
 
-        location ~* .*\/app\/.*\.(jpg|png|gif|svg)$ {
-            root /project;
-            add_header Cache-Control "max-age=86400";
-            sendfile off;
-        }
+#        location ~* .*\/app\/.*\.(jpg|png|gif|svg)$ {
+#            root /project;
+#            add_header Cache-Control "max-age=86400";
+#            sendfile off;
+#        }
 
-        location ~* .*\/app\/.*\.(otf|eot|ttf|woff|woff2)$ {
-            root /project;
-            sendfile off;
-        }
+#        location ~* .*\/app\/.*\.(otf|eot|ttf|woff|woff2)$ {
+#            root /project;
+#            sendfile off;
+#        }
 
         ##
         # Admin application Settings
         ##
 
-        location ~* .*\/admin\/.*\.(css)$ {
-            root /project;
-            add_header Cache-Control "max-age=31536000";
-            sendfile off;
-        }
+#        location ~* .*\/admin\/.*\.(css)$ {
+#            root /project;
+#            add_header Cache-Control "max-age=31536000";
+#            sendfile off;
+#        }
 
-        location ~* .*\/admin\/.*\.(js)$ {
-            root /project;
-            add_header Cache-Control "private, max-age=31536000";
-            sendfile off;
-        }
+#        location ~* .*\/admin\/.*\.(js)$ {
+#            root /project;
+#            add_header Cache-Control "private, max-age=31536000";
+#            sendfile off;
+#        }
 
-        location ~* .*\/admin\/.*\.(jpg|png|gif|svg)$ {
-            root /project;
-            add_header Cache-Control "max-age=86400";
-            sendfile off;
-        }
+#        location ~* .*\/admin\/.*\.(jpg|png|gif|svg)$ {
+#            root /project;
+#            add_header Cache-Control "max-age=86400";
+#            sendfile off;
+#        }
 
-        location ~* .*\/admin\/.*\.(otf|eot|ttf|woff|woff2)$ {
-            root /project;
-            sendfile off;
-        }
+#        location ~* .*\/admin\/.*\.(otf|eot|ttf|woff|woff2)$ {
+#            root /project;
+#            sendfile off;
+#        }
 
         ##
         # Landing & User application settings
         ##
 
-        location ~* \.(css)$ {
-            root /project/landing;
-            add_header Cache-Control "max-age=31536000";
-            sendfile off;
-        }
+#        location ~* \.(css)$ {
+#            root /project/landing;
+#            add_header Cache-Control "max-age=31536000";
+#            sendfile off;
+#        }
 
-        location ~* \.(js)$ {
-            root /project/landing;
-            add_header Cache-Control "private, max-age=31536000";
-            sendfile off;
-        }
+#        location ~* \.(js)$ {
+#            root /project/landing;
+#            add_header Cache-Control "private, max-age=31536000";
+#            sendfile off;
+#        }
 
-        location ~* \.(jpg|png|gif|ico|svg)$ {
-            root /project/landing;
-            add_header Cache-Control "max-age=86400";
-            sendfile off;
-        }
+#        location ~* \.(jpg|png|gif|ico|svg)$ {
+#            root /project/landing;
+#            add_header Cache-Control "max-age=86400";
+#            sendfile off;
+#        }
 
-        location ~* \.(otf|eot|ttf|woff|woff2)$ {
-            root /project/landing;
-            sendfile off;
-        }
+#        location ~* \.(otf|eot|ttf|woff|woff2)$ {
+#            root /project/landing;
+#            sendfile off;
+#        }
 
         location ~ /api {
             proxy_pass http://api:8080;
