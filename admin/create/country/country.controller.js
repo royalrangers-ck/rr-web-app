@@ -6,7 +6,7 @@
         .module('admin')
         .controller('CreateCountryController', CreateCountryController);
 
-    function CreateCountryController ($log, $http, growl, Endpoints) {
+    function CreateCountryController ($log, $http, NotificationService, Endpoints) {
         const vm = this;
 
         vm.countries = [];
@@ -30,7 +30,7 @@
                     vm.countries = res.data.data;
                     $log.debug('response', vm.countries);
                 }else{
-                    growl.error(res.data.data.message);
+                    NotificationService.error(res.data.data.message);
                 }
             });
         }

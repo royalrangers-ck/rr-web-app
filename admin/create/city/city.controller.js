@@ -6,7 +6,7 @@
         .module('admin')
         .controller('CreateCityController', CreateCityController);
 
-    function CreateCityController ($log, $http, growl, Endpoints) {
+    function CreateCityController ($log, $http, NotificationService, Endpoints) {
         const vm = this;
 
         vm.cities = [];
@@ -30,7 +30,7 @@
                     vm.cities = res.data.data;
                     $log.debug('response', vm.cities);
                 }else{
-                    growl.error(res.data.data.message);
+                    NotificationService.error(res.data.data.message);
                 }
             });
         }

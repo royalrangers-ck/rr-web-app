@@ -1,0 +1,8 @@
+# Foulders
+.idea/
+node_modules/
+bower_components/
+
+# Files
+*.iml
+yarn.lock

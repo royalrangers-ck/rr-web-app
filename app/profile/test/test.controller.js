@@ -6,7 +6,7 @@
         .module('app')
         .controller('ProfileTestController', ProfileTestController);
 
-    function ProfileTestController(UserService, Constants, AppModalService, testResolve, $location, ProfileTestService, userTestsResolve, $log, growl, $routeSegment) {
+    function ProfileTestController(UserService, Constants, AppModalService, testResolve, $location, ProfileTestService, userTestsResolve, $log, NotificationService, $routeSegment) {
         const vm = this;
 
         vm.currentUser = UserService.get();
@@ -54,8 +54,8 @@
         function startTest() {
             ProfileTestService.startTest({ "testId": vm.test.content.id }).$promise.then(() => {
                 $log.debug('Test started successfully.');
-                growl.info('Тест успішно розпочатий.');
-                $routeSegment.chain[1].reload();
+                NotificationService.info('Тест успішно розпочатий.');
+                $routeSegment.reload()
             });
         }
 
@@ -65,8 +65,8 @@
                 if (userTest) {
                     ProfileTestService.stopAndDeleteTest({ 'id': userTest.id }).$promise.then(() => {
                         $log.debug('Test stopped successfully.');
-                        growl.info('Тест припинений');
-                        $routeSegment.chain[1].reload();
+                        NotificationService.info('Тест припинений');
+                        $routeSegment.reload()
                     });
                 }
             });

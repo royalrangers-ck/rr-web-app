@@ -6,7 +6,7 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    function LoginController($scope, growl, $window, $http, $controller, UserService, TokenService, Endpoints, $log) {
+    function LoginController($scope, NotificationService, $window, $http, $controller, UserService, TokenService, Endpoints, $log) {
         const vm = angular.extend(this, $controller('BaseController', {$scope: $scope}));
 
         vm.data = {};
@@ -45,7 +45,7 @@
                         TokenService.save(res.data.data.token);
                         redirectUserToThePageAccordingToHisRole();
                     } else {
-                        growl.info(res.data.data.message);
+                        NotificationService.info(res.data.data.message);
                     }
                 }
             };
@@ -92,7 +92,7 @@
         function redirectUserToThePageAccordingToHisRole() {
             UserService.requestUser((res) => {
                 if (!res.data.success) {
-                    return growl.info(res.data.data.data.message);
+                    return NotificationService.info(res.data.data.data.message);
                 }
 
                 UserService.save(res.data.data);

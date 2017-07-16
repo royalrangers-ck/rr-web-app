@@ -6,11 +6,11 @@
         .module('app')
         .factory('ErrorInterceptor', ErrorInterceptor);
 
-    function ErrorInterceptor($q, growl, $location) {
+    function ErrorInterceptor($q, NotificationService, $location) {
         let checkError = function (response) {
 
             if (response && (response.status == 502 || response.status == 504)) {
-                growl.error('Internal server error \n' + response.statusText, {
+                NotificationService.error('Internal server error \n' + response.statusText, {
                     ttl: 7000,
                     disableCountDown: true,
                     onclose: function () {
@@ -21,7 +21,7 @@
             }
 
             if (response && response.status !== 200) {
-                growl.error(response.data.message)
+                NotificationService.error(response.data.message)
             }
         };
 

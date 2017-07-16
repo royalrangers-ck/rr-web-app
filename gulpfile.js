@@ -15,6 +15,7 @@ gulp.task('copy:fonts:landing', require('./gulp.tasks/landing/copy/fonts').landi
 gulp.task('copy:tpl:landing', require('./gulp.tasks/landing/copy/templates').landing);
 gulp.task('js:landing', require('./gulp.tasks/landing/scripts.js').landing);
 gulp.task('sass:landing', require('./gulp.tasks/landing/sass').landing);
+gulp.task('updateSrcLinks:landing', require('./gulp.tasks/landing/update.src.links').landing);
 
 // Main task
 gulp.task('build:landing', gulp.series(
@@ -27,9 +28,7 @@ gulp.task('build:landing', gulp.series(
         'copy:tpl:landing',
         'js:landing',
         'sass:landing'),
-    function updateSrcLinks(cb) {
-        return require('./gulp.tasks/landing/update.src.links').landing(cb)
-    }
+    'updateSrcLinks:landing'
 ));
 
 // Additional tasks
@@ -61,6 +60,7 @@ gulp.task('copy:fonts:app', require('./gulp.tasks/application/copy/fonts').appli
 gulp.task('copy:tpl:app', require('./gulp.tasks/application/copy/templates').application);
 gulp.task('js:app', require('./gulp.tasks/application/scripts.js').application);
 gulp.task('sass:app', require('./gulp.tasks/application/sass').application);
+gulp.task('updateSrcLinks:app', require('./gulp.tasks/application/update.src.links').application);
 
 // Main task
 gulp.task('build:app', gulp.series(
@@ -72,9 +72,7 @@ gulp.task('build:app', gulp.series(
         'copy:tpl:app',
         'js:app',
         'sass:app'),
-    function updateSrcLinks(cb) {
-        return require('./gulp.tasks/application/update.src.links').application(cb)
-    }
+    'updateSrcLinks:app'
 ));
 
 // Additional tasks
@@ -107,6 +105,7 @@ gulp.task('copy:fonts:admin', require('./gulp.tasks/admin/copy/fonts').admin);
 gulp.task('copy:tpl:admin', require('./gulp.tasks/admin/copy/templates').admin);
 gulp.task('js:admin', require('./gulp.tasks/admin/scripts.js').admin);
 gulp.task('sass:admin', require('./gulp.tasks/admin/sass').admin);
+gulp.task('updateSrcLinks:admin', require('./gulp.tasks/admin/update.src.links').admin);
 
 // Main task
 gulp.task('build:admin', gulp.series(
@@ -118,9 +117,7 @@ gulp.task('build:admin', gulp.series(
         'copy:tpl:admin',
         'js:admin',
         'sass:admin'),
-    function updateSrcLinks(cb) {
-        return require('./gulp.tasks/admin/update.src.links').admin(cb)
-    }
+    'updateSrcLinks:admin'
 ));
 
 // Additional tasks

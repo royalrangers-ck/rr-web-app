@@ -6,7 +6,7 @@
         .module('app')
         .controller('RegistrationController', RegistrationController);
 
-    function RegistrationController(countriesResponse, ranksResponse, Ranks, growl, $routeSegment, $location, RegistrationService) {
+    function RegistrationController(countriesResponse, ranksResponse, Ranks, NotificationService, $routeSegment, $location, RegistrationService) {
         const vm = this;
 
         vm.data = {};
@@ -52,10 +52,10 @@
 
             let afterSave = function (res) {
                 if (res.success) {
-                    growl.success(res.data.message);
+                    NotificationService.success(res.data.message);
                     $location.path('/login');
                 } else {
-                    growl.info(res.data.message);
+                    NotificationService.info(res.data.message);
                 }
 
                 vm.form.$submitted = false;

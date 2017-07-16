@@ -5,7 +5,7 @@
         .module('app')
         .controller('UploadUserLogoController', UploadUserLogoController);
 
-    function UploadUserLogoController(options, $uibModalInstance, UploadUserLogoService, growl, UserService, AppModalService) {
+    function UploadUserLogoController(options, $uibModalInstance, UploadUserLogoService, growl, UserService) {
         const vm = this;
 
         vm.close = close;
