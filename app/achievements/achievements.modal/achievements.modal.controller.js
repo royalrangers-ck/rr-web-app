@@ -9,8 +9,8 @@
     function AchievementsModalController ($uibModalInstance, ProfileTestsService) {
         const vm = this;
 
-        vm.tests = getTests();
-        vm.newTest = {};
+        vm.tests = [];
+        vm.pagination = [];
         vm.close = close;
         vm.submit = submit;
 
@@ -19,19 +19,11 @@
         ////
 
         function activate () {
-
+            getTests();
         }
 
         function submit () {
-            let newTest = {
-                description: '',
-                shortDescription: vm.newTest.description,
-                name: vm.newTest.name,
-                testType: "BLUE",
-                userAgeGroups:["PIONEER", "RANGER"]
-            };
-            vm.tests.push(newTest);
-            vm.newTest = {};
+            $log.debug('add new Test');
         }
 
         function close(data) {
@@ -42,12 +34,8 @@
             // ToDo.zpawn: get correct data
             ProfileTestsService.getTests().$promise.then(function (res) {
                 if (res.success) {
-                    vm.tests = res.data.reduce((tests, test) => {
-                        if (test.shortDescription !== null && length < 10) {
-                            tests.push(test);
-                        }
-                        return tests;
-                    }, []);
+                    vm.tests = res.data.content;
+                    vm.pagination = res.data;
                 }
             });
         }

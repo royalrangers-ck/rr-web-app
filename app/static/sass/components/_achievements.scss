@@ -1,0 +1,100 @@
+.achievements {
+  .achievements__item {
+    position: relative;
+    border-bottom: 3px solid transparent;
+
+    &.active {
+      border-bottom-color: $brand-primary;
+    }
+
+    a { color: $text-color; }
+
+    .label {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      color: #fff;
+    }
+
+    &--not-started {
+      .label {
+        display: none;
+      }
+
+      img {
+        -webkit-filter: grayscale(1);
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        filter: url(#greyscale);
+        filter: gray;
+      }
+    }
+
+    &--in-progress {
+      .label {
+        @include label-variant($label-warning-bg);
+      }
+    }
+
+    &--submitted {
+      .label {
+        @include label-variant($label-info-bg);
+      }
+    }
+
+    &--approved {
+      .label {
+        display: none;
+      }
+    }
+
+    &--rejected {
+      .label {
+        @include label-variant($label-danger-bg);
+      }
+    }
+  }
+
+  .achievements__item-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, .8);
+    margin: 0 15px;
+    padding: 10px 20px;
+    font-size: $font-size-h5;
+
+    .achievements__items-title {
+      float: left;
+    }
+
+    .achievements__item-amount {
+      font-weight: bold;
+      float: right;
+    }
+  }
+
+  &__header {
+    display: flex;
+
+    > div {
+      flex-grow: 1;
+    }
+
+    &-logo {}
+    &-descr {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}
+
+.img-achievements {
+  width: 100%;
+  margin: 0 auto;
+
+  &--first { max-width: 150px }
+  &--second { max-width: 100px }
+}
