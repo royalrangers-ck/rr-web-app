@@ -65,7 +65,7 @@
                 if (res.success) {
                     close();
                     NotificationService.info('Користувач '+vm.modifiedUser.firstName+' '+vm.modifiedUser.lastName+' підтверджений');
-                    $routeSegment.chain[0].reload();
+                    $routeSegment.reload()
                 } else {
                     NotificationService.error('Помилка:' + res.data.message);
                 }
@@ -80,7 +80,7 @@
                     close();
                     NotificationService.info('Користувач ' + vm.originalUser.firstName + ' ' +
                         vm.originalUser.lastName + ' видалений зі списку');
-                    $routeSegment.chain[0].reload();
+                    $routeSegment.reload()
                 } else {
                     NotificationService.error('Помилка:' + res.data.message);
                 }
