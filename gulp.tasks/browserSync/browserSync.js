@@ -26,6 +26,7 @@ const gulp = require('gulp'),
     },
     browserSync = {
         start: bs_start
+        // reload: bs_reload //for some reasons doesn't work correct
     };
 
 module.exports = browserSync;
@@ -34,6 +35,6 @@ function bs_start () {
     bSync(config);
 }
 
-gulp.task('bs_start', function () {
-    bSync(config);
-});
+// function bs_reload () {
+//     return bSync.reload({stream: true});
+// }
