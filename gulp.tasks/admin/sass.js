@@ -8,7 +8,6 @@ const gulp = require('gulp'),
     cssnano = require('gulp-cssnano'),
     sourcemaps = require('gulp-sourcemaps'),
     gulpif = require('gulp-if'),
-    browserSync = require('browser-sync'),
 
     autoprefixerOptions = {
         browsers: ['last 2 versions']
@@ -36,5 +35,4 @@ function admin() {
         .pipe(autoprefixer(autoprefixerOptions))
         .pipe(gulpif(gulpArguments.dev, sourcemaps.write(), cssnano()))
         .pipe(gulp.dest(dest))
-        .pipe(browserSync.stream());
 };

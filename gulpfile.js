@@ -38,7 +38,7 @@ gulp.task('clear:css:landing', require('./gulp.tasks/landing/clean').styles);
 // Watch tasks
 gulp.task('sass:watch:landing', function () {
     const src = ['landing/static/sass/**/*.scss'];
-    gulp.watch(src,  { readDelay: 200 }, gulp.series('sass:landing'));
+    gulp.watch(src, gulp.series('clear:css:landing', 'sass:landing'));
 });
 gulp.task('js:watch:landing', function () {
     const src = ['landing/**/*.js', '!landing/static/**/*.*'];
@@ -89,7 +89,7 @@ gulp.task('js:watch:app', function () {
 });
 gulp.task('sass:watch:app', function () {
     const src = ['app/static/sass/**/*.scss'];
-    gulp.watch(src,  { readDelay: 200 }, gulp.series('sass:app'));
+    gulp.watch(src, gulp.series('clear:css:app', 'sass:app'));
 });
 
 
@@ -134,7 +134,7 @@ gulp.task('js:watch:admin', function () {
 });
 gulp.task('sass:watch:admin', function () {
     const src = ['admin/static/sass/**/*.scss'];
-    gulp.watch(src,  { readDelay: 200 }, gulp.series('sass:admin'));
+    gulp.watch(src, gulp.series('clear:css:admin', 'sass:admin'));
 });
 
 /* ------------------------------------------ */
@@ -145,11 +145,4 @@ gulp.task('default', gulp.parallel(
     'build:landing',
     'build:app',
     'build:admin'
-));
-
-gulp.task('bs_sass', gulp.parallel(
-    require('./gulp.tasks/browserSync/browserSync').start,
-    'sass:watch:landing',
-    'sass:watch:app',
-    'sass:watch:admin'
 ));
