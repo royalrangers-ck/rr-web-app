@@ -1,7 +1,11 @@
-<div class="row">
-    <div class="col-xs-12 text-center">
+<div class="achievements__header">
+    <div class="text-center achievements__header-logo">
         <img src="./static/vendor/images/achievements/ranger.kids.png" alt="Royal Rangers Kids" width="300">
         <h3 class="font-bold text-danger">Нагороди може отрувати дитина не молодше 6 і не старше 9 років</h3>
+    </div>
+    <div class="widget style1 h1 text-center achievements__header-descr hidden-xs">
+        <p>початківці</p>
+        <p>5-6-7 років</p>
     </div>
 </div>
 
@@ -26,33 +30,14 @@
 
 <div class="ibox">
     <div class="ibox-title">
-        <h2>Нагорода за рік</h2>
+        <h2>Gold</h2>
     </div>
 
     <div class="ibox-content">
-        <div class="row achievements" role="tablist">
-
-            <figure class="col-xs-12 col-sm-4 achievements__item text-center active" role="presentation">
-                <a aria-controls="oneYear" role="tab" data-toggle="tab" data-target="#oneYear">
-                    <img src="./static/vendor/images/achievements/ranger.kids.one.year.png" alt="" width="200">
-                    <figcaption class="achievements__item-caption text-center">
-                        <span>Overhand knot trail</span>
-                    </figcaption>
-                </a>
-            </figure>
-
-            <figure class="col-xs-12 col-sm-4 achievements__item text-center" role="presentation">
-                <a aria-controls="twoYear" role="tab" data-toggle="tab" data-target="#twoYear">
-                    <img src="./static/vendor/images/achievements/ranger.kids.two.year.png" alt="" width="200">
-                    <figcaption class="achievements__item-caption text-center">
-                        <span>Lark’s head trail</span>
-                    </figcaption>
-                </a>
-            </figure>
-
-            <figure class="col-xs-12 col-sm-4 achievements__item text-center" role="presentation">
-                <a aria-controls="threeYear" role="tab" data-toggle="tab" data-target="#threeYear">
-                    <img src="./static/vendor/images/achievements/ranger.kids.three.year.png" alt="" width="200">
+        <div class="row achievements">
+            <figure class="col-xs-12 col-sm-4 col-sm-offset-4 achievements__item">
+                <a ng-click="vm.achievementsModal()">
+                    <img class="img-responsive img-achievements img-achievements--first" src="./static/vendor/images/achievements/ranger.kids.three.year.png" alt="">
                     <figcaption class="achievements__item-caption text-center">
                         <span>Figure eight trail</span>
                     </figcaption>
@@ -62,134 +47,157 @@
     </div>
 </div>
 
-<div class="tab-content">
-
-    <div class="ibox tab-pane active" role="tabpanel" id="oneYear">
-        <div class="ibox-title">
-            <h2>Нагорода за 1 рік</h2>
-        </div>
-
-        <div class="ibox-content">
-            <div class="row achievements">
-                <figure class="col-xs-12 col-sm-3 achievements__item text-center">
-                    <a ng-click="vm.achievementsModal()">
-                        <img src="./static/vendor/images/achievements/ranger.kids.one.year.achievka.png" alt="" width="150">
-                        <figcaption class="achievements__item-caption text-center">
-                            <span>Overhand knot trail</span>
-                        </figcaption>
-                    </a>
-                </figure>
-                <figure class="col-xs-12 col-sm-3 achievements__item text-center">
-                    <a>
-                        <img src="./static/vendor/images/achievements/ranger.kids.one.year.achievka.png" alt="" width="150">
-                        <figcaption class="achievements__item-caption text-center">
-                            <span>Overhand knot trail</span>
-                        </figcaption>
-                    </a>
-                </figure>
-                <figure class="col-xs-12 col-sm-3 achievements__item text-center">
-                    <a>
-                        <img src="./static/vendor/images/achievements/ranger.kids.one.year.achievka.png" alt="" width="150">
-                        <figcaption class="achievements__item-caption text-center">
-                            <span>Overhand knot trail</span>
-                        </figcaption>
-                    </a>
-                </figure>
-                <figure class="col-xs-12 col-sm-3 achievements__item text-center">
-                    <a>
-                        <img src="./static/vendor/images/achievements/ranger.kids.one.year.achievka.png" alt="" width="150">
-                        <figcaption class="achievements__item-caption text-center">
-                            <span>Overhand knot trail</span>
-                        </figcaption>
-                    </a>
-                </figure>
-            </div>
+<div class="ibox">
+    <div class="ibox-content">
+        <div class="row achievements">
+            <figure class="col-xs-6 col-sm-3 achievements__item">
+                <a ng-click="vm.achievementsModal()">
+                    <img class="img-responsive img-achievements img-achievements--second" src="./static/vendor/images/achievements/ranger.kids.two.year.achievka.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Overhand knot trail</span>
+                    </figcaption>
+                </a>
+            </figure>
+            <figure class="col-xs-6 col-sm-3 achievements__item">
+                <a ng-click="vm.achievementsModal()">
+                    <img class="img-responsive img-achievements img-achievements--second" src="./static/vendor/images/achievements/ranger.kids.two.year.achievka.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Overhand knot trail</span>
+                    </figcaption>
+                </a>
+            </figure>
+            <figure class="col-xs-6 col-sm-3 achievements__item">
+                <a ng-click="vm.achievementsModal()">
+                    <img class="img-responsive img-achievements img-achievements--second" src="./static/vendor/images/achievements/ranger.kids.two.year.achievka.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Overhand knot trail</span>
+                    </figcaption>
+                </a>
+            </figure>
+            <figure class="col-xs-6 col-sm-3 achievements__item">
+                <a ng-click="vm.achievementsModal()">
+                    <img class="img-responsive img-achievements img-achievements--second" src="./static/vendor/images/achievements/ranger.kids.two.year.achievka.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Overhand knot trail</span>
+                    </figcaption>
+                </a>
+            </figure>
         </div>
     </div>
+</div>
 
-    <div class="ibox tab-pane" role="tabpanel" id="twoYear">
-        <div class="ibox-title">
-            <h2>Нагорода за 2 роки</h2>
-        </div>
-
-        <div class="ibox-content">
-            <div class="row achievements">
-                <figure class="col-xs-12 col-sm-3 achievements__item text-center">
-                    <a>
-                        <img src="./static/vendor/images/achievements/ranger.kids.two.year.achievka.png" alt="" width="150">
-                        <figcaption class="achievements__item-caption text-center">
-                            <span>Overhand knot trail</span>
-                        </figcaption>
-                    </a>
-                </figure>
-                <figure class="col-xs-12 col-sm-3 achievements__item text-center">
-                    <a>
-                        <img src="./static/vendor/images/achievements/ranger.kids.two.year.achievka.png" alt="" width="150">
-                        <figcaption class="achievements__item-caption text-center">
-                            <span>Overhand knot trail</span>
-                        </figcaption>
-                    </a>
-                </figure>
-                <figure class="col-xs-12 col-sm-3 achievements__item text-center">
-                    <a>
-                        <img src="./static/vendor/images/achievements/ranger.kids.two.year.achievka.png" alt="" width="150">
-                        <figcaption class="achievements__item-caption text-center">
-                            <span>Overhand knot trail</span>
-                        </figcaption>
-                    </a>
-                </figure>
-                <figure class="col-xs-12 col-sm-3 achievements__item text-center">
-                    <a>
-                        <img src="./static/vendor/images/achievements/ranger.kids.two.year.achievka.png" alt="" width="150">
-                        <figcaption class="achievements__item-caption text-center">
-                            <span>Overhand knot trail</span>
-                        </figcaption>
-                    </a>
-                </figure>
-            </div>
-        </div>
+<div class="ibox">
+    <div class="ibox-title">
+        <h2>Silver</h2>
     </div>
 
-    <div class="ibox tab-pane" role="tabpanel" id="threeYear">
-        <div class="ibox-title">
-            <h2>Нагорода за 3 роки</h2>
+    <div class="ibox-content">
+        <div class="row achievements">
+            <figure class="col-xs-12 col-sm-4 col-sm-offset-4 achievements__item">
+                <a>
+                    <img class="img-responsive img-achievements img-achievements--first" src="./static/vendor/images/achievements/ranger.kids.two.year.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Lark’s head trail</span>
+                    </figcaption>
+                </a>
+            </figure>
         </div>
+    </div>
+</div>
 
-        <div class="ibox-content">
-            <div class="row achievements">
-                <figure class="col-xs-12 col-sm-3 achievements__item text-center">
-                    <a>
-                        <img src="./static/vendor/images/achievements/ranger.kids.three.year.achievka.png" alt="" width="150">
-                        <figcaption class="achievements__item-caption text-center">
-                            <span>Overhand knot trail</span>
-                        </figcaption>
-                    </a>
-                </figure>
-                <figure class="col-xs-12 col-sm-3 achievements__item text-center">
-                    <a>
-                        <img src="./static/vendor/images/achievements/ranger.kids.three.year.achievka.png" alt="" width="150">
-                        <figcaption class="achievements__item-caption text-center">
-                            <span>Overhand knot trail</span>
-                        </figcaption>
-                    </a>
-                </figure>
-                <figure class="col-xs-12 col-sm-3 achievements__item text-center">
-                    <a>
-                        <img src="./static/vendor/images/achievements/ranger.kids.three.year.achievka.png" alt="" width="150">
-                        <figcaption class="achievements__item-caption text-center">
-                            <span>Overhand knot trail</span>
-                        </figcaption>
-                    </a>
-                </figure>
-                <figure class="col-xs-12 col-sm-3 achievements__item text-center">
-                    <a>
-                        <img src="./static/vendor/images/achievements/ranger.kids.three.year.achievka.png" alt="" width="150">
-                        <figcaption class="achievements__item-caption text-center">
-                            <span>Overhand knot trail</span>
-                        </figcaption>
-                    </a>
-                </figure>
-            </div>
+<div class="ibox">
+    <div class="ibox-content">
+        <div class="row achievements">
+            <figure class="col-xs-6 col-sm-3 achievements__item text-center">
+                <a>
+                    <img class="img-responsive img-achievements img-achievements--second" src="./static/vendor/images/achievements/ranger.kids.three.year.achievka.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Overhand knot trail</span>
+                    </figcaption>
+                </a>
+            </figure>
+            <figure class="col-xs-6 col-sm-3 achievements__item text-center">
+                <a>
+                    <img class="img-responsive img-achievements img-achievements--second" src="./static/vendor/images/achievements/ranger.kids.three.year.achievka.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Overhand knot trail</span>
+                    </figcaption>
+                </a>
+            </figure>
+            <figure class="col-xs-6 col-sm-3 achievements__item text-center">
+                <a>
+                    <img class="img-responsive img-achievements img-achievements--second" src="./static/vendor/images/achievements/ranger.kids.three.year.achievka.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Overhand knot trail</span>
+                    </figcaption>
+                </a>
+            </figure>
+            <figure class="col-xs-6 col-sm-3 achievements__item text-center">
+                <a>
+                    <img class="img-responsive img-achievements img-achievements--second" src="./static/vendor/images/achievements/ranger.kids.three.year.achievka.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Overhand knot trail</span>
+                    </figcaption>
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>
+
+<div class="ibox">
+    <div class="ibox-title">
+        <h2>Bronze</h2>
+    </div>
+
+    <div class="ibox-content">
+        <div class="row achievements">
+            <figure class="col-xs-12 col-sm-4 col-sm-offset-4 achievements__item">
+                <a>
+                    <img class="img-responsive img-achievements img-achievements--first" src="./static/vendor/images/achievements/ranger.kids.one.year.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Overhand knot trail</span>
+                    </figcaption>
+                </a>
+            </figure>
+        </div>
+    </div>
+</div>
+
+<div class="ibox">
+    <div class="ibox-content">
+        <div class="row achievements">
+            <figure class="col-xs-6 col-sm-3 achievements__item">
+                <a>
+                    <img class="img-responsive img-achievements img-achievements--second" src="./static/vendor/images/achievements/ranger.kids.one.year.achievka.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Overhand knot trail</span>
+                    </figcaption>
+                </a>
+            </figure>
+            <figure class="col-xs-6 col-sm-3 achievements__item">
+                <a>
+                    <img class="img-responsive img-achievements img-achievements--second" src="./static/vendor/images/achievements/ranger.kids.one.year.achievka.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Overhand knot trail</span>
+                    </figcaption>
+                </a>
+            </figure>
+            <figure class="col-xs-6 col-sm-3 achievements__item">
+                <a>
+                    <img class="img-responsive img-achievements img-achievements--second" src="./static/vendor/images/achievements/ranger.kids.one.year.achievka.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Overhand knot trail</span>
+                    </figcaption>
+                </a>
+            </figure>
+            <figure class="col-xs-6 col-sm-3 achievements__item">
+                <a>
+                    <img class="img-responsive img-achievements img-achievements--second" src="./static/vendor/images/achievements/ranger.kids.one.year.achievka.png" alt="">
+                    <figcaption class="achievements__item-caption text-center">
+                        <span>Overhand knot trail</span>
+                    </figcaption>
+                </a>
+            </figure>
         </div>
     </div>
 </div>
