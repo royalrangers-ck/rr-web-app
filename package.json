@@ -7,7 +7,7 @@
     "preinstall": "npm install gulpjs/gulp-cli protractor ntl -g",
     "postinstall": "bower install",
     "prestart": "npm install",
-    "vagrant-start": "cd scripts/vagrant/x64/ && vagrant up",
+    "vagrant": "cd scripts/vagrant/x64/ && vagrant up",
     "vagrant-stop": "cd scripts/vagrant/x64/ && vagrant halt -f",
     "vagrant-reload": "cd scripts/vagrant/x64/ && vagrant reload",
     "vagrant-destroy": "cd scripts/vagrant/x64/ && vagrant destroy -f",
