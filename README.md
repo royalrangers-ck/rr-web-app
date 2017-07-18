@@ -78,6 +78,24 @@ To recreate VM:
     $ vagrant up
 
 
+## Running browserSync
+
+How to install:
+Use `"npm install"` in console;
+
+How to use:
+ - Enable server: "gulp bs";
+ - Enable server and all watchers: "gulp bs:all";
+ - Server and js watcher: "gulp bs:js";
+ - Server and sass watcher: "gulp bs:sass";
+ - Disable all: use "ctrl+c" buttons combination in console;
+
+Links:
+ - localhost:9000 - site;
+ - localhost:3001 - BrowserSync UI;
+
+
+
 ## Running the tests
 
 To run test:
