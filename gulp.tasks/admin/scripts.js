@@ -6,6 +6,7 @@ const gulp = require('gulp'),
     babel = require('gulp-babel'),
     ngAnnotate = require('gulp-ng-annotate'),
     sourcemaps = require('gulp-sourcemaps'),
+    browserSync = require('browser-sync'),
 
     scripts = {
         admin: admin,
@@ -40,4 +41,5 @@ function admin() {
         .pipe(concat('app.min.js'))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(dest))
+        .pipe(browserSync.reload({stream: true}))
 };

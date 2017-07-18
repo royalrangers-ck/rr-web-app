@@ -16,6 +16,7 @@ gulp.task('copy:tpl:landing', require('./gulp.tasks/landing/copy/templates').lan
 gulp.task('js:landing', require('./gulp.tasks/landing/scripts.js').landing);
 gulp.task('sass:landing', require('./gulp.tasks/landing/sass').landing);
 gulp.task('updateSrcLinks:landing', require('./gulp.tasks/landing/update.src.links').landing);
+gulp.task('bs:start', require('./gulp.tasks/browserSync/browserSync').start);
 
 // Main task
 gulp.task('build:landing', gulp.series(
@@ -38,11 +39,11 @@ gulp.task('clear:css:landing', require('./gulp.tasks/landing/clean').styles);
 // Watch tasks
 gulp.task('sass:watch:landing', function () {
     const src = ['landing/static/sass/**/*.scss'];
-    gulp.watch(src, gulp.series('clear:css:landing', 'sass:landing'));
+    gulp.watch(src, { readDelay: 200 }, gulp.series('sass:landing'));
 });
 gulp.task('js:watch:landing', function () {
     const src = ['landing/**/*.js', '!landing/static/**/*.*'];
-    gulp.watch(src, gulp.series(
+    gulp.watch(src, { readDelay: 200 }, gulp.series(
         'clear:js:landing',
         gulp.parallel('copy:dep:landing', 'js:landing')
     ));
@@ -82,14 +83,14 @@ gulp.task('clear:css:app', require('./gulp.tasks/application/clean').styles);
 // Watch tasks
 gulp.task('js:watch:app', function () {
     const src = ['app/**/*.js', '!app/static/**/*.*'];
-    gulp.watch(src, gulp.series(
+    gulp.watch(src, { readDelay: 200 }, gulp.series(
         'clear:js:app',
         gulp.parallel('copy:dep:app', 'js:app')
     ));
 });
 gulp.task('sass:watch:app', function () {
     const src = ['app/static/sass/**/*.scss'];
-    gulp.watch(src, gulp.series('clear:css:app', 'sass:app'));
+    gulp.watch(src, { readDelay: 200 }, gulp.series('sass:app'));
 });
 
 
@@ -127,15 +128,59 @@ gulp.task('clear:css:admin', require('./gulp.tasks/admin/clean').styles);
 // Watch tasks
 gulp.task('js:watch:admin', function () {
     const src = ['admin/**/*.js', '!admin/static/**/*.*'];
-    gulp.watch(src, gulp.series(
+    gulp.watch(src, { readDelay: 200 }, gulp.series(
         'clear:js:admin',
         gulp.parallel('copy:dep:admin', 'js:admin')
     ));
 });
 gulp.task('sass:watch:admin', function () {
     const src = ['admin/static/sass/**/*.scss'];
-    gulp.watch(src, gulp.series('clear:css:admin', 'sass:admin'));
+    gulp.watch(src, { readDelay: 200 }, gulp.series('sass:admin'));
 });
+
+/* ------------------------------------------ */
+/*                 Watchers                   */
+/* ------------------------------------------ */
+
+gulp.task('sass:watch', gulp.parallel(
+    'sass:watch:landing',
+    'sass:watch:app',
+    'sass:watch:admin'
+));
+
+gulp.task('js:watch', gulp.parallel(
+    'js:watch:landing',
+    'js:watch:app',
+    'js:watch:admin'
+));
+
+gulp.task('all:watch', gulp.parallel(
+    'js:watch',
+    'sass:watch'
+));
+
+/* ------------------------------------------ */
+/*                 BrowserSync                */
+/* ------------------------------------------ */
+
+gulp.task('bs', gulp.parallel(
+    'bs:start'
+));
+
+gulp.task('bs:all', gulp.parallel(
+    'bs:start',
+    'all:watch'
+));
+
+gulp.task('bs:sass', gulp.parallel(
+    'bs:start',
+    'sass:watch'
+));
+
+gulp.task('bs:js', gulp.parallel(
+    'bs:start',
+    'js:watch'
+));
 
 /* ------------------------------------------ */
 /*                 General                    */
