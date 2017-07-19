@@ -4,87 +4,76 @@ Frontend-side for Royal Rangers activity.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
 ### Prerequisites
 
-What things you need to install the software and how to install them:
+To simply run the application, install the following software:
+
+- [Node.js](https://nodejs.org/uk/download/)
+- [Yarn](https://yarnpkg.com/lang/en/docs/install/)
+
+and if you want to develop an application, you also need to install:
 
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 - [Vagrant](https://www.vagrantup.com/)
 
-### Installing
+### Prepare en environment:
 
-1. Download and install VirtualBox from link
-
-```
-http://download.virtualbox.org/virtualbox/5.1.16/VirtualBox-5.1.16-113841-Win.exe
-```
-
-2. Download and install Vagrant from link
+Run the next command to download the repository
 
 ```
-https://releases.hashicorp.com/vagrant/1.7.4/
-```
-
-3. Download and install NPM from link
-
-```
-https://nodejs.org/dist/v6.10.0/node-v6.10.0-x64.msi
-```
-
-4. Install Gulp 4
-
-```
-$ npm install gulpjs/gulp-cli -g
-```
-
-4. Install Protractor
-
-```
-$ npm install protractor -g
+git clone -b develop https://github.com/royalrangers-ck/rr-web-app.git
 ```
 
 ### Running
 
-To start VM:
+To start an application:
 
-    $ cd ./royal-rangers-frontend/scripts/vagrant/x64
-    $ vagrant up
+1) install all dependencies
 
-To update npm dependencies:
+```
+yarn
+```
 
-    $ cd ./royal-rangers-frontend
-    $ npm install
+2) build project and start browserSync
 
-To open app in browser:
+```
+gulp && gulp bs
+```
 
-    http://localhost:9990
+## BrowserSync
 
-To stop VM:
+To start server:
 
-    $ cd ./royal-rangers-frontend/scripts/vagrant/x64
-    $ vagrant halt -f
+```
+gulp bs
+```
 
-To reload VM:
+To stop server:
 
-    $ cd ./royal-rangers-frontend/scripts/vagrant/x64
-    $ vagrant reload
+```
+Ctrl + C
+```
 
-To recreate VM:
+To enable watchers: 
 
-    $ cd ./royal-rangers-frontend/scripts/vagrant/x64
-    $ vagrant destroy -f
-    $ vagrant up
+```
+gulp bs:all
+```
+
+Helpful links:
+
+ - ``localhost:9000`` - web application;
+ - ``localhost:3001`` - BrowserSync UI;
+
 
 
 ## Running the tests
 
 To run test:
 
-    $ cd ./royal-rangers-frontend
-    $ karma start
-
+```
+yarn run tests
+```
 
 ### Project style guide
 
@@ -120,23 +109,9 @@ Error response object:
 
 ## Built With
 
-* [AngularJS](https://angularjs.org/) - The web framework used
+* [AngularJS 1.6](https://angularjs.org/) - The web framework
 * [NPM](https://nodejs.org/dist/v6.10.0/node-v6.10.0-x64.msi) - Dependency Management
 * [Gulp](https://gulp.readme.io/docs/getting-started) - Used to compile and minify js and css
-
-## Testing
-
-To run Selenium end-to-end tests:
-
-    $ cd ./tests/selenium
-    $ webdriver-manager update && webdriver-manager start
-    $ protractor conf.js
-    
-To run Karma unit tests:
-
-    $ cd ./tests/karma
-    $ karma start
-    
     
 ## Authors
 

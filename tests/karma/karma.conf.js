@@ -40,7 +40,7 @@ module.exports = function (config) {
                 flags: ['--start-maximized']
             }
         },
-        singleRun: false,
+        singleRun: true,
         concurrency: Infinity
     })
 };
