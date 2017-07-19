@@ -3,7 +3,7 @@ const gulp = require('gulp'),
     http_proxy = require('http-proxy-middleware'),
 
     proxy_conf = {
-        target: 'http://172.16.1.1:8080',
+        target: 'http://localhost:8080',
         changeOrigin: true,               // needed for virtual hosted sites 
         ws: true
     },
