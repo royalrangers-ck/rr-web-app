@@ -10,6 +10,8 @@
 
         this.homeModalVideo = homeModalVideo;
 
+        ////
+
         function homeModalVideo() {
             return $uibModal.open({
                 animation: true,
@@ -17,9 +19,9 @@
                 controller: 'ModalVideoController',
                 controllerAs: 'vm',
                 size: 'lg'
-            }).result.then(function () {
-                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
-            }, function (res) {});
+            }).result // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+                .then(function () { /* Resolved */  },
+                      function () { /* Dismissed */ });
         }
     }
 })();
