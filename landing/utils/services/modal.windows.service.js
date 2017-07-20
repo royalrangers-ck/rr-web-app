@@ -14,7 +14,7 @@
             return $uibModal.open({
                 animation: true,
                 templateUrl: 'home/modal.video/modal.video.html',
-                controller: 'VideoModalController',
+                controller: 'ModalVideoController',
                 controllerAs: 'vm',
                 size: 'lg'
             }).result.then(function () {
