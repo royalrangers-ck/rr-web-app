@@ -5,14 +5,18 @@
 
     <div class="ibox-content">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <form action="" class="form-horizontal">
-                    <div class="input-group">
-                        <input type="text" class="form-control" ng-model="vm.newCountry">
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary" ng-click="vm.createNewCountry($event)">Додати</button>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <form ng-submit="vm.createNewCountry()" class="form-inline">
+                    <div class="from-group">
+                        <label for="countryName">Назва країни:</label>
+                        <div class="input-group">
+                            <input id="countryName" type="text" class="form-control" ng-model="vm.newCountry.name">
+                            <span class="input-group-btn">
+                            <button ng-disabled="!vm.newCountry.name" type="submit" class="btn btn-primary">Додати</button>
                         </span>
+                        </div>
                     </div>
+
                 </form>
             </div>
         </div>

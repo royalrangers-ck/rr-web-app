@@ -47,6 +47,13 @@
         endpoints.COUNTRIES = endpoints.PUBLIC + '/countries';
         endpoints.REGIONS =   endpoints.PUBLIC + '/regions';
 
+        //ADMIN ENDPOINTS
+        endpoints.ADMIN = endpoints.API + '/admin';
+
+        endpoints.ADMIN_COUNTRY = endpoints.ADMIN + '/country';
+        endpoints.ADMIN_REGION =   endpoints.ADMIN + '/region';
+        endpoints.ADMIN_CITY =    endpoints.ADMIN + '/city';
+
         // User  returns authorized user info
         endpoints.USER = endpoints.API + '/user';
 
