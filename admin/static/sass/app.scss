@@ -1,19 +1,19 @@
 /** Bootstrap */
-@import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 
 /** Font Awesome*/
-@import "../../../bower_components/font-awesome/scss/font-awesome.scss";
+@import "../../../node_modules/font-awesome/scss/font-awesome.scss";
 
 /** FooTable*/
-@import "../../../bower_components/footable/css/footable.core.min";
+@import "../../../node_modules/footable/css/footable.core.min";
 
 /** Angular Growl Notification v.2 */
-@import "../../../bower_components/angular-growl-v2/build/angular-growl.min";
+@import "../../../node_modules/angular-growl-v2/build/angular-growl.min";
 
 /** Inspinia */
 @import "inspinia/style";
 
-@import "../../../bower_components/angular-bootstrap/ui-bootstrap-csp";
+@import "../../../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp";
 
 /** App */
 @import "components/home";

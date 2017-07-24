@@ -27,7 +27,7 @@ function application() {
         'node_modules/footable/dist/footable.all.min.js',
         'node_modules/jquery-slimscroll/jquery.slimscroll.min.js',
         'node_modules/metismenu/dist/metisMenu.min.js',
-        'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.min.js',
+        'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
         'node_modules/ng-idle/angular-idle.min.js',
         'node_modules/ng-img-crop/compile/minified/ng-img-crop.js',
         'node_modules/angular-ui-mask/dist/mask.min.js',
