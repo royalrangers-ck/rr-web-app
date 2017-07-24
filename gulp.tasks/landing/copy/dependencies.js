@@ -7,7 +7,6 @@ const gulp = require('gulp'),
 
     dependencies = {
         landing: landing,
-        googleMaps: googleMaps
     };
 
 module.exports = dependencies;
@@ -29,8 +28,7 @@ function landing() {
         'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
         'bower_components/angular-ui-mask/dist/mask.min.js',
 
-        'landing/static/js/*.js',
-        '!landing/static/js/google-maps.js'
+        'landing/static/js/*.js'
     ];
 
     const dest = 'landing/static/vendor/js/.';
@@ -49,18 +47,3 @@ function landing() {
         .pipe(gulp.dest(dest))
 };
 
-
-function googleMaps() {
-    const src = [
-        'landing/static/js/google-maps.js'
-    ];
-
-    const dest = 'landing/static/vendor/js/.';
-
-    return gulp
-        .src(src)
-        .pipe(rename({
-            dirname: ''
-        }))
-        .pipe(gulp.dest(dest))
-}

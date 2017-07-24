@@ -9,7 +9,6 @@ const gulp = require('gulp');
 // Main stream
 gulp.task('clear:landing', require('./gulp.tasks/landing/clean').all);
 gulp.task('copy:dep:landing', require('./gulp.tasks/landing/copy/dependencies').landing);
-gulp.task('copy:googleMaps:landing', require('./gulp.tasks/landing/copy/dependencies').googleMaps);
 gulp.task('copy:img:landing', require('./gulp.tasks/landing/copy/images').landing);
 gulp.task('copy:fonts:landing', require('./gulp.tasks/landing/copy/fonts').landing);
 gulp.task('copy:tpl:landing', require('./gulp.tasks/landing/copy/templates').landing);
@@ -23,7 +22,6 @@ gulp.task('build:landing', gulp.series(
     'clear:landing',
     gulp.parallel(
         'copy:dep:landing',
-        'copy:googleMaps:landing',
         'copy:img:landing',
         'copy:fonts:landing',
         'copy:tpl:landing',
