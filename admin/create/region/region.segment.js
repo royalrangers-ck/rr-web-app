@@ -14,7 +14,15 @@
             .segment('region', {
                 templateUrl: 'create/region/region.html',
                 controller: 'CreateRegionController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    regionsPromise: function (PublicInfoService) {
+                        return PublicInfoService.getRegions().$promise;
+                    },
+                    countriesPromise: function (PublicInfoService) {
+                        return PublicInfoService.getCountries().$promise;
+                    }
+                }
             });
     }
 })();

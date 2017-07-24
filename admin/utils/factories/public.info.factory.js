@@ -20,10 +20,20 @@
                 params: {cityId: '@countryId'},
                 isArray: false
             },
+            'regions': {
+                method: 'GET',
+                url: Endpoints.REGIONS,
+                isArray: false
+            },
             'city': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/city`,
                 params: {countryId: '@regionId'},
+                isArray: false
+            },
+            'cities': {
+                method: 'GET',
+                url: Endpoints.CITIES,
                 isArray: false
             },
             'platoon': {

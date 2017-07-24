@@ -5,13 +5,24 @@
 
     <div class="ibox-content">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <form action="" class="form-horizontal">
-                    <div class="input-group">
-                        <input type="text" class="form-control" ng-model="vm.newRegion">
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary" ng-click="vm.createNewRegion($event)">Додати</button>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <form ng-submit="vm.createNewRegion()" class="form-inline">
+                    <div class="form-group">
+                        <label for="countrySelect">Країна:</label>
+                        <select id="countrySelect" ng-model="vm.newRegion.countryId" class="form-control"
+                                ng-options="country.id as country.name for country in vm.countries">
+                            <option disabled hidden value="">Виберіть країну</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="regionName">Назва регіону:</label>
+                        <div class="input-group">
+                            <input id="regionName" type="text" class="form-control" ng-model="vm.newRegion.name">
+                            <span class="input-group-btn">
+                            <button ng-disabled="!vm.newRegion.countryId || !vm.newRegion.name" type="submit"
+                                    class="btn btn-primary">Додати</button>
                         </span>
+                        </div>
                     </div>
                 </form>
             </div>

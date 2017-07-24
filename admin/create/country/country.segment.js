@@ -14,7 +14,12 @@
             .segment('country', {
                 templateUrl: 'create/country/country.html',
                 controller: 'CreateCountryController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    countriesPromise: function (PublicInfoService) {
+                        return PublicInfoService.getCountries().$promise;
+                    }
+                }
             });
     }
 })();
