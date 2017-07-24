@@ -12,15 +12,15 @@ module.exports = fonts;
 
 function application() {
     const src = [
-        'bower_components/font-awesome/fonts/*.*',
-        'bower_components/footable/css/fonts/*.*',
+        'node_modules/font-awesome/fonts/*.*',
+        'node_modules/footable/css/fonts/*.*',
         'app/static/fonts/*.*'
     ];
     const dest = 'app/static/vendor/fonts/.';
 
     /** FooTable need special folder for his fonts*/
     /** if need, please refactor this*/
-    gulp.src('bower_components/footable/css/fonts/*.*')
+    gulp.src('node_modules/footable/css/fonts/*.*')
         .pipe(gulp.dest('app/static/vendor/css/fonts/.'));
 
     // Same, but to boostsrap
