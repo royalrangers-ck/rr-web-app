@@ -25,7 +25,7 @@ function application() {
 
     // Same, but to boostsrap
     // if need, please refactor this
-    gulp.src('bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*')
+    gulp.src('node_modules/bootstrap-sass/assets/fonts/bootstrap/*.*')
         .pipe(gulp.dest('app/static/vendor/fonts/bootstrap/.'));
 
     return gulp
