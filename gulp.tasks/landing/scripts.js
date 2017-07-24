@@ -19,7 +19,7 @@ function landing() {
 		'landing/app.js',
 		'landing/config.js',
 		'landing/**/*.js',
-		'!landing/static/js/*.js'
+		'!landing/static/**/*.js'
 	];
 	const dest = 'landing/static/vendor/js/.';
 

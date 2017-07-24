@@ -3,10 +3,10 @@
 @import "components/bootstrap.includes";
 
 /** Angular Growl Notification v.2 */
-@import "../../../bower_components/angular-growl-v2/build/angular-growl.min";
+@import "../../../node_modules/angular-growl-v2/build/angular-growl.min";
 
 /** Font Awesome */
-@import "../../../bower_components/font-awesome/css/font-awesome.min";
+@import "../../../node_modules/font-awesome/css/font-awesome.min";
 
 /** App */
 @import "components/variables";

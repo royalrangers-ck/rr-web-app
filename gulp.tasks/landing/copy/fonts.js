@@ -12,8 +12,8 @@ module.exports = fonts;
 
 function landing() {
     const src = [
-        'bower_components/font-awesome/fonts/*.*',
-        'bower_components/bootstrap-sass/assets/fonts/bootstrap/*.*',
+        'node_modules/font-awesome/fonts/*.*',
+        'node_modules/bootstrap-sass/assets/fonts/bootstrap/*.*',
         'landing/static/fonts/*.*'
     ];
     const dest = 'landing/static/vendor/fonts/.';

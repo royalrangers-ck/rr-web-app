@@ -4,9 +4,9 @@
 
     angular
         .module('app')
-        .controller('VideoModalController', VideoModalController);
+        .controller('ModalVideoController', ModalVideoController);
 
-    function VideoModalController($uibModalInstance) {
+    function ModalVideoController($uibModalInstance) {
         const vm = this;
 
         vm.close = close;
