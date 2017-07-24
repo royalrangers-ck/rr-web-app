@@ -4,9 +4,6 @@
   "private": true,
   "description": "Royal-Rangers Frontend",
   "scripts": {
-    "preinstall": "npm install gulpjs/gulp-cli protractor ntl -g",
-    "postinstall": "gulp",
-    "prestart": "yarn",
     "vagrant": "cd scripts/vagrant/x64/ && vagrant up",
     "vagrant-stop": "cd scripts/vagrant/x64/ && vagrant halt -f",
     "vagrant-reload": "cd scripts/vagrant/x64/ && vagrant reload",
