@@ -16,10 +16,10 @@
                 controller: 'CreateRegionController',
                 controllerAs: 'vm',
                 resolve: {
-                    regionsProm: function (PublicInfoService) {
+                    regionsPromise: function (PublicInfoService) {
                         return PublicInfoService.getRegions().$promise;
                     },
-                    countriesProm: function (PublicInfoService) {
+                    countriesPromise: function (PublicInfoService) {
                         return PublicInfoService.getCountries().$promise;
                     }
                 }

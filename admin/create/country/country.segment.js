@@ -16,7 +16,7 @@
                 controller: 'CreateCountryController',
                 controllerAs: 'vm',
                 resolve: {
-                    countriesProm: function (PublicInfoService) {
+                    countriesPromise: function (PublicInfoService) {
                         return PublicInfoService.getCountries().$promise;
                     }
                 }

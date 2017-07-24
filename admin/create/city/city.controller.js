@@ -6,7 +6,7 @@
         .module('admin')
         .controller('CreateCityController', CreateCityController);
 
-    function CreateCityController($log, NotificationService, citiesProm, regionsProm, CreatePlacesService, $routeSegment) {
+    function CreateCityController($log, NotificationService, citiesPromise, regionsPromise, PlaceService, $routeSegment) {
         const vm = this;
 
         vm.cities = [];
@@ -26,7 +26,7 @@
         }
 
         function getCities() {
-            citiesProm.$promise.then((res) => {
+            citiesPromise.$promise.then((res) => {
                 if (res.success) {
                     vm.cities = res.data;
                     $log.debug('response', vm.cities);
@@ -36,7 +36,7 @@
             });
         }
         function getRegions() {
-            regionsProm.$promise.then((res) => {
+            regionsPromise.$promise.then((res) => {
                 if (res.success) {
                     vm.regions = res.data;
                     $log.debug('response', vm.regions);
@@ -59,10 +59,10 @@
                 "name": vm.newCity.name
             };
 
-            CreatePlacesService.newCity(params).$promise.then(res => {
+            PlaceService.createCity(params).$promise.then(res => {
                 if (res.success) {
                     NotificationService.info('Місто ' + vm.newCity.name + ' успішно створено');
-                    $routeSegment.chain[1].reload();
+                    $routeSegment.reload()
                 }
                 else {
                     NotificationService.error(res.message);

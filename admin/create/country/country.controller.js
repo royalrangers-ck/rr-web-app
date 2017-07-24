@@ -6,7 +6,7 @@
         .module('admin')
         .controller('CreateCountryController', CreateCountryController);
 
-    function CreateCountryController($log, $routeSegment, NotificationService, countriesProm, CreatePlacesService) {
+    function CreateCountryController($log, $routeSegment, NotificationService, countriesPromise, PlaceService) {
         const vm = this;
 
         vm.countries = [];
@@ -24,7 +24,7 @@
         }
 
         function getCountries() {
-            countriesProm.$promise.then((res) => {
+            countriesPromise.$promise.then((res) => {
                 if (res.success) {
                     vm.countries = res.data;
                     $log.debug('response', vm.countries);
@@ -46,10 +46,10 @@
                 "name": vm.newCountry.name
             };
 
-            CreatePlacesService.newCountry(params).$promise.then(res => {
+            PlaceService.createCountry(params).$promise.then(res => {
                 if (res.success) {
                     NotificationService.info('Країна ' + vm.newCountry.name + ' успішно створена');
-                    $routeSegment.chain[1].reload();
+                    $routeSegment.reload()
                 }
                 else {
                     NotificationService.error(res.message);

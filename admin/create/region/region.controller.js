@@ -6,7 +6,7 @@
         .module('admin')
         .controller('CreateRegionController', CreateRegionController);
 
-    function CreateRegionController ($log, NotificationService, regionsProm, countriesProm, CreatePlacesService, $routeSegment) {
+    function CreateRegionController ($log, NotificationService, regionsPromise, countriesPromise, PlaceService, $routeSegment) {
         const vm = this;
 
         vm.regions = [];
@@ -26,7 +26,7 @@
         }
 
         function getRegions() {
-            regionsProm.$promise.then((res) => {
+            regionsPromise.$promise.then((res) => {
                
                 if(res.success) {
                     vm.regions = res.data;
@@ -38,7 +38,7 @@
         }
 
         function getCountries() {
-            countriesProm.$promise.then((res) => {
+            countriesPromise.$promise.then((res) => {
 
                 if(res.success) {
                     vm.countries = res.data;
@@ -62,10 +62,10 @@
                 "name": vm.newRegion.name
             };
 
-            CreatePlacesService.newRegion(params).$promise.then(res => {
+            PlaceService.createRegion(params).$promise.then(res => {
                 if (res.success) {
                     NotificationService.info('Регіон ' + vm.newRegion.name + ' успішно створений');
-                    $routeSegment.chain[1].reload();
+                    $routeSegment.reload()
                 }
                 else {
                     NotificationService.error(res.message);

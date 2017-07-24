@@ -4,9 +4,9 @@
 
     angular
         .module('admin')
-        .factory('CreatePlacesFactory', CreatePlacesFactory);
+        .factory('PlaceFactory', PlaceFactory);
 
-    function CreatePlacesFactory($resource, Endpoints) {
+    function PlaceFactory($resource, Endpoints) {
 
         return $resource(null, null, {
             'country': {
