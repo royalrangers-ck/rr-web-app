@@ -8,7 +8,6 @@ RUN mkdir -p /usr/src/app/docker
 WORKDIR /usr/src/app
 
 # Copy dependency definitions
-COPY bower.json /usr/src/app
 COPY package.json /usr/src/app
 COPY docker/bootstrap.sh /usr/src/app/docker
 
@@ -31,7 +30,6 @@ COPY . /usr/src/app
 
 # Install dependecies
 RUN npm install
-RUN bower install --allow-root
 RUN gulp
 
 # Serve the app
