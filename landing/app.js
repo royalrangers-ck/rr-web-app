@@ -12,7 +12,8 @@
             'view-segment',
             'angular-growl',
             'ui.bootstrap',
-            'ui.mask'
+            'ui.mask',
+            'uiGmapgoogle-maps'
         ]).run(['$log', ($log) => {
         $log.debug('landing app is running...');
     }]);

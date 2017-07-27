@@ -6,7 +6,7 @@
         .module('app')
         .config(config);
 
-    function config($httpProvider, $logProvider, $locationProvider, growlProvider, $qProvider) {
+    function config($httpProvider, $logProvider, $locationProvider, growlProvider, $qProvider, uiGmapGoogleMapApiProvider) {
         $httpProvider.interceptors.push('ErrorInterceptor');
         $httpProvider.defaults.withCredentials = true;
 
@@ -25,5 +25,12 @@
 
         // Disable message about unhandled rejection
         $qProvider.errorOnUnhandledRejections(false);
+
+        // Angular google maps
+        uiGmapGoogleMapApiProvider.configure({
+            key: 'AIzaSyCWEmDm4GoFSV2sglSMsWRTVSU-wI_CPaQ',
+            v: '3.28',
+            libraries: 'weather,geometry,visualization'
+        });
     }
 })();
