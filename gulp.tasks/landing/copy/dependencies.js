@@ -26,6 +26,9 @@ function landing() {
         'node_modules/moment/min/moment.min.js',
         'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
         'node_modules/angular-ui-mask/dist/mask.min.js',
+        'node_modules/lodash/lodash.min.js',
+        'node_modules/angular-simple-logger/dist/angular-simple-logger.min.js',
+        'node_modules/angular-google-maps/dist/angular-google-maps.min.js',
 
         'landing/static/js/*.js'
     ];
