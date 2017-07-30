@@ -6,15 +6,18 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    function HomeController(ModalWindowService) {
+    function HomeController(ModalWindowService, HomeMapService) {
         const vm = this;
 
         vm.homeModalVideo = ModalWindowService.homeModalVideo;
         vm.slider = getSlider();
 
+        vm.map = HomeMapService.map;
+        vm.locations = HomeMapService.getLocations();
+
         ////
 
-        function getSlider () {
+        function getSlider() {
 
             return {
                 interval: 7000,

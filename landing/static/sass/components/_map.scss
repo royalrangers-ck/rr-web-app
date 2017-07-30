@@ -2,17 +2,17 @@ $map-height-lg: 470px;
 $map-height-sm: 350px;
 
 .rr-google-map__wrapper {
-    max-width: $screen-lg;
-    padding: 30px 0;
+  max-width: $screen-lg;
+  padding: 30px 0;
 
-    @include rr-curve($brand-gray, 'curve.up.gray.png', 'curve.down.gray.png');
+  @include rr-curve($brand-gray, 'curve.up.gray.png', 'curve.down.gray.png');
 
-    .rr-google-map {
-        width: 100%;
-        height: $map-height-lg;
+  .angular-google-map-container {
+    width: 100%;
+    height: $map-height-lg;
 
-        @media (max-width: $screen-sm) {
-            height: $map-height-sm;
-        }
+    @media (max-width: $screen-sm) {
+      height: $map-height-sm;
     }
+  }
 }
