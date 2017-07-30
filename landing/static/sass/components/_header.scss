@@ -1,0 +1,65 @@
+.rr-header {
+  height: $rr-header-height;
+  margin-bottom: 0;
+
+  .rr-sign {
+    float: right;
+    margin: 50px 100px 0 0;
+    font-size: 1.2em;
+    display: flex;
+    align-items: baseline;
+
+    .rr-sign__up {}
+    .rr-sign__in {}
+  }
+
+  .rr-menu {
+    background-color: rgba(255, 255, 255, .8);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px 0 30px;
+
+    &__item {
+      flex-grow: 1;
+      text-align: center;
+      font-size: 1.2em;
+
+      > a {
+        &:hover, &:focus {
+          text-decoration: underline;
+          color: $text-color;
+          background-color: transparent;
+        }
+      }
+
+      &.rr-logo__wrapper {
+        position: relative;
+        width: 230px;
+
+        .rr-logo {
+          width: 230px;
+          position: absolute;
+          bottom: -10px;
+          left: 20px;
+        }
+      }
+    }
+  }
+
+  .navbar-header {
+    background-color: $rr-header-color;
+    padding: 0 $padding-base-horizontal;
+
+    .icon-bar { background-color: $text-color }
+  }
+
+  @media (max-width: $grid-float-breakpoint) {
+    max-height: $navbar-height;
+    margin-bottom: 0;
+  }
+}

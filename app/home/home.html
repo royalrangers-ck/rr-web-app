@@ -1,0 +1,139 @@
+<div class="ibox">
+    <div class="ibox-content">
+        <div class="row home">
+            <div class="col-xs-4 col-sm-3">
+                <div class="text-center">
+                    <img class="img-circle img-responsive center-block m-b-sm"
+                         fallback-src="{{ vm.defaultImage }}"
+                         ng-src="{{ vm.currentUser.avatarUrl}}"
+                         alt="profile photo">
+
+                    <button type="button" ng-click="vm.uploadUserLogo()" class="btn btn-default update-logo-btn">
+                        Оновити фотографію
+                    </button>
+                </div>
+
+                <ul class="list-unstyled visible-xs">
+                    <li class="m-b"><img class="img-responsive center-block" src="static/images/demo/platoon.png"
+                                         alt="platoon"></li>
+                    <li><img class="img-responsive center-block" src="static/images/demo/rank.png" alt="rank"></li>
+                </ul>
+            </div>
+
+            <div class="col-xs-8 col-sm-7">
+                <h2 class="home__title"><strong>{{ currentUser.firstName }} {{ currentUser.lastName }}</strong></h2>
+                <div class="col-xs-12 col-sm-4">
+                    <ul class="list-unstyled home__subtitle-list">
+                        <li class="m-b-sm"><span class="h4">{{ currentUser.platoon.name }}</span></li>
+                        <li><span class="h4">{{ currentUser.city.name }}</span></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                    <p class="h4">{{vm.getUserRank(vm.currentUser)}}</p>
+                    <ul class="list-unstyled">
+                        <li><span class="text-uppercase">{{ currentUser.group.name }}</span></li>
+                        <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet architecto cumque dolor
+                            expedita illo ipsa magnam, magni, nulla numquam quis quisquam sunt ullam ut vitae. Ab ea nam
+                            nihil.</p></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-sm-2 hidden-xs">
+                <ul class="list-unstyled">
+                    <li class="m-b"><img class="img-responsive" src="static/images/demo/platoon.png" alt="platoon"></li>
+                    <li><img class="img-responsive" src="static/images/demo/rank.png" alt="rank"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ibox">
+    <div class="ibox-content">
+        <section class="row achievements">
+
+            <figure class="col-xs-12 col-sm-6 col-md-4 m-b-sm achievements__item">
+                <a href="#/profile/medals"><img class="img-responsive" src="static/vendor/images/demo/profile.1.jpg"
+                                                alt="Медалі"></a>
+                <figcaption class="achievements__item-caption">
+                    <a href="#/profile/medals">
+                        <span class="achievements__item-title">Медалі</span>
+                        <span class="achievements__item-amount">8</span>
+                    </a>
+                </figcaption>
+            </figure>
+
+            <figure class="col-xs-12 col-sm-6 col-md-4 m-b-sm achievements__item">
+                <a href="#/profile/strips"><img class="img-responsive" src="static/vendor/images/demo/profile.2.jpg"
+                                                alt="Планки"></a>
+                <figcaption class="achievements__item-caption">
+                    <a href="#/profile/strips">
+                        <span class="achievements__items-title">Планки</span>
+                        <span class="achievements__item-amount">19</span>
+                    </a>
+                </figcaption>
+            </figure>
+
+            <figure class="col-xs-12 col-sm-6 col-md-4 m-b-sm achievements__item">
+                <a href="#/profile/camps"><img class="img-responsive" src="static/vendor/images/demo/profile.3.jpg"
+                                               alt="За табори"></a>
+                <figcaption class="achievements__item-caption">
+                    <a href="#/profile/camps">
+                        <span class="achievements__items-title">За табори</span>
+                        <span class="achievements__item-amount">3</span>
+                    </a>
+                </figcaption>
+            </figure>
+
+            <figure class="col-xs-12 col-sm-6 col-md-4 m-b-sm achievements__item">
+                <a href="#/profile/trips"><img class="img-responsive" src="static/vendor/images/demo/profile.4.jpg"
+                                               alt="За походи"></a>
+                <figcaption class="achievements__item-caption">
+                    <a href="#/profile/trips">
+                        <span class="achievements__items-title">За походи</span>
+                        <span class="achievements__item-amount">4</span>
+                    </a>
+                </figcaption>
+            </figure>
+
+            <figure class="col-xs-12 col-sm-6 col-md-4 m-b-sm achievements__item">
+                <a href="#/profile/tests"><img class="img-responsive" src="static/vendor/images/demo/profile.5.jpg"
+                                               alt="Тести"></a>
+                <figcaption class="achievements__item-caption">
+                    <a href="#/profile/tests">
+                        <span class="achievements__items-title">Тести</span>
+                        <span class="achievements__item-amount">5</span>
+                    </a>
+                </figcaption>
+            </figure>
+
+            <figure class="col-xs-12 col-sm-6 col-md-4 m-b-sm achievements__item">
+                <a href="#/profile/stars"><img class="img-responsive" src="static/vendor/images/demo/profile.6.jpg"
+                                               alt="Зірки"></a>
+                <figcaption class="achievements__item-caption">
+                    <a href="#/profile/stars">
+                        <span class="achievements__items-title">Зірки</span>
+                        <span class="achievements__item-amount">5</span>
+                    </a>
+                </figcaption>
+            </figure>
+
+            <figure class="col-xs-12 col-sm-6 col-md-4 col-md-offset-2 m-b-sm achievements__item">
+                <a href="#/profile/terms-years"><img class="img-responsive"
+                                                     src="static/vendor/images/demo/profile.7.jpg" alt="Чверть/рік"></a>
+                <figcaption class="achievements__item-caption">
+                    <a href="#/profile/terms-years"><span class="achievements__items-title">Чверть/рік</span></a>
+                </figcaption>
+            </figure>
+
+            <figure class="col-xs-12 col-sm-6 col-md-4 m-b-sm achievements__item">
+                <a href="#/profile/study"><img class="img-responsive" src="static/vendor/images/demo/profile.8.jpg"
+                                               alt="Навчання"></a>
+                <figcaption class="achievements__item-caption">
+                    <a href="#/profile/study"><span>Навчання</span></a>
+                </figcaption>
+            </figure>
+        </section>
+    </div>
+</div>

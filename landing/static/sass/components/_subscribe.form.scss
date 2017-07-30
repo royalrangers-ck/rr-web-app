@@ -1,0 +1,13 @@
+.subscribe-form {
+  margin: $rr-height-curve 0 130px;
+  padding: 0 $padding-base-horizontal;
+
+  @media (max-width: $screen-md-max) and (min-width: $screen-sm-min) {
+    margin-bottom: 100px;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    margin-top: $rr-height-curve-sm;
+    margin-bottom: 50px;
+  }
+}

@@ -1,0 +1,39 @@
+.rr-slider__wrapper {
+
+  @include rr-curve(#fff, 'curve.up.png', 'curve.down.png');
+
+  .rr-slider {
+    padding: 15px;
+    margin: 30px 0;
+    background: #d9dada url("#{$rr-images-path}/pattern.tree.jpg") repeat;
+
+    .carousel-indicators {
+      li {
+        background-image: url("#{$rr-images-path}/pattern.tree.jpg");
+        margin-left: 3px;
+        margin-right: 3px;
+      }
+    }
+
+    .rr-slide {
+      &__caption {
+        background-color: rgba(91, 147, 91, 0.7);
+        box-shadow: 0 0 3px 6px rgba(91, 147, 91, 0.7);
+        padding-top: 5px; 
+        padding-bottom: 0px; 
+        margin-bottom: 8px;
+      }
+      &__title {
+        margin-bottom: 3px; 
+        margin-top: 0;
+      }
+      &__description {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: $screen-xs-max) {
+      padding: 10px;
+    }
+  }
+}

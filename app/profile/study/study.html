@@ -1,0 +1,27 @@
+<div class="ibox">
+    <div class="ibox-title">
+        <h1>Пройдені семінари</h1>
+    </div>
+
+    <div class="ibox-content">
+        <section class="row achievements">
+
+            <figure class="col-xs-12 col-sm-6 m-b-sm achievements__item" ng-class="vm.isNotGet(seminar.id)" ng-repeat="seminar in vm.seminars">
+
+                <a ng-click="vm.profileModal(seminar.id)">
+                    <div class="ribbon-in-progress__box" ng-if="vm.isInProgress(seminar.id)">
+                        <div class="ribbon-in-progress">
+                            <span>in progress</span>
+                        </div>
+                    </div>
+
+                    <img class="img-responsive" src="static/vendor/images/demo/profile.8.jpg" alt="{{ seminar.name }}">
+                </a>
+                <figcaption class="achievements__item-caption text-center">
+                    <a ng-click="vm.profileModal(seminar.id)">{{ seminar.name }}</a>
+                </figcaption>
+            </figure>
+
+        </section>
+    </div>
+</div>

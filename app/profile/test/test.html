@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-3">
+        <div class="wrapper wrapper-content">
+            <img class="img-responsive center-block" src="static/images/demo/platoon.png" alt="platoon">
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-9">
+        <div class="ibox">
+            <div class="ibox-content">
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <h2>{{ vm.test.content.name }}</h2>
+                    </div>
+                    <div class="col-xs-12">{{ vm.test.content.description }}</div>
+
+                    <div ng-if="!vm.test.started" class="col-xs-12 m-t">
+                        <a href="" ng-disabled="!vm.test.containTasks" ng-click="!vm.test.containTasks || vm.test.start()" class="btn btn-primary btn-block btn-lg">
+                        Виконати
+                        </a>
+                    </div>
+
+                    <div ng-if="vm.test.started" class="col-xs-12 m-t">
+                        <a href="" ng-click="vm.test.stop()" class="btn btn-danger btn-block btn-lg">
+                        Відмовитися
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <super-admin>
+                    <div class="ibox-tools">
+                        <a class="btn btn-white" ng-click="vm.taskFormModal(vm.test.content)">Додати ще</a>
+                    </div>
+                </super-admin>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Завдання</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in vm.test.content.taskList">
+                            <td>{{item.id}}</td>
+                            <td>
+                                <strong>{{item.name}}</strong>
+                                <p ng-show="item.description">{{item.description}}</p>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-nowrap" uib-dropdown>
+                                    <button id="split-button" type="button" 
+                                    class="btn btn-default"
+                                    ng-class="{'active': item.completed}"
+                                    ng-click="item.completed = item.completed ? false : true">
+                                    Виконано
+                                    </button>
+                                    <button type="button" class="btn btn-default" uib-dropdown-toggle>
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Split button!</span>
+                                    </button>
+                                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                                        <li role="menuitem"><a href="#">Відмінити</a></li>
+                                        <li role="menuitem"><a href="#">Завершити</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

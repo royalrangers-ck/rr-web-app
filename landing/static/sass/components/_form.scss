@@ -1,0 +1,11 @@
+.form-control {
+    &::-moz-placeholder {
+        text-transform: uppercase;
+    }
+    &:-ms-input-placeholder {
+        text-transform: uppercase;
+    }
+    &::-webkit-input-placeholder  {
+        text-transform: uppercase;
+    }
+}

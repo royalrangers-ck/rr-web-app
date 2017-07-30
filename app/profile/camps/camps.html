@@ -1,0 +1,29 @@
+<div class="ibox profile">
+    <div class="ibox-title profile__title">
+
+        <h1>За табори</h1>
+
+        <span class="profile__info-box">
+            Днів провів у таборі: <strong class="h3">{{ vm.inCampsDay }}</strong>
+        </span>
+    </div>
+
+    <div class="ibox-content">
+        <section class="row achievements">
+
+            <figure class="col-xs-12 col-sm-6 col-md-4 col-lg-3 m-b-sm achievements__item" ng-class="vm.isNotGet(camp.id)" ng-repeat="camp in vm.camps">
+
+                <a ng-click="vm.profileModal(camp.id)">
+                    <div class="ribbon-in-progress__box" ng-if="vm.isInProgress(camp.id)">
+                        <div class="ribbon-in-progress">
+                            <span>in progress</span>
+                        </div>
+                    </div>
+
+                    <img class="img-responsive" src="static/vendor/images/demo/profile.3.jpg" alt="{{ camp.name }}">
+                </a>
+            </figure>
+
+        </section>
+    </div>
+</div>

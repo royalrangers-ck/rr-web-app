@@ -1,0 +1,59 @@
+.rr-footer__wrapper {
+  background: url('#{$rr-images-path}/footer.bg.png') center bottom no-repeat;
+  background-size: cover;
+}
+
+.rr-footer {
+  position: relative;
+  background-color: rgba(255, 255, 255, .8);
+  margin: 0 auto 30px;
+  padding: 5px $padding-base-horizontal 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  .rr-footer__logo-wrapper {
+
+    @media (min-width: $grid-float-breakpoint) {
+      position: relative;
+      flex-basis: 230px;
+
+      .rr-footer__logo {
+        position: absolute;
+        bottom: 0;
+      }
+    }
+
+    @media (max-width: $grid-float-breakpoint - 1) {
+      display: none;
+    }
+  }
+
+
+  .rr-contacts-icons {
+    flex-grow: 1;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .contacts-icons__item {}
+
+    .contacts-icons__item-separator{
+      height: $line-height-computed * 1.8;
+      padding: 0;
+      border: 1px solid $brand-primary;
+    }
+  }
+
+  .rr-footer__contacts-info {
+    margin-bottom: 0;
+    align-self: center;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+  }
+}

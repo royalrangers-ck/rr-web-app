@@ -1,0 +1,15 @@
+.rr-wrapper {
+  background: url("#{$rr-images-path}/pattern.png") repeat;
+  z-index: $rr-z-index-wrapper;
+  max-width: $screen-lg-desktop;
+  margin: 0 auto;
+}
+
+.rr-info-menu {
+  .rr-info-menu__item {
+    a {
+      font-size: 80%;
+      color: $input-color-placeholder;
+    }
+  }
+}

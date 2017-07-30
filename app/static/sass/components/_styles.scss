@@ -1,0 +1,18 @@
+//styles to message box
+.a-message-box {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+//prevent buttons from wrapping when in tight spaces
+.btn-group-nowrap {
+    white-space: nowrap;
+    > .btn {
+        float: inherit;
+    }
+    > .btn + .btn {
+        margin-left: -4px;
+    }
+}

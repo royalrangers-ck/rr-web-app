@@ -1,0 +1,189 @@
+<div class="modal-content a-eum-modal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="vm.close()">&times;</button>
+        <h4 class="modal-title" id="EditUserLabel">Змінити дані</h4>
+        <p ng-if="vm.tempUser" class="text-danger">* Дані оновляться після підтвердження адміністратором</p>
+    </div>
+    <div class="modal-body">
+        <form name="vm.form" class="form-horizontal" ng-submit="vm.updateUser()" novalidate>
+            <div class="row">
+                <div class="a-eum-modal__section-header a-eum-label">Основні дані</div>
+            </div>
+            <div class="row a-eum-modal__section">
+                <div class="col-md-5 a-eum-modal__avatar-wrapper">
+                    <div class="a-eum-modal__avatar-img a-eum-avatar">
+                        <!--<img class="img-circle" src="static/images/demo/profile_photo.jpg" alt="profile photo">-->
+                        <img class="img-circle"
+                             fallback-src="{{vm.defaultImage}}"
+                             ng-src="{{vm.modifiedUser.avatarUrl}}"
+                             ng-click="vm.uploadUserLogo()"
+                             alt="profile photo">
+                    </div>
+                </div>
+                <div class="col-md-7 pull-right">
+                    <div class="form-group">
+                        <label for="firstName" class="col-sm-3 control-label">Ім'я</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="firstName" class="form-control" placeholder="Ім'я"
+                                   ng-model="vm.modifiedUser.firstName"
+                                   ng-required="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subName" class="col-sm-3 control-label">Прізвище</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="subName" class="form-control" placeholder="Прізвище"
+                                   ng-model="vm.modifiedUser.lastName"
+                                   ng-required="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sex" class="col-sm-3 control-label">Стать</label>
+                        <div class="col-sm-9">
+                            <select id="sex" ng-model="vm.modifiedUser.gender" class="form-control" title="СТАТЬ"
+                                    ng-required="true">
+                                <option value="" disabled hidden>Виберіть стать</option>
+                                <option value="M">Чоловіча</option>
+                                <option value="F">Жіноча</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="birth" class="col-sm-3 control-label">Народився</label>
+                        <div class="col-sm-9">
+                            <div class="input-group" id="birth">
+                                <input type="text" class="form-control"
+                                       uib-datepicker-popup="dd-MMM-yyyy"
+                                       ng-model="vm.modifiedUser.birthDate"
+                                       is-open="opened"
+                                       ng-required="true"
+                                       close-text="Close">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="opened = !opened">
+                                    <i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="col-sm-3 control-label">Телефон</label>
+                        <div class="col-sm-9">
+                            <input type="tel" id="phone" ng-model="vm.modifiedUser.telephoneNumber" class="form-control" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_" placeholder="Телефон">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-5">
+                            <input class="form-control" type="email" name="email" id="email" placeholder="Email"
+                                   ng-readonly="true"
+                                   ng-model="vm.modifiedUser.email">
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-default"
+                                    ng-disabled="vm.changePasswordDasabled"
+                                    ng-click="vm.changePassword()">Змінити пароль</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="country" class="col-sm-3 control-label">Країна</label>
+                        <div class="col-sm-9">
+                            <select id="country" class="form-control"
+                                    ng-disabled="vm.countries.length == 0"
+                                    ng-model="vm.modifiedUser.country.id"
+                                    ng-options="record.id as record.name for record in vm.countries"
+                                    ng-change="vm.changeCountry()"
+                                    ng-required="true">
+                                <option value="" disabled hidden>Виберіть країну</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="region" class="col-sm-3 control-label">Регіон</label>
+                        <div class="col-sm-9">
+                            <select id="region" class="form-control"
+                                    ng-disabled="vm.regions.length == 0 || !vm.modifiedUser.country.id"
+                                    ng-model="vm.modifiedUser.region.id"
+                                    ng-options="record.id as record.name for record in vm.regions"
+                                    ng-change="vm.changeRegion()"
+                                    ng-required="true">
+                                <option value="" disabled hidden>Виберіть регіон</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="city" class="col-sm-3 control-label">Місто</label>
+                        <div class="col-sm-9">
+                            <select id="city" class="form-control"
+                                    ng-disabled="vm.cities.length == 0 || !vm.modifiedUser.region.id"
+                                    ng-model="vm.modifiedUser.city.id"
+                                    ng-options="record.id as record.name for record in vm.cities"
+                                    ng-change="vm.changeCity()"
+                                    ng-required="true">
+                                <option value="" disabled hidden>Виберіть місто</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="platoon" class="col-sm-3 control-label">Загін</label>
+                        <div class="col-sm-9">
+                            <select id="platoon" class="form-control"
+                                    ng-disabled="vm.platoons.length == 0 || !vm.modifiedUser.city.id"
+                                    ng-model="vm.modifiedUser.platoon.id"
+                                    ng-options="record.id as record.name for record in vm.platoons"
+                                    ng-change="vm.changePlatoon()"
+                                    ng-required="true">
+                                <option value="" disabled hidden>Виберіть загін</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="sectionId" class="col-sm-3 control-label">Ланка</label>
+                        <div class="col-sm-9">
+                            <select id="sectionId" class="form-control"
+                                    ng-disabled="vm.sections.length == 0 || !vm.modifiedUser.platoon.id"
+                                    ng-model="vm.modifiedUser.section.id"
+                                    ng-options="record.id as record.name for record in vm.sections"
+                                    ng-required="true">
+                                <option value="" disabled hidden>Виберіть ланку</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="rank" class="col-sm-3 control-label">Звання</label>
+                        <div class="col-sm-9">
+                            <select id="rank" class="form-control"
+                                    ng-disabled="vm.ranks.length == 0"
+                                    ng-model="vm.modifiedUser.userRank"
+                                    ng-options="record.value as record.name for record in vm.ranks"
+                                    ng-required="true">
+                                <option value="" disabled hidden>Виберіть звання</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="vm.close()">Закрити</button>
+                <button type="submit" class="btn btn-primary">Зберегти</button>
+            </div>
+        </form>
+    </div>
+</div>

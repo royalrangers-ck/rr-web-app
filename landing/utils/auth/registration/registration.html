@@ -1,0 +1,249 @@
+<div id="registration" class="rr-registration">
+
+    <form name="vm.form" ng-submit="vm.submit()" class="rr-signup__form" novalidate="novalidate">
+        <div class="row">
+
+            <h4 class="text-center rr-registration__title">Реєстрація</h4>
+            <p class="text-center">
+                <span class="rr-registration__info">Всі поля обов’язкові для заповнення</span>
+            </p>
+
+            <div class="col-xs-12 col-sm-6">
+                <!-- Status -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.authorityName.$invalid && !vm.form.authorityName.$pristine }">
+                    <select name="authorityName" id="authorityName" class="form-control text-uppercase" title="Статус"
+                            ng-required="true"
+                            ng-model="vm.data.authorityName"
+                            lazy-validation-on="vm.form.$submitted">
+                        <option class="hidden" value="" disabled>Статус</option>
+                        <option value="ROLE_USER">Користувач</option>
+                        <option value="ROLE_ADMIN">Вчитель</option>
+                    </select>
+                    <p ng-show="vm.form.authorityName.$dirty && vm.form.authorityName.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+                <!-- First Name -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.firstName.$invalid && !vm.form.firstName.$pristine }">
+                    <input type="text" class="form-control" placeholder="Ім'я" title="Ім'я"
+                           name="firstName"
+                           ng-required="true"
+                           ng-model="vm.data.firstName"
+                           lazy-validation-on="vm.form.$submitted"
+                           ng-maxlength="30">
+                    <p ng-show="vm.form.firstName.$error.maxlength" class="help-block">First name is too long.</p>
+                    <p ng-show="vm.form.firstName.$dirty && vm.form.firstName.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+                <!-- Last Name -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.lastName.$invalid && !vm.form.lastName.$pristine }">
+                    <input type="text" class="form-control" placeholder="Прізвище" title="Прізвище"
+                           name="lastName"
+                           ng-required="true"
+                           ng-model="vm.data.lastName"
+                           ng-maxlength="30"
+                           lazy-validation-on="vm.form.$submitted">
+                    <p ng-show="vm.form.lastName.$error.maxlength" class="help-block">Last name is too long.</p>
+                    <p ng-show="vm.form.lastName.$dirty && vm.form.lastName.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+                <!-- Telephone Number -->
+                <div class="form-group"  ng-class="{ 'has-error' : vm.form.telephoneNumber.$invalid && !vm.form.telephoneNumber.$pristine }">
+                    <input type="tel" class="form-control" placeholder="Телефон" title="Телефон"
+                           name="telephoneNumber"
+                           ng-required="true"
+                           ng-model="vm.data.telephoneNumber"
+                           ui-mask="(999) 999-9999"
+                           ui-mask-placeholder
+                           ui-mask-placeholder-char="_"
+                           lazy-validation-on="vm.form.$submitted">
+                    <p ng-show="vm.form.telephoneNumber.$dirty && vm.form.telephoneNumber.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.email.$invalid && !vm.form.email.$pristine }">
+                    <input type="email" id="email" class="form-control" placeholder="Email" title="Email"
+                           name="email"
+                           ng-required="true"
+                           ng-model="vm.data.email"
+                           ng-pattern="/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/"
+                           lazy-validation-on="vm.form.$submitted">
+                    <p ng-show="vm.form.email.$dirty && vm.form.email.$error.required" class="help-block">This field is required.</p>
+                    <p ng-show="vm.form.$error.email" class="help-block">Not valid email</p>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.password.$invalid && !vm.form.password.$pristine }">
+                    <input type="password" id="pass" class="form-control" placeholder="Пароль" title="Пароль"
+                           name="password"
+                           ng-required="true"
+                           ng-model="vm.data.password"
+                           ng-minlength="4"
+                           ng-maxlength="25"
+                           lazy-validation-on="vm.form.$submitted">
+                    <p ng-show="vm.form.password.$error.minlength" class="help-block">Password is too short.</p>
+                    <p ng-show="vm.form.password.$error.maxlength" class="help-block">Password is too long.</p>
+                    <p ng-show="vm.form.password.$dirty && vm.form.password.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.confirmPassword.$invalid && !vm.form.confirmPassword.$pristine }">
+                    <input type="password" id="confirmPass" class="form-control" placeholder="Підтвердження паролю" title="Підтвердження паролю"
+                           name="confirmPassword"
+                           ng-required="true"
+                           ng-model="vm.data.confirmPassword"
+                           ng-minlength="4"
+                           ng-maxlength="25"
+                           uic-group="true"
+                           uic-compare="true"
+                           uic-compare-to="vm.data.password"
+                           uic-lazy-validation="true"
+                           uic-lazy-validation-on="vm.form.$submitted">
+
+                    <p ng-show="vm.form.confirmPassword.$error.minlength" class="help-block">Password is too short.</p>
+                    <p ng-show="vm.form.confirmPassword.$error.maxlength" class="help-block">Password is too long.</p>
+                    <p ng-show="vm.form.confirmPassword.$dirty && vm.form.confirmPassword.$error.required" class="help-block">This field is required.</p>
+                    <p ng-show="vm.form.confirmPassword.$dirty && vm.form.confirmPassword.$error.compareTo" class="help-block">Password not equal with confirm password.</p>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6">
+
+                <!-- Gender -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.gender.$invalid && !vm.form.gender.$pristine }">
+                    <select name="gender" id="gender" class="form-control text-uppercase" title="Стать"
+                            ng-required="true"
+                            ng-model="vm.data.gender"
+                            lazy-validation-on="vm.form.$submitted">
+                        <option class="hidden" value="" disabled>СТАТЬ</option>
+                        <option value="M">Чоловік</option>
+                        <option value="F">Жінка</option>
+                    </select>
+                    <p ng-show="vm.form.gender.$dirty && vm.form.gender.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+                <!-- Birth Date -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.birthDate.$invalid && !vm.form.birthDate.$pristine }">
+                    <input type="date" class="form-control" id="birthDate" placeholder="Дата Народження" title="Дата народження"
+                           name="birthDate"
+                           ng-required="true"
+                           ng-model="vm.data.birthDate"
+                           date-parser
+                           lazy-validation-on="vm.form.$submitted">
+                    <p ng-show="vm.form.birthDate.$dirty && vm.form.birthDate.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+                <!-- Country -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.country.$invalid && !vm.form.country.$pristine }">
+                    <select name="country" id="country" class="form-control text-uppercase" title="Країна"
+                            ng-required="true"
+                            ng-model="vm.data.country"
+                            ng-options="record as record.name for record in vm.countries"
+                            ng-change="vm.getRegions(vm.data.country.id)"
+                            lazy-validation-on="vm.form.$submitted">
+                        <option class="hidden" value="" disabled>Країна</option>
+                    </select>
+                    <p ng-show="vm.form.country.$dirty && vm.form.country.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+                <!-- Region -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.region.$invalid && !vm.form.region.$pristine }">
+                    <select name="region" id="region" class="form-control text-uppercase" title="Регіон"
+                            ng-required="true"
+                            ng-disabled="!vm.data.country"
+                            ng-model="vm.data.region"
+                            ng-options="record as record.name for record in vm.regions"
+                            ng-change="vm.getCities(vm.data.region.id)"
+                            lazy-validation-on="vm.form.$submitted">
+                        <option class="hidden" value="" disabled>Регіон</option>
+                    </select>
+                    <p ng-show="vm.form.region.$dirty && vm.form.region.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <!-- City -->
+                        <div class="form-group text-uppercase" ng-class="{ 'has-error' : vm.form.city.$invalid && !vm.form.city.$pristine }">
+                            <select name="city" id="city" class="form-control text-uppercase" title="Місто"
+                                    ng-required="true"
+                                    ng-disabled="!vm.data.region"
+                                    ng-model="vm.data.city"
+                                    ng-options="record as record.name for record in vm.cities"
+                                    ng-change="vm.getPlatoons(vm.data.city.id)"
+                                    lazy-validation-on="vm.form.$submitted">
+                                <option class="hidden" value="" disabled>Місто</option>
+                            </select>
+                            <p ng-show="vm.form.city.$dirty && vm.form.city.$error.required" class="help-block">This field is required.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <!-- Platoon -->
+                        <div class="form-group" ng-class="{ 'has-error' : vm.form.platoon.$invalid && !vm.form.platoon.$pristine }">
+                            <select name="platoon" id="platoon" class="form-control text-uppercase" title="Загін"
+                                    ng-required="true"
+                                    ng-disabled="!vm.data.city"
+                                    ng-model="vm.data.platoon"
+                                    ng-options="record as record.name for record in vm.platoons"
+                                    ng-change="vm.getSections(vm.data.city.id)"
+                                    lazy-validation-on="vm.form.$submitted">
+                                <option class="hidden" value="" disabled>Номер загону</option>
+                            </select>
+                            <p ng-show="vm.form.platoon.$dirty && vm.form.platoon.$error.required" class="help-block">This field is required.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.section.$invalid && !vm.form.section.$pristine }">
+                    <select name="section" id="section" class="form-control text-uppercase" title="Ланка"
+                            ng-required="true"
+                            ng-disabled="!vm.data.platoon"
+                            ng-model="vm.data.section"
+                            ng-options="record as record.name for record in vm.sections"
+                            lazy-validation-on="vm.form.$submitted">
+                        <option class="hidden" value="" disabled>Назва ланки</option>
+                    </select>
+                    <p ng-show="vm.form.section.$dirty && vm.form.section.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+                <!-- Rank -->
+                <div class="form-group" ng-class="{ 'has-error' : vm.form.rank.$invalid && !vm.form.rank.$pristine }">
+                    <select name="rank" id="rank" class="form-control text-uppercase" title="Звання"
+                            ng-required="true"
+                            ng-model="vm.data.rank"
+                            ng-options="record.value as record.name for record in vm.ranks"
+                            lazy-validation-on="vm.form.$submitted">
+                        <option value="" class="hidden" disabled>Звання</option>
+                    </select>
+                    <p ng-show="vm.form.rank.$dirty && vm.form.rank.$error.required" class="help-block">This field is required.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row rr-registration__button">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                <div class="form-group">
+                    <button type="submit" ng-disabled="vm.form.$submitted" class="btn btn-primary btn-block">
+                        <span ng-if="vm.form.$submitted" class="spinner-wrapper"><i class="fa fa-refresh fa-spin"></i></span> Зареєструватися
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="list-unstyled text-center rr-info-menu">
+                <li class="rr-info-menu__item"><a href="#/forgotPassword">Забули пароль?</a></li>
+                <li class="rr-info-menu__item"><a href="#/confirmation">Не отримали листа про підтвердження реєстрації?</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
