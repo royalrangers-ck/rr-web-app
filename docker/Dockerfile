@@ -30,7 +30,7 @@ RUN /bin/bash -c "source ./docker/bootstrap.sh"
 COPY . /usr/src/app
 
 # Install dependecies
-RUN npm install
+RUN npm install --unsafe-perm
 RUN gulp
 
 # Serve the app
