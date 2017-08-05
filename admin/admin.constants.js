@@ -57,6 +57,12 @@
         // User  returns authorized user info
         endpoints.USER = endpoints.API + '/user';
 
+        //ACHIEVEMENTS
+        endpoints.ACHIEVEMENTS = endpoints.API + '/achievements';
+
+        endpoints.TEST = endpoints.ACHIEVEMENTS + '/test';
+        endpoints.TASK = endpoints.ACHIEVEMENTS + '/task';
+
         //ROLES
         endpoints.ROLES = {
             USER: 'ROLE_USER',
@@ -76,6 +82,8 @@
                     {name: 'Країну',     route: '#/create/country'},
                     {name: 'Місто',      route: '#/create/city'},
                     {name: 'Регіон',     route: '#/create/region'},
+                    {name: 'Тест',      route: '#/create/test'},
+                    {name: 'Завдання',     route: '#/create/task'},
                 ]
             },
             {

@@ -52,6 +52,9 @@
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/ranks`,
                 isArray: false
+            },
+            'tests': {
+
             }
         });
     }

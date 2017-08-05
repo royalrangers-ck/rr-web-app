@@ -1,0 +1,45 @@
+<div class="ibox">
+    <div class="ibox-title">
+        <h2>Countries</h2>
+    </div>
+
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <form ng-submit="vm.createNewCountry()" class="form-inline">
+                    <div class="from-group">
+                        <label for="countryName">Назва країни:</label>
+                        <div class="input-group">
+                            <input id="countryName" type="text" class="form-control" ng-model="vm.newCountry.name">
+                            <span class="input-group-btn">
+                            <button ng-disabled="!vm.newCountry.name" type="submit" class="btn btn-primary">Додати</button>
+                        </span>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Країна</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="country in vm.countries">
+                            <td>{{$index+1}}</td>
+                            <td>{{country.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
