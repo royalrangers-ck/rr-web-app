@@ -1,0 +1,24 @@
+.Gold__awards__title h1 {
+  color: gold;
+}
+
+.Silver__awards__title h1 {
+  color: silver;
+}
+
+.Bronze__awards__title h1 {
+  color: #cd7f32;
+}
+
+.Additional__awards__title h1 {
+  color: gray;
+}
+
+.Gold__awards__title, .Silver__awards__title, .Bronze__awards__title, .Additional__awards__title {
+  h1 {
+    display: inline-block;
+  }
+  .fa-chevron-right, .fa-chevron-down {
+    float: right;
+  }
+}
