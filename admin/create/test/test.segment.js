@@ -15,8 +15,8 @@
                 controller: 'CreateTestController',
                 controllerAs: 'vm',
                 resolve: {
-                    testsPromise: function (PublicInfoService) {
-                        return PublicInfoService.getCountries().$promise;
+                    testsPromise: function (TestService) {
+                        return TestService.getAllTests().$promise;
                     }
                 }
             });

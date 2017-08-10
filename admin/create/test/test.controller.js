@@ -4,15 +4,15 @@
 
     angular
         .module('admin')
-        .controller('CreateCountryController', CreateCountryController);
+        .controller('CreateTestController', CreateTestController);
 
-    function CreateCountryController($log, $routeSegment, NotificationService, countriesPromise, PlaceService) {
+    function CreateTestController($log, $routeSegment, NotificationService, testsPromise, ModalDialogService) {
         const vm = this;
 
-        vm.countries = [];
-        vm.newCountry = {};
+        vm.tests = [];
+        vm.newTest = {};
 
-        vm.createNewCountry = createNewCountry;
+        vm.createNewTest = createNewTest;
 
         activate();
 
@@ -20,41 +20,22 @@
 
         function activate() {
             $log.debug('Init CreateCountryController ...');
-            getCountries();
+            getTests();
         }
 
-        function getCountries() {
-            countriesPromise.$promise.then((res) => {
+        function getTests() {
+            testsPromise.$promise.then((res) => {
                 if (res.success) {
-                    vm.countries = res.data;
-                    $log.debug('response', vm.countries);
+                    vm.tests = res.data;
+                    $log.debug('response', vm.tests);
                 } else {
                     NotificationService.error(res.message);
                 }
             });
         }
 
-        function createNewCountry() {
-            $log.debug('trying send data:', vm.newCountry);
-
-            if (!vm.newCountry.name) {
-                $log.debug('wrong arguments:', vm.newCountry);
-                return;
-            }
-
-            let params = {
-                "name": vm.newCountry.name
-            };
-
-            PlaceService.createCountry(params).$promise.then(res => {
-                if (res.success) {
-                    NotificationService.info('Країна ' + vm.newCountry.name + ' успішно створена');
-                    $routeSegment.reload()
-                }
-                else {
-                    NotificationService.error(res.message);
-                }
-            });
+        function createNewTest() {
+            ModalDialogService.createTestModal();
         }
     }
 })();

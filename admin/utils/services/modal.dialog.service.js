@@ -17,6 +17,7 @@
         this.uploadUserLogo = uploadUserLogo;
         this.approveUserRegistrationModal = approveUserRegistrationModal;
         this.approveUserUpdateModal = approveUserUpdateModal;
+        this.createTestModal = createTestModal;
         ///
 
         function profileModal(achievement, type) {
@@ -112,6 +113,31 @@
             }).result.then(function () {
                 // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
             }, function (res) {});
+        }
+
+        function createTestModal() {
+
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'create/test/create.test.modal/create.test.modal.html',
+                controller: 'CreateTestModalController',
+                controllerAs: 'vm',
+                resolve: {
+                    testColors: function (TestService) {
+                        return TestService.getAllTests().$promise.then((res) => {
+                            return res.data.reduce((colors, current) => {
+                                if (!colors.some((item) => item == current.testType)) {
+                                    colors.push(current.testType);
+                                }
+                                return colors;
+                            }, []);
+                        });
+                    }
+                }
+            }).result.then(function () {
+                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+            }, function (res) {
+            });
         }
 
     }

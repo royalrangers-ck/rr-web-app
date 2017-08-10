@@ -11,6 +11,7 @@
         const vm = this;
 
         vm.getTests = TestFactory.get;
+        vm.getAllTests = TestFactory.getAll;
         vm.createTest = TestFactory.save;
     }
 })();
