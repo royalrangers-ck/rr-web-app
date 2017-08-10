@@ -5,3 +5,14 @@
   font-weight: bold;
   padding-top: 10px;
 }
+
+//prevent buttons from wrapping when in tight spaces
+.btn-group-nowrap {
+    white-space: nowrap;
+    > .btn {
+        float: inherit;
+    }
+    > .btn + .btn {
+        margin-left: -4px;
+    }
+}

@@ -12,6 +12,10 @@
                 method: 'GET',
                 url: `${Endpoints.TEST}/all`,
                 isArray: false
+            },
+            "getById": {
+                method: 'GET',
+                url: `${Endpoints.TEST}/:id`
             }
         });
     }

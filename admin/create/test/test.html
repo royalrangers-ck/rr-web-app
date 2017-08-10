@@ -9,16 +9,16 @@
                 <form ng-submit="vm.findTest()" class="form-inline">
                     <div class="form-group">
                         <label for="testColor">Колір тесту:</label>
-                        <select id="testColor"class="form-control">
-                            <option disabled hidden value="">Виберіть колір</option>
+                        <select ng-model="vm.filter.color" id="testColor" class="form-control" ng-options="color as color for color in vm.testColors">
+                            <option ng-value="-1" value="">Всі кольора</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="testName">Назва тесту:</label>
                         <div class="input-group">
-                            <input id="testName" type="text" class="form-control">
+                            <input ng-model="vm.filter.testName" id="testName" type="text" class="form-control">
                             <span class="input-group-btn">
-                            <button ng-disabled="true" type="submit"
+                            <button ng-click="vm.filter.run()" type="submit"
                                     class="btn btn-primary">Шукати</button>
                         </span>
                         </div>

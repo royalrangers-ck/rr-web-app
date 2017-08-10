@@ -6,11 +6,18 @@
         .module('admin')
         .controller('CreateTestController', CreateTestController);
 
-    function CreateTestController($log, $routeSegment, NotificationService, testsPromise, ModalDialogService) {
+    function CreateTestController($log, NotificationService, testsPromise, ModalDialogService, testColors) {
         const vm = this;
+        let allTests = [];
 
-        vm.tests = [];
+        vm.tests = allTests;
         vm.newTest = {};
+        vm.testColors = testColors;
+        vm.filter = {
+            color: '',
+            testName: '',
+            run: filterTests
+        };
 
         vm.createNewTest = createNewTest;
 
@@ -26,7 +33,8 @@
         function getTests() {
             testsPromise.$promise.then((res) => {
                 if (res.success) {
-                    vm.tests = res.data;
+                    allTests = res.data;
+                    vm.tests = allTests;
                     $log.debug('response', vm.tests);
                 } else {
                     NotificationService.error(res.message);
@@ -34,6 +42,23 @@
             });
         }
 
+        function filterTests() {
+            let temp = allTests;
+            if (vm.filter.color !== '' && vm.filter.color !== null) {
+                temp = temp.filter((item) => {
+                    return item.testType === vm.filter.color;
+                });
+            }
+            if (vm.filter.testName) {
+                temp = temp.filter((item) => {
+                    let regex = new RegExp(vm.filter.testName, 'i');
+                    return regex.test(item.name);
+                });
+            }
+            vm.tests = temp;
+            vm.filter.color = '';
+            vm.filter.testName = '';
+        }
         function createNewTest() {
             ModalDialogService.createTestModal();
         }

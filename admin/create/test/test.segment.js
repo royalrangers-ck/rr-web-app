@@ -17,6 +17,9 @@
                 resolve: {
                     testsPromise: function (TestService) {
                         return TestService.getAllTests().$promise;
+                    },
+                    testColors: function (TestService) {
+                        return TestService.getTestColors();
                     }
                 }
             });

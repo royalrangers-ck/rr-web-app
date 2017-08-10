@@ -124,14 +124,7 @@
                 controllerAs: 'vm',
                 resolve: {
                     testColors: function (TestService) {
-                        return TestService.getAllTests().$promise.then((res) => {
-                            return res.data.reduce((colors, current) => {
-                                if (!colors.some((item) => item == current.testType)) {
-                                    colors.push(current.testType);
-                                }
-                                return colors;
-                            }, []);
-                        });
+                        return TestService.getTestColors();
                     }
                 }
             }).result.then(function () {
