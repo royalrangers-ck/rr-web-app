@@ -16,7 +16,9 @@
         vm.getCity = PublicInfoFactory.city;
         vm.getCities = PublicInfoFactory.cities;
         vm.getPlatoon = PublicInfoFactory.platoon;
+        vm.getPlatoons = PublicInfoFactory.platoons;
         vm.getSection = PublicInfoFactory.section;
+        vm.getSections = PublicInfoFactory.sections;
         vm.getRank = PublicInfoFactory.rank;
     }
 })();

@@ -42,10 +42,20 @@
                 params: {groupId: '@cityId'},
                 isArray: false
             },
+            'platoons': {
+                method: 'GET',
+                url: `${Endpoints.PUBLIC}/platoons`,
+                isArray: false
+            },
             'section': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/section`,
                 params: {platoonId: '@platoonId'},
+                isArray: false
+            },
+            'sections': {
+                method: 'GET',
+                url: `${Endpoints.PUBLIC}/sections`,
                 isArray: false
             },
             'rank': {
