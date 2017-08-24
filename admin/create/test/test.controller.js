@@ -6,12 +6,13 @@
         .module('admin')
         .controller('CreateTestController', CreateTestController);
 
-    function CreateTestController($log, NotificationService, testsPromise, ModalDialogService, testColors) {
+    function CreateTestController($log, NotificationService, testsPromise, ModalDialogService, testColors, $location) {
         const vm = this;
         let allTests = [];
 
         vm.tests = allTests;
         vm.newTest = {};
+        vm.editTest = editTest;
         vm.testColors = testColors;
         vm.filter = {
             color: '',
@@ -42,6 +43,10 @@
             });
         }
 
+        function editTest(testId) {
+            $location.path('edit/test/' + testId);
+        }
+        
         function filterTests() {
             let temp = allTests;
             if (vm.filter.color !== '' && vm.filter.color !== null) {

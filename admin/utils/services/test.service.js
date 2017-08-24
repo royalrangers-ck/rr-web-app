@@ -14,6 +14,7 @@
         vm.getAllTests = TestFactory.getAll;
         vm.createTest = TestFactory.save;
         vm.getById = TestFactory.getById;
+        vm.updateTest = TestFactory.updateTest;
         vm.getTestColors = function () {
             return vm.getAllTests().$promise.then((res) => {
                 return res.data.reduce((colors, current) => {

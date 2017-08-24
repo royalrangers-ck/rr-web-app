@@ -1,0 +1,23 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="vm.close()">&times;</button>
+        <h4 class="modal-title" id="CreateTestLabel">Добавити завдання</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form" ng-submit="vm.addTask()">
+            <div class="form-group">
+                <label for="taskName">Назва завдання</label>
+                <input required ng-model="vm.newTask.name" class="form-control" id="taskName" placeholder="введіть назву">
+            </div>
+            <div class="form-group">
+                <label for="description">Розгорнутий опис</label>
+                <textarea required ng-model="vm.newTask.description" class="form-control" rows="6" id="description" placeholder="введіть текст"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="vm.close()">Закрити</button>
+                <button type="submit" class="btn btn-primary">Створити</button>
+            </div>
+        </form>
+    </div>
+</div>
+

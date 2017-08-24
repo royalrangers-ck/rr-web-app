@@ -16,6 +16,10 @@
             "getById": {
                 method: 'GET',
                 url: `${Endpoints.TEST}/:id`
+            },
+            "updateTest": {
+                method: 'PUT',
+                url: `${Endpoints.TEST}/:id`
             }
         });
     }

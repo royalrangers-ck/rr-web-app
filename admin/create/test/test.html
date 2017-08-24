@@ -42,11 +42,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="test in vm.tests">
+                        <tr ng-repeat="test in vm.tests | orderBy:'+':true">
                             <td class="col-md-2">{{$index+1}}</td>
                             <td class="col-md-4">{{test.name}}</td>
                             <td class="col-md-4">{{test.testType}}</td>
-                            <td class="col-md-2"><button ng-disabled="true" class="btn btn-primary  pull-right">Детально</button></td>
+                            <td class="col-md-2"><button ng-click="vm.editTest(test.id)" class="btn btn-primary  pull-right">Детально</button></td>
                         </tr>
                     </tbody>
                 </table>

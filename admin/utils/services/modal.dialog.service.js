@@ -18,6 +18,7 @@
         this.approveUserRegistrationModal = approveUserRegistrationModal;
         this.approveUserUpdateModal = approveUserUpdateModal;
         this.createTestModal = createTestModal;
+        this.addTaskModal = addTaskModal;
         ///
 
         function profileModal(achievement, type) {
@@ -125,6 +126,23 @@
                 resolve: {
                     testColors: function (TestService) {
                         return TestService.getTestColors();
+                    }
+                }
+            }).result.then(function () {
+                // result (promise) - Is resolved when a modal is closed and rejected when a modal is dismissed.
+            }, function (res) {
+            });
+        }
+        function addTaskModal(testId) {
+
+            return $uibModal.open({
+                animation: true,
+                templateUrl: 'edit/test/add.task.modal/add.task.modal.html',
+                controller: 'AddTaskModalController',
+                controllerAs: 'vm',
+                resolve: {
+                    testId: () => {
+                        return testId;
                     }
                 }
             }).result.then(function () {
