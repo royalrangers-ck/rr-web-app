@@ -39,7 +39,7 @@
         let endpoints = {
             API: '/api'
         };
-        
+
         //PUBLIC INFO ENDPOINT
         endpoints.PUBLIC = endpoints.API + '/public';
 
@@ -85,6 +85,11 @@
                     {name: 'Реєстрації',        route: '#approve/registrations'},
                     {name: 'Оновлення даних',   route: '#approve/updates'}
                 ]
+            },
+            {
+                name: 'Структура RR',
+                adminsOnly: true,
+                route: '#/tree'
             }
         ];
     }
