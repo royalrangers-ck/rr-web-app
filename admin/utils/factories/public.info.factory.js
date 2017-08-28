@@ -17,7 +17,7 @@
             'region': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/region`,
-                params: {cityId: '@countryId'},
+                params: {countryId: '@countryId'},
                 isArray: false
             },
             'regions': {
@@ -28,7 +28,7 @@
             'city': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/city`,
-                params: {countryId: '@regionId'},
+                params: {regionId: '@regionId'},
                 isArray: false
             },
             'cities': {
@@ -39,7 +39,7 @@
             'platoon': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/platoon`,
-                params: {groupId: '@cityId'},
+                params: {cityId: '@cityId'},
                 isArray: false
             },
             'platoons': {

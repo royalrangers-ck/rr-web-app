@@ -8,17 +8,15 @@
 
     function PublicInfoService(PublicInfoFactory) {
 
-        const vm = this;
-
-        vm.getCountries = PublicInfoFactory.countries;
-        vm.getRegion = PublicInfoFactory.region;
-        vm.getRegions = PublicInfoFactory.regions;
-        vm.getCity = PublicInfoFactory.city;
-        vm.getCities = PublicInfoFactory.cities;
-        vm.getPlatoon = PublicInfoFactory.platoon;
-        vm.getPlatoons = PublicInfoFactory.platoons;
-        vm.getSection = PublicInfoFactory.section;
-        vm.getSections = PublicInfoFactory.sections;
-        vm.getRank = PublicInfoFactory.rank;
+        this.getCountries = PublicInfoFactory.countries;
+        this.getRegion = PublicInfoFactory.region;
+        this.getRegions = PublicInfoFactory.regions;
+        this.getCity = PublicInfoFactory.city;
+        this.getCities = PublicInfoFactory.cities;
+        this.getPlatoon = PublicInfoFactory.platoon;
+        this.getPlatoons = PublicInfoFactory.platoons;
+        this.getSection = PublicInfoFactory.section;
+        this.getSections = PublicInfoFactory.sections;
+        this.getRank = PublicInfoFactory.rank;
     }
 })();
