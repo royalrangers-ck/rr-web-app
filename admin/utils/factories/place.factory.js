@@ -20,6 +20,14 @@
             'city': {
                 method: 'POST',
                 url: Endpoints.ADMIN_CITY
+            },
+            'platoon': {
+                method: 'POST',
+                url: Endpoints.PLATOON_ENDPOINTS
+            },
+            'section': {
+                method: 'POST',
+                url: Endpoints.ADMIN_SECTION
             }
         });
     }

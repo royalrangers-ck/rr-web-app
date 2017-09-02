@@ -43,16 +43,20 @@
         //PUBLIC INFO ENDPOINT
         endpoints.PUBLIC = endpoints.API + '/public';
 
-        endpoints.CITIES =    endpoints.PUBLIC + '/cities';
+        endpoints.CITIES = endpoints.PUBLIC + '/cities';
         endpoints.COUNTRIES = endpoints.PUBLIC + '/countries';
-        endpoints.REGIONS =   endpoints.PUBLIC + '/regions';
+        endpoints.REGIONS = endpoints.PUBLIC + '/regions';
 
         //ADMIN ENDPOINTS
         endpoints.ADMIN = endpoints.API + '/admin';
 
         endpoints.ADMIN_COUNTRY = endpoints.ADMIN + '/country';
-        endpoints.ADMIN_REGION =   endpoints.ADMIN + '/region';
-        endpoints.ADMIN_CITY =    endpoints.ADMIN + '/city';
+        endpoints.ADMIN_REGION = endpoints.ADMIN + '/region';
+        endpoints.ADMIN_CITY = endpoints.ADMIN + '/city';
+        endpoints.ADMIN_SECTION = endpoints.ADMIN + '/section';
+
+        // PLATOON ENDPOINTS
+        endpoints.PLATOON_ENDPOINTS = '/platoon';
 
         // User  returns authorized user info
         endpoints.USER = endpoints.API + '/user';
@@ -73,17 +77,17 @@
                 name: 'Створити',
                 route: '',
                 submenu: [
-                    {name: 'Країну',     route: '#/create/country'},
-                    {name: 'Місто',      route: '#/create/city'},
-                    {name: 'Регіон',     route: '#/create/region'},
+                    {name: 'Країну', route: '#/create/country'},
+                    {name: 'Місто', route: '#/create/city'},
+                    {name: 'Регіон', route: '#/create/region'},
                 ]
             },
             {
                 name: 'Підтвердити',
                 adminsOnly: true,
                 submenu: [
-                    {name: 'Реєстрації',        route: '#approve/registrations'},
-                    {name: 'Оновлення даних',   route: '#approve/updates'}
+                    {name: 'Реєстрації', route: '#approve/registrations'},
+                    {name: 'Оновлення даних', route: '#approve/updates'}
                 ]
             },
             {
