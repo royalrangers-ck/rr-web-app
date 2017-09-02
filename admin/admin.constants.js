@@ -78,8 +78,9 @@
                 route: '',
                 submenu: [
                     {name: 'Країну', route: '#/create/country'},
-                    {name: 'Місто', route: '#/create/city'},
                     {name: 'Регіон', route: '#/create/region'},
+                    {name: 'Місто', route: '#/create/city'},
+                    {name: 'Загін', route: '#/create/platoon'},
                 ]
             },
             {

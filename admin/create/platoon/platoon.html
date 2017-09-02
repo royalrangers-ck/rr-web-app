@@ -1,0 +1,145 @@
+<div class="ibox">
+    <div class="ibox-title">
+        <h2 class="text-center">Новий загін</h2>
+    </div>
+
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <form ng-submit="vm.createPlatoon" name="addPlatoonForm" novalidate>
+
+                    <div class="form-group">
+                        <label for="countrySelect">Країна:</label>
+                        <select id="countrySelect"
+                                name="countrySelect"
+                                class="form-control"
+                                ng-model="vm.formData.country"
+                                ng-change="vm.getRegionsByCountry(vm.formData.country)"
+                                ng-options="country as country.name for country in vm.countries"
+                                required>
+                            <option disabled hidden value="">Виберіть країну</option>
+                        </select>
+                        <p ng-if="!vm.formData.country.regions && !addPlatoonForm.countrySelect.$pristine"
+                           class="help-block">Ця країна ще не має жодного регіону.</p>
+                    </div>
+
+                    <div ng-if="vm.formData.country.regions">
+                        <div class="form-group">
+                            <label for="regionSelect">Регіон:</label>
+                            <select id="regionSelect"
+                                    name="regionSelect"
+                                    class="form-control"
+                                    ng-model="vm.formData.region"
+                                    ng-change="vm.getCitiesByRegion(vm.formData.region)"
+                                    ng-options="region as region.name for region in vm.formData.country.regions"
+                                    required>
+                                <option disabled hidden value="">Виберіть регіон</option>
+                            </select>
+                            <p ng-if="!vm.formData.region.cities && !addPlatoonForm.regionSelect.$pristine"
+                               class="help-block">В цьому регіоні ще не має жодного міста.</p>
+                        </div>
+
+                        <div class="form-group" ng-if="vm.formData.region.cities">
+                            <label for="citySelect">Місто:</label>
+                            <select id="citySelect"
+                                    name="citySelect"
+                                    class="form-control"
+                                    ng-model="vm.formData.platoon.cityId"
+                                    ng-options="city.id as city.name for city in vm.formData.region.cities"
+                                    required>
+                                <option disabled hidden value="">Виберіть місто</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div ng-if="vm.formData.platoon.cityId" class="well">
+
+                        <h3 class="text-center">Інформація загону</h3>
+
+                        <div class="form-group">
+                            <label for="platoonNameInput">Назва</label>
+                            <input id="platoonNameInput"
+                                   name="platoonNameInput"
+                                   class="form-control"
+                                   type="number"
+                                   ng-model="vm.formData.platoon.name"
+                                   min="1"
+                                   required>
+                            <p class="help-block"
+                               ng-show="addPlatoonForm.platoonNameInput.$error.required && !addPlatoonForm.platoonNameInput.$pristine">
+                                Будь-ласка введіть назву загону.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="platoonAddressInput">Адреса</label>
+                            <input id="platoonAddressInput"
+                                   name="platoonAddressInput"
+                                   class="form-control"
+                                   type="text"
+                                   ng-model="vm.formData.platoon.address"
+                                   required>
+                            <p class="help-block"
+                               ng-show="addPlatoonForm.platoonAddressInput.$error.required && !addPlatoonForm.platoonAddressInput.$pristine">
+                                Будь-ласка введіть адресу загону.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="platoonHistoryInput">Історія</label>
+                            <textarea id="platoonHistoryInput"
+                                      name="platoonHistoryInput"
+                                      class="form-control"
+                                      ng-model="vm.formData.platoon.history"
+                            ></textarea>
+                        </div>
+
+
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : addPlatoonForm.platoonMeetTimeInput.$invalid && !addPlatoonForm.platoonMeetTimeInput.$pristine,
+                                        'has-success' : addPlatoonForm.platoonMeetTimeInput.$valid && !addPlatoonForm.platoonMeetTimeInput.$pristine}">
+                            <label for="platoonMeetTimeInput">Час зустрічі</label>
+                            <p class="input-group">
+                                <input type="text"
+                                       name="platoonMeetTimeInput"
+                                       id="platoonMeetTimeInput"
+                                       class="form-control"
+                                       ng-model="vm.formDate.platoon.meetTime"
+                                       uib-datepicker-popup="dd.MM.yyyy HH:mm"
+                                       is-open="vm.datePicker.opened"
+                                       datepicker-options="vm.datePicker.options"
+                                       required
+                                />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.datePicker.open()">
+                                        <i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                            <p class="help-block"
+                               ng-show="addPlatoonForm.platoonMeetTimeInput.$error.required && !addPlatoonForm.platoonMeetTimeInput.$pristine">
+                                Оберіть час зустрічі.</p>
+                            <p class="help-block"
+                               ng-show="addPlatoonForm.platoonMeetTimeInput.$error.date && !addPlatoonForm.platoonMeetTimeInput.$pristine">
+                                Невірний формат дати</p>
+                        </div>
+
+                        <div class="form-group">Chose logo</div>
+                    </div>
+
+                    <pre>
+                    {
+                          "address": "string",
+                          "cityId": 0,
+                          "history": "string",
+                          "logoUrl": "string",
+                          "meetTime": "2017-09-02T14:39:24.904Z",
+                          "name": 0
+                     }
+                    </pre>
+
+                    <!-- //Button -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--<pre>{{vm.formData | json}}</pre>-->
+</div>
