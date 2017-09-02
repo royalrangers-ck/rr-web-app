@@ -3,126 +3,140 @@
 <!-- --------------------------------------------- -->
 <!--                    Main                       -->
 <!-- --------------------------------------------- -->
-<div class="rr__tree__item">
-    <!-- ***** Main Header ***** -->
-    <div ng-click="vm.collapseItem('Countries'); vm.getCountries()">
-        <p>Countries
-            <span ng-show="vm.collapsingItems['Countries']" class="fa fa-chevron-down text-right"></span>
-            <span ng-show="!vm.collapsingItems['Countries']" class="fa fa-chevron-right text-right"></span>
-        </p>
+<div class="rr__tree__item row">
+    <div class="col-xs-1"
+         ng-click="vm.collapseItem('Countries'); vm.getCountries()">
+        <i class="fa fa-minus-square"
+           ng-show="vm.collapsingItems['Countries']"></i>
+        <i class="fa fa-plus-square"
+           ng-show="!vm.collapsingItems['Countries']"></i>
     </div>
-    <!-- ***** Main Body ***** -->
-    <div uib-collapse="!vm.collapsingItems['Countries']">
+    <div class="col-xs-10">
+        <!-- ***** Main Header ***** -->
+        <p>Countries</p>
+        <!-- ***** Main Body ***** -->
+        <div uib-collapse="!vm.collapsingItems['Countries']">
 
-        <!-- --------------------------------------------- -->
-        <!--                 Countries                     -->
-        <!-- --------------------------------------------- -->
-        <div class="rr__tree__item" ng-repeat="country in vm.royalRangersStructure.countries">
-            <!-- ***** Country Header ***** -->
-            <div ng-click="vm.collapseItem(country.name); vm.getRegionsByCountry(country)">
-                <p>Country: {{country.name}}
-                    <span ng-show="vm.collapsingItems[country.name]" class="fa fa-chevron-down text-right"></span>
-                    <span ng-show="!vm.collapsingItems[country.name]" class="fa fa-chevron-right text-right"></span>
-                </p>
-            </div>
-            <!-- ***** Country Body ***** -->
-            <div uib-collapse="!vm.collapsingItems[country.name]">
-
-                <!-- --------------------------------------------- -->
-                <!--                  Regions                      -->
-                <!-- --------------------------------------------- -->
-                <div class="rr__tree__item" ng-repeat="region in country.regions">
-                    <!-- ***** Region Header ***** -->
-                    <div ng-click="vm.collapseItem(region.name); vm.getCitiesByRegion(region)">
-                        <p>Region: {{region.name}}
-                            <span ng-show="vm.collapsingItems[region.name]"
-                                  class="fa fa-chevron-down text-right"></span>
-                            <span ng-show="!vm.collapsingItems[region.name]"
-                                  class="fa fa-chevron-right text-right"></span>
-                        </p>
-                    </div>
-                    <!-- ***** Region Body ***** -->
-                    <div uib-collapse="!vm.collapsingItems[region.name]">
+            <!-- --------------------------------------------- -->
+            <!--                 Countries                     -->
+            <!-- --------------------------------------------- -->
+            <div class="rr__tree__item row" ng-repeat="country in vm.royalRangersStructure.countries">
+                <div class="col-xs-1"
+                     ng-click="vm.collapseItem(country.name); vm.getRegionsByCountry(country)">
+                    <i class="fa fa-minus-square"
+                       ng-show="vm.collapsingItems[country.name]"></i>
+                    <i class="fa fa-plus-square"
+                       ng-show="!vm.collapsingItems[country.name]"></i>
+                </div>
+                <div class="col-xs-10">
+                    <!-- ***** Country Header ***** -->
+                    <div>{{country.name}}</div>
+                    <!-- ***** Country Body ***** -->
+                    <div uib-collapse="!vm.collapsingItems[country.name]">
 
                         <!-- --------------------------------------------- -->
-                        <!--                   Cities                      -->
+                        <!--                  Regions                      -->
                         <!-- --------------------------------------------- -->
-                        <div class="rr__tree__item" ng-repeat="city in region.cities">
-                            <!-- ***** City Header ***** -->
-                            <div ng-click="vm.collapseItem(city.name); vm.getPlatoonsByCity(city)">
-                                <p>City: {{city.name}}
-                                    <span ng-show="vm.collapsingItems[city.name]"
-                                          class="fa fa-chevron-down text-right"></span>
-                                    <span ng-show="!vm.collapsingItems[city.name]"
-                                          class="fa fa-chevron-right text-right"></span>
-                                </p>
+                        <div class="rr__tree__item row" ng-repeat="region in country.regions">
+                            <div class="col-xs-1"
+                                 ng-click="vm.collapseItem(region.name); vm.getCitiesByRegion(region)">
+                                <i class="fa fa-minus-square"
+                                   ng-show="vm.collapsingItems[region.name]"></i>
+                                <i class="fa fa-plus-square"
+                                   ng-show="!vm.collapsingItems[region.name]"></i>
                             </div>
-                            <!-- ***** City Body ***** -->
-                            <div uib-collapse="!vm.collapsingItems[city.name]">
+                            <div class="col-xs-10">
+                                <!-- ***** Region Header ***** -->
+                                <div>{{region.name}}</div>
+                                <!-- ***** Region Body ***** -->
+                                <div uib-collapse="!vm.collapsingItems[region.name]">
 
-                                <!-- --------------------------------------------- -->
-                                <!--                   Platoons                    -->
-                                <!-- --------------------------------------------- -->
-                                <div class="rr__tree__item" ng-repeat="platoon in city.platoons">
-                                    <!-- ***** Platoon Header ***** -->
-                                    <div ng-click="vm.collapseItem(platoon.name); vm.getSectionsByPlatoon(platoon)">
-                                        <p>Platoon: {{platoon.name}}
-                                            <span ng-show="vm.collapsingItems[platoon.name]"
-                                                  class="fa fa-chevron-down text-right"></span>
-                                            <span ng-show="!vm.collapsingItems[platoon.name]"
-                                                  class="fa fa-chevron-right text-right"></span>
-                                        </p>
-                                    </div>
-                                    <!-- ***** Platoon Body ***** -->
-                                    <div uib-collapse="!vm.collapsingItems[platoon.name]">
+                                    <!-- --------------------------------------------- -->
+                                    <!--                   Cities                      -->
+                                    <!-- --------------------------------------------- -->
+                                    <div class="rr__tree__item row" ng-repeat="city in region.cities">
+                                        <div class="col-xs-1"
+                                             ng-click="vm.collapseItem(city.name); vm.getPlatoonsByCity(city)">
+                                            <i class="fa fa-minus-square"
+                                               ng-show="vm.collapsingItems[city.name]"></i>
+                                            <i class="fa fa-plus-square"
+                                               ng-show="!vm.collapsingItems[city.name]"></i>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <!-- ***** City Header ***** -->
+                                            <div>{{city.name}}</div>
+                                            <!-- ***** City Body ***** -->
+                                            <div uib-collapse="!vm.collapsingItems[city.name]">
 
-                                        <!-- --------------------------------------------- -->
-                                        <!--                   Sections                    -->
-                                        <!-- --------------------------------------------- -->
-                                        <div class="rr__tree__item"
-                                             ng-repeat="section in platoon.sections">
-                                            <!-- ***** Sections Header ***** -->
-                                            <div>
-                                                <p> Section: {{section.name}} </p>
+                                                <!-- --------------------------------------------- -->
+                                                <!--                   Platoons                    -->
+                                                <!-- --------------------------------------------- -->
+                                                <div class="rr__tree__item row" ng-repeat="platoon in city.platoons">
+                                                    <div class="col-xs-1"
+                                                         ng-click="vm.collapseItem(platoon.name); vm.getSectionsByPlatoon(platoon)">
+                                                        <i class="fa fa-minus-square"
+                                                           ng-show="vm.collapsingItems[platoon.name]"></i>
+                                                        <i class="fa fa-plus-square"
+                                                           ng-show="!vm.collapsingItems[platoon.name]"></i>
+                                                    </div>
+                                                    <div class="col-xs-10">
+                                                        <!-- ***** Platoon Header ***** -->
+                                                        <div>{{platoon.name}}</div>
+                                                        <!-- ***** Platoon Body ***** -->
+                                                        <div uib-collapse="!vm.collapsingItems[platoon.name]">
+
+                                                            <!-- --------------------------------------------- -->
+                                                            <!--                   Sections                    -->
+                                                            <!-- --------------------------------------------- -->
+                                                            <div class="rr__tree__item row"
+                                                                 ng-repeat="section in platoon.sections">
+                                                                <div>
+                                                                    <!-- ***** Sections Header ***** -->
+                                                                    <div>{{section.name}}</div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="rr__tree__add_item">
+                                                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                                                Section
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="rr__tree__add_item">
+                                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                                    Platoon
+                                                </div>
+
                                             </div>
                                         </div>
-
-                                        <div class="rr__tree__item">
-                                            <p>
-                                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                                Section</p>
-                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="rr__tree__item">
-                                    <p>
+                                    <div class="rr__tree__add_item">
                                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                        Platoon</p>
+                                        City
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
 
-                        <div class="rr__tree__item">
-                            <p>
-                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                City</p>
+                        <div class="rr__tree__add_item">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Region
                         </div>
+
                     </div>
                 </div>
-
-                <div class="rr__tree__item">
-                    <p>
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                        Region</p>
-                </div>
             </div>
-        </div>
 
-        <div class="rr__tree__item">
-            <p>
+            <div class="rr__tree__add_item">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                Country</p>
+                Country
+            </div>
+
         </div>
     </div>
 </div>

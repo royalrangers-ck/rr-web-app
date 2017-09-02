@@ -37,43 +37,53 @@
         }
 
         function getCountries() {
-            PublicInfoService.getCountries().$promise.then(function (res) {
-                if (res.success) {
-                    vm.royalRangersStructure.countries = res.data;
-                }
-            })
+            if (!vm.royalRangersStructure.countries) {
+                PublicInfoService.getCountries().$promise.then(function (res) {
+                    if (res.success) {
+                        vm.royalRangersStructure.countries = res.data;
+                    }
+                })
+            }
         }
 
         function getRegionsByCountry(country) {
-            PublicInfoService.getRegion({countryId: country.id}).$promise.then(function (res) {
-                if (res.success) {
-                    country.regions = res.data;
-                }
-            })
+            if (!country.regions) {
+                PublicInfoService.getRegion({countryId: country.id}).$promise.then(function (res) {
+                    if (res.success) {
+                        country.regions = res.data;
+                    }
+                })
+            }
         }
 
         function getCitiesByRegion(region) {
-            PublicInfoService.getCity({regionId: region.id}).$promise.then(function (res) {
-                if (res.success) {
-                    region.cities = res.data;
-                }
-            })
+            if (!region.cities) {
+                PublicInfoService.getCity({regionId: region.id}).$promise.then(function (res) {
+                    if (res.success) {
+                        region.cities = res.data;
+                    }
+                })
+            }
         }
 
         function getPlatoonsByCity(city) {
-            PublicInfoService.getPlatoon({cityId: city.id}).$promise.then(function (res) {
-                if (res.success) {
-                    city.platoons = res.data;
-                }
-            })
+            if (!city.platoons) {
+                PublicInfoService.getPlatoon({cityId: city.id}).$promise.then(function (res) {
+                    if (res.success) {
+                        city.platoons = res.data;
+                    }
+                })
+            }
         }
 
         function getSectionsByPlatoon(platoon) {
-            PublicInfoService.getSection({platoonId: platoon.id}).$promise.then(function (res) {
-                if (res.success) {
-                    platoon.sections = res.data;
-                }
-            })
+            if (!platoon.sections) {
+                PublicInfoService.getSection({platoonId: platoon.id}).$promise.then(function (res) {
+                    if (res.success) {
+                        platoon.sections = res.data;
+                    }
+                })
+            }
         }
     }
 })();
