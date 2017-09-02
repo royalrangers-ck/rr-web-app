@@ -13,5 +13,7 @@
         vm.createCountry = PlaceFactory.country;
         vm.createRegion = PlaceFactory.region;
         vm.createCity = PlaceFactory.city;
+        vm.createPlatoon = PlaceFactory.platoon;
+        vm.createSection = PlaceFactory.section;
     }
 })();

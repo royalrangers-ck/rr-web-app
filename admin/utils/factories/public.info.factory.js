@@ -17,7 +17,7 @@
             'region': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/region`,
-                params: {cityId: '@countryId'},
+                params: {countryId: '@countryId'},
                 isArray: false
             },
             'regions': {
@@ -28,7 +28,7 @@
             'city': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/city`,
-                params: {countryId: '@regionId'},
+                params: {regionId: '@regionId'},
                 isArray: false
             },
             'cities': {
@@ -39,13 +39,23 @@
             'platoon': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/platoon`,
-                params: {groupId: '@cityId'},
+                params: {cityId: '@cityId'},
+                isArray: false
+            },
+            'platoons': {
+                method: 'GET',
+                url: `${Endpoints.PUBLIC}/platoons`,
                 isArray: false
             },
             'section': {
                 method: 'GET',
                 url: `${Endpoints.PUBLIC}/section`,
                 params: {platoonId: '@platoonId'},
+                isArray: false
+            },
+            'sections': {
+                method: 'GET',
+                url: `${Endpoints.PUBLIC}/sections`,
                 isArray: false
             },
             'rank': {

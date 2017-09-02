@@ -1,0 +1,31 @@
+.rr__tree__main__header {
+  color: black;
+  font-weight: normal;
+}
+
+.rr__tree__item {
+  display: flex;
+  color: black;
+  font-weight: normal;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  font-size: 20px;
+  line-height: 32px;
+  p {
+    padding: 0;
+    margin: 0;
+  }
+  .col-xs-1 {
+    padding: 0;
+    width: 30px;
+  }
+  .col-xs-10 {
+    padding: 0;
+  }
+}
+
+.rr__tree__add_item {
+  color: red;
+}
