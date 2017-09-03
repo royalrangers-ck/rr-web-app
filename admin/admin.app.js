@@ -12,6 +12,7 @@
             'view-segment',
             'angular-growl',
             'ui.bootstrap',
+            'ngImgCrop',
             'ngIdle'
         ])
         .run(($log) => {
