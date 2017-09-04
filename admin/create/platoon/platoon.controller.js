@@ -6,13 +6,17 @@
         .module('admin')
         .controller('CreatePlatoonController', CreatePlatoonController);
 
-    function CreatePlatoonController($scope, $log, countries, PublicInfoService) {
+    function CreatePlatoonController($scope, $log, countries, PublicInfoService, ImgUploadService, NotificationService) {
         const vm = this;
 
         vm.countries = countries.data;
         vm.regions = {};
         vm.cities = {};
-        vm.formData = {};
+        vm.form = {
+            platoon: {
+                logo: {}
+            }
+        };
 
         vm.datePicker = {};
         vm.datePicker.options = {
@@ -25,6 +29,7 @@
         vm.createPlatoon = createPlatoon;
         vm.getRegionsByCountry = getRegionsByCountry;
         vm.getCitiesByRegion = getCitiesByRegion;
+        vm.uploadImage = uploadImage;
 
         activate();
 
@@ -35,7 +40,7 @@
         }
 
         function createPlatoon() {
-
+            console.log('New platoon data', vm.form.platoon)
         }
 
         function getRegionsByCountry(country) {
@@ -43,7 +48,7 @@
                 if (res.success) {
                     country.regions = res.data;
                     vm.cities = [];
-                    vm.formData.platoon.cityId = null;
+                    vm.form.platoon.cityId = null;
                 }
             })
         }
@@ -52,9 +57,25 @@
             PublicInfoService.getCity({regionId: region.id}).$promise.then(function (res) {
                 if (res.success) {
                     region.cities = res.data;
-                    vm.formData.platoon.cityId = null;
+                    vm.form.platoon.cityId = null;
                 }
             })
+        }
+
+        function uploadImage() {
+            ImgUploadService.uploadImage()
+                .then(function (res) {
+                    vm.form.platoonLogoForShowOnUi = res.croppedImage;
+                    vm.form.platoon.logo = res.formDataImage;
+
+                })
+                .catch(function (err) {
+                    if (err === 'Cancel') {
+                        return
+                    }
+                    let message = err.message || "Some error cause by image uploading";
+                    NotificationService.error(message);
+                })
         }
     }
 })();
